@@ -1,0 +1,46 @@
+.axe-x-container,.colonne-container{
+    display:flex;
+    flex-direction: column;
+
+}
+
+
+.filtre-lieu-container,.filtre-annee-container{
+    display:flex;
+    flex-direction: column;
+    align-items:start;
+}
+
+
+
+
+
+
+select{
+    width:100%;
+    height: 25px;
+    border-radius:30px;
+    font-size: 0.7rem;
+    background-color: #dee5ef;
+    
+}
+
+select:hover{
+    cursor:pointer
+}
+
+
+
+.annee-container>select{
+    width:40%;
+    border-radius:2px;
+    height: 30px;
+    
+}
+
+
+
+
+.filtre-lieu-container>p,.filtre-annee-container>p{
+    margin:0
+}

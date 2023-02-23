@@ -1,0 +1,66 @@
+
+.button-graph{
+    background-color: whitesmoke;
+    position:absolute;
+    left:10%;
+    height: 60px;
+    border:1px solid #dee5ef;
+    width:150px;
+    font-size: 1.5rem;
+    transition: 0.3s all ease;
+}
+
+.button-graph:hover{
+    cursor: pointer;
+    background-color: #b4dbd6;
+
+}
+
+
+.button-tableau{
+    position:absolute;
+    right:20%;
+    height: 60px;
+    border:1px solid #dee5ef;
+    width:150px;
+}
+
+.button-annee{
+    width:100px;
+    font-size: 1.2rem;
+}
+
+.button-telecharger{
+    
+    width:150px;
+    font-size: 1.2rem;
+}
+
+.annee-container{
+    margin-right:5%;
+}
+
+.telecharger-container{
+    margin-right:5%;
+}
+
+.telecharger-button-container>button{
+    transition:all 0.1s ease ;
+}
+
+.telecharger-button-container>button:hover{
+    cursor: pointer;
+    color:red;
+
+}
+
+.telecharger-button-container>button:active{
+    background-color: rgba(230, 78, 78, 0.8);
+    color:whitesmoke;
+}
+
+button{
+    background-color: #dee5ef;
+    border:1px solid #dee5ef;
+}
+
