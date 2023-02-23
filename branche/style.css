@@ -2,14 +2,66 @@
 {
     color : white;
 }
-#AccueiletStatistiques /*id pour les titres Accueil et Statistiques en jaune*/
+#Accueil
 {
     color : yellow;
     text-decoration :underline;
+    position : absolute;
+    left: 60%;
+    top:1%;
+}
+#Statistiques{
+    color:yellow;
+    text-decoration: underline;  
+    position: absolute;
+    left:80%;
+    top: 1%;
 }
 header
 {
     background-color : rgb(71, 71, 232);    
     width : 100%;
-    height : 100px;
+    height : 50px;
+}
+
+footer
+{
+    background-color: white;
+    width:100%;
+    height:50px;
+    position: fixed;
+    bottom:0%;
+    
+}
+
+#Aproposdenous
+{
+    color : black;
+    position : absolute;
+    bottom:1%;
+    right:5%;
+}
+
+#Sources
+ {
+    color : black;        
+    position : absolute;
+    bottom:1%;
+    left:5%;    
+}
+
+fieldset[id="filtres"]{
+    width:50%;
+    border-width:6px;
+    border-color:rgb(236, 206, 206);
+    margin:0%;
+    padding:1%;
+    float:right;
+}
+
+input[type="reset"]
+{
+    position :absolute;
+    right:2%;
+    top:40%;
 }
