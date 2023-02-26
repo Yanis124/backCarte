@@ -1,48 +1,36 @@
 
-.button-graph{
+.graph-text-container>button{
     background-color: whitesmoke;
-    position:absolute;
-    left:10%;
     height: 60px;
     border:1px solid #dee5ef;
-    width:150px;
+    width:10%; /*une largeur de 10% de l'element parent*/
+    margin-left:10%; /*decaler le button de 10% a gauch*/
     font-size: 1.5rem;
     transition: 0.3s all ease;
 }
 
-.button-graph:hover{
+/* style du button graph hover */
+.graph-text-container>button:hover{
     cursor: pointer;
     background-color: #b4dbd6;
 
 }
 
-
-.button-tableau{
-    position:absolute;
-    right:20%;
-    height: 60px;
+.filtre-annee{ 
+    height: 40px;
     border:1px solid #dee5ef;
-    width:150px;
+    font-size: 1rem;
+    width:30%; /*le button année prend 30% de la largeur du tableau-annee-container*/
 }
 
-.button-annee{
-    width:100px;
-    font-size: 1.2rem;
-}
 
 .button-telecharger{
-    
     width:150px;
     font-size: 1.2rem;
 }
 
-.annee-container{
-    margin-right:5%;
-}
 
-.telecharger-container{
-    margin-right:5%;
-}
+
 
 .telecharger-button-container>button{
     transition:all 0.1s ease ;
@@ -50,7 +38,8 @@
 
 .telecharger-button-container>button:hover{
     cursor: pointer;
-    color:red;
+    color:rgb(255, 255, 255);
+    background-color: red;
 
 }
 
@@ -59,8 +48,5 @@
     color:whitesmoke;
 }
 
-button{
-    background-color: #dee5ef;
-    border:1px solid #dee5ef;
-}
+
 

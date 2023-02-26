@@ -1,3 +1,6 @@
+/* le tableau */
+
+
 thead{
     background-color: gray;
 }
@@ -11,7 +14,7 @@ table{
 
 table, th, td {
     border: 1px solid;
-    text-align: center;
+    text-align: center; /*centrer le texte des cases du tableau*/
 }
 
 td{
@@ -20,5 +23,5 @@ td{
 }
 
 table{
-    flex-basis: 90%;
+    flex-basis: 90%; /*le tableau prend 90% de l'espace de table-annee-container*/
 }
