@@ -1,12 +1,17 @@
 body{
     font-family: Arial, Helvetica, sans-serif;
 }
+
+body p{
+    margin-left: 20px;
+}
+
 header{
     height: 50px;
     position: relative;
 }
 
-header .navigation-principale
+.navigation-principale
 {
     background-color: rgb(47, 63, 236);
     position: absolute;
@@ -15,16 +20,20 @@ header .navigation-principale
     height: 50px;
 }
 
-.navigation-principale .titre-du-projet{
+.titre-du-projet a{
+    position: absolute;
     color: white;
-    margin: 7px 10px 10px 25px;
-    font-size: 30px;
+    /*margin: 7px 10px 10px 25px;*/
+    font-size: 35px;
     font-variant: small-caps;
+    text-decoration: none;
+    bottom: 5px;
+    left: 35px;
 }
 
-.navigation-principale .p_carte a{
+.p_statistique a{
     position: absolute;
-    right: 150px;
+    right: 15px;
     top:12px;
     color: black;
     text-decoration: none;
@@ -33,9 +42,20 @@ header .navigation-principale
     background: white;
 }
 
-.navigation-principale .p_statistique a{
+.p_carte a{
     position: absolute;
-    right: 15px;
+    right: 148px;
+    top:12px;
+    color: black;
+    text-decoration: none;
+    padding: 5px 17px;
+    border-radius: 20px;
+    background: white;
+}
+
+.p_accueil a{
+    position: absolute;
+    right: 250px;
     top:12px;
     color: black;
     text-decoration: none;
@@ -51,17 +71,12 @@ h1{
 }
 
 h2{
-    margin : 20px 5px;
+    margin : 20px 5px -5px;
     font-size: 25px;
 }
 
-section p{
+dernier_p p{
     margin-bottom: 80px;
-}
-
-footer{
-    height : 30px;
-    position : absolute;
 }
 
 footer .navigation-secondaire{
