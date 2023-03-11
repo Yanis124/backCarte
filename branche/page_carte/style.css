@@ -1,25 +1,27 @@
-#Accidentologie /*id pour le mot Accidentologie en blanc à part si vous voulez regrouper autrement (par classe ou par sélecteur)*/
+#Accidentologie 
 {
     color : white;
+    display:inline;
 }
 #Accueil
 {
     color : yellow;
     text-decoration :underline;
-    position : absolute;
-    left: 60%;
-    top:1%;
+    position:relative;
+    display:inline;
+    left:50%;
 }
 #Statistiques{
     color:yellow;
-    text-decoration: underline;  
-    position: absolute;
-    left:80%;
-    top: 1%;
+    text-decoration: underline;
+    display:inline;
+    position:relative;
+    left:60%;
+
 }
 header
 {
-    background-color : rgb(71, 71, 232);    
+    background-color : rgb(71, 71, 232);  
     width : 100%;
     height : 50px;
 }
@@ -29,39 +31,43 @@ footer
     background-color: white;
     width:100%;
     height:50px;
-    position: fixed;
-    bottom:0%;
-    
+    position: absolute;
+    bottom:1%;
 }
 
 #Aproposdenous
 {
     color : black;
-    position : absolute;
-    bottom:1%;
-    right:5%;
+    position : relative;
+    bottom:50%;
+    left:80%;
+    display:inline;
 }
 
 #Sources
  {
+    display:inline;
     color : black;        
-    position : absolute;
-    bottom:1%;
-    left:5%;    
+    position : relative;
+    bottom:50%;
+    left:5%;
+    border-radius:8px;
+    background-color: rgb(241, 82, 151);
 }
 
 fieldset[id="filtres"]{
     width:50%;
-    border-width:6px;
-    border-color:rgb(236, 206, 206);
-    margin:0%;
-    padding:1%;
+    border:4px rgb(236, 206, 206) solid;
     float:right;
 }
 
 input[type="reset"]
 {
     position :absolute;
-    right:2%;
-    top:40%;
+    right:1%;
+    top:49%;
+
+}
+body{
+    margin:0;
 }

@@ -1,32 +1,33 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
     <head>
         <meta charset="utf-8">
         <link href="style.css" rel="stylesheet" type="text/css">
         <title>Carte des accidents de la route</title>
-        <script src="page_carte.js"></script>
+        
     </head>
     <body>
         <header>
         <h1 id="Accidentologie">Accidentologie</h1>
-        <h2 id="Accueil">Accueil</h2>
-        <h2 id="Statistiques">Statistiques</h2>
+        <a href="https://forge.ens.math-info.univ-paris5.fr/svn/2022-l2ab1/branche/page_accueil/page_accueil.html"><h2 id="Accueil">Accueil</h2></a>
+        <a href="https://forge.ens.math-info.univ-paris5.fr/svn/2022-l2ab1/branche/page_statistiques/HTML/statistiques.html"><h2 id="Statistiques">Statistiques</h2></a>
         </header>
+        <aside>
         <fieldset id="filtres"><legend>Filtres</legend>
         <label for="date_ou_intervalle">Date/Intervalle de date</label>
-        <select name="date_ou_intervalle" id="date_ou_intervalle">
+        <select id="date_ou_intervalle" name="date_ou_intervalle" onChange="date();">
             <option value="date">Date</option>
             <option value="intervalle">Intervalle de date</option>
-         </select>   
+         </select><br>   
          <label for="date">Date</label>
-         <input type="date" id="date">
+         <input type="date" id="date" name="date"><br>
          <label for="intervalle_date_debut">Date de début</label>
-         <input type="date" id="intervalle_date_debut">
+         <input type="date" id="intervalle_date_debut" name="intervalle_date_debut"><br>
          <label for="intervalle_date_fin">Date de fin</label>
-         <input type="date" id="intervalle_date_fin">
+         <input type="date" id="intervalle_date_fin" name="intervalle_date_fin"><br>
 
         <label for="condition_meteorologique">Condition météorologique</label>
-        <select name="condition_meteorologique" id="condition_meteorologique" multiple>
+        <select  id="condition_meteorologique" name="condition_meteorologique" multiple>
             <option value="normale">normale</option>
             <option value="pluie_legere">pluie légère</option>
             <option value="temps_couverts">temps couverts</option>
@@ -35,26 +36,26 @@
             <option value="neige_grêle">neige/grêle</option>
             <option value="brouillard_fumée">brouillard/fumée</option>
             <option value="vent_fort_tempêtes">Vent fort/Tempêtes</option>
-        </select>
+        </select><br>
         <label for="age_depart">Age 1</label>
-        <input type="number" id="age_depart">
+        <input type="number" id="age_depart" name="age_depart"><br>
         <label for="age_arrivee">Age 2</label>
-        <input type="number" id="age_arrivee">
+        <input type="number" id="age_arrivee" name="age_arrivee"><br>
         
         <label for="gravite">Gravité de l'accident</label>
-        <select name="gravite" id="gravite" multiple>
+        <select id="gravite" multiple name="gravite">
             <option value="indemne">Indemne</option>
             <option value="blesse_hospitalise">blessé hospitalisé</option>
             <option value="blesse_léger">blessé léger</option>
             <option value="tue">tué</option>
-        </select>
-
-        </datalist>
+        </select><br>
         </fieldset>
         <input type="reset">
+    </aside>
         <footer>
-            <a href="page_crédit/page_credit.html"><h2 id="Sources">Sources</h2></a>
-            <a href="page_A_propos_de_nous/page_a-propos-de-nous.html"><h2 id="Aproposdenous">A propos de nous</h2></a>
+            <a href="https://forge.ens.math-info.univ-paris5.fr/svn/2022-l2ab1/branche/page_cr%c3%a9dit/page_credit.html"><h2 id="Sources">Sources</h2></a>
+            <a href="https://forge.ens.math-info.univ-paris5.fr/svn/2022-l2ab1/branche/page_A_propos_de_nous/page_a-propos-de-nous.html"><h2 id="Aproposdenous">A propos de nous</h2></a>
         </footer>
     </body>
+    <script src="page_carte.js"></script>
 </html>
