@@ -82,7 +82,7 @@ section1 p{
 }
 
 section1 h3{ /*a revoir pour centrer les noms sur les images*/
-    margin-left: 290px;
+    text-align: center;
 }
 
 dernier_p p{
