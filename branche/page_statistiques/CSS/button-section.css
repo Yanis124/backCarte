@@ -1,12 +1,12 @@
 
 .graph-text-container>button{
     background-color: whitesmoke;
-    height: 60px;
+    height: 100%;
     border:1px solid #dee5ef;
-    width:10%; /*une largeur de 10% de l'element parent*/
     margin-left:10%; /*decaler le button de 10% a gauch*/
-    font-size: 1.5rem;
     transition: 0.3s all ease;
+    font-size: 25px;
+    width:12%;
 }
 
 /* style du button graph hover */
@@ -17,33 +17,34 @@
 }
 
 .filtre-annee{ 
-    height: 40px;
+    height: 100%;
     border:1px solid #dee5ef;
     font-size: 1rem;
-    width:30%; /*le button année prend 30% de la largeur du tableau-annee-container*/
+    width:40%; /*le button année prend 40% de la largeur du tableau-annee-container*/
 }
 
 
 .button-telecharger{
-    width:150px;
-    font-size: 1.2rem;
+    font-weight: 400;
+    border: 1px solid transparent;
+    border-radius: 20px;
 }
 
 
 
 
-.telecharger-button-container>button{
-    transition:all 0.1s ease ;
+.telecharger-container>button{
+    transition:all 0.5s ease ;
 }
 
-.telecharger-button-container>button:hover{
+.telecharger-container>button:hover{
     cursor: pointer;
     color:rgb(255, 255, 255);
     background-color: red;
 
 }
 
-.telecharger-button-container>button:active{
+.telecharger-container>button:active{
     background-color: rgba(230, 78, 78, 0.8);
     color:whitesmoke;
 }

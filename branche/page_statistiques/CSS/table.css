@@ -7,19 +7,10 @@ thead{
 
 table{
     border-collapse: collapse;
-    
-    
-
 }
 
 table, th, td {
     border: 1px solid;
-    text-align: center; /*centrer le texte des cases du tableau*/
-}
-
-td{
-    padding:5px;
-    font-size: 0.8rem;
 }
 
 table{

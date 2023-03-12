@@ -1,10 +1,13 @@
 // rendre l'affichage de la page dynamique
-
-
-const canvas = document.getElementsByTagName("canvas")
+const spinner=document.getElementById("spinner")
+const graphContainer=document.getElementById("graph-container")
+const canvas=document.getElementById("canvas")
 const button=document.getElementById("button-graph")
 const tableau=document.getElementById("table")
 const graph=document.getElementById("graph-filtres-container")
+const erreur=document.getElementById("erreur")
+
+
 
 
 
@@ -14,11 +17,13 @@ function  disapearTableau(){  //faire disparaitre le tableau si l'utilisateur cl
     if(tableau.style.display=="none"){
         tableau.style.display="flex"
         button.innerText="Graph"
+        graph.style.width="60%"
         
     }
     else{
         button.innerText="Tableau"
         tableau.style.display="none"
+        graph.style.width="80%"
     }
 }
 

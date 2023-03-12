@@ -14,8 +14,8 @@
 section{
 
     margin:2%; /*decaler la section de 2% de l'element parent*/
-    margin-top:10%; /*decaler la section de 10% de l'element parent pour que le header soit visible*/
-    height: 800px;
+    margin-top:15%; /*decaler la section de 15% de l'element parent pour que le header soit visible*/
+    height: 700px;
     display:flex;
     flex-direction: column;
     justify-content:flex-start;  
@@ -24,7 +24,7 @@ section{
 
 .graph-text-container{
     display: flex;
-    height: 8%;   /*le div du button graph prend 8% de la longeur de section*/
+    height: 5%;   /*le div du button graph prend 8% de la longeur de section*/
     justify-content: flex-start;
     align-items: end; /*aligner le button vers le bas pour qu'il soit coller au graph-table-container*/
 }
@@ -38,22 +38,31 @@ section{
     flex-direction:row;
     border:2px #dee5ef solid;
     background-color: #f5f5f5;
-    justify-content: space-evenly;
-    height: 85%; /*le div du graph et du tableau prend 85% de la hauteur de section*/
+    justify-content: space-around;
+    
+    
+    height: 80%; /*le div du graph et du tableau prend 85% de la hauteur de section*/
+    
     
 
 }
 
 
 
+
 .graph-filtres-container{
     display: flex;
     flex-direction: column;
+    
     margin-top:3%;/*decaler du haut du graph-table-container*/
-    height:80%; /*le div prend 80% de la hauteur du graph-table-container*/
-    width: 60%; /*l div prend 60% de la largeur de la section*/
+    height:90%; /*le div prend 80% de la hauteur du graph-table-container */
     transition: all 0.3s ease;
 }
+
+
+
+
+
 
 
 
@@ -66,8 +75,9 @@ section{
     justify-content: space-around;
     align-items: center;
     background-color: #a1b0b8;
-    height: 40%; /*le div prend 40% de la hauteur du graph-filtres-container*/
-    
+    height: 30%; /*le div prend 40% de la hauteur du graph-filtres-container*/
+    width:100%;
+
 }
 
 
@@ -77,31 +87,21 @@ section{
 
 .graph-container{
     display: flex;
+    justify-content: center;
+    align-items: center;
     background-color: #dee5ef;
-    width: 100%; /*le graph prend 100% de la largeur du graph-filtres-container*/
-    
+    height:100%;
 }
-
-
-
 
 
 
 
 .table-annee-container{
     height:80%; /*le tableau prend 80% de la hauteur du graph-table-container*/
-    display:flex;
-    flex-direction: column;
     padding-top:40px;
     transition: all 0.3s ease;
     width: 30%; /*le tableau prend 30% de la largeur du graph-table-container*/
-    
-    
-    
-
 }
-
-
 
 .annee-container{
 
@@ -111,13 +111,23 @@ section{
     margin-right:5%;
 }
 
+
+
+
+
+
+
+
 .telecharger-container{
     display: flex;
-    height: 7%; /*le div prend 7% de la hauteur de la section*/
+    height: 10%; /*le div prend 7% de la hauteur de la section*/
     align-items: end;
+    justify-content: end;
     flex-direction: column;
-    margin-right:5%; /*ajouter de l'espace a droite*/
+    margin-right:8%; /*ajouter de l'espace a droite*/
+
 }
+
 
 
 

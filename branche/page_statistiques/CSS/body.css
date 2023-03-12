@@ -3,7 +3,7 @@
 /* utiliser le font de google*/
 
 html{  /*definier un font sur toute la page */
-    font-size: 20px;
+    font-size: 15px;
     box-sizing: border-box;
     font-family: 'Roboto', sans-serif;
 }
@@ -14,3 +14,67 @@ body{
     
 
 }
+ @media screen and (min-width: 576px) {  /*s'applique aux ecrants avec une largeur >768px */
+    body {
+      font-size: 20px;      /*modifier la police*/
+    }
+
+    .title{
+        font-size: 2rem;
+    }
+
+    .accueil,.carte{
+        justify-content: center;
+    }
+
+    .button-telecharger{
+        font-size: 25px;
+    }
+
+    footer{
+        font-size: 25px;
+    }
+
+    footer button{
+        font-size: 25px;
+    }
+
+
+
+    table{
+        font-size: 1rem;
+    }
+  }
+
+  @media screen and (max-width: 768px) {   /*s'applique aux ecrants avec une largeur <768px */
+    .graph-text-container button{
+        display:none;
+    }
+
+    .table-annee-container{
+        display: none;
+    }
+
+    .graph-filtres-container{
+        width:90%;
+    }
+
+    
+
+}
+
+    @media screen and (min-width:768px){   /*s'applique aux ecrants avec une largeur >768px */
+        .graph-filtres-container{
+            width:60%;
+        }
+
+        .table-annee-container{             /*afficher le graph*/
+            display: flex;
+            flex-direction: column;
+        }    
+
+    }
+   
+    
+
+

@@ -5,14 +5,18 @@ var configLine={   //une configuration par default pour representer le nombre d'
     type: 'line',
    
     data: {
+        labels:[],
         datasets: [{
             label: "nombre d'accident par année",
             borderColor: 'rgb(255, 99, 132)',
             borderWidth: 1,
-            fill: false
+            fill: false,
+            data:[],
         }]
     },
     options: {
+        
+        maintainAspectRatio: false,
         plugins: {
             title: {
                 display: true,
@@ -48,7 +52,9 @@ var configLine={   //une configuration par default pour representer le nombre d'
 
 var configCircle={
     type: 'pie',
+    
     data: {
+    labels:[],
     //labels: label[1],
     datasets: [{
         label: "nombre d'accidents",
@@ -57,8 +63,9 @@ var configCircle={
         borderColor: '#000',
         backgroundColor: [
         'rgb(0, 255, 255)',
-    '#FFC0CB',
-    ],
+        '#FFC0CB',
+         ],
+         data:[]
     }]
     },
     options: {

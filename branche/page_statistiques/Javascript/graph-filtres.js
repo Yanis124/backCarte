@@ -1,11 +1,12 @@
 
 // recuperer les donées et afficher les graphs
-
-
+color_bar=["#003f5c"]
+color_pie=["#003f5c","#f95d6a","#2f4b7c","#665191","#a05195","#d45087","#ff7c43","#ffa600"]
 
 const colonneSelect=document.getElementById("graph-select")
 const xSelect =document.getElementById("axe-x")
 const annee=document.getElementById("annee")
+const lieu=document.getElementById("lieu")
 
 
 var mois=["janvier","fevrier","mars","avril","mai","juin","juillet","aout","septembre","octobre","novembre","decembre"]
@@ -13,30 +14,101 @@ var label=[[],[],[],[],[],[]] //la legende des graphs
 var datas=[[],[],[],[],[],[]] //chaque list represente un type de donnée datetime,atm ,sex,an-nais, grav,lum
 var titlesExemple=["nombre d'accident par année","nombre d'accident par conditions métérologique","nombre d'accident par sexe","nombre d'accident par année de naisance","nombre d'accident par gravité de l'accident","nombre d'accident jour/nuit"] //titre des graphs (exemple par default)
 var titles=[]
-var chart  //une variable globale qui contient le graph
+var chart  //des variables globale qui contient le graph l'anne le lieu
+var inputAnnee
+var inputLieu
+
 
 var api="https://public.opendatasoft.com/api/records/1.0/search/?dataset=accidents-corporels-de-la-circulation-millesime&q=&rows=0&facet=datetime&facet=atm&facet=sexe&facet=an_nais&facet=grav&facet=lum" //regrouper le nombre d'accident par date/atm/sexe/année naissance/gravité/lumiere
 
 
-async function getData(inputAnnee){  //recuperer les données datetime, atm ,atm ,an-nais ,sex, grav et creer le graph
-    if(inputAnnee && inputAnnee!="toutes-les-annees"){ //si l'utilisateur rentre annee
-        var res=await fetch(api+"&refine.datetime="+inputAnnee) //ajouter le filtre année a l'api
+async function getData(){  //recuperer les données datetime, atm ,atm ,an-nais ,sex, grav et creer le graph
+    canvas.style.display="none"
+    spinner.style.display="block"
+    graphContainer.style.opacity="0.6"
+    graphContainer.style.backgroundColor="white"
+    erreur.style.display="none"
+
+    if(inputLieu && inputAnnee && inputAnnee!="toutes-les-annees" && inputLieu!="tous-les-lieus"){ //si l'utilisateur rentre annee
+        try{
+            var res=await fetch(api+"&refine.datetime="+inputAnnee+"&refine.reg_name="+inputLieu) //ajouter le filtre année a l'api
+        
+            var data=await res.json()
+        }
+        catch(error){
+            console.log("erreur de fetch")
+            canvas.style.display="none"
+            erreur.style.display="block"
+
+        }
+       
+        
+        
+    }
+    else if(inputLieu && (!inputAnnee || inputAnnee=="toutes-les-annees") && inputLieu!="tous-les-lieus"){ //si l'utilisateur rentre annee
+        try{
+            var res=await fetch(api+"&refine.reg_name="+inputLieu) //ajouter le filtre lieu a l'api
+        
+            var data=await res.json()
+        }
+        catch(error){
+            console.log("erreur de fetch")
+            canvas.style.display="none"
+            erreur.style.display="block"
+
+        }
+       
+        
+        
+    }
     
-        var data=await res.json()
+    else if(inputAnnee &&(!inputLieu || inputLieu=="tous-les-les lieus") && inputAnnee!="toutes-les-annees"){ //si l'utilisateur rentre annee
+        try{
+            var res=await fetch(api+"&refine.datetime="+inputAnnee) //ajouter le filtre année a l'api
+        
+            var data=await res.json()
+        }
+        catch(error){
+            console.log("erreur de fetch")
+            canvas.style.display="none"
+            erreur.style.display="block"
+
+        }
+       
         
         
     }
 
     else{ //si l'utilisateur ne choisit pas d'année ou il choisit toutes les années
-        var res=await fetch(api)
-    
-        var data=await res.json()
+        try{
+            var res=await fetch(api)
+        
+            var data=await res.json()
+        }
+        catch(error){
+            console.log("erreur de fetch")
+            canvas.style.display="none"
+            erreur.style.display="block"
+        }
+        
     }
+    
+    spinner.style.display="none"
+    graphContainer.style.opacity="1"
+    
+    if(erreur.style.display!="block"){
+        canvas.style.display="block"
+        graphContainer.style.backgroundColor="#dee5ef"
+        
+
+    }
+    
+
     
     
     
     for(var n=0;n<data.facet_groups.length;n++){
-        datas[n]=[] //renitialiser la liste datas et label si l'utilisateur rentre une autre année
+        datas[n]=[] //renitialiser la liste datas et label 
         label[n]=[]
         for(var i=0;i<data.facet_groups[n].facets.length;i++){
             if(data.facet_groups[n].facets[i].facets){ //si l'utilisateur selectionne une date on affiche le nombre d'accident par moi
@@ -61,20 +133,21 @@ async function getData(inputAnnee){  //recuperer les données datetime, atm ,atm
         //console.log(datas[n])
    
     }
-    updateTitles(inputAnnee) //mettre a jour les titres des graphs
+    updateTitles(inputAnnee) //mettre a jour les titres des graphs si l'utilisateur entre une année
    // console.log(datas)
     //console.log(label)
       //afficher le nombre d'accident par année graph par default
     if(!chart){
         chart=courbe() //creer le graph si il n'existe pas
     }
-    else{
-        getValueX() //recuperer la valeur de axe-x et executer la fonction selecX qui va appeler la fonction selectColonne( pour rafrechir le graph avec les nouvelle donnée)
+    
+
+    getValueX() //recuperer la valeur de axe-x et executer la fonction selecX qui va appeler la fonction selectColonne( pour rafrechir le graph avec les nouvelle donnée)
         
-    }
+    
 }
     
-function updateTitles(inputAnnee){
+function updateTitles(){
     titles=[]//renitialiser les titres sinon on aura exemple : titre "nombre d'accident par année 2018 2019 2012" 
     for(var i=0;i<titlesExemple.length;i++){
         titles[i]=titlesExemple[i]
@@ -84,7 +157,12 @@ function updateTitles(inputAnnee){
             titles[i]=titles[i]+" "+inputAnnee
         }
     }
-    console.log(titles)
+    if(inputLieu && inputLieu!="tous-les-lieus"){ //ajouter l'année 
+        for(var i=0;i<titlesExemple.length;i++){
+            titles[i]=titles[i]+" "+inputLieu
+        }
+    }
+    
 }
 
 
@@ -93,7 +171,7 @@ function getValueColonne(){  //recuperer le type de graph choisit
     selectColonne(inputValueColonne)
 }
 
-function getValueX(){    //recuperer la donnée a afficher
+function getValueX(inputAnnee){    //recuperer la donnée a afficher
     var inputValueX=xSelect.value
     
     selectX(inputValueX)
@@ -101,43 +179,71 @@ function getValueX(){    //recuperer la donnée a afficher
 }
 
 function getAnnee(){
-    var inputAnnee=annee.value
-   getData(inputAnnee)
+    inputAnnee=annee.value
+    getData()
 }
+
+function getLieu(){
+    inputLieu=lieu.value
+    getData()
+}
+
+
 
 
 
 function selectX(inputValueX){  //selectionner le type de graph(par defaut date=>courbe sexe=>camembert ....) et les données 
     if(inputValueX=="date"){
-        selectColonne("courbe",1,1)  //(type de graph,rang de la donnée dans la list datas,rang )
+        selectData(1,1) 
+        
+        if(!inputAnnee){
+         selectColonne("courbe")   //sera executer si l'utilisateur change uniquement d'axe-x sinon on garde le meme type de graph
+        }
     }
     else if(inputValueX=="conditions métérologiques"){
-        selectColonne("camembert",2,2)
+        selectData(2,2) 
+        if(!inputAnnee){
+         selectColonne("camembert")   
+        }
     }
     else if(inputValueX=="sexe"){
-        selectColonne("camembert",3,3)
+        selectData(3,3) 
+        if(!inputAnnee){
+         selectColonne("camembert")   
+        }
     }
     else if(inputValueX=="tranche d'age"){
-        selectColonne("camembert",4,4)
+        selectData(4,4) 
+        if(!inputAnnee){
+         selectColonne("camembert")   
+        }
     }
     else if(inputValueX=="gravité"){
-        selectColonne("camembert",5,5)
+        selectData(5,5) 
+        if(!inputAnnee){
+         selectColonne("camembert")   
+        }
     }
     else if(inputValueX=="jour/nuit"){
-        selectColonne("camembert",6,6)
+        selectData(6,6) 
+        if(!inputAnnee){
+         selectColonne("camembert")   
+        }
     }
     
 
 }
 
-function selectColonne(inputValueColonne,n_data,n_label){ //changer les données et le type de graph
+function selectData(n_data,n_label){
+    chart.data.labels=label[n_label-1]
+    chart.data.datasets[0].data=datas[n_data-1]
+    chart.options.plugins.title.text=titles[n_label-1]
+    chart.update()
+}
+
+function selectColonne(inputValueColonne){ //changer les données et le type de graph
     
-    //si l'utilisateur choisir une donnée (axe-x)
-    if( (n_data &&  n_label)){  //choisir les donnéé de la liste datas/label et les mettre dans le graph
-        chart.data.labels=label[n_label-1]
-        chart.data.datasets[0].data=datas[n_data-1]
-        chart.options.plugins.title.text=titles[n_label-1]     
-    }
+
     
     
     //si l'utilisateur choisir un type de graph (colonne)
@@ -147,6 +253,7 @@ function selectColonne(inputValueColonne,n_data,n_label){ //changer les données
         chart.config.type="bar"
         chart.options.scales.x.display=true
         chart.options.scales.y.display=true
+        chart.data.datasets[0].backgroundColor=color_bar
         
         //console.log(chart)
         
@@ -157,10 +264,17 @@ function selectColonne(inputValueColonne,n_data,n_label){ //changer les données
     }
     else if(inputValueColonne=="camembert"){
         
-        //chart=circle()
-        chart.config.type="pie"  //ne pas afficher l'axe x et y si le graph est un camembert
+        chart.config.type="pie"
         chart.options.scales.x.display=false
         chart.options.scales.y.display=false
+        chart.data.datasets[0].backgroundColor=color_pie
+        
+        //console.log(chart)
+        
+
+        chart.update()
+        
+        
         
         //onsole.log(chart.options.scales.xAxis)
         
@@ -175,20 +289,23 @@ function selectColonne(inputValueColonne,n_data,n_label){ //changer les données
         chart.config.type="line"
         chart.options.scales.x.display=true
         chart.options.scales.y.display=true
-        
+        chart.data.datasets[0].borderColor='rgb(255, 99, 132)'
+        chart.data.datasets[0].backgroundColor='rgb(255, 200, 200)'
+
         
         chart.update()
       
     }
+    
     //console.log(chart.data.datasets)
     
 }
 
-/*function destroy(){ //pourra servir si on veut creer un nouveau graph 
-    chart.clear() 
-    chart.destroy() 
+// function destroy(){ //pourra servir si on veut creer un nouveau graph 
+//     chart.clear() 
+//     chart.destroy() 
     
-}*/
+// }
 
 function courbe(){  //generer la courbe avec les données par default
     
