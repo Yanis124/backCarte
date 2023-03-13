@@ -27,6 +27,7 @@ section{
     height: 5%;   /*le div du button graph prend 8% de la longeur de section*/
     justify-content: flex-start;
     align-items: end; /*aligner le button vers le bas pour qu'il soit coller au graph-table-container*/
+    
 }
 
 
@@ -36,7 +37,7 @@ section{
 .graph-table-container{
     display: flex;
     flex-direction:row;
-    border:2px #dee5ef solid;
+    border:solid 1px #DEE5EF;
     background-color: #f5f5f5;
     justify-content: space-around;
     

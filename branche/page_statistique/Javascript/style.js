@@ -6,6 +6,7 @@ const button=document.getElementById("button-graph")
 const tableau=document.getElementById("table")
 const graph=document.getElementById("graph-filtres-container")
 const erreur=document.getElementById("erreur")
+const imageTelecharger=document.getElementById("image-telecharger")
 
 
 
@@ -51,6 +52,15 @@ function tableRemoveOpacity(){
         graph.style.opacity="1"
         tableau.style.opacity="1"
     }
+}
+
+
+function changeImageTelechargerWhite(){
+    imageTelecharger.src="../images/téléchargerwhite.svg"
+}
+
+function changeImageTelechargerDark(){
+    imageTelecharger.src="../images/téléchargerdark.png"
 }
 
 

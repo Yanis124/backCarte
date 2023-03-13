@@ -59,7 +59,3 @@ ul{
     
 }
 
-/* ajouter un style si on clique sur  les titre "accueil" "carte */
-.carte:active,.accueil:active{
-    background-color: #14227b;
-}

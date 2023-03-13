@@ -27,8 +27,8 @@ body{
         justify-content: center;
     }
 
-    .button-telecharger{
-        font-size: 25px;
+    .telecharger-container>button{
+        font-size: 20px;
     }
 
     footer{
@@ -39,12 +39,12 @@ body{
         font-size: 25px;
     }
 
-
-
     table{
         font-size: 1rem;
     }
+
   }
+
 
   @media screen and (max-width: 768px) {   /*s'applique aux ecrants avec une largeur <768px */
     .graph-text-container button{
@@ -59,9 +59,16 @@ body{
         width:90%;
     }
 
-    
-
 }
+
+@media screen and (max-width: 576px) {   /*s'applique aux ecrants avec une largeur <768px */
+
+    .telecharger-container img{
+        display: none;
+    }
+}
+     
+        
 
     @media screen and (min-width:768px){   /*s'applique aux ecrants avec une largeur >768px */
         .graph-filtres-container{

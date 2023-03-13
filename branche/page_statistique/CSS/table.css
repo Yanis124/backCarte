@@ -2,7 +2,7 @@
 
 
 thead{
-    background-color: gray;
+    background-color: #a1b0b8;
 }
 
 table{
@@ -11,6 +11,16 @@ table{
 
 table, th, td {
     border: 1px solid;
+}
+
+
+
+tr:nth-child(even){
+    background-color: #dee5ef;
+}
+
+tbody tr:hover{
+    background-color: #cacbce;
 }
 
 table{

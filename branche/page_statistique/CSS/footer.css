@@ -18,11 +18,12 @@ footer{
 
 .footer-container>button{
     /*style du boutton source */
-    background-color: #00b4d8;
+    background-color: #1422cb ;
     border-radius: 80px;
     transition: all 0.4s ease;
     border: 1px solid black;
     height: 60%;
+    color:white;
 }
 
 /*style du boutton source  hover */
