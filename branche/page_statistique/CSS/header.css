@@ -1,0 +1,61 @@
+/* le header sera fixer en haut de la page */
+header{               
+    position:fixed;
+    width:100%;
+    box-shadow: 10px 10px 10px rgba(000,000,000,0.3);
+    top:0;
+    z-index:10;
+    background-color: #14227b;
+    height:10%;
+    color:yellow;
+    
+    
+}
+
+/* aligner les elements du header verticalement */
+ul{
+    display: flex;
+    height:100%;
+    width:100%;
+    margin:0;
+
+}
+
+/* centrer le contenu des div qui contiennent les titres  */
+
+.title,.accueil,.carte{
+    display:flex;
+    font-weight: 700;
+   
+    width: 30%;
+    height: 100%; 
+    
+    align-items: center;
+    transition:all 0.3s ease;
+
+}
+
+/* pour eviter que le titre "Accidentologie" empeche l'utilisateur d'utiliser les filtres du graph si le header est tro proche des ces derniers */
+
+
+
+/* le titre "Accidentologie " aura un style different des autres titres */
+.title{
+    font-weight: bold;
+    width:40%;  /*titre prend 50% de la largeur du header*/
+    text-decoration: none;
+    color:white;
+}
+
+/* ajouter un style si on survole les titre "accueil" ,"carte */
+.carte:hover,.accueil:hover{
+    background-color:#1422cb ;
+    cursor:pointer;
+    transform: scale(1.2);
+    color:white;
+    border:1px solid #dee5ef;
+
+    
+    
+}
+

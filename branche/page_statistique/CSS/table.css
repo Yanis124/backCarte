@@ -1,0 +1,28 @@
+/* le tableau */
+
+
+thead{
+    background-color: #a1b0b8;
+}
+
+table{
+    border-collapse: collapse;
+}
+
+table, th, td {
+    border: 1px solid;
+}
+
+
+
+tr:nth-child(even){
+    background-color: #dee5ef;
+}
+
+tbody tr:hover{
+    background-color: #cacbce;
+}
+
+table{
+    flex-basis: 90%; /*le tableau prend 90% de l'espace de table-annee-container*/
+}

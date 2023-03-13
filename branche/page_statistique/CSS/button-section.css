@@ -1,0 +1,58 @@
+
+.graph-text-container>button{
+    height: 100%;
+    background-color: #f5f5f5;
+    margin-left:10%; /*decaler le button de 10% a gauch*/
+    transition: 0.3s all ease;
+    font-size: 25px;
+    border:solid 1px #dee5ef
+
+}
+
+/* style du button graph hover */
+.graph-text-container>button:hover{
+    cursor: pointer;
+    background-color: #b4dbd6;
+
+}
+
+
+.annee-container>select{ 
+    height: 70%;
+    border:1px solid #dee5ef;
+    font-size: 1rem;
+    width:40%; /*le button année prend 40% de la largeur du tableau-annee-container*/
+   
+}
+
+
+
+
+.telecharger-container>button{
+    border: 1px solid transparent;
+    border-radius: 20px;
+    background-color: #dee5ef;
+}
+
+
+
+
+
+
+.telecharger-container>button{
+    transition:all 0.5s ease ;
+}
+
+.telecharger-container>button:hover{
+    cursor: pointer;
+    color:rgb(255, 255, 255);
+    background-color: red;
+
+}
+
+.telecharger-container img{
+    vertical-align: middle;
+}
+
+
+
