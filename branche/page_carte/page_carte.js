@@ -13,3 +13,19 @@ function afficherChoix() {
         choixInterval.style.display = "none";
     }
 }
+
+function Lieu1(){
+    let choixRegion=document.getElementById("region");
+    let choixDepartement=document.getElementById("departement1");
+    if(choixRegion.value!="vide"){
+        choixDepartement.style.display="block";
+    }
+}
+
+function Lieu2(){
+    let choixDepartement=document.getElementById("departement1");
+    let choixVille=document.getElementById("ville1");
+    if(choixDepartement.value!="vide"){
+        choixVille.style.display="block";
+    }
+}

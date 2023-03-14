@@ -1,24 +1,56 @@
-<!DOCTYPE html>
+    <!DOCTYPE html>
 <html>
     <head>
         <meta charset="utf-8">
         <link href="style.css" rel="stylesheet" type="text/css">
         <title>Carte des accidents de la route</title>
         <script src="page_carte.js"></script>
+        <!--Bibliothèque Leaflet-->
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"
+     integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI="
+     crossorigin=""/>
+     <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"
+     integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM="
+     crossorigin=""></script>
+        
     </head>
     <body>
         <header>
-            <div class="navigation-principale"> <!--Naviguation entre les pages principales-->
+            <div class="navigation-principale"> <!--Navigation entre les pages principales-->
                 <p class="titre-du-projet"><a href="../page_accueil/page_accueil.html">Accidentologie</a></p> <!--Faire le bouton-->
                 <p class="p_accueil"><a href="../page_accueil/page_accueil.html">Accueil</a></p> <!--Faire le bouton-->
-                <p class="p_statistique"><a href="../page_statistiques/HTML/statistiques.html">Statistique</a></p>
+                <p class="p_statistiques"><a href="../page_statistiques/HTML/statistiques.html">Statistiques</a></p>
             </div>
         </header>
+        <div id="map" name="map">
+            <script>
+            //Initialisation de la carte
+            var map=L.map("map",{
+                keyboardPanDelta:100,
+                wheelDebounceTime:0,
+                wheelPxPerZoomLevel:50,
+            }).setView([48.862725, 2.287592],6);
+            var contenu=L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+                }).addTo(map);
+            
+            //Fonction pour créer un marqueur ainsi que le contenu de son popup.
+            //On peut rajouter plein d'options aux marqueurs et aux popups. A voir dans la documentation.
+            function creer_marqueur(latitude,longitude){
+                var contenu_popup=latitude+","+longitude;
+                L.marker([latitude,longitude],{
+                    riseOnhover:true,
+                }).bindPopup(contenu_popup).addTo(map)
+            }
+            creer_marqueur(50,50);creer_marqueur(12,13);//Test
+            
+                </script>
+        </div>
         <fieldset id="filtres"><legend>Filtres</legend>
 
 <!--Filtre date ou intervalle de date-->
          <label for="choix-date">Choisissez une Date ou un Intervalle de Date : </label>
-         <select id="choix-date" onchange="afficherChoix()">
+         <select id="choix-date" onchange="afficherChoix()" onFocus="opening();">
              <option value="">-- Sélectionnez une option --</option>
              <option value="date-specifique">Date spécifique</option>
              <option value="intervalle-dates">Intervalle de dates</option>
@@ -36,18 +68,17 @@
             <label for="date-fin">Date de fin :</label>
             <input type="date" id="date-fin" name="date-fin">
         </div>
-
         <br>
         
 <!-- Filtre regions sans les regions outre mer-->  
         <label for="region">Region : </label>
-        <select name="region" id="region">
-            <option value="">-- Selectionner une region --</option>
+        <select name="region" id="region" onChange="Lieu1();">
+            <option value="vide">-- Selectionner une region --</option>
             <option value="Alsace">Alsace</option>
             <option value="Alsace-Champagne-Ardaine">Alsace-Champagne-Ardaine</option>
             <option value="Lorraine">Lorraine</option>
             <option value="Aquitaine">Aquitaine</option>
-            <option value="Aquiatine-Limousin-Poitou-Charente">Aquiatine-Limousin-Poitou-Charente</option>
+            <option value="Aquitainene-Limousin-Poitou-Charente">Aquiatine-Limousin-Poitou-Charente</option>
             <option value="Auvergne">Auvergne</option>
             <option value="Auvergne-Rhônes-Alpes">Auvergne-Rhônes-Alpes</option>
             <option value="Basse Normandie">Basse Normandie</option>
@@ -78,29 +109,31 @@
             <option value="Rhône-Alpes">Rhône-Alpes</option>
         </select>
 
-        <br>
 
-<!-- Filtre departement sans les departements outre mer-->  
+
+<!-- Filtre departement sans les departements outre mer--> 
+        <div id="departement1" style="display:none">
         <label for="departement">Departement : </label>
-        <select name="departement" id="departement">
-            <option value="">-- Selectionner un département --</option>
+        <select name="departement" id="departement" onChange="Lieu2();">
+            <option value="vide">-- Selectionner un département --</option>
+            <option value="IDF">Ile de France</option>
         </select>
+        </div>
 
-        <br>
-
-<!-- Filtre ville sans les villes outre mer-->  
+<!-- Filtre ville sans les villes outre mer-->
+        <div id="ville1" style="display:none">
         <label for="ville">Ville : </label>
         <select name="ville" id="ville">
             <option value="">-- Selectionner une ville --</option>
         </select>
-
+    </div>
         <br>
 
 <!-- Filtre condition météorologique : normale, pluie légère, pluie forte, temps couverts, temps éblouissant, neige/grèle, borouillard/fumée, vent fort/tempête-->  
-<!-- /!\ A FAIRE : ne pas afficher toutes les conditions météorologique d'un coup mais juste selectionner une option ou plusieurs
+<!-- /!\ A FAIRE : ne pas afficher toutes les conditions météorologiques d'un coup mais juste selectionner une option ou plusieurs
                     Rajouter des boutons checkbox aux conditions pour que l'utilisateur puisse en selectionner plusieurs-->      
         <label for="condition_meteorologique">Condition météorologique : </label>
-        <select name="condition_meteorologique" id="condition_meteorologique" multiple>
+        <select name="condition_meteorologique" id="condition_meteorologique" multiple size="1">
             <option value="normale">Normale</option>
             <option value="pluie_legere">Pluie Légère</option>
             <option value="pluie_forte">Pluie Forte</option>
@@ -117,7 +150,7 @@
 <!-- /!\ A FAIRE : ne pas afficher toutes les tranches d'ages d'un coup mais juste selectionner une option ou plusieurs
                     Rajouter des boutons checkbox aux conditions pour que l'utilisateur puisse en selectionner plusieurs--> 
         <label for="tranche-age">Tranche d'âge : </label>
-        <select name="tranche-age" id="tranche-age" multiple>
+        <select name="tranche-age" id="tranche-age" multiple size="1">
             <option value="0-18">0-18 ans</option>
             <option value="18-30">18-30 ans</option>
             <option value="30-50">30-50 ans</option>
@@ -130,7 +163,7 @@
 <!-- /!\ A FAIRE : ne pas afficher toutes les types de gravité d'accident d'un coup mais juste selectionner une option ou plusieurs
                     Rajouter des boutons checkbox aux conditions pour que l'utilisateur puisse en selectionner plusieurs-->         
         <label for="gravite">Gravité de l'accident : </label>
-        <select name="gravite" id="gravite" multiple>
+        <select name="gravite" id="gravite" multiple size="1">
             <option value="indemne">Indemne</option>
             <option value="blesse_léger">Blessé Léger</option>
             <option value="blesse_hospitalise">Blessé Hospitalisé</option>
@@ -139,9 +172,9 @@
 
         <br>
 
-<!-- Filtre Luinosité : Jour, Nuit-->  
+<!-- Filtre Luminosité : Jour, Nuit-->  
         <label for="luminosite">Jour/Nuit : </label>
-        <select name="gravite" id="gravite">
+        <select name="luminosite" id="luminosite">
             <option value="Jour" >Jour</option>
             <option value="Nuit">Nuit</option>
         </select>

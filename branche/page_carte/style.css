@@ -22,7 +22,8 @@ header{
     left: 35px;
 }
 
-.p_statistique a, .p_accueil a{
+
+.p_statistiques a, .p_accueil a{
     position: absolute;
     right: 15px;
     top:12px;
@@ -79,7 +80,35 @@ fieldset[id="filtres"]{
 
 input[type="reset"]
 {
-    position :absolute;
-    right:2%;
-    top:40%;
+    position:absolute;
+    right:1%;
+    top:55%;
+}
+
+body{
+    margin:0;
+    padding:0;
+}
+
+#map{
+    width:40%;
+    height:600px;
+    position:absolute;
+    left:3%;
+    top:10%;
+}
+
+select{
+    background-color:white;
+    margin-top:10px;
+    font:14px small-caps;
+    border-radius:3px;
+}
+
+#departement1,#ville1{
+    transform:scale(0.9);
+}
+
+.p_statistiques a:hover,.p_accueil a:hover,.navigation-secondaire .p_crédit a:hover, .navigation-secondaire .p_a-propos-de-nous a:hover{
+    transform:scale(1.1);
 }
