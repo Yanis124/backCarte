@@ -3,9 +3,11 @@
     <head>
         <meta charset="utf-8">
         <link href="style.css" rel="stylesheet" type="text/css">
+        <link href="../page_statistique/CSS/header.css" rel="stylesheet" type="text/css">
+        <link href="../page_statistique/CSS/body.css">
         <title>Carte des accidents de la route</title>
         <script src="page_carte.js"></script>
-        <!--Bibliothèque Leaflet-->
+        <!--Intégration de la bibliothèque Leaflet-->
         <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"
      integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI="
      crossorigin=""/>
@@ -16,12 +18,15 @@
     </head>
     <body>
         <header>
-            <div class="navigation-principale"> <!--Navigation entre les pages principales-->
-                <p class="titre-du-projet"><a href="../page_accueil/page_accueil.html">Accidentologie</a></p> <!--Faire le bouton-->
-                <p class="p_accueil"><a href="../page_accueil/page_accueil.html">Accueil</a></p> <!--Faire le bouton-->
-                <p class="p_statistiques"><a href="../page_statistiques/HTML/statistiques.html">Statistiques</a></p>
-            </div>
-        </header>
+        
+            <ul>
+                <li class="title">Accidentologie</li>
+                <li class="accueil">Accueil</li>
+                <li class="carte">Statistiques</li>
+            </ul>
+        
+
+    </header>
         <div id="map" name="map">
             <script>
             //Initialisation de la carte
@@ -29,7 +34,8 @@
                 keyboardPanDelta:100,
                 wheelDebounceTime:0,
                 wheelPxPerZoomLevel:50,
-            }).setView([48.862725, 2.287592],6);
+                minZoom:5,
+            }).setView([48.862725, 2.287592],5);
             var contenu=L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
                     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
                 }).addTo(map);
@@ -44,6 +50,9 @@
             }
             creer_marqueur(50,50);creer_marqueur(12,13);//Test
             
+
+            
+
                 </script>
         </div>
         <fieldset id="filtres"><legend>Filtres</legend>
@@ -133,7 +142,7 @@
 <!-- /!\ A FAIRE : ne pas afficher toutes les conditions météorologiques d'un coup mais juste selectionner une option ou plusieurs
                     Rajouter des boutons checkbox aux conditions pour que l'utilisateur puisse en selectionner plusieurs-->      
         <label for="condition_meteorologique">Condition météorologique : </label>
-        <select name="condition_meteorologique" id="condition_meteorologique" multiple size="1">
+        <select name="condition_meteorologique" id="condition_meteorologique" multiple size="4">
             <option value="normale">Normale</option>
             <option value="pluie_legere">Pluie Légère</option>
             <option value="pluie_forte">Pluie Forte</option>
@@ -178,13 +187,13 @@
             <option value="Jour" >Jour</option>
             <option value="Nuit">Nuit</option>
         </select>
-
-        </fieldset>
         <input type="reset" value="Remettre à zéro">
+        </fieldset>
+        
         <footer>
             <div class="navigation-secondaire">
                 <p class="p_a-propos-de-nous"><a href="../page_A_propos_de_nous/page_a-propos-de-nous.html">À propos de nous</a></p>
-                <p class="p_crédit"><a href="../page_crédit/page_credit.html">Crédit</a></p>            </div> 
+                <p class="p_crédit"><a href="../page_crédit/page_credit.html">Crédits</a></p>            </div> 
         </footer>
     </body>
 </html>

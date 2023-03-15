@@ -29,3 +29,4 @@ function Lieu2(){
         choixVille.style.display="block";
     }
 }
+

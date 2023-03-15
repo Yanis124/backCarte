@@ -1,43 +1,3 @@
-header{
-    height: 50px;
-    position: relative;
-}
-
-.navigation-principale
-{
-    background-color: rgb(47, 63, 236);
-    position: absolute;
-    bottom: 0px;
-    width: 100%;
-    height: 50px;
-}
-
-.titre-du-projet a{
-    position: absolute;
-    color: white;
-    font-size: 35px;
-    font-variant: small-caps;
-    text-decoration: none;
-    bottom: 5px;
-    left: 35px;
-}
-
-
-.p_statistiques a, .p_accueil a{
-    position: absolute;
-    right: 15px;
-    top:12px;
-    color: black;
-    text-decoration: none;
-    padding: 5px 17px;
-    border-radius: 20px;
-    background: white;
-}
-
-.p_accueil a{
-    margin-right: 128px;
-}
-
 footer
 {
     background-color: white;
@@ -73,21 +33,17 @@ fieldset[id="filtres"]{
     width:50%;
     border-width:6px;
     border-color:rgb(236, 206, 206);
-    margin:0%;
+    margin:2%;
     padding:1%;
     float:right;
 }
+
 
 input[type="reset"]
 {
     position:absolute;
     right:1%;
     top:55%;
-}
-
-body{
-    margin:0;
-    padding:0;
 }
 
 #map{
@@ -107,8 +63,4 @@ select{
 
 #departement1,#ville1{
     transform:scale(0.9);
-}
-
-.p_statistiques a:hover,.p_accueil a:hover,.navigation-secondaire .p_crédit a:hover, .navigation-secondaire .p_a-propos-de-nous a:hover{
-    transform:scale(1.1);
 }
