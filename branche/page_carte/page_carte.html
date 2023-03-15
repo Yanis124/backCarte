@@ -2,9 +2,11 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <link href="style.css" rel="stylesheet" type="text/css">
+        <!--Page css pour le header-->
+        <link href="../page_statistique/CSS/body.css" rel="stylesheet" type="text/css">
         <link href="../page_statistique/CSS/header.css" rel="stylesheet" type="text/css">
-        <link href="../page_statistique/CSS/body.css">
+        
+        <link href="style.css" rel="stylesheet" type="text/css"><!--Page css propre à la page-->
         <title>Carte des accidents de la route</title>
         <script src="page_carte.js"></script>
         <!--Intégration de la bibliothèque Leaflet-->
@@ -18,14 +20,11 @@
     </head>
     <body>
         <header>
-        
             <ul>
-                <li class="title">Accidentologie</li>
-                <li class="accueil">Accueil</li>
-                <li class="carte">Statistiques</li>
+                <a href="../page_accueil/page_accueil.html" class="anc-title"  ><li>Accidentologie</li></a> 
+                <a href="../page_accueil/page_accueil.html" class="anc-accueil"> <li>Accueil</li></a>
+                <a href="../page_statistique/HTML/statistiques.html"class="anc-carte"><li>Statistiques</li></a>
             </ul>
-        
-
     </header>
         <div id="map" name="map">
             <script>
@@ -50,9 +49,6 @@
             }
             creer_marqueur(50,50);creer_marqueur(12,13);//Test
             
-
-            
-
                 </script>
         </div>
         <fieldset id="filtres"><legend>Filtres</legend>
@@ -194,9 +190,7 @@
             <option value="blesse_hospitalise">Blessé Hospitalisé</option>
             <option value="tue">Tué</option>
         </select>
-
         <br>
-
 <!-- Filtre Luminosité : Jour, Nuit-->  
         <label for="luminosite">Jour/Nuit : </label>
         <select name="luminosite" id="luminosite">
@@ -204,12 +198,10 @@
             <option value="Nuit">Nuit</option>
         </select>
         <input type="reset" value="Remettre à zéro">
-        </fieldset>
-        
-        <footer>
-            <div class="navigation-secondaire">
+        </fieldset>   
+        <footer class="navigation-secondaire">
                 <p class="p_a-propos-de-nous"><a href="../page_A_propos_de_nous/page_a-propos-de-nous.html">À propos de nous</a></p>
-                <p class="p_crédit"><a href="../page_crédit/page_credit.html">Crédits</a></p>            </div> 
+                <p class="p_crédit"><a href="../page_crédit/page_credit.html">Crédits</a></p>
         </footer>
     </body>
 </html>
