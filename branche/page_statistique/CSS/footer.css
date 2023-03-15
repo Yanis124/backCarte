@@ -1,35 +1,36 @@
-
+/*les elements du footer*/
 
 footer{
-    display:flex;
-    justify-content: center;
-    background-color: #f5fbf9;
-    border:2px solid #b4dbdc;
-    height:10%;
+    display: flex;
+    flex-direction: row;  /*afficher les elements horizontalement*/
+    background-color: var(--footer-bg);
+    border:2px solid var(--graph-text-bg-hover);
+    height:10%; /*footer occupe 10% de la longeur de la page*/
 }
 
-.footer-container{
-    width:50%;
-    display:flex;
-    justify-content: space-evenly;
+.button-container,.a-propos-de-nous-container{ 
+    display: flex;
+    width:50%;  /*chaque element du footer occupe 50% de sa largeur*/
+    justify-content: center;
     align-items: center;
 }
 
-
-.footer-container>button{
-    /*style du boutton source */
-    background-color: #1422cb ;
-    border-radius: 80px;
+   /*style du boutton credit */
+.button-container button{
+ 
+    background-color: var(--header-title-hover) ;
+    border-radius: 60px;
     transition: all 0.4s ease;
     border: 1px solid black;
     height: 60%;
     color:white;
+    
 }
 
 /*style du boutton source  hover */
-.footer-container>button:hover{
+.button-container button:hover{
     cursor: pointer;  
-    color:whitesmoke;
+    color:var(--section-bg);
     transform: scale(1.2);
     opacity:0.7;
     box-shadow: 15px 5px 15px rgba(32, 32, 32, 0.4);
@@ -38,21 +39,18 @@ footer{
 
 }
 
+
 /*style du boutton  a propos de nous  */
-.footer-container p{
-    text-align: center;
+.a-propos-de-nous-container p{
     transition: 0.4s;
-    width:50%;
+    color:black
     
 }
 
 /*style du boutton  a propos de nous hover */
-.footer-container p:hover{
-        
+footer p:hover{
     cursor: pointer;
     opacity: 0.4;
-
-        
 }
 
 
