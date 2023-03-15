@@ -1,0 +1,11 @@
+/*
+SECTION
+*/
+.section-milieu{
+}
+
+.sous-section{
+	float: left;
+	width: 50%;
+	height:50%;
+}
