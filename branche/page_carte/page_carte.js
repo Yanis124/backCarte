@@ -14,19 +14,12 @@ function afficherChoix() {
     }
 }
 
-function Lieu1(){
-    let choixRegion=document.getElementById("region");
-    let choixDepartement=document.getElementById("departement1");
-    if(choixRegion.value!="vide"){
-        choixDepartement.style.display="block";
-    }
+function resetDepartement() {
+    document.getElementById("departement").selectedIndex = 0;
+    resetVille();
 }
 
-function Lieu2(){
-    let choixDepartement=document.getElementById("departement1");
-    let choixVille=document.getElementById("ville1");
-    if(choixDepartement.value!="vide"){
-        choixVille.style.display="block";
-    }
+function resetVille() {
+    document.getElementById("ville").selectedIndex = 0;
 }
 

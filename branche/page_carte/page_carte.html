@@ -81,13 +81,13 @@
         
 <!-- Filtre regions sans les regions outre mer-->  
         <label for="region">Region : </label>
-        <select name="region" id="region" onChange="Lieu1();">
+        <select name="region" id="region" onChange="resetDepartement()">
             <option value="vide">-- Selectionner une region --</option>
             <option value="Alsace">Alsace</option>
             <option value="Alsace-Champagne-Ardaine">Alsace-Champagne-Ardaine</option>
             <option value="Lorraine">Lorraine</option>
             <option value="Aquitaine">Aquitaine</option>
-            <option value="Aquitainene-Limousin-Poitou-Charente">Aquiatine-Limousin-Poitou-Charente</option>
+            <option value="Aquitaine-Limousin-Poitou-Charente">Aquitaine-Limousin-Poitou-Charente</option>
             <option value="Auvergne">Auvergne</option>
             <option value="Auvergne-Rhônes-Alpes">Auvergne-Rhônes-Alpes</option>
             <option value="Basse Normandie">Basse Normandie</option>
@@ -118,25 +118,41 @@
             <option value="Rhône-Alpes">Rhône-Alpes</option>
         </select>
 
-
+        <br>
 
 <!-- Filtre departement sans les departements outre mer--> 
-        <div id="departement1" style="display:none">
         <label for="departement">Departement : </label>
-        <select name="departement" id="departement" onChange="Lieu2();">
+        <select name="departement" id="departement" onchange="resetVille()">
             <option value="vide">-- Selectionner un département --</option>
             <option value="IDF">Ile de France</option>
         </select>
-        </div>
+
+        <br>
 
 <!-- Filtre ville sans les villes outre mer-->
-        <div id="ville1" style="display:none">
         <label for="ville">Ville : </label>
         <select name="ville" id="ville">
             <option value="">-- Selectionner une ville --</option>
+            <option value="">Paris</option>
         </select>
-    </div>
         <br>
+
+<!-- Filtre condition météorologique : normale, pluie légère, pluie forte, temps couverts, temps éblouissant, neige/grèle, borouillard/fumée, vent fort/tempête-->  
+<!-- /!\ A FAIRE : ne pas afficher toutes les conditions météorologiques d'un coup mais juste selectionner une option ou plusieurs
+            Rajouter des boutons checkbox aux conditions pour que l'utilisateur puisse en selectionner plusieurs-->      
+<label for="condition_meteorologique">Condition météorologique : </label>
+<select name="condition_meteorologique" id="condition_meteorologique" multiple size="4">
+    <option value="normale">Normale</option>
+    <option value="pluie_legere">Pluie Légère</option>
+    <option value="pluie_forte">Pluie Forte</option>
+    <option value="temps_couverts">Temps Couverts</option>
+    <option value="temps_éblouissant">Temps Éblouissant</option>
+    <option value="neige_grêle">Neige/Grêle</option>
+    <option value="brouillard_fumée">Brouillard/Fumée</option>
+    <option value="vent_fort_tempêtes">Vent Fort/Tempête</option>
+</select>
+
+<br>
 
 <!-- Filtre condition météorologique : normale, pluie légère, pluie forte, temps couverts, temps éblouissant, neige/grèle, borouillard/fumée, vent fort/tempête-->  
 <!-- /!\ A FAIRE : ne pas afficher toutes les conditions météorologiques d'un coup mais juste selectionner une option ou plusieurs
