@@ -6,63 +6,6 @@ body p{
     margin-left: 20px;
 }
 
-header{
-    height: 50px;
-    position: relative;
-}
-
-.navigation-principale
-{
-    background-color: rgb(47, 63, 236);
-    position: absolute;
-    bottom: 0px;
-    width: 100%;
-    height: 50px;
-}
-
-.titre-du-projet a{
-    position: absolute;
-    color: white;
-    font-size: 35px;
-    font-variant: small-caps;
-    text-decoration: none;
-    bottom: 5px;
-    left: 35px;
-}
-
-.p_carte a{
-    position: absolute;
-    right: 148px;
-    top:12px;
-    color: black;
-    text-decoration: none;
-    padding: 5px 17px;
-    border-radius: 20px;
-    background: white;
-}
-
-.p_statistique a{
-    position: absolute;
-    right: 15px;
-    top:12px;
-    color: black;
-    text-decoration: none;
-    padding: 5px 17px;
-    border-radius: 20px;
-    background: white;
-}
-
-.p_accueil a{
-    position: absolute;
-    right: 250px;
-    top:12px;
-    color: black;
-    text-decoration: none;
-    padding: 5px 17px;
-    border-radius: 20px;
-    background: white;
-}
-
 h1{
     text-align: center;
     margin :10px 0px;
