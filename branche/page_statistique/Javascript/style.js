@@ -5,7 +5,7 @@ const canvas=document.getElementById("canvas")
 const button=document.getElementById("button-graph")
 const tableau=document.getElementById("table")
 const graph=document.getElementById("graph-filtres-container")
-const erreur=document.getElementById("erreur")
+const erreurs=document.getElementById("erreurs")
 const imageTelecharger=document.getElementById("image-telecharger")
 
 

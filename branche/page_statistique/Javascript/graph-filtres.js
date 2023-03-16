@@ -1,4 +1,3 @@
-
 // recuperer les donées et afficher les graphs
 color_bar=["#003f5c"]
 color_pie=["#003f5c","#f95d6a","#2f4b7c","#665191","#a05195","#d45087","#ff7c43","#ffa600"]
@@ -19,15 +18,13 @@ var inputAnnee
 var inputLieu
 
 
+
 var api="https://public.opendatasoft.com/api/records/1.0/search/?dataset=accidents-corporels-de-la-circulation-millesime&q=&rows=0&facet=datetime&facet=atm&facet=sexe&facet=an_nais&facet=grav&facet=lum" //regrouper le nombre d'accident par date/atm/sexe/année naissance/gravité/lumiere
 
 
 async function getData(){  //recuperer les données datetime, atm ,atm ,an-nais ,sex, grav et creer le graph
-    canvas.style.display="none"
-    spinner.style.display="block"
-    graphContainer.style.opacity="0.6"
-    graphContainer.style.backgroundColor="white"
-    erreur.style.display="none"
+
+    load()
 
     if(inputLieu && inputAnnee && inputAnnee!="toutes-les-annees" && inputLieu!="tous-les-lieus"){ //si l'utilisateur rentre annee
         try{
@@ -36,15 +33,11 @@ async function getData(){  //recuperer les données datetime, atm ,atm ,an-nais 
             var data=await res.json()
         }
         catch(error){
-            console.log("erreur de fetch")
-            canvas.style.display="none"
-            erreur.style.display="block"
+            erreur()
 
         }
-       
-        
-        
     }
+
     else if(inputLieu && (!inputAnnee || inputAnnee=="toutes-les-annees") && inputLieu!="tous-les-lieus"){ //si l'utilisateur rentre annee
         try{
             var res=await fetch(api+"&refine.reg_name="+inputLieu) //ajouter le filtre lieu a l'api
@@ -52,31 +45,21 @@ async function getData(){  //recuperer les données datetime, atm ,atm ,an-nais 
             var data=await res.json()
         }
         catch(error){
-            console.log("erreur de fetch")
-            canvas.style.display="none"
-            erreur.style.display="block"
+            erreur()
 
         }
-       
-        
-        
     }
     
-    else if(inputAnnee &&(!inputLieu || inputLieu=="tous-les-les lieus") && inputAnnee!="toutes-les-annees"){ //si l'utilisateur rentre annee
+    else if(inputAnnee &&(!inputLieu || inputLieu=="tous-les-les lieus") && inputAnnee!="toutes-les-annees"){ //si l'utilisateur rentre une annee
         try{
             var res=await fetch(api+"&refine.datetime="+inputAnnee) //ajouter le filtre année a l'api
         
             var data=await res.json()
         }
         catch(error){
-            console.log("erreur de fetch")
-            canvas.style.display="none"
-            erreur.style.display="block"
+            erreur()
 
-        }
-       
-        
-        
+        } 
     }
 
     else{ //si l'utilisateur ne choisit pas d'année ou il choisit toutes les années
@@ -86,26 +69,13 @@ async function getData(){  //recuperer les données datetime, atm ,atm ,an-nais 
             var data=await res.json()
         }
         catch(error){
-            console.log("erreur de fetch")
-            canvas.style.display="none"
-            erreur.style.display="block"
+            erreur()
         }
-        
     }
-    
-    spinner.style.display="none"
-    graphContainer.style.opacity="1"
-    
-    if(erreur.style.display!="block"){
-        canvas.style.display="block"
-        graphContainer.style.backgroundColor="#dee5ef"
-        
 
-    }
+    //les données ont bien été récuperer
     
-
-    
-    
+    work()
     
     for(var n=0;n<data.facet_groups.length;n++){
         datas[n]=[] //renitialiser la liste datas et label 
@@ -115,11 +85,10 @@ async function getData(){  //recuperer les données datetime, atm ,atm ,an-nais 
                 
                 for(var j=0;j<data.facet_groups[n].facets[0].facets.length;j++){ 
                     datas[n].push(data.facet_groups[n].facets[0].facets[j].count)
-                    label[n].push(mois[j]) //au lieu d'ecrire 1 on ecrit janvier
-                    
+                    label[n].push(mois[j]) //au lieu d'ecrire 1 on ecrit janvier 
                 }  
-                
             }
+
             else{
             
                 datas[n].push(data.facet_groups[n].facets[i].count)
@@ -127,24 +96,17 @@ async function getData(){  //recuperer les données datetime, atm ,atm ,an-nais 
        
             }
         }
-        
-        
-       // console.log(data.facet_groups[n].facets)
-        //console.log(datas[n])
-   
     }
+
     updateTitles(inputAnnee) //mettre a jour les titres des graphs si l'utilisateur entre une année
-   // console.log(datas)
-    //console.log(label)
       //afficher le nombre d'accident par année graph par default
+
     if(!chart){
         chart=courbe() //creer le graph si il n'existe pas
     }
     
-
     getValueX() //recuperer la valeur de axe-x et executer la fonction selecX qui va appeler la fonction selectColonne( pour rafrechir le graph avec les nouvelle donnée)
         
-    
 }
     
 function updateTitles(){
@@ -173,14 +135,12 @@ function getValueColonne(){  //recuperer le type de graph choisit
 
 function getValueX(inputAnnee){    //recuperer la donnée a afficher
     var inputValueX=xSelect.value
-    
     selectX(inputValueX)
-    
 }
 
 function getAnnee(){
     inputAnnee=annee.value
-    getData()
+    getData() //mettre a jour les données
 }
 
 function getLieu(){
@@ -230,60 +190,38 @@ function selectX(inputValueX){  //selectionner le type de graph(par defaut date=
          selectColonne("camembert")   
         }
     }
-    
-
 }
 
 function selectData(n_data,n_label){
+
+    //mettre a jour les données du graph
     chart.data.labels=label[n_label-1]
     chart.data.datasets[0].data=datas[n_data-1]
     chart.options.plugins.title.text=titles[n_label-1]
     chart.update()
 }
 
-function selectColonne(inputValueColonne){ //changer les données et le type de graph
-    
-
-    
+function selectColonne(inputValueColonne){ //changer  le type de graph
     
     //si l'utilisateur choisir un type de graph (colonne)
     if(inputValueColonne=="colonne"){
         
-        //chart=colonne()
         chart.config.type="bar"
         chart.options.scales.x.display=true
         chart.options.scales.y.display=true
         chart.data.datasets[0].backgroundColor=color_bar
-        
-        //console.log(chart)
-        
-
-        chart.update() //mettre a jour la chart si on change de type de donnée ....
-        
-        
+        chart.update() //mettre a jour la chart 
     }
+
     else if(inputValueColonne=="camembert"){
         
         chart.config.type="pie"
         chart.options.scales.x.display=false
         chart.options.scales.y.display=false
         chart.data.datasets[0].backgroundColor=color_pie
-        
-        //console.log(chart)
-        
-
         chart.update()
-        
-        
-        
-        //onsole.log(chart.options.scales.xAxis)
-        
-        
-       
-
-       chart.update()
-        
     }
+
     else if(inputValueColonne=="courbe"){
         //chart=courbe()
         chart.config.type="line"
@@ -291,40 +229,21 @@ function selectColonne(inputValueColonne){ //changer les données et le type de 
         chart.options.scales.y.display=true
         chart.data.datasets[0].borderColor='rgb(255, 99, 132)'
         chart.data.datasets[0].backgroundColor='rgb(255, 200, 200)'
-
-        
         chart.update()
-      
     }
-    
-    //console.log(chart.data.datasets)
     
 }
 
-// function destroy(){ //pourra servir si on veut creer un nouveau graph 
-//     chart.clear() 
-//     chart.destroy() 
-    
-// }
-
 function courbe(){  //generer la courbe avec les données par default
-    
-    
-
     var chart =new Chart(canvas, configLine);
-    
     chart.data.labels=label[0]
     chart.data.datasets[0].data=datas[0]
     chart.update()
-
-    
-    //console.log(chart)
-    
     return chart
 }
 
 
-//recuperer les données 
+//recuperer les données et affichier la charte
 
 getData()  
 
