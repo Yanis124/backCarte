@@ -11,15 +11,17 @@ const lieu=document.getElementById("lieu")
 var mois=["janvier","fevrier","mars","avril","mai","juin","juillet","aout","septembre","octobre","novembre","decembre"]
 var label=[[],[],[],[],[],[]] //la legende des graphs
 var datas=[[],[],[],[],[],[]] //chaque list represente un type de donnée datetime,atm ,sex,an-nais, grav,lum
-var titlesExemple=["nombre d'accident par année","nombre d'accident par conditions métérologique","nombre d'accident par sexe","nombre d'accident par année de naisance","nombre d'accident par gravité de l'accident","nombre d'accident jour/nuit"] //titre des graphs (exemple par default)
-var titles=[]
+var titlesExemple=["nombre d'accident par année","nombre d'accident par région","nombre d'accicent par département","nombre d'accident par conditions métérologique","nombre d'accident par sexe","nombre d'accident par année de naisance","nombre d'accident par gravité de l'accident","nombre d'accident jour/nuit"] //titre des graphs (exemple par default)
 var chart  //des variables globale qui contient le graph l'anne le lieu
 var inputAnnee
 var inputLieu
+var typeChart
 
 
 
-var api="https://public.opendatasoft.com/api/records/1.0/search/?dataset=accidents-corporels-de-la-circulation-millesime&q=&rows=0&facet=datetime&facet=atm&facet=sexe&facet=an_nais&facet=grav&facet=lum" //regrouper le nombre d'accident par date/atm/sexe/année naissance/gravité/lumiere
+
+
+var api="https://public.opendatasoft.com/api/records/1.0/search/?dataset=accidents-corporels-de-la-circulation-millesime&q=&rows=0&facet=datetime&facet=reg_name&facet=dep_name&facet=atm&facet=sexe&facet=an_nais&facet=grav&facet=lum" //regrouper le nombre d'accident par date/atm/sexe/année naissance/gravité/lumiere
 
 
 async function getData(){  //recuperer les données datetime, atm ,atm ,an-nais ,sex, grav et creer le graph
@@ -80,20 +82,29 @@ async function getData(){  //recuperer les données datetime, atm ,atm ,an-nais 
     for(var n=0;n<data.facet_groups.length;n++){
         datas[n]=[] //renitialiser la liste datas et label 
         label[n]=[]
-        for(var i=0;i<data.facet_groups[n].facets.length;i++){
-            if(data.facet_groups[n].facets[i].facets){ //si l'utilisateur selectionne une date on affiche le nombre d'accident par moi
-                
-                for(var j=0;j<data.facet_groups[n].facets[0].facets.length;j++){ 
-                    datas[n].push(data.facet_groups[n].facets[0].facets[j].count)
-                    label[n].push(mois[j]) //au lieu d'ecrire 1 on ecrit janvier 
-                }  
-            }
-
-            else{
+        if(data.facet_groups[n].name=="an_nais"){
+            regroupeAge(data.facet_groups[n].facets,n)
+        }
+        else if(data.facet_groups[n].name=="lum"){
+            regroupeLum(data.facet_groups[n].facets,n)
+        }
+        else{
+            for(var i=0;i<data.facet_groups[n].facets.length;i++){
+                if(data.facet_groups[n].facets[i].facets){ //si l'utilisateur selectionne une date on affiche le nombre d'accident par moi
+                    
+                    for(var j=0;j<data.facet_groups[n].facets[0].facets.length;j++){ 
+                        datas[n].push(data.facet_groups[n].facets[0].facets[j].count)
+                        label[n].push(mois[j]) //au lieu d'ecrire 1 on ecrit janvier 
+                    }  
+                }
             
-                datas[n].push(data.facet_groups[n].facets[i].count)
-                label[n].push(data.facet_groups[n].facets[i].name)
-       
+
+                else{            
+                    datas[n].push(data.facet_groups[n].facets[i].count)
+                    label[n].push(data.facet_groups[n].facets[i].name)
+        
+                }
+                
             }
         }
     }
@@ -129,8 +140,9 @@ function updateTitles(){
 
 
 function getValueColonne(){  //recuperer le type de graph choisit
-    var inputValueColonne = colonneSelect.value;
-    selectColonne(inputValueColonne)
+    typeChart = colonneSelect.value
+    selectColonne()
+    
 }
 
 function getValueX(inputAnnee){    //recuperer la donnée a afficher
@@ -154,42 +166,73 @@ function getLieu(){
 
 function selectX(inputValueX){  //selectionner le type de graph(par defaut date=>courbe sexe=>camembert ....) et les données 
     if(inputValueX=="date"){
-        selectData(1,1) 
+        selectData(1,1)
+        if(!typeChart){
+            selectColonne("courbe")
+            
+        } 
         
-        if(!inputAnnee){
-         selectColonne("courbe")   //sera executer si l'utilisateur change uniquement d'axe-x sinon on garde le meme type de graph
-        }
+    }
+    if(inputValueX=="région"){
+        selectData(2,2)
+        if(!typeChart){
+            selectColonne("colonne")
+            
+        } 
+        
+    }
+    if(inputValueX=="département"){
+        selectData(3,3)
+        if(!typeChart){
+            selectColonne("colonne")
+            
+        } 
+        
     }
     else if(inputValueX=="conditions métérologiques"){
-        selectData(2,2) 
-        if(!inputAnnee){
-         selectColonne("camembert")   
+        selectData(4,4)
+        if(!typeChart){
+            selectColonne("camembert")  
         }
+
+
     }
     else if(inputValueX=="sexe"){
-        selectData(3,3) 
-        if(!inputAnnee){
-         selectColonne("camembert")   
+        selectData(5,5) 
+        if(!typeChart){
+            selectColonne("camembert")
+            
         }
+
     }
     else if(inputValueX=="tranche d'age"){
-        selectData(4,4) 
-        if(!inputAnnee){
-         selectColonne("camembert")   
+        selectData(6,6) 
+        
+        if(!typeChart){
+            selectColonne("camembert")
+            
         }
+
     }
     else if(inputValueX=="gravité"){
-        selectData(5,5) 
-        if(!inputAnnee){
-         selectColonne("camembert")   
+        selectData(7,7) 
+        if(!typeChart){
+            selectColonne("camembert")
+            
         }
+
     }
     else if(inputValueX=="jour/nuit"){
-        selectData(6,6) 
-        if(!inputAnnee){
-         selectColonne("camembert")   
+        selectData(8,8)
+        console.log(typeChart) 
+        if(!typeChart){
+            
+            selectColonne("camembert")
+           
         }
+
     }
+    
 }
 
 function selectData(n_data,n_label){
@@ -201,10 +244,10 @@ function selectData(n_data,n_label){
     chart.update()
 }
 
-function selectColonne(inputValueColonne){ //changer  le type de graph
+function selectColonne(inputChart){ //changer  le type de graph
     
     //si l'utilisateur choisir un type de graph (colonne)
-    if(inputValueColonne=="colonne"){
+    if(inputChart=="colonne" || typeChart=="colonne"){ //type de graph par defaut ou changer le type des graph par le filtre colonne
         
         chart.config.type="bar"
         chart.options.scales.x.display=true
@@ -213,7 +256,7 @@ function selectColonne(inputValueColonne){ //changer  le type de graph
         chart.update() //mettre a jour la chart 
     }
 
-    else if(inputValueColonne=="camembert"){
+    else if(inputChart=="camembert" || typeChart=="camembert"){
         
         chart.config.type="pie"
         chart.options.scales.x.display=false
@@ -222,7 +265,7 @@ function selectColonne(inputValueColonne){ //changer  le type de graph
         chart.update()
     }
 
-    else if(inputValueColonne=="courbe"){
+    else if(inputChart=="courbe" || typeChart=="courbe"){ 
         //chart=courbe()
         chart.config.type="line"
         chart.options.scales.x.display=true

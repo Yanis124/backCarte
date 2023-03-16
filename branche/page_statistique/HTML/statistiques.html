@@ -49,6 +49,8 @@
                                         <label for="axe-x">axe X :</label>
                                         <select id="axe-x" onchange="getValueX()" name="axe-x">
                                             <option value="date">date</option>
+                                            <option value="région">région</option>
+                                            <option value="département">département</option>
                                             <option value="conditions métérologiques">condition métérologiques</option>
                                             <option value="sexe">sexe</option>
                                             <option value="tranche d'age">tranche d'age</option>
@@ -77,6 +79,7 @@
                                     <div class="filtre-annee-container">
                                         <label for="axe-x">année:</label>
                                         <select name="axe-x" onchange="getAnnee()" id="annee">
+                                            <option value="toutes-les-annees">toutes les années</option>
                                             <option value="2019">2019</option>
                                             <option value="2018">2018</option>
                                             <option value="2017">2017</option>
@@ -85,7 +88,6 @@
                                             <option value="2014">2014</option>
                                             <option value="2013">2013</option>
                                             <option value="2012">2012</option>
-                                            <option value="toutes-les-annees">toutes les années</option>
                                         </select>
                                     </div>
                                     
@@ -280,5 +282,6 @@
 <script src="../Javascript/style.js"></script>
 <script src="../Javascript/graph-config.js"></script>
 <script src="../Javascript/graph-load.js"></script>
+<script src="../Javascript/age-lum.js"></script>
 <script src="../Javascript/graph-filtres.js"></script>
 
