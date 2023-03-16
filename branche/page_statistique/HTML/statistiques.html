@@ -36,7 +36,7 @@
         <section>
             <div class="graph-text-container"  >
                
-                <button  id="button-graph" onmousemove="tableOpacity()" onmouseleave="tableRemoveOpacity()" onclick=" disapearTableau()">Graph</button>
+                <button  id="button-graph" onmousemove="tableOpacity()" onmouseleave="tableRemoveOpacity()" onclick=" disapearTableau()">Graphe</button>
                 
               
                 
@@ -47,7 +47,8 @@
                                 <div class="filtres-container">
                                     <div class="axe-x-container">
                                         <label for="axe-x">axe X :</label>
-                                        <select id="axe-x" onchange="getValueX()" name="axe-x">
+                                        <select id="axe-x" onchange="afficherFiltres(); getValueX()" name="axe-x"> <!--"getValueX()"-->
+                                            <option value="titre">-- Selectionner un Filtre --</option>
                                             <option value="date">date</option>
                                             <option value="région">région</option>
                                             <option value="département">département</option>
@@ -67,7 +68,7 @@
                                             <option value="camembert">camembert</option>
                                         </select>
                                     </div> 
-                                    <div class="filtre-lieu-container">
+                                    <div class="filtre-lieu-container" style="display: none">
                                         <label for="lieu">lieu :</label>
                                         <select onchange="getLieu()" name="lieu" id="lieu">
                                             <option value="tous-les-lieus">tous les lieus</option>
@@ -76,7 +77,7 @@
                                             
                                         </select>
                                     </div>
-                                    <div class="filtre-annee-container">
+                                    <div class="filtre-annee-container" style="display:none">
                                         <label for="axe-x">année:</label>
                                         <select name="axe-x" onchange="getAnnee()" id="annee">
                                             <option value="toutes-les-annees">toutes les années</option>
@@ -92,6 +93,30 @@
                                     </div>
                                     
                                 </div>
+
+                                <script>
+                                    function afficherFiltres() {
+                                      var axeX = document.getElementById("axe-x");
+                                      var filtreLieu = document.querySelector(".filtre-lieu-container");
+                                      var filtreAnnee = document.querySelector(".filtre-annee-container");
+                                
+                                      // Masquer les filtres
+                                      filtreLieu.style.display = "none";
+                                      filtreAnnee.style.display = "none";
+                                
+                                      // Afficher le filtre correspondant
+                                      if (axeX.value === "région" || axeX.value === "département") {
+                                        filtreAnnee.style.display = "block";
+                                      }
+                                      else if (axeX.value === "date") {
+                                        filtreLieu.style.display = "block";
+                                      }
+                                      else if (axeX.value !== "titre"){
+                                          filtreAnnee.style.display = "block";
+                                          filtreLieu.style.display = "block"
+                                      }
+                                    }
+                                  </script>
                         
                         <div class="graph-container" id="graph-container">
                             <canvas id="canvas">
@@ -284,4 +309,3 @@
 <script src="../Javascript/graph-load.js"></script>
 <script src="../Javascript/age-lum.js"></script>
 <script src="../Javascript/graph-filtres.js"></script>
-
