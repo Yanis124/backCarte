@@ -4,18 +4,19 @@ color_pie=["#003f5c","#f95d6a","#2f4b7c","#665191","#a05195","#d45087","#ff7c43"
 
 const colonneSelect=document.getElementById("graph-select")
 const xSelect =document.getElementById("axe-x")
-const annee=document.getElementById("annee")
-const lieu=document.getElementById("lieu")
+const lieuSelect=document.getElementById("lieu-select")
+const anneeSelect=document.getElementById("annee-select")
 
 
-var mois=["janvier","fevrier","mars","avril","mai","juin","juillet","aout","septembre","octobre","novembre","decembre"]
-var label=[[],[],[],[],[],[]] //la legende des graphs
-var datas=[[],[],[],[],[],[]] //chaque list represente un type de donnée datetime,atm ,sex,an-nais, grav,lum
+var label=[] //la legende des graphs
+var datas=[] //chaque list represente un type de donnée datetime,atm ,sex,an-nais, grav,lum
 var titlesExemple=["nombre d'accident par année","nombre d'accident par région","nombre d'accicent par département","nombre d'accident par conditions métérologique","nombre d'accident par sexe","nombre d'accident par année de naisance","nombre d'accident par gravité de l'accident","nombre d'accident jour/nuit"] //titre des graphs (exemple par default)
 var chart  //des variables globale qui contient le graph l'anne le lieu
 var inputAnnee
 var inputLieu
 var typeChart
+var inputValueX="annee"
+
 
 
 
@@ -45,6 +46,7 @@ async function getData(){  //recuperer les données datetime, atm ,atm ,an-nais 
             var res=await fetch(api+"&refine.reg_name="+inputLieu) //ajouter le filtre lieu a l'api
         
             var data=await res.json()
+            
         }
         catch(error){
             erreur()
@@ -52,7 +54,7 @@ async function getData(){  //recuperer les données datetime, atm ,atm ,an-nais 
         }
     }
     
-    else if(inputAnnee &&(!inputLieu || inputLieu=="tous-les-les lieus") && inputAnnee!="toutes-les-annees"){ //si l'utilisateur rentre une annee
+    else if(inputAnnee &&(!inputLieu || inputLieu=="tous-les-lieus") && inputAnnee!="toutes-les-annees"){ //si l'utilisateur rentre une annee
         try{
             var res=await fetch(api+"&refine.datetime="+inputAnnee) //ajouter le filtre année a l'api
         
@@ -77,7 +79,7 @@ async function getData(){  //recuperer les données datetime, atm ,atm ,an-nais 
 
     //les données ont bien été récuperer
     
-    work()
+    work() //les données on était recuperer correctement 
     
     for(var n=0;n<data.facet_groups.length;n++){
         datas[n]=[] //renitialiser la liste datas et label 
@@ -90,33 +92,23 @@ async function getData(){  //recuperer les données datetime, atm ,atm ,an-nais 
         }
         else{
             for(var i=0;i<data.facet_groups[n].facets.length;i++){
-                if(data.facet_groups[n].facets[i].facets){ //si l'utilisateur selectionne une date on affiche le nombre d'accident par moi
-                    
-                    for(var j=0;j<data.facet_groups[n].facets[0].facets.length;j++){ 
-                        datas[n].push(data.facet_groups[n].facets[0].facets[j].count)
-                        label[n].push(mois[j]) //au lieu d'ecrire 1 on ecrit janvier 
-                    }  
-                }
-            
-
-                else{            
-                    datas[n].push(data.facet_groups[n].facets[i].count)
-                    label[n].push(data.facet_groups[n].facets[i].name)
-        
-                }
-                
+                datas[n].push(data.facet_groups[n].facets[i].count)
+                label[n].push(data.facet_groups[n].facets[i].name)
             }
         }
     }
+    console.log(datas)
 
-    updateTitles(inputAnnee) //mettre a jour les titres des graphs si l'utilisateur entre une année
+    updateTitles() //mettre a jour les titres des graphs si l'utilisateur entre une année
+
       //afficher le nombre d'accident par année graph par default
 
     if(!chart){
         chart=courbe() //creer le graph si il n'existe pas
     }
+    //console.log(datas)
     
-    getValueX() //recuperer la valeur de axe-x et executer la fonction selecX qui va appeler la fonction selectColonne( pour rafrechir le graph avec les nouvelle donnée)
+    selectX() //recuperer la valeur de axe-x 
         
 }
     
@@ -139,41 +131,56 @@ function updateTitles(){
 }
 
 
-function getValueColonne(){  //recuperer le type de graph choisit
+function getValueColonne(){  //recuperer le type de graph choisi
     typeChart = colonneSelect.value
-    selectColonne()
+    
+    selectColonne() 
     
 }
 
-function getValueX(inputAnnee){    //recuperer la donnée a afficher
-    var inputValueX=xSelect.value
-    selectX(inputValueX)
+function getValueX(){    //recuperer la donnée a afficher
+    inputValueX=xSelect.value
+    inputAnnee=null
+    inputLieu=null
+    
+    initAnneeSelect()
+    initLieuSelect()
+
+    getData()
+    
+    selectX()   //selectionner les données et le type de graph
 }
 
 function getAnnee(){
-    inputAnnee=annee.value
+    inputAnnee=anneeSelect.value
+    
     getData() //mettre a jour les données
 }
 
 function getLieu(){
-    inputLieu=lieu.value
-    getData()
+    inputLieu=lieuSelect.value
+
+    getData() //mettre a jour les données
 }
 
 
 
 
 
-function selectX(inputValueX){  //selectionner le type de graph(par defaut date=>courbe sexe=>camembert ....) et les données 
-    if(inputValueX=="date"){
+function selectX(){  //selectionner le type de graph(par defaut date=>courbe sexe=>camembert ....) et les données 
+    console.log(inputValueX)
+    if(inputValueX=="annee"){
+        console.log("annee")
         selectData(1,1)
-        if(!typeChart){
+        if(!typeChart){ //si l'utilisateur n'a pas choisi de type de graph on affiche le type par defaut
             selectColonne("courbe")
             
         } 
         
     }
     if(inputValueX=="région"){
+
+
         selectData(2,2)
         if(!typeChart){
             selectColonne("colonne")
@@ -183,6 +190,8 @@ function selectX(inputValueX){  //selectionner le type de graph(par defaut date=
     }
     if(inputValueX=="département"){
         selectData(3,3)
+
+
         if(!typeChart){
             selectColonne("colonne")
             
@@ -224,13 +233,9 @@ function selectX(inputValueX){  //selectionner le type de graph(par defaut date=
     }
     else if(inputValueX=="jour/nuit"){
         selectData(8,8)
-        console.log(typeChart) 
         if(!typeChart){
-            
             selectColonne("camembert")
-           
         }
-
     }
     
 }
@@ -238,10 +243,13 @@ function selectX(inputValueX){  //selectionner le type de graph(par defaut date=
 function selectData(n_data,n_label){
 
     //mettre a jour les données du graph
+    console.log(datas)
     chart.data.labels=label[n_label-1]
     chart.data.datasets[0].data=datas[n_data-1]
     chart.options.plugins.title.text=titles[n_label-1]
     chart.update()
+    
+
 }
 
 function selectColonne(inputChart){ //changer  le type de graph
@@ -254,6 +262,16 @@ function selectColonne(inputChart){ //changer  le type de graph
         chart.options.scales.y.display=true
         chart.data.datasets[0].backgroundColor=color_bar
         chart.update() //mettre a jour la chart 
+
+        if(!typeChart){  // on change l'afichage du filtre colonne
+            colonneSelect[0].innerHTML="colonne"
+            colonneSelect[1].innerHTML="courbe"
+            colonneSelect[2].innerHTML="camembert"
+            colonneSelect[0].value="colonne"
+            colonneSelect[1].value="courbe"
+            colonneSelect[2].innerHTML="camembert"
+        }
+
     }
 
     else if(inputChart=="camembert" || typeChart=="camembert"){
@@ -263,6 +281,15 @@ function selectColonne(inputChart){ //changer  le type de graph
         chart.options.scales.y.display=false
         chart.data.datasets[0].backgroundColor=color_pie
         chart.update()
+        if(!typeChart){
+            colonneSelect[0].innerHTML="camembert"
+            colonneSelect[1].innerHTML="colonne"
+            colonneSelect[2].innerHTML="courbe"
+            colonneSelect[0].value="camembert"
+            colonneSelect[1].value="colonne"
+            colonneSelect[2].value="courbe"
+        }
+  
     }
 
     else if(inputChart=="courbe" || typeChart=="courbe"){ 
@@ -273,7 +300,17 @@ function selectColonne(inputChart){ //changer  le type de graph
         chart.data.datasets[0].borderColor='rgb(255, 99, 132)'
         chart.data.datasets[0].backgroundColor='rgb(255, 200, 200)'
         chart.update()
+        if(!typeChart){
+            colonneSelect[0].innerHTML="courbe"
+            colonneSelect[1].innerHTML="camembert"
+            colonneSelect[2].innerHTML="colonne"
+            colonneSelect[0].value="courbe"
+            colonneSelect[1].value="camembert"
+            colonneSelect[2].value="colonne"
+        }
     }
+
+    
     
 }
 

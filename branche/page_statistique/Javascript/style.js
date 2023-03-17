@@ -8,6 +8,10 @@ const graph=document.getElementById("graph-filtres-container")
 const erreurs=document.getElementById("erreurs")
 const imageTelecharger=document.getElementById("image-telecharger")
 
+const axeX = document.getElementById("axe-x");
+const filtreLieu = document.querySelector(".filtre-lieu-container");
+const filtreAnnee = document.querySelector(".filtre-annee-container");
+
 
 
 
@@ -63,7 +67,24 @@ function changeImageTelechargerDark(){
     imageTelecharger.src="../images/téléchargerdark.png"
 }
 
+function afficherFiltres() {
 
+
+    
+
+    filtreLieu.style.display = "flex";
+    filtreAnnee.style.display = "flex";
+    // Afficher le filtre correspondant
+    if (axeX.value === "région" || axeX.value === "département") { //masquer le filtre secondaire lieu si on choisi region ou dep
+        filtreLieu.style.display = "none"; 
+        console.log(axeX.value)
+    }
+    else if (axeX.value === "date") { //masquer annee (secondaire) si on choisi annee (principal)
+        filtreAnnee.style.display = "none";
+    }
+
+
+  }
 
 
 

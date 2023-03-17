@@ -47,9 +47,8 @@
                                 <div class="filtres-container">
                                     <div class="axe-x-container">
                                         <label for="axe-x">axe X :</label>
-                                        <select id="axe-x" onchange="afficherFiltres(); getValueX()" name="axe-x"> <!--"getValueX()"-->
-                                            <option value="titre">-- Selectionner un Filtre --</option>
-                                            <option value="date">date</option>
+                                        <select id="axe-x" onchange="afficherFiltres(); getValueX()" name="axe-x">
+                                            <option value="annee">année</option>
                                             <option value="région">région</option>
                                             <option value="département">département</option>
                                             <option value="conditions métérologiques">condition métérologiques</option>
@@ -64,22 +63,20 @@
                                         <select id="graph-select" onchange="getValueColonne()" name="colonne">
                                             <option value="courbe">courbe</option>
                                             <option value="colonne">colonne</option>
-                                            
                                             <option value="camembert">camembert</option>
                                         </select>
                                     </div> 
-                                    <div class="filtre-lieu-container" style="display: none">
+                                    <div class="filtre-lieu-container" >
                                         <label for="lieu">lieu :</label>
-                                        <select onchange="getLieu()" name="lieu" id="lieu">
+                                        <select onchange="getLieu()" name="lieu" id="lieu-select">
                                             <option value="tous-les-lieus">tous les lieus</option>
-                                            <option value="Île-de-France">Île-de-France</option>
                                             <option value="Île-de-France">Île-de-France</option>
                                             
                                         </select>
                                     </div>
-                                    <div class="filtre-annee-container" style="display:none">
-                                        <label for="axe-x">année:</label>
-                                        <select name="axe-x" onchange="getAnnee()" id="annee">
+                                    <div class="filtre-annee-container" style="display:none"> <!-- filtre annee caché car on affiche le nombre d'accient par annee par defaut-->
+                                        <label for="annee">année:</label>
+                                        <select  name="annee" onchange="getAnnee()" id="annee-select">
                                             <option value="toutes-les-annees">toutes les années</option>
                                             <option value="2019">2019</option>
                                             <option value="2018">2018</option>
@@ -89,35 +86,11 @@
                                             <option value="2014">2014</option>
                                             <option value="2013">2013</option>
                                             <option value="2012">2012</option>
+                                            <option value="2011">2011</option>
                                         </select>
                                     </div>
                                     
-                                </div>
-
-                                <script>
-                                    function afficherFiltres() {
-                                      var axeX = document.getElementById("axe-x");
-                                      var filtreLieu = document.querySelector(".filtre-lieu-container");
-                                      var filtreAnnee = document.querySelector(".filtre-annee-container");
-                                
-                                      // Masquer les filtres
-                                      filtreLieu.style.display = "none";
-                                      filtreAnnee.style.display = "none";
-                                
-                                      // Afficher le filtre correspondant
-                                      if (axeX.value === "région" || axeX.value === "département") {
-                                        filtreAnnee.style.display = "block";
-                                      }
-                                      else if (axeX.value === "date") {
-                                        filtreLieu.style.display = "block";
-                                      }
-                                      else if (axeX.value !== "titre"){
-                                          filtreAnnee.style.display = "block";
-                                          filtreLieu.style.display = "block"
-                                      }
-                                    }
-                                  </script>
-                        
+                                </div>                        
                         <div class="graph-container" id="graph-container">
                             <canvas id="canvas">
                                 <!-- le graph sera afficher ici-->
@@ -309,3 +282,4 @@
 <script src="../Javascript/graph-load.js"></script>
 <script src="../Javascript/age-lum.js"></script>
 <script src="../Javascript/graph-filtres.js"></script>
+<script src="../Javascript/init-filtre.js"></script>
