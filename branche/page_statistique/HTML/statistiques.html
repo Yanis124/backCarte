@@ -17,16 +17,18 @@
     <title>Statistiques</title>
 </head>
 <body >
-    <header>
+    <header id="#top">
         
-            <ul>
+            <ul class="list-header">
                 <a class="anc-title" href="../../page_accueil/page_accueil.html" > <li >Accidentologie</li></a>
             
             
-                <a class="anc-accueil" href="../../page_accueil/page_accueil.html"> <li >Accueil</li> </a>
+                <a class="anc-sous-titre" href="../../page_accueil/page_accueil.html"> <li >Carte</li> </a>
            
             
-                <a class="anc-carte" href="../../page_carte/page_carte.html"> <li>Carte</li> </a>
+                <a class="anc-sous-titre" href="../../page_carte/page_carte.html"> <li>Crédit</li> </a>
+
+                <a class="anc-sous-titre" href="../../page_A_propos_de_nous/page_a-propos-de-nous.html"> <li>a propos de nous</li> </a>
             </ul>
         
 
@@ -264,17 +266,38 @@
     </main>
     <footer>
         
-        <div class="button-container">
-            <a href="../../page_crédit/page_credit.html"><button>crédit</button></a>
-        </div>
+            <div class="contactez-nous-container">
+                <p>Contactez-nous</p>
+                <ul>
+                    <a href="mailto:hammaciyanis@gmail.com"> <li>hammaciyanis@gmail.com</li> </a>
+                    <a href="mailto:maelle.bourbon@gmail.com"> <li>maelle.bourbon@gmail.com</li> </a>
+                    <a href="mailto:dylanchou2003@gmail.com"> <li>dylanchou2003@gmail.com</li> </a>
+                    <a href="mailto:poirier.seraphin@gmail.com"> <li>poirier.seraphin@gmail.com</li> </a>
+                </ul>
+            </div>
+            
+            <div class="liens-utils-container">
+                <p>Liens utils</p>
+                <ul>
+                    <a href="https://public.opendatasoft.com/explore/?sort=modified"> <li>opendatasoft</li> </a>
+                    <a href="https://www.data.gouv.fr/fr/"> <li>datagouv</li> </a>
+                </ul>
+            </div>  
+            
+            <div class="nombre-accident">
+                <p>nombre d'accident enregistrés</p>
+                <span id="nombre-accident"></span>
+            </div>
         
-           
-        <div class="a-propos-de-nous-container">
-            <a href="../../page_A_propos_de_nous/page_a-propos-de-nous.html"> <p>á propos de nous</p> </a> 
-        </div>
+        
+
+        
             
         
     </footer>
+
+
+    </div>
 </body>
 </html>
 <script src="../Javascript/style.js"></script>
@@ -283,3 +306,4 @@
 <script src="../Javascript/age-lum.js"></script>
 <script src="../Javascript/graph-filtres.js"></script>
 <script src="../Javascript/init-filtre.js"></script>
+<script src="../Javascript/nombre-accident.js"></script>

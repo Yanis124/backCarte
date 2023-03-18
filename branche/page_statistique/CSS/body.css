@@ -13,9 +13,10 @@
     --section-filtre-bg:#a1b0b8;
     --graph-text-bg-hover:#b4dbd6;
     --table-hover-bg:#cacbce;
-    --footer-bg:#f5fbf9;
     --telecharger-bg-hover:#c4302b;
     --text-title-font:700;
+    --text-font-small:15px;
+    --text-font-large:20px;
 
     
 }
@@ -26,32 +27,28 @@ html{
 }
 
 body{
+    font-size: var(--text-font-small);
     margin:0;
     height: 100%;
-    
-
 }
 
 @media screen and (min-width: 576px) {  /*s'applique aux ecrants avec une largeur >768px */
 body {
-    font-size: 20px;      /*modifier la police*/
+    font-size: var(--text-font-large);      /*modifier la police*/
 }
 
 .anc-title{
     font-size: 2rem;  /*le titre sera deux fois plus grand*/
 }
 
-.anc-accueil, .anc-carte{
-    justify-content: center;
-}
 
 .telecharger-container>button{
     font-size: 20px;  /*modifier la police du boutton telecharger*/
 }
 
-footer button, footer p{
-    font-size: 25px; /*modifier la police du boutton credit et a propos de nous*/
-}
+
+
+
 
 
 
@@ -74,6 +71,14 @@ footer button, footer p{
     width:90%;   /*le graph prend 90% de la largeur de graph-table-container*/
 }
 
+footer{
+    flex-direction: column;
+}
+
+span{
+    justify-content: start;
+}
+
 }
 
 @media screen and (max-width: 576px) {   /*s'applique aux ecrants avec une largeur <768px */
@@ -94,6 +99,12 @@ footer button, footer p{
         display: flex;
         flex-direction: column;
     }    
+
+    span{
+        justify-content: center;
+    }
+
+
 
 }
    

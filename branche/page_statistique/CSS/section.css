@@ -1,13 +1,6 @@
 /* animation pour la section */
 
-@keyframes AutoSlide {
-	0%{
-        transform: translateY(-100%);
-    }
-    100%{
-        transform: translateY(0);
-    }
-}
+
 
 
 

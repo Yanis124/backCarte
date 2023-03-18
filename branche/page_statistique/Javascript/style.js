@@ -21,7 +21,7 @@ const filtreAnnee = document.querySelector(".filtre-annee-container");
 function  disapearTableau(){  //faire disparaitre le tableau si l'utilisateur clique sur Graph et le reapparaitre si on clique sur tableau
     if(tableau.style.display=="none"){
         tableau.style.display="flex"
-        button.innerText="Graph"
+        button.innerText="Graphe"
         graph.style.width="60%"
         
     }
@@ -35,7 +35,7 @@ function  disapearTableau(){  //faire disparaitre le tableau si l'utilisateur cl
 function tableOpacity(){
 
     
-    if(button.innerText=="Graph"){
+    if(button.innerText=="Graphe"){
         tableau.style.opacity="0.7"
     }
     else{
@@ -47,7 +47,7 @@ function tableOpacity(){
 function tableRemoveOpacity(){
 
     
-    if(button.innerText=="Graph"){
+    if(button.innerText=="Graphe"){
         
         graph.style.opacity="1"
         tableau.style.opacity="1"
@@ -84,7 +84,9 @@ function afficherFiltres() {
     }
 
 
-  }
+}
+
+
 
 
 
