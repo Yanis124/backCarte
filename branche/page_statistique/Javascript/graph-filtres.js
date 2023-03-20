@@ -41,7 +41,7 @@ async function DrawFiltreLieu(){  //recuperer toutes les régions
 async function DrawFiltreAnnee(){  // mettre a jour le filtre année (secondaire) pour qu'il affiche que les années correspendant a un lieu
                                       //par exemple l'api n'a pas les données de l'Aquitaine pour l'année 2013 donc on ne propose pas 2013 dans le filtre annee
     
-    if(inputLieu && inputLieu !="toute-les-lieus"){ //on recupere les années de la region selectionée
+    if(inputLieu && inputLieu !="tous-les-lieus"){ //on recupere les années de la region selectionée
         try{                                              
             var res=await fetch(apiGraphAnnee+inputLieu)
             var data=await res.json()
