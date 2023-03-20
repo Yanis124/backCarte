@@ -1,5 +1,7 @@
-function initAnneeSelect(){
-    anneeSelect.selectedIndex = 0;
+//mettre a 0 les filtres secondaires
+
+function initAnneeSelect(){   
+    anneeGraphSelect.selectedIndex = 0;
 }
 
 function initLieuSelect(){

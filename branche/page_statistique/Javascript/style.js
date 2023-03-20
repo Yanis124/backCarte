@@ -1,11 +1,12 @@
 // rendre l'affichage de la page dynamique
-const spinner=document.getElementById("spinner")
+
+
 const graphContainer=document.getElementById("graph-container")
 const canvas=document.getElementById("canvas")
 const button=document.getElementById("button-graph")
 const tableau=document.getElementById("table")
 const graph=document.getElementById("graph-filtres-container")
-const erreurs=document.getElementById("erreurs")
+
 const imageTelecharger=document.getElementById("image-telecharger")
 
 const axeX = document.getElementById("axe-x");
@@ -18,7 +19,7 @@ const filtreAnnee = document.querySelector(".filtre-annee-container");
 
 
 
-function  disapearTableau(){  //faire disparaitre le tableau si l'utilisateur clique sur Graph et le reapparaitre si on clique sur tableau
+function  disapearTableau(){  //faire disparaitre le tableau si l'utilisateur clique sur Graphe et le reapparait si on clique sur tableau
     if(tableau.style.display=="none"){
         tableau.style.display="flex"
         button.innerText="Graphe"
@@ -32,7 +33,7 @@ function  disapearTableau(){  //faire disparaitre le tableau si l'utilisateur cl
     }
 }
 
-function tableOpacity(){
+function tableOpacity(){   //diminuer l'opacity du tableau ou du graph si on survole le boutton graphe
 
     
     if(button.innerText=="Graphe"){
@@ -44,7 +45,7 @@ function tableOpacity(){
     
 }
 
-function tableRemoveOpacity(){
+function tableRemoveOpacity(){  //enlever l'effet d'opacity 
 
     
     if(button.innerText=="Graphe"){
@@ -59,7 +60,7 @@ function tableRemoveOpacity(){
 }
 
 
-function changeImageTelechargerWhite(){
+function changeImageTelechargerWhite(){                   //changer l'image dans le boutton télécharger si on le survole
     imageTelecharger.src="../images/téléchargerwhite.svg"
 }
 
@@ -70,19 +71,17 @@ function changeImageTelechargerDark(){
 function afficherFiltres() {
 
 
-    
+    filtreLieu.style.display = "flex"
+    filtreAnnee.style.display = "flex"
 
-    filtreLieu.style.display = "flex";
-    filtreAnnee.style.display = "flex";
     // Afficher le filtre correspondant
-    if (axeX.value === "région" || axeX.value === "département") { //masquer le filtre secondaire lieu si on choisi region ou dep
-        filtreLieu.style.display = "none"; 
-        console.log(axeX.value)
-    }
-    else if (axeX.value === "date") { //masquer annee (secondaire) si on choisi annee (principal)
-        filtreAnnee.style.display = "none";
-    }
+    if (axeX.value === "région" || axeX.value === "département") { //masquer le filtre lieu (secondaire)  si on choisi region ou dep
+        filtreLieu.style.display = "none"
 
+    }
+    else if (axeX.value === "année") { //masquer annee (secondaire) si on choisi annee (principal)
+        filtreAnnee.style.display = "none"
+    }
 
 }
 

@@ -47,6 +47,7 @@ section{
     display: flex;
     flex-direction: column;
     height:90%; /*le div prend 90% de la hauteur du graph-table-container */
+    transition: 0.3s all ease;
 }
 
 
@@ -80,9 +81,19 @@ section{
 
 
 .table-annee-container{
-    height:90%; /*le tableau prend 80% de la hauteur du graph-table-container*/
+    height:90%; /*le tableau prend 90% de la hauteur du graph-table-container*/
     width: 30%; /*le tableau prend 30% de la largeur du graph-table-container*/
+    transition: 0.3s all ease;
+
 }
+
+.table-container{
+    width:100%;
+    height: 100%;
+    overflow-y: scroll;
+}
+
+
 
 .annee-container{
 

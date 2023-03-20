@@ -1,7 +1,10 @@
 /*ajouter une animation lorsque les données se charge sur la page*/
 
+#spinner-table{
+  margin:50%;
+}
 
-.spiner{
+#spinner-graph,#spinner-table{
     
     animation: rotator 1.4s linear infinite;
   }
@@ -40,12 +43,16 @@
    }
   }
 
-#erreurs{
+#erreurs-graph,#erreurs-table{
   width:90%;
   text-align: center;
   padding:3%;
   background-color: #fee7f0;
   border-top:1px solid #610f26;
   border-bottom:1px solid #610f26;
+}
+
+#erreurs-table{
+  margin-top: 50%;
 }
 

@@ -4,25 +4,25 @@ function regroupeAge(ageList,n){ //regrouper les tranches d'age et mettre les do
     var countsLarg=0
     for(var i=0;i<ageList.length;i++){
 
-        if(ageList[i].name>"2000"){
+        if(ageList[i].name>=2002){    //0-17 
             countsSmall+=ageList[i].count
         }
 
-        else if(ageList[i].name>"1960" && ageList[i].name<"2000"){
+        else if(ageList[i].name>=1960 && ageList[i].name<=2001){  //18-59
             countsMed+=ageList[i].count
         }
 
-        else if(ageList[i].name<"1960"){
+        else if(ageList[i].name<=1959){   //+61
             countsLarg+=ageList[i].count
             
         }
 
     }
     datas[n].push(countsSmall)
-    label[n].push("0-18")
+    label[n].push("0-17")
                             
     datas[n].push(countsMed)
-    label[n].push("18-60")
+    label[n].push("18-59")
 
     datas[n].push(countsLarg)
     label[n].push("+60")

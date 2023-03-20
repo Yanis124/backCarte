@@ -1,13 +1,16 @@
 /* le style du tableau */
 
 
+
 thead{
     background-color: var(--section-filtre-bg);
+    height:10%;
 }
 
 table{
     border-collapse: collapse;
-    font-size: 15px;
+    font-size: 17px;
+    width: 100%;
 }
 
 td{
