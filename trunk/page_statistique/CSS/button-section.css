@@ -1,0 +1,56 @@
+/*les boutton de la section*/
+
+
+
+/*style du boutton graph*/
+.graph-text-container>button{
+    height: 100%;
+    background-color: var(--section-bg);
+    margin-left:10%; /*decaler le button de 10% a gauch*/
+    transition: 0.3s all ease;
+    font-size: 25px;
+    border:solid 1px var(--header-title-border-hover);
+
+}
+
+/* style du boutton graph hover */
+.graph-text-container>button:hover{
+    cursor: pointer;
+    background-color: var(--graph-text-bg-hover);
+
+}
+
+
+/*style du boutton année tableau*/
+.annee-container>select{ 
+    height: 70%;
+    border:1px solid var(--header-title-border-hover);
+    width:40%; /*le button année prend 40% de la largeur du tableau-annee-container*/
+   
+}
+
+
+
+/*style du boutton télécharger*/
+.telecharger-container>button{
+    border: 1px solid transparent;
+    border-radius: 20px;
+    background-color: var(--header-title-border-hover);
+    transition:all 0.5s ease ;
+}
+
+
+/*style du boutton télécharger hover*/
+.telecharger-container>button:hover{
+    cursor: pointer;
+    color:#fff;
+    background-color: var(--telecharger-bg-hover);
+
+}
+
+.telecharger-container img{
+    vertical-align: middle; /*mettre l'image sur la meme ligne du boutton télécharger*/
+}
+
+
+

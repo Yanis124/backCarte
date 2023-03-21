@@ -1,0 +1,219 @@
+    <!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <!--Page css pour le header et le footer-->
+        <link href="../page_statistique/CSS/body.css" rel="stylesheet" type="text/css">
+        <link href="../page_statistique/CSS/header.css" rel="stylesheet" type="text/css">
+        <link href="../page_statistique/CSS/footer.css" rel="stylesheet" type="text/css">
+        
+        <link href="style.css" rel="stylesheet" type="text/css"><!--Page css propre à la page-->
+        <title>Carte des accidents de la route</title>
+        <script src="page_carte.js"></script>
+        
+        <!--Intégration de la bibliothèque Leaflet-->
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"
+     integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI="
+     crossorigin=""/>
+     <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"
+     integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM="
+     crossorigin=""></script>
+        
+    </head>
+    <body>
+        <header id="#top">
+        
+            <ul class="list-header">
+                <a class="anc-title" href="../page_accueil/page_accueil.html" > <li >Accidentologie</li></a>
+            
+            
+                <a class="anc-sous-titre" href="../page_statistique/HTML/statistiques.html"> <li >Statistiques</li> </a>
+           
+            
+                <a class="anc-sous-titre" href="../page_crédit/page_credit.html"> <li>Crédits</li> </a>
+                <a class="anc-sous-titre" href="../page_A_propos_de_nous/page_a-propos-de-nous.html"> <li>A propos de nous</li> </a>
+            </ul>
+        
+    </header>
+        <div id="map" name="map">
+            <script>
+            //Initialisation de la carte
+var map=L.map("map",{
+    keyboardPanDelta:100,
+    wheelDebounceTime:0,
+    wheelPxPerZoomLevel:50,
+    minZoom:5,
+}).setView([48.862725, 2.287592],5);
+var contenu=L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+    }).addTo(map);
+
+//Fonction pour créer un marqueur ainsi que le contenu de son popup.
+//On peut rajouter plein d'options aux marqueurs et aux popups. A voir dans la documentation.
+function creer_marqueur(latitude,longitude){
+    var contenu_popup=latitude+","+longitude;
+    L.marker([latitude,longitude],{
+        riseOnhover:true,
+    }).bindPopup(contenu_popup).addTo(map)
+}
+
+var a="https://public.opendatasoft.com/api/records/1.0/search/?dataset=accidents-corporels-de-la-circulation-millesime&q=&rows=0&facet=lat&facet=long";
+
+</script>
+        </div>
+        <fieldset id="filtres"><legend>Filtres</legend>
+<!--Filtre date ou intervalle de date-->
+         <label for="choix-date">Choisissez une Date ou un Intervalle de Date : </label>
+         <select id="choix-date" onchange="afficherChoix()" onFocus="opening();">
+             <option value="">-- Sélectionnez une option --</option>
+             <option value="date-specifique">Date spécifique</option>
+             <option value="intervalle-dates">Intervalle de dates</option>
+         </select>
+        <!-- Si sélectionne du filtre Date alors affichage d'un élément choix de date spécifique-->
+         <div id="choix-date-specifique" style="display: none;">
+             <label for="date-specifique">Choisissez une date :</label>
+             <input type="date" id="date-specifique" name="date-specifique">
+         </div>
+
+         <!-- Si sélectionne du filtre Intervalle de Date alors affichage d'un élément choix de date Début et d'un élément choix de date de Fin-->
+         <div id="choix-intervalle-dates" style="display: none;">
+            <label for="date-debut">Date de début :</label>
+            <input type="date" id="date-debut" name="date-debut">
+            <label for="date-fin">Date de fin :</label>
+            <input type="date" id="date-fin" name="date-fin">
+        </div>
+        <br>
+        
+<!-- Filtre regions sans les regions outre mer-->  
+        <label for="region">Region : </label>
+        <select name="region" id="region" onChange="resetDepartement()">
+            <option value="vide">-- Selectionner une region --</option>
+            <option value="Alsace">Alsace</option>
+            <option value="Alsace-Champagne-Ardaine">Alsace-Champagne-Ardaine</option>
+            <option value="Lorraine">Lorraine</option>
+            <option value="Aquitaine">Aquitaine</option>
+            <option value="Aquitaine-Limousin-Poitou-Charente">Aquitaine-Limousin-Poitou-Charente</option>
+            <option value="Auvergne">Auvergne</option>
+            <option value="Auvergne-Rhônes-Alpes">Auvergne-Rhônes-Alpes</option>
+            <option value="Basse Normandie">Basse Normandie</option>
+            <option value="Bourgogne">Bourgogne</option>
+            <option value="Bourgogne-Franche-Comté">Bourgogne-Franche-Comté</option>
+            <option value="Bretagne">Bretagne</option>
+            <option value="Centre">Centre</option>
+            <option value="Centre-Val de Loire">Centre-Val de Loire</option>
+            <option value="Champagne-Ardenne">Champagne-Ardenne</option>
+            <option value="Franche-Comté">Franche-Comté</option>
+            <option value="Grand-Est">Grand-Est</option>
+            <option value="Haute-Nomandie">Haute-Nomandie</option>
+            <option value="Hauts-de-France">Hauts-de-France</option>
+            <option value="Ile-de-France">Ile-de-France</option>
+            <option value="Languedoc-Roussillon">Languedoc-Roussillon</option>
+            <option value="Languedoc-Roussillon-Midi-Pyrénées">Languedoc-Roussillon-Midi-Pyrénées</option>
+            <option value="Limousin">Limousin</option>
+            <option value="Midi-Pyrénées">Midi-Pyrénées</option>
+            <option value="Nord-Pas-De-Calais">Nord-Pas-De-Calais</option>
+            <option value="Nord-Pas-De-Calais-Picardie">Nord-Pas-De-Calais-Picardie</option>
+            <option value="Normandie">Normandie</option>
+            <option value="Nouvelle-Aquitaine">Nouvelle-Aquitaine</option>
+            <option value="Occitanie">Occitanie</option>
+            <option value="Pays de la Loire">Pays de la Loire</option>
+            <option value="Picardie">Picardie</option>
+            <option value="Poitou-Charentes">Poitou-Charentes</option>
+            <option value="Provence-Alpes-Côte d'Azur">Provence-Alpes-Côte d'Azur</option>
+            <option value="Rhône-Alpes">Rhône-Alpes</option>
+        </select>
+
+        <br>
+
+<!-- Filtre departement sans les departements outre mer--> 
+        <label for="departement">Departement : </label>
+        <select name="departement" id="departement" onchange="resetVille()">
+            <option value="vide">-- Selectionner un département --</option>
+            <option value="IDF">Ile de France</option>
+        </select>
+
+        <br>
+
+<!-- Filtre ville sans les villes outre mer-->
+        <label for="ville">Ville : </label>
+        <select name="ville" id="ville">
+            <option value="">-- Selectionner une ville --</option>
+            <option value="">Paris</option>
+        </select>
+        <br>
+
+<!-- Filtre condition météorologique : normale, pluie légère, pluie forte, temps couverts, temps éblouissant, neige/grèle, borouillard/fumée, vent fort/tempête-->  
+<!-- /!\ A FAIRE : ne pas afficher toutes les conditions météorologiques d'un coup mais juste selectionner une option ou plusieurs
+                    Rajouter des boutons checkbox aux conditions pour que l'utilisateur puisse en selectionner plusieurs-->      
+        <label for="condition_meteorologique">Condition météorologique : </label>
+        <select name="condition_meteorologique" id="condition_meteorologique" multiple size="4">
+            <option value="normale">Normale</option>
+            <option value="pluie_legere">Pluie Légère</option>
+            <option value="pluie_forte">Pluie Forte</option>
+            <option value="temps_couverts">Temps Couverts</option>
+            <option value="temps_éblouissant">Temps Éblouissant</option>
+            <option value="neige_grêle">Neige/Grêle</option>
+            <option value="brouillard_fumée">Brouillard/Fumée</option>
+            <option value="vent_fort_tempêtes">Vent Fort/Tempête</option>
+        </select>
+
+        <br>
+
+<!-- Filtre tranche d'âges : 0-18 ans, 18-30 ans, 30-50 ans, 50 ans et plus-->  
+<!-- /!\ A FAIRE : ne pas afficher toutes les tranches d'ages d'un coup mais juste selectionner une option ou plusieurs
+                    Rajouter des boutons checkbox aux conditions pour que l'utilisateur puisse en selectionner plusieurs--> 
+        <label for="tranche-age">Tranche d'âge : </label>
+        <select name="tranche-age" id="tranche-age" multiple size="1">
+            <option value="0-18">0-18 ans</option>
+            <option value="18-30">18-30 ans</option>
+            <option value="30-50">30-50 ans</option>
+            <option value="50_et_plus">50 ans et plus</option>
+        </select>
+       
+        <br>
+
+<!-- Filtre Gravité accident : indemne, blessé léger, blessé hospitalisé, tué-->  
+<!-- /!\ A FAIRE : ne pas afficher toutes les types de gravité d'accident d'un coup mais juste selectionner une option ou plusieurs
+                    Rajouter des boutons checkbox aux conditions pour que l'utilisateur puisse en selectionner plusieurs-->         
+        <label for="gravite">Gravité de l'accident : </label>
+        <select name="gravite" id="gravite" multiple size="1">
+            <option value="indemne">Indemne</option>
+            <option value="blesse_léger">Blessé Léger</option>
+            <option value="blesse_hospitalise">Blessé Hospitalisé</option>
+            <option value="tue">Tué</option>
+        </select>
+        <br>
+<!-- Filtre Luminosité : Jour, Nuit-->  
+        <label for="luminosite">Jour/Nuit : </label>
+        <select name="luminosite" id="luminosite">
+            <option value="Jour" >Jour</option>
+            <option value="Nuit">Nuit</option>
+        </select>
+        <input type="reset" value="Remettre à zéro">
+        </fieldset>  
+        <footer>
+            <div class="contactez-nous-container">
+                <p>Contactez-nous</p>
+                <ul>
+                    <a href="mailto:hammaciyanis@gmail.com"> <li>hammaciyanis@gmail.com</li> </a>
+                    <a href="mailto:maelle.bourbon@gmail.com"> <li>maelle.bourbon@gmail.com</li> </a>
+                    <a href="mailto:dylanchou2003@gmail.com"> <li>dylanchou2003@gmail.com</li> </a>
+                    <a href="mailto:poirier.seraphin@gmail.com"> <li>poirier.seraphin@gmail.com</li> </a>
+                </ul>
+            </div>
+            <div class="liens-utils-container">
+                <p>Liens utiles</p>
+                <ul>
+                    <a href="https://public.opendatasoft.com/explore/?sort=modified"> <li>opendatasoft</li> </a>
+                    <a href="https://www.data.gouv.fr/fr/"> <li>datagouv</li> </a>
+                </ul>
+            </div>  
+            
+            <div class="nombre-accident">
+                <p>Nombre d'accidents enregistrés</p>
+                <span id="nombre-accident"></span>
+            </div>
+    </footer>
+    </body>
+    <script src="../page_statistique/Javascript/nombre-accident.js"></script>
+</html>
