@@ -2,13 +2,15 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <!--Page css pour le header-->
+        <!--Page css pour le header et le footer-->
         <link href="../page_statistique/CSS/body.css" rel="stylesheet" type="text/css">
         <link href="../page_statistique/CSS/header.css" rel="stylesheet" type="text/css">
+        <link href="../page_statistique/CSS/footer.css" rel="stylesheet" type="text/css">
         
         <link href="style.css" rel="stylesheet" type="text/css"><!--Page css propre à la page-->
         <title>Carte des accidents de la route</title>
         <script src="page_carte.js"></script>
+        
         <!--Intégration de la bibliothèque Leaflet-->
         <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"
      integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI="
@@ -19,40 +21,47 @@
         
     </head>
     <body>
-        <header>
-            <ul>
-                <a href="../page_accueil/page_accueil.html" class="anc-title"  ><li>Accidentologie</li></a> 
-                <a href="../page_accueil/page_accueil.html" class="anc-accueil"> <li>Accueil</li></a>
-                <a href="../page_statistique/HTML/statistiques.html"class="anc-carte"><li>Statistiques</li></a>
+        <header id="#top">
+        
+            <ul class="list-header">
+                <a class="anc-title" href="../../page_accueil/page_accueil.html" > <li >Accidentologie</li></a>
+            
+            
+                <a class="anc-sous-titre" href="../../page_carte/page_carte.html"> <li >Statistiques</li> </a>
+           
+            
+                <a class="anc-sous-titre" href="../../page_carte/page_carte.html"> <li>Crédits</li> </a>
+                <a class="anc-sous-titre" href="../../page_A_propos_de_nous/page_a-propos-de-nous.html"> <li>A propos de nous</li> </a>
             </ul>
+        
     </header>
         <div id="map" name="map">
             <script>
             //Initialisation de la carte
-            var map=L.map("map",{
-                keyboardPanDelta:100,
-                wheelDebounceTime:0,
-                wheelPxPerZoomLevel:50,
-                minZoom:5,
-            }).setView([48.862725, 2.287592],5);
-            var contenu=L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-                }).addTo(map);
-            
-            //Fonction pour créer un marqueur ainsi que le contenu de son popup.
-            //On peut rajouter plein d'options aux marqueurs et aux popups. A voir dans la documentation.
-            function creer_marqueur(latitude,longitude){
-                var contenu_popup=latitude+","+longitude;
-                L.marker([latitude,longitude],{
-                    riseOnhover:true,
-                }).bindPopup(contenu_popup).addTo(map)
-            }
-            creer_marqueur(50,50);creer_marqueur(12,13);//Test
-            
-                </script>
+var map=L.map("map",{
+    keyboardPanDelta:100,
+    wheelDebounceTime:0,
+    wheelPxPerZoomLevel:50,
+    minZoom:5,
+}).setView([48.862725, 2.287592],5);
+var contenu=L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+    }).addTo(map);
+
+//Fonction pour créer un marqueur ainsi que le contenu de son popup.
+//On peut rajouter plein d'options aux marqueurs et aux popups. A voir dans la documentation.
+function creer_marqueur(latitude,longitude){
+    var contenu_popup=latitude+","+longitude;
+    L.marker([latitude,longitude],{
+        riseOnhover:true,
+    }).bindPopup(contenu_popup).addTo(map)
+}
+
+var a="https://public.opendatasoft.com/api/records/1.0/search/?dataset=accidents-corporels-de-la-circulation-millesime&q=&rows=0&facet=lat&facet=long";
+
+</script>
         </div>
         <fieldset id="filtres"><legend>Filtres</legend>
-
 <!--Filtre date ou intervalle de date-->
          <label for="choix-date">Choisissez une Date ou un Intervalle de Date : </label>
          <select id="choix-date" onchange="afficherChoix()" onFocus="opening();">
@@ -181,10 +190,30 @@
             <option value="Nuit">Nuit</option>
         </select>
         <input type="reset" value="Remettre à zéro">
-        </fieldset>   
-        <footer class="navigation-secondaire">
-                <p class="p_a-propos-de-nous"><a href="../page_A_propos_de_nous/page_a-propos-de-nous.html">À propos de nous</a></p>
-                <p class="p_crédit"><a href="../page_crédit/page_credit.html">Crédits</a></p>
-        </footer>
+        </fieldset>  
+        <footer>
+            <div class="contactez-nous-container">
+                <p>Contactez-nous</p>
+                <ul>
+                    <a href="mailto:hammaciyanis@gmail.com"> <li>hammaciyanis@gmail.com</li> </a>
+                    <a href="mailto:maelle.bourbon@gmail.com"> <li>maelle.bourbon@gmail.com</li> </a>
+                    <a href="mailto:dylanchou2003@gmail.com"> <li>dylanchou2003@gmail.com</li> </a>
+                    <a href="mailto:poirier.seraphin@gmail.com"> <li>poirier.seraphin@gmail.com</li> </a>
+                </ul>
+            </div>
+            <div class="liens-utils-container">
+                <p>Liens utiles</p>
+                <ul>
+                    <a href="https://public.opendatasoft.com/explore/?sort=modified"> <li>opendatasoft</li> </a>
+                    <a href="https://www.data.gouv.fr/fr/"> <li>datagouv</li> </a>
+                </ul>
+            </div>  
+            
+            <div class="nombre-accident">
+                <p>Nombre d'accidents enregistrés</p>
+                <span id="nombre-accident"></span>
+            </div>
+    </footer>
     </body>
+    <script src="../page_statistique/Javascript/nombre-accident.js"></script>
 </html>
