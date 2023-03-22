@@ -1,5 +1,5 @@
     <!DOCTYPE html>
-<html>
+<html lang="fr">
     <head>
         <meta charset="utf-8">
         <!--Page css pour le header et le footer-->
@@ -20,7 +20,7 @@
      crossorigin=""></script>
         
     </head>
-    <body>
+    <body onload="nomRegions(); nomDepartements(); nomVilles()">
         <header id="#top">
         
             <ul class="list-header">
@@ -85,62 +85,27 @@ var a="https://public.opendatasoft.com/api/records/1.0/search/?dataset=accidents
         <br>
         
 <!-- Filtre regions sans les regions outre mer-->  
-        <label for="region">Region : </label>
-        <select name="region" id="region" onChange="resetDepartement()">
-            <option value="vide">-- Selectionner une region --</option>
-            <option value="Alsace">Alsace</option>
-            <option value="Alsace-Champagne-Ardaine">Alsace-Champagne-Ardaine</option>
-            <option value="Lorraine">Lorraine</option>
-            <option value="Aquitaine">Aquitaine</option>
-            <option value="Aquitaine-Limousin-Poitou-Charente">Aquitaine-Limousin-Poitou-Charente</option>
-            <option value="Auvergne">Auvergne</option>
-            <option value="Auvergne-Rhônes-Alpes">Auvergne-Rhônes-Alpes</option>
-            <option value="Basse Normandie">Basse Normandie</option>
-            <option value="Bourgogne">Bourgogne</option>
-            <option value="Bourgogne-Franche-Comté">Bourgogne-Franche-Comté</option>
-            <option value="Bretagne">Bretagne</option>
-            <option value="Centre">Centre</option>
-            <option value="Centre-Val de Loire">Centre-Val de Loire</option>
-            <option value="Champagne-Ardenne">Champagne-Ardenne</option>
-            <option value="Franche-Comté">Franche-Comté</option>
-            <option value="Grand-Est">Grand-Est</option>
-            <option value="Haute-Nomandie">Haute-Nomandie</option>
-            <option value="Hauts-de-France">Hauts-de-France</option>
-            <option value="Ile-de-France">Ile-de-France</option>
-            <option value="Languedoc-Roussillon">Languedoc-Roussillon</option>
-            <option value="Languedoc-Roussillon-Midi-Pyrénées">Languedoc-Roussillon-Midi-Pyrénées</option>
-            <option value="Limousin">Limousin</option>
-            <option value="Midi-Pyrénées">Midi-Pyrénées</option>
-            <option value="Nord-Pas-De-Calais">Nord-Pas-De-Calais</option>
-            <option value="Nord-Pas-De-Calais-Picardie">Nord-Pas-De-Calais-Picardie</option>
-            <option value="Normandie">Normandie</option>
-            <option value="Nouvelle-Aquitaine">Nouvelle-Aquitaine</option>
-            <option value="Occitanie">Occitanie</option>
-            <option value="Pays de la Loire">Pays de la Loire</option>
-            <option value="Picardie">Picardie</option>
-            <option value="Poitou-Charentes">Poitou-Charentes</option>
-            <option value="Provence-Alpes-Côte d'Azur">Provence-Alpes-Côte d'Azur</option>
-            <option value="Rhône-Alpes">Rhône-Alpes</option>
-        </select>
+<label for="region">Region :</label>
+<select id="region" name="region" onchange="filtreRegion(); resetDepartement()">
+    <option value="">-- Sélectionner une region --</option>
+</select>  
 
-        <br>
+<br>
 
 <!-- Filtre departement sans les departements outre mer--> 
-        <label for="departement">Departement : </label>
-        <select name="departement" id="departement" onchange="resetVille()">
-            <option value="vide">-- Selectionner un département --</option>
-            <option value="IDF">Ile de France</option>
-        </select>
+<label for="departement">Département :</label>
+<select id="departement" name="departement" onchange="filtreDepartement(); resetVilles()">
+    <option value="">-- Sélectionner un département --</option>
+</select>
 
-        <br>
+<br>
 
 <!-- Filtre ville sans les villes outre mer-->
-        <label for="ville">Ville : </label>
-        <select name="ville" id="ville">
-            <option value="">-- Selectionner une ville --</option>
-            <option value="">Paris</option>
-        </select>
-        <br>
+<label for="ville">Ville :</label>
+<select id="ville" name="ville">
+    <option value="">-- Sélectionner une ville --</option>
+</select>
+<br>
 
 <!-- Filtre condition météorologique : normale, pluie légère, pluie forte, temps couverts, temps éblouissant, neige/grèle, borouillard/fumée, vent fort/tempête-->  
 <!-- /!\ A FAIRE : ne pas afficher toutes les conditions météorologiques d'un coup mais juste selectionner une option ou plusieurs
