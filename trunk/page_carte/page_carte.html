@@ -9,8 +9,6 @@
         
         <link href="style.css" rel="stylesheet" type="text/css"><!--Page css propre à la page-->
         <title>Carte des accidents de la route</title>
-        <script src="page_carte.js"></script>
-        
         <!--Intégration de la bibliothèque Leaflet-->
         <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"
      integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI="
@@ -30,36 +28,14 @@
                 <a class="anc-sous-titre" href="../../page_carte/page_carte.html"> <li >Statistiques</li> </a>
            
             
-                <a class="anc-sous-titre" href="../../page_carte/page_carte.html"> <li>Crédits</li> </a>
-                <a class="anc-sous-titre" href="../../page_A_propos_de_nous/page_a-propos-de-nous.html"> <li>A propos de nous</li> </a>
+                <a class="anc-sous-titre" href="../page_crédit/page_credit.html"> <li>Crédits</li> </a>
+                <a class="anc-sous-titre" href="../page_A_propos_de_nous/page_a-propos-de-nous.html"> <li>A propos de nous</li> </a>
             </ul>
         
     </header>
-        <div id="map" name="map">
-            <script>
-            //Initialisation de la carte
-var map=L.map("map",{
-    keyboardPanDelta:100,
-    wheelDebounceTime:0,
-    wheelPxPerZoomLevel:50,
-    minZoom:5,
-}).setView([48.862725, 2.287592],5);
-var contenu=L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-    }).addTo(map);
+        <div id="map" name="map" onLoad="carte();">
 
-//Fonction pour créer un marqueur ainsi que le contenu de son popup.
-//On peut rajouter plein d'options aux marqueurs et aux popups. A voir dans la documentation.
-function creer_marqueur(latitude,longitude){
-    var contenu_popup=latitude+","+longitude;
-    L.marker([latitude,longitude],{
-        riseOnhover:true,
-    }).bindPopup(contenu_popup).addTo(map)
-}
 
-var a="https://public.opendatasoft.com/api/records/1.0/search/?dataset=accidents-corporels-de-la-circulation-millesime&q=&rows=0&facet=lat&facet=long";
-
-</script>
         </div>
         <fieldset id="filtres"><legend>Filtres</legend>
 <!--Filtre date ou intervalle de date-->
@@ -181,4 +157,5 @@ var a="https://public.opendatasoft.com/api/records/1.0/search/?dataset=accidents
     </footer>
     </body>
     <script src="../page_statistique/Javascript/nombre-accident.js"></script>
+    <script src="page_carte.js"></script>
 </html>
