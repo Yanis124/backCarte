@@ -1,0 +1,281 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,700;1,400&display=swap');
+
+/*BODY*/
+
+/* utiliser le font de google*/
+/*definir un font sur toute la page */
+html{  
+    font-size: 20px;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+}
+body{
+    margin:0;
+    height: 100%;
+}
+
+/*HEADER*/
+
+/* le header sera fixer en haut de la page */
+header{               
+    position:fixed;
+    width:100%;
+    border:4px solid #b4dbdc;
+    top:0;
+    z-index:10;
+    
+}
+/* aligner les elements du header verticalement */
+.header-container{
+    background-color: #14227b;
+    height:100px;
+    display:flex;
+    font-size: 1.5rem;
+    color:yellow;
+    align-items: center;
+}
+/* centrer le contenu des div qui contiennent les titres  */
+.title-container ,.accueil-container ,.carte-container{
+    display:flex;
+    font-weight: 700;
+    width: 25%;
+    text-align:center;
+    justify-content: center;
+    transition:all 0.3s ease;
+}
+/* pour eviter que le titre "Accidentologie" empeche l'utilisateur d'utiliser les filtres du graph si le header est tro proche des ces derniers */
+.title-container>p{
+    margin:0;
+}
+/* le titre "Accidentologie " aura un style different des autres titres */
+.title-container{
+    font-weight: bold;
+    font-size: 2.5rem;
+    width:50%;  /*titre prend 50% de la largeur du header*/
+    text-decoration: none;
+    color:white
+}
+/* ajouter un style si on survole les titre "accueil" ,"carte */
+.carte-container:hover,.accueil-container:hover{
+    background-color:#1422cb ;
+    cursor:pointer;
+    transform: scale(1.2);
+    color:white;
+    border:1px solid #dee5ef;
+}
+
+/* ajouter un style si on clique sur  les titre "accueil" "carte */
+.carte-container:active,.accueil-container:active{
+    background-color: #14227b;
+}
+
+/*
+BOUTON
+*/
+
+.graph-text-container>button{
+    background-color: whitesmoke;
+    height: 60px;
+    border:1px solid #dee5ef;
+    width:10%; /*une largeur de 10% de l'element parent*/
+    margin-left:10%; /*decaler le button de 10% a gauch*/
+    font-size: 1.5rem;
+    transition: 0.3s all ease;
+}
+
+/* style du button graph hover */
+.graph-text-container>button:hover{
+    cursor: pointer;
+    background-color: #b4dbd6;
+
+}
+
+.filtre-annee{ 
+    height: 40px;
+    border:1px solid #dee5ef;
+    font-size: 1rem;
+    width:30%; /*le button année prend 30% de la largeur du tableau-annee-container*/
+}
+
+
+.button-telecharger{
+    width:150px;
+    font-size: 1.2rem;
+}
+
+.telecharger-button-container>button{
+    transition:all 0.1s ease ;
+}
+
+.telecharger-button-container>button:hover{
+    cursor: pointer;
+    color:rgb(255, 255, 255);
+    background-color: red;
+
+}
+
+.telecharger-button-container>button:active{
+    background-color: rgba(230, 78, 78, 0.8);
+    color:whitesmoke;
+}
+
+/*
+FOOTER
+*/
+
+
+footer{
+    display:flex;
+    flex-direction:row;
+    justify-content: space-around; /*ajouter de l'espace entre les elements du footer*/
+    background-color: blue;
+    height:100%; /*footer prend tout l'espace restant de la page */
+    align-items: center; /* aligner verticalement les elements du footer */
+    background-color: #f5fbf9;
+    border:4px solid #b4dbdc;
+    
+}
+
+.source-container>button{
+    width:240px;    /*style du boutton source */
+    height:100px;
+    font-size: 2rem;
+    background-color: #00b4d8;
+    border-radius: 80px;
+    transition: all 0.4s ease;
+    border: 1px solid black;
+
+}
+
+/*style du boutton source  hover */
+.source-container>button:hover{
+    cursor: pointer;  
+    color:whitesmoke;
+    transform: scale(1.2);
+    opacity:0.7;
+    box-shadow: 15px 5px 15px rgba(32, 32, 32, 0.4);
+    
+    
+
+}
+
+/*style du boutton  a propos de nous  */
+.nous-container{
+    width:250px;
+    font-size: 2rem;
+    text-align: center;
+    transition: 0.4s;
+    
+}
+
+/*style du boutton  a propos de nous hover */
+.nous-container:hover{
+        
+    cursor: pointer;
+    opacity: 0.4;
+
+        
+}
+
+/*
+SECTION
+*/
+/* animation pour la section */
+
+@keyframes AutoSlide {
+    0%{
+        transform: translateY(-100%);
+    }
+    100%{
+        transform: translateY(0);
+    }
+}
+
+
+
+section{
+
+    margin:2%; /*decaler la section de 2% de l'element parent*/
+    margin-top:10%; /*decaler la section de 10% de l'element parent pour que le header soit visible*/
+    height: 800px;
+    display:flex;
+    flex-direction: column;
+    justify-content:flex-start;  
+    animation: AutoSlide 2s ease-in-out;
+}
+
+.graph-text-container{
+    display: flex;
+    height: 8%;   /*le div du button graph prend 8% de la longeur de section*/
+    justify-content: flex-start;
+    align-items: end; /*aligner le button vers le bas pour qu'il soit coller au graph-table-container*/
+}
+
+.graph-table-container{
+    display: flex;
+    flex-direction:row;
+    border:2px #dee5ef solid;
+    background-color: #f5f5f5;
+    justify-content: space-evenly;
+    height: 85%; /*le div du graph et du tableau prend 85% de la hauteur de section*/
+    
+
+}
+
+.graph-filtres-container{
+    display: flex;
+    flex-direction: column;
+    margin-top:3%;/*decaler du haut du graph-table-container*/
+    height:80%; /*le div prend 80% de la hauteur du graph-table-container*/
+    width: 60%; /*l div prend 60% de la largeur de la section*/
+    transition: all 0.3s ease;
+}
+
+.filtres-container{
+    display:grid;
+    grid-template-rows: 50% 50%; /*chaque filtre prend 30% de la longeur du filtres-container*/
+    grid-template-columns: 30% 30%;
+    justify-content: space-around;
+    align-items: center;
+    background-color: #a1b0b8;
+    height: 40%; /*le div prend 40% de la hauteur du graph-filtres-container*/
+    
+}
+
+.graph-container{
+    display: flex;
+    background-color: #dee5ef;
+    width: 100%; /*le graph prend 100% de la largeur du graph-filtres-container*/
+    
+}
+
+.table-annee-container{
+    height:80%; /*le tableau prend 80% de la hauteur du graph-table-container*/
+    display:flex;
+    flex-direction: column;
+    padding-top:40px;
+    transition: all 0.3s ease;
+    width: 30%; /*le tableau prend 30% de la largeur du graph-table-container*/
+    
+    
+    
+
+}
+
+.annee-container{
+
+    display: flex;
+    justify-content: flex-end;
+    height: 10%; /*div prend 10% de la hauteur du table-annee-container*/
+    margin-right:5%;
+}
+
+.telecharger-container{
+    display: flex;
+    height: 7%; /*le div prend 7% de la hauteur de la section*/
+    align-items: end;
+    flex-direction: column;
+    margin-right:5%; /*ajouter de l'espace a droite*/
+}
+
+

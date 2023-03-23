@@ -1,9 +1,0 @@
-/*Carte*/
-#map{
-    width:90%;
-    height:700px;
-    position:relative;
-    left:2%;
-
-    z-index:0;
-}
