@@ -190,25 +190,30 @@ var contenu=L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
 
 //Fonction pour créer un marqueur ainsi que le contenu de son popup.
 //On peut rajouter plein d'options aux marqueurs et aux popups. A voir dans la documentation.
-function creer_marqueur(latitude,longitude){
-    var contenu_popup=latitude+","+longitude;
-    L.marker([latitude,longitude],{
-        riseOnhover:true,
-    }).bindPopup(contenu_popup).addTo(map)
-}
+// function creer_marqueur(latitude,longitude){
+//     var contenu_popup=latitude+","+longitude;
+//     L.marker([latitude,longitude],{
+//         riseOnhover:true,
+//     }).bindPopup(contenu_popup).addTo(map)
+// }
 
-var lat_long="https://public.opendatasoft.com/api/records/1.0/search/?dataset=accidents-corporels-de-la-circulation-millesime&q=&rows=1000&facet=lat&facet=long&refine.datetime=2019";
+var lat_long="https://public.opendatasoft.com/api/records/1.0/search/?dataset=accidents-corporels-de-la-circulation-millesime&q=&rows=1000&refine.datetime=2019";
 
-async function get_lat_long(){
-    var res=await fetch(lat_long);
-    var data=await res.json();
-    var lat=data.facet_groups[0].facets;
-    var long=data.facet_groups[1].facets;
-    console.log(lat);
-    console.log(long);
-    for(var i=0;i<10;i++){
-        creer_marqueur(lat[i].name,long[i].name);
-}
+async function get_lat_long(){   
+    var res=await fetch(lat_long)
+    var data=await res.json()
+    
+    for(var i=0;i<data.records.length;i++){
+        
+        try{  //il y a des accidents qui n'ont pas de corrdonnees
+            var marker = L.marker([data.records[i].fields.coordonnees[0],data.records[i].fields.coordonnees[1]])
+            marker.addTo(map)
+        }
+        catch{
+            console.log("couldn't find cordinates")
+        }
+    }
+    
 }
 
 get_lat_long();
