@@ -1,0 +1,46 @@
+@import url('https://fonts.googleapis.com/css2?family=Righteous&display=swap');
+
+body{
+	background-color: #002851;
+	font-family: Righteous, cursive;
+}
+
+header{
+	background-color: black;
+	position: fixed;
+	width: 100%;
+	height: 10%;
+	top:0;  /* le header sera fixer en haut de la p*/
+	border:4px solid black;
+    z-index:10; 
+}
+
+#boites{
+	padding-top: 5%;
+}
+
+#boite_gauche{
+	color: white;
+	font-size: 150px;
+	float: left;
+	width: 55%;
+	padding: 20px;
+}
+
+#boite_droite{
+	color: white;
+	font-size: 35px;
+	padding: 20px;
+}
+
+.boite_txt{
+	padding: 20px;
+}
+
+button{
+	background-color: white;
+	padding: 20px;
+	font-family: Righteous, cursive;
+	font-size: 35px;
+	border-radius: 10px;
+}
