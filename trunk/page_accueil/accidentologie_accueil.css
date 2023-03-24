@@ -1,0 +1,98 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,700;1,400&display=swap');
+/*BODY*/
+
+/* utiliser le font de google*/
+/*definir un font sur toute la page */
+html{  
+    font-size: 20px;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+}
+body{
+    margin:0;
+    height: 100%;
+}
+
+/*
+SECTION
+*/
+/*
+.float-container{
+	padding: 20px;
+}
+
+.float-child{
+	float: left;
+	width: 50%;
+}*/
+
+#boxes{
+	padding:10%;
+	font-size: 25px;
+	background-color: transparent;
+	height: 300px;
+}
+
+#leftbox{
+	float:left;
+	width: 50%;
+	height:100%;
+}
+
+#rightbox{
+	float:right;
+	width:50%;
+	height:100%;
+}
+
+#btn_acc{
+	background-color: lightblue;
+	font-family: 'Roboto', sans-serif;
+	font-size: 30px;
+	padding: 5px 5px;
+	border-radius: 10px;
+}
+
+.boite_texte{
+	background-color: lightblue;
+	border-radius: 15px;
+	float: center;
+	padding: 5px;
+	opacity: 80%;
+}
+
+.boite_autour{
+	padding: 35px;
+}
+
+#boite_externe{
+	background-color: grey;
+	height: 100px;
+	width:100%;
+	color:white;
+	text-align: center;
+}
+
+#boite_un{
+	float:left;
+	background-image: url('carte_image.jpg');
+	width: 33%;
+	border: solid white 10px;
+	height:100px;
+}
+
+#boite_deux{
+	margin: 0 auto;
+	background-image: url('stats_image.jpg');
+	width: 33%;
+	border: solid white 10px;
+	height:100px;
+}
+
+#boite_trois{
+	float: right;
+	background-image: url('data_image.jpg');
+	width: 33%;
+	border: solid white 10px;
+	height:100px;
+}
