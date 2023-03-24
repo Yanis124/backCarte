@@ -59,25 +59,25 @@ body {
 
 
 @media screen and (max-width: 768px) {   /*s'applique aux ecrants avec une largeur <768px */
-.graph-text-container button{
-    display:none;  /*cacher le boutton graph*/
-}
+    .graph-text-container button{
+        display:none;  /*cacher le boutton graph*/
+    }
 
-.table-annee-container{
-    display: none; /*cacher le tableau*/
-}
+    .table-annee-container{
+        display: none; /*cacher le tableau*/
+    }
 
-.graph-filtres-container{
-    width:90%;   /*le graph prend 90% de la largeur de graph-table-container*/
-}
+    .graph-filtres-container{
+        width:90%;   /*le graph prend 90% de la largeur de graph-table-container*/
+    }
 
-footer{
-    flex-direction: column;
-}
+    footer{
+        flex-direction: column;
+    }
 
-span{
-    justify-content: start;
-}
+    span{
+        justify-content: start;
+    }
 
 }
 
