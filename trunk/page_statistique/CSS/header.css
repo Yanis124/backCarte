@@ -8,7 +8,7 @@ header{
     top:0;  /* le header sera fixer en haut de la p*/
     z-index:10; 
     background-color: var(--header-bg);
-    height:10%;  /* il prend 10% de la hauteur de la page*/
+    height:8%;  /* il prend 10% de la hauteur de la page*/
     
     
     
@@ -57,9 +57,9 @@ ul a{
 .anc-sous-titre:hover{
     background-color:var(--header-title-hover);
     cursor:pointer;
-    transform: scale(1.2);
     color:white;
-    border:1px solid var(--header-title-border-hover);
+   
+    transition: 0.3s all ease;
     
 
     
