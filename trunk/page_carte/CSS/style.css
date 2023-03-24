@@ -2,14 +2,15 @@
 
 section{
     display: flex;
-    border:solid 1px #DEE5EF;
-    background-color: #f5f5f5;
+    border:solid 1px var(--header-title-border-hover);
+    background-color: var(--section-bg);
     justify-content: space-evenly;
     margin:2%;
     margin-top: 12%;
     height: 700px; 
     padding-top:5%;
     justify-content: space-around;
+
     
     
 }
@@ -20,6 +21,10 @@ form{
     height:90%;
     display: flex;
     flex-direction: column;
+    color:var(--filtre-carte-color);
+    font-weight: var(--filtre-carte-weight);
+
+    
 
 
 
@@ -32,6 +37,9 @@ form{
 select{
     height: 20px;
     width:30%;
+    border: 1px solid var(--graph-border-color);
+    
+
 }
 
 
@@ -46,11 +54,11 @@ select{
     display: flex;
     flex-direction: column;
     align-items: center;
-    box-shadow: 3px 3px 3px rgba(000,000,000,0.3);
+    box-shadow: 3px 3px 3px var(--shadow-color);
     font-size: 15px;
-    border:1px solid #DEE5EF;
+    border:1px solid var(--section-border);
     background-color: #fff;
-    font-size: 17px;
+
 
     
 }
@@ -59,7 +67,7 @@ select{
 
 
 .filtre-container >div{
-    height:12%;
+    height:15%;
     display: flex;
     align-items: center;
     width:90%;
@@ -73,6 +81,7 @@ select{
 
 .reset-container>input{
     margin-right: 10%;
+    font-weight: var(--filtre-carte-weight);
 }
 
 
@@ -83,7 +92,7 @@ select{
     width:50%;
     display: flex;
     height:90%;
-    border:solid 1px #DEE5EF;
+    border: 1px solid var(--graph-border-color);
     box-shadow: 3px 3px 3px rgba(000,000,000,0.3);
 
 
@@ -102,7 +111,8 @@ select{
     height: 70%;
     background-color: #0086D6;
     border: 1px solid #0086D6;
-    color:white
+    color:white;
+    box-shadow: 3px 3px 3px var(--shadow-color);
 }
 
 .reset-container input:hover{

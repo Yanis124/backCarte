@@ -21,7 +21,7 @@
      crossorigin=""></script>
         
     </head>
-    <body onload="nomRegions(); nomDepartements(); nomVilles()">
+    <body onload="nomRegions(); nomDepartements(); nomVilles() ; dateLimit() ; getAllMeteo() ;getAllGravite()">
         <header id="#top">
         
             <ul class="list-header">
@@ -60,23 +60,23 @@
                     <!-- Si sélectionne du filtre Date alors affichage d'un élément choix de date spécifique-->
                     <div id="choix-date-specifique" style="display: none;">
                         <label for="date-specifique">Choisissez une date </label>
-                        <input type="date" id="date-specifique" name="date-specifique">
+                        <input onchange="getDate()" id="date" type="date" id="date-specifique" name="date-specifique">
                     </div>
 
                     <!-- Si sélectionne du filtre Intervalle de Date alors affichage d'un élément choix de date Début et d'un élément choix de date de Fin-->
                     <div id="choix-intervalle-dates" style="display: none;">
-                        <label for="date-debut">Date de début </label>
-                        <input type="date" id="date-debut" name="date-debut">
+                        <label for="date-debut"  >Date de début </label>
+                        <input onchange="getIntervalleDateStart()" type="date" id="date-debut" name="date-debut">
                         <label for="date-fin">Date de fin :</label>
-                        <input type="date" id="date-fin" name="date-fin">
+                        <input onchange="getIntervalleDateEnd()" type="date" id="date-fin" name="date-fin">
                     </div>
 
                 
                     <!-- Filtre regions sans les regions outre mer-->  
                     <div>
                         <label for="region">Region </label>
-                        <select id="region" name="region" onchange="filtreRegion(); resetDepartement()">
-                            <option value="">-- Sélectionner une region --</option>
+                        <select id="region" name="region" onchange="getRegion(); resetDepartement()">
+                            <option value="allRegions">-- Sélectionner une region --</option>
                         </select>  
 
                     </div>
@@ -84,8 +84,8 @@
                     <!-- Filtre departement sans les departements outre mer--> 
                     <div>
                         <label for="departement">Département </label>
-                        <select id="departement" name="departement" onchange="filtreDepartement(); resetVilles()">
-                            <option value="">-- Sélectionner un département --</option>
+                        <select id="departement" name="departement" onchange="getDepartement(); resetVilles()">
+                            <option value="allDepartements">-- Sélectionner un département --</option>
                         </select>
 
                     </div>
@@ -93,7 +93,7 @@
                     <!-- Filtre ville sans les villes outre mer-->
                     <div>
                         <label for="ville">Ville </label>
-                        <select id="ville" name="ville">
+                        <select onchange="getVille()" id="ville" name="ville">
                             <option value="">-- Sélectionner une ville --</option>
                         </select>
                     </div>
@@ -105,15 +105,8 @@
 
 
                             <label for="condition_meteorologique">Condition météorologique  </label>
-                            <select name="condition_meteorologique" id="condition_meteorologique">
-                                <option value="normale">Normale</option>
-                                <option value="pluie_legere">Pluie Légère</option>
-                                <option value="pluie_forte">Pluie Forte</option>
-                                <option value="temps_couverts">Temps Couverts</option>
-                                <option value="temps_éblouissant">Temps Éblouissant</option>
-                                <option value="neige_grêle">Neige/Grêle</option>
-                                <option value="brouillard_fumée">Brouillard/Fumée</option>
-                                <option value="vent_fort_tempêtes">Vent Fort/Tempête</option>
+                            <select onchange="getMeteo()" name="condition_meteorologique" id="condition_meteorologique">
+                                <option value="">-- Sélectionner  --</option>
                             </select>
 
 
@@ -124,7 +117,8 @@
                                 Rajouter des boutons checkbox aux conditions pour que l'utilisateur puisse en selectionner plusieurs--> 
                     <div>
                         <label for="tranche-age">Tranche d'âge  </label>
-                        <select name="tranche-age" id="tranche-age" >
+                        <select onchange="getAge()" name="tranche-age" id="tranche-age" >
+                            <option value="allAges">--selectionner une tranche d'age</option>
                             <option value="0-18">0-18 ans</option>
                             <option value="18-30">18-30 ans</option>
                             <option value="30-50">30-50 ans</option>
@@ -138,19 +132,17 @@
                                 Rajouter des boutons checkbox aux conditions pour que l'utilisateur puisse en selectionner plusieurs--> 
                     <div>        
                         <label for="gravite">Gravité de l'accident  </label>
-                        <select name="gravite" id="gravite" >
-                            <option value="indemne">Indemne</option>
-                            <option value="blesse_léger">Blessé Léger</option>
-                            <option value="blesse_hospitalise">Blessé Hospitalisé</option>
+                        <select onchange=" getGravite()" name="gravite" id="gravite" >
+                            <option value="allGravite">--selectionner une tranche d'age</option>
                             <option value="tue">Tué</option>
                         </select>
                     </div>
                     <!-- Filtre Luminosité : Jour, Nuit--> 
                     <div>
                         
-                        <input type="radio" name="lum" id="jour" value="jour">
+                        <input onclick="getJour()" type="radio" name="lum" id="jour" value="jour">
                         <label for="jour">Jour</label>
-                        <input type="radio" name="lum" id="nuit" value="nuit" >
+                        <input onclick="getNuit()" type="radio" name="lum" id="nuit" value="nuit" >
                         <label for="nuit">Nuit</label>
                     </div>
                 </div>
@@ -186,5 +178,7 @@
         </footer>
     </body>
     <script src="../../page_statistique/Javascript/nombre-accident.js"></script>
+    <script src="../JavaScript/get-option-filtres.js"></script>
+    <script src="../JavaScript/get-value-filtres.js"></script>
     <script src="../JavaScript/page_carte.js"></script>
 </html>
