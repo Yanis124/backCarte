@@ -18,11 +18,13 @@ function creer_marqueur(latitude,longitude,donnees,indice){
     }).bindPopup(contenu_popup).addTo(map)
 }
 
-async function creation_marqueur(){
+async function creations_marqueur(){
+    var res1=await fetch("https://public.opendatasoft.com/api/records/1.0/search/?dataset=accidents-corporels-de-la-circulation-millesime&q=&rows=1&facet=nom_com");
+    var data1=await res.json();
+    var liste_communes=data1.facet_groups[0].facets;
 
-    var res=await fetch("https://data.opendatasoft.com/api/records/1.0/search/?dataset=accidents-corporels-de-la-circulation-millesime%40public&q=&rows=1000&refine.an=2012");
+    var res=await fetch("https://public.opendatasoft.com/api/records/1.0/search/?dataset=accidents-corporels-de-la-circulation-millesime&q=&rows=10000&refine.nom_com=Nice");
     var data=await res.json();
-    console.log(data);
     for(var i=0;i<data.records.length;i++){
         try{
             var a=data.records[i].geometry.coordinates[0]; 
@@ -34,4 +36,6 @@ async function creation_marqueur(){
         }
     }
 }
-creation_marqueur();
+creations_marqueur();
+
+
