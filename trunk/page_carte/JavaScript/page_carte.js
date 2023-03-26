@@ -1,43 +1,66 @@
-function afficherChoix() {
-    var choix = document.getElementById("choix-date");
-    var choixDate = document.getElementById("choix-date-specifique");
-    var choixInterval = document.getElementById("choix-intervalle-dates");
-    if (choix.value == "date-specifique") {
-        choixDate.style.display = "block";
-        choixInterval.style.display = "none";
-    } else if (choix.value == "intervalle-dates") {
-        choixDate.style.display = "none";
-        choixInterval.style.display = "block";
-    } else {
-        choixDate.style.display = "none";
-        choixInterval.style.display = "none";
-    }
-}
 
-function resetDepartement() {
-    document.getElementById("departement").selectedIndex = 0;
-    resetVille();
-}
 
-function resetVille() {
-    document.getElementById("ville").selectedIndex = 0;
-}
+
 
 
 
 //Initialisation de la carte
 var map=L.map("map",{
-    keyboardPanDelta:100,
+    fullscreenControl: true,
+    fullscreenControlOptions: {
+    position: 'topright'},
     wheelDebounceTime:0,
     wheelPxPerZoomLevel:50,
     minZoom:5,
 }).setView([48.862725, 2.287592],5);
 var contenu=L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-    }).addTo(map);
+        attribution: '&copy;<a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+}).addTo(map);
+
+
+
+L.Control.geocoder().addTo(map);  //ajouter une barre de recherche
+
+L.control.scale({   //ajouter les dimensions de la carte 
+    metric:true,
+    imperial:true,
+    maxwidth:100,
+    position:"bottomleft"
+}).addTo(map)
+
+// Close and clear searchbox 600ms after pressing ENTER in the search box
+searchbox.onInput("keyup", function (e) {
+    if (e.keyCode == 13) {
+        setTimeout(function () {
+            searchbox.hide();
+            searchbox.clear();
+        }, 600);
+    }
+});
+
+// Close and clear searchbox 600ms after clicking the search button
+searchbox.onButton("click", function () {
+    setTimeout(function () {
+        searchbox.hide();
+        searchbox.clear();
+    }, 600);
+});
+
+
+
+  map.on('enterFullscreen', function(){    
+    if(window.console) window.console.log('enterFullscreen');
+});
+map.on('exitFullscreen', function(){
+    if(window.console) window.console.log('exitFullscreen');
+});
+
+ 
 
 //Fonction pour créer un marqueur ainsi que le contenu de son popup.
 //On peut rajouter plein d'options aux marqueurs et aux popups. A voir dans la documentation.
+
+
 function creer_marqueur(latitude,longitude){
     var contenu_popup=latitude+","+longitude;
     L.marker([latitude,longitude],{

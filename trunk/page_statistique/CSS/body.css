@@ -16,6 +16,7 @@
     --telecharger-bg-hover:#c4302b;
     --shadow-color:rgba(000,000,000,0.3);
     --filtre-carte-color:#565656;
+    --filtre-carte-bg:#e5e5e5;
     --filtre-border-color:#ccc;
     --graph-border-color:rgba(0,0,0,.15);
     --text-title-weight:700;
@@ -35,6 +36,7 @@ body{
     font-size: var(--text-font-small);
     margin:0;
     height: 100%;
+   
 
 }
 
