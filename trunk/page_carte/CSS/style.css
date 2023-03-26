@@ -156,7 +156,8 @@ input[type="date"]{
         gap:10%;
         align-items: center;
     }
-    #map,form{
+
+    .map-container,form{
         width:80%;
         
     }
