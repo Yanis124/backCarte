@@ -16,9 +16,18 @@
         <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"
      integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI="
      crossorigin=""/>
+    
+    
      <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"
      integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM="
      crossorigin=""></script>
+
+     <link rel="stylesheet" href="../plugin/FullScreen/Control.FullScreen.css"> <!--plugin pour ajouter le boutton full screen-->
+     <script src="../plugin/FullScreen/Control.FullScreen.js"></script>
+
+
+     <link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css" />
+    <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
         
     </head>
     <body onload="nomRegions(); nomDepartements(); nomVilles() ; dateLimit() ; getAllMeteo() ;getAllGravite()">
@@ -37,10 +46,15 @@
         
         </header>
         <section>
-            <div id="map" name="map" onLoad="carte();">
+            <div id="mapContainer" class="map-container">
+                <div id="map" name="map" onLoad="carte();">
 
-                <!-- emplacement de la map-->
+                    <!-- emplacement de la map-->
+                    
+                </div>
+                
             </div>
+        
             <form id="filtres">
 
 
@@ -58,16 +72,16 @@
                         </select>
                     </div>
                     <!-- Si sélectionne du filtre Date alors affichage d'un élément choix de date spécifique-->
-                    <div id="choix-date-specifique" style="display: none;">
+                    <div class="date-container" id="choix-date-specifique" style="display: none;">
                         <label for="date-specifique">Choisissez une date </label>
                         <input onchange="getDate()" id="date" type="date" id="date-specifique" name="date-specifique">
                     </div>
 
                     <!-- Si sélectionne du filtre Intervalle de Date alors affichage d'un élément choix de date Début et d'un élément choix de date de Fin-->
-                    <div id="choix-intervalle-dates" style="display: none;">
+                    <div class="date-container" id="choix-intervalle-dates" style="display: none;">
                         <label for="date-debut"  >Date de début </label>
                         <input onchange="getIntervalleDateStart()" type="date" id="date-debut" name="date-debut">
-                        <label for="date-fin">Date de fin :</label>
+                        <label for="date-fin">Date de fin </label>
                         <input onchange="getIntervalleDateEnd()" type="date" id="date-fin" name="date-fin">
                     </div>
 
@@ -181,4 +195,5 @@
     <script src="../JavaScript/get-option-filtres.js"></script>
     <script src="../JavaScript/get-value-filtres.js"></script>
     <script src="../JavaScript/page_carte.js"></script>
+    <script src="../JavaScript/load-filtre.js"></script>
 </html>

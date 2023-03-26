@@ -6,10 +6,10 @@ section{
     background-color: var(--section-bg);
     justify-content: space-evenly;
     margin:2%;
-    margin-top: 12%;
+    margin-top: 15%;
     height: 700px; 
     padding-top:5%;
-    justify-content: space-around;
+    
 
     
     
@@ -34,13 +34,21 @@ form{
 
 }
 
-select{
+select,input[type="date"]{
     height: 20px;
     width:30%;
-    border: 1px solid var(--graph-border-color);
+    border: 1px solid transparent;
+    background-color: var(--filtre-carte-bg);
     
 
 }
+
+input[type="date"]{
+
+    width:20%;
+}
+
+
 
 
 
@@ -55,7 +63,7 @@ select{
     flex-direction: column;
     align-items: center;
     box-shadow: 3px 3px 3px var(--shadow-color);
-    font-size: 15px;
+    font-size: var(--text-font-small);
     border:1px solid var(--section-border);
     background-color: #fff;
 
@@ -72,6 +80,7 @@ select{
     align-items: center;
     width:90%;
     gap:10px;
+
    
 }
 
@@ -87,17 +96,37 @@ select{
 
 
 /*Carte*/
-#map{
-    z-index:0;
+.map-container{
+
     width:50%;
     display: flex;
     height:90%;
     border: 1px solid var(--graph-border-color);
     box-shadow: 3px 3px 3px rgba(000,000,000,0.3);
+    position: relative;
 
 
 
 
+}
+
+#map{
+    width:100%;
+    height: 100%;
+    z-index:0;
+}
+
+.map-container>button{
+    position: absolute;
+    bottom:0;
+    cursor: pointer;
+    display: block;
+    z-index:100;
+    width:100px;
+    height:50px;
+    
+
+  
 }
 
 .reset-container{
@@ -133,7 +162,7 @@ select{
     }
 
     .filtre-container{
-        font-size: 12px;
+        font-size: 10px;
     }
 }
 
