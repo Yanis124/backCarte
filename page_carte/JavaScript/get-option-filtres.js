@@ -113,9 +113,11 @@ async function getAllGravite(){  //recuperer toutes les conditions meterologique
 
 
 // Récupère tout les noms des regions de l'API
-function nomRegions() {
+function nameRegions() {
     // URL de l'API récupérant les noms des régions
-    var apiUrl1 = "https://public.opendatasoft.com/api/records/1.0/search/?dataset=accidents-corporels-de-la-circulation-millesime&q=&rows=0&facet=reg_name";
+    var apiUrl1 = "https://data.opendatasoft.com/api/records/1.0/search/?dataset=accidents-corporels-de-la-circulation-millesime%40public&q=&facet=reg_name";
+
+    /*var apiUrl1 = "https://public.opendatasoft.com/api/records/1.0/search/?dataset=accidents-corporels-de-la-circulation-millesime&q=&rows=0&facet=reg_name";*/
   
     loadFiltre(regionSelect)
     // Récupération des regions de l'API
@@ -148,7 +150,9 @@ function nomRegions() {
 
 function nomDepartements(){
     // URL de l'API récupérant les noms des départements
-    var apiUrl2 = "https://public.opendatasoft.com/api/records/1.0/search/?dataset=accidents-corporels-de-la-circulation-millesime&q=&rows=0&facet=dep_name";
+    var apiUrl2 = "https://data.opendatasoft.com/api/records/1.0/search/?dataset=accidents-corporels-de-la-circulation-millesime%40public&q=&facet=dep_name";
+
+    /*var apiUrl2 = "https://public.opendatasoft.com/api/records/1.0/search/?dataset=accidents-corporels-de-la-circulation-millesime&q=&rows=0&facet=dep_name";*/
   
     loadFiltre(departementSelect)
       // Récupération des départements de l'API
@@ -180,8 +184,11 @@ function nomDepartements(){
 // Récupère tout les noms des villes de l'API
 function nomVilles(){
     // URL de l'API récupérant les noms des villes
-	var apiUrl3 = "https://public.opendatasoft.com/api/records/1.0/search/?dataset=accidents-corporels-de-la-circulation-millesime&q=&rows=0&facet=nom_com";
+    var apiUrl3 = "https://data.opendatasoft.com/api/records/1.0/search/?dataset=accidents-corporels-de-la-circulation-millesime%40public&q=&facet=nom_com";
     loadFiltre(villeSelect)
+    
+    /*var apiUrl3 = "https://public.opendatasoft.com/api/records/1.0/search/?dataset=accidents-corporels-de-la-circulation-millesime&q=&rows=0&facet=nom_com";*/
+
 	// Récupération des communes de l'API
 	fetch(apiUrl3)
 		.then(response => response.json()) // Convertit en objet JSON les données récupérées
