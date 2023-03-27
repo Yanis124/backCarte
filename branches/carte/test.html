@@ -64,7 +64,7 @@ async function getCommune(){
         }
         
         catch{
-            //console.log("erreur de fetch")
+            console.log("erreur de fetch")
         }
     
     console.log(listCommune)
@@ -147,6 +147,7 @@ map.on('exitFullscreen', function(){
 
 async function createPin(){
     await getAccident()
+    console.log(listAccident)
    var markerCluster = new  L.markerClusterGroup();  //créer un marqueurcluster pour regrouper les marqueurs
 
     for(var i=0;i<listAccident.length;i++){
