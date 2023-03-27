@@ -77,7 +77,7 @@ async function getCommune(){
 
 async function getAccident(){
     await getCommune()
-    var api="https://public.opendatasoft.com/api/records/1.0/search/?dataset=accidents-corporels-de-la-circulation-millesime&q=&refine.nom_com="
+    var api="https://public.opendatasoft.com/api/records/1.0/search/?dataset=accidents-corporels-de-la-circulation-millesime&q=&rows=9999&refine.nom_com="
 
     console.log(listCommune.length)
     for(var i=0;i<listCommune.length;i++){
