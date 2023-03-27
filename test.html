@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"
+        integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI="
+        crossorigin=""/>
+    
+    
+     <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"
+     integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM="
+     crossorigin=""></script>
+
+     <link rel="stylesheet" href="../plugin/FullScreen/Control.FullScreen.css"> <!--plugin pour ajouter le boutton full screen-->
+     <script src="../plugin/FullScreen/Control.FullScreen.js"></script>
+
+
+     <link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css" />
+    <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.0.3/dist/MarkerCluster.css">
+
+    <script src="https://unpkg.com/leaflet.markercluster@1.3.0/dist/leaflet.markercluster.js"></script>
+    <script src='https://unpkg.com/leaflet.markercluster@1.3.0/dist/leaflet.markercluster-src.js'></script>
+    <title>Document</title>
+
+        <style>
+            #map { height: 800px; width:50%; }
+            .image-pop{
+                border:blue solid 1px;
+                border-radius: 10px;
+                padding:10px;
+            }
+
+            
+        </style>
+</head>
+<body>
+<div class="map" id="map"></div>
+</body>
+</html>
+<script>
+    listAccident=[]
+listCommune=[]
+
+
+async function getCommune(){
+
+
+
+    
+    
+    var api="https://public.opendatasoft.com/api/records/1.0/search/?dataset=accidents-corporels-de-la-circulation-millesime&q=&row=0&facet=nom_com"    
+        try{
+
+        
+            var res= await fetch(api)
+            var data=await res.json()
+            for(var i=0;i<data.facet_groups[0].facets.length;i++){
+                listCommune.push(data.facet_groups[0].facets[i].name)
+            }
+        }
+        
+        catch{
+            //console.log("erreur de fetch")
+        }
+    
+    console.log(listCommune)
+    
+    
+    
+
+    
+}
+
+async function getAccident(){
+    await getCommune()
+    var api="https://public.opendatasoft.com/api/records/1.0/search/?dataset=accidents-corporels-de-la-circulation-millesime&q=&refine.nom_com="
+
+    console.log(listCommune.length)
+    for(var i=0;i<listCommune.length;i++){
+        try{
+            
+            var res=await fetch(api+listCommune[i])
+            var data=await res.json()
+            for(var j=0;j<data.records.length;j++){
+                listAccident.push(data.records[j])
+            }
+            //console.log(listAccident)
+            
+            
+        }
+        catch{
+            console.log("erreur de fetch")
+        }
+    }
+    //console.log(listAccident)
+}
+    
+
+
+
+
+
+//Initialisation de la carte
+var map=L.map("map",{
+    fullscreenControl: true,
+    fullscreenControlOptions: {
+    position: 'topright'},
+    wheelDebounceTime:0,
+    wheelPxPerZoomLevel:50,
+    minZoom:5,
+}).setView([48.862725, 2.287592],5);
+var contenu=L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy;<a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+}).addTo(map);
+
+
+
+L.Control.geocoder().addTo(map);  //ajouter une barre de recherche
+
+L.control.scale({   //ajouter les dimensions de la carte 
+    metric:true,
+    imperial:true,
+    maxwidth:100,
+    position:"bottomleft"
+}).addTo(map)
+
+
+
+
+
+  map.on('enterFullscreen', function(){    
+    if(window.console) window.console.log('enterFullscreen');
+});
+map.on('exitFullscreen', function(){
+    if(window.console) window.console.log('exitFullscreen');
+});
+
+ 
+
+//Fonction pour créer un marqueur ainsi que le contenu de son popup.
+//On peut rajouter plein d'options aux marqueurs et aux popups. A voir dans la documentation.
+
+
+async function createPin(){
+    await getAccident()
+   var markerCluster = new  L.markerClusterGroup();  //créer un marqueurcluster pour regrouper les marqueurs
+
+    for(var i=0;i<listAccident.length;i++){
+        try{
+            var a=listAccident[i].fields.coordonnees[0]; 
+            var b=listAccident[i].fields.coordonnees[1];
+            markerCluster.addLayer(L.marker([a,b]));
+           
+            
+            
+            markerCluster.addLayer(marker); //ajouter les marqueurs au cluster
+
+           
+           
+        }
+        catch{
+            console.log("couldn't find cordinnate")
+        }
+        map.addLayer(markerCluster); //ajouter le cluster a la map
+    }
+  
+}
+
+function regrouper(){
+
+    
+    const noteSmall = document.getElementsByClassName("leaflet-marker-icon marker-cluster marker-cluster-small leaflet-zoom-animated leaflet-interactive ");
+    const noteMedium=document.getElementsByClassName("leaflet-marker-icon marker-cluster marker-cluster-medium leaflet-zoom-animated leaflet-interactive")
+    const noteLarge=document.getElementsByClassName("leaflet-marker-icon marker-cluster marker-cluster-large leaflet-zoom-animated leaflet-interactive")
+    //selectionner les objets  a chaque fois qu'on zoom ou on dezoom des numeros apparaissent pour indiquer le nombre de marqueurs regrouper
+    
+        
+    if(noteSmall.length>0){  //note sont des tableaux d'element
+        style(noteSmall)
+    }
+    if(noteMedium.length>0){
+        style(noteMedium)
+    }
+    if(noteLarge.length>0){
+        style(noteLarge) //appeler la fonction style
+    }
+}
+
+function style(note){ 
+    for(var i=0;i<note.length;i++){  //iterer le tableau pour styler les elements
+       
+        
+    
+        note[i].style.backgroundColor = 'gray'
+        note[i].style.paddingLeft="20px"
+        note[i].style.paddingTop="20px"
+        note[i].style.borderRadius="70px"
+        note[i].style.color = 'white' 
+        
+    }
+
+}  
+
+function regrouper(){
+
+    
+    const noteSmall = document.getElementsByClassName("leaflet-marker-icon marker-cluster marker-cluster-small leaflet-zoom-animated leaflet-interactive ");
+    const noteMedium=document.getElementsByClassName("leaflet-marker-icon marker-cluster marker-cluster-medium leaflet-zoom-animated leaflet-interactive")
+    const noteLarge=document.getElementsByClassName("leaflet-marker-icon marker-cluster marker-cluster-large leaflet-zoom-animated leaflet-interactive")
+    //selectionner les objets  a chaque fois qu'on zoom ou on dezoom des numeros apparaissent pour indiquer le nombre de marqueurs regrouper
+    
+        
+    if(noteSmall.length>0){  //note sont des tableaux d'element
+        style(noteSmall)
+    }
+    if(noteMedium.length>0){
+        style(noteMedium)
+    }
+    if(noteLarge.length>0){
+        style(noteLarge) //appeler la fonction style
+    }
+}
+
+    
+
+
+ 
+    
+    
+
+
+
+
+
+setInterval(regrouper, 500)  //on appel la fonction regrouper tous les 500ms
+   
+
+
+createPin()
+</script>
