@@ -102,9 +102,10 @@ async function getAccident(){
 
     console.log(listCommune.length)
     for(var i=0;i<listCommune.length;i++){
+        console.log(listCommune[i])
+        console.log(i)
         try{
-            console.log(listCommune[i])
-            console.log(i)
+            
             
             var res=await fetch(api+listCommune[i])
             var data=await res.json()
