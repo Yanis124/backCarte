@@ -1,14 +1,3 @@
-const selectBtn = document.querySelector(".select-btn"),
-    items = document.querySelectorAll(".item");
-
-selectBtn.addEventListener("click", () => {
-    selectBtn.classList.toggle("open");
-});
-items.forEach(item => {
-    item.addEventListener("click", () => {
-        item.classList.toggle("checked");
-    });
-}) 
 
 
 
@@ -39,23 +28,7 @@ L.control.scale({   //ajouter les dimensions de la carte
     position:"bottomleft"
 }).addTo(map)
 
-// Close and clear searchbox 600ms after pressing ENTER in the search box
-searchbox.onInput("keyup", function (e) {
-    if (e.keyCode == 13) {
-        setTimeout(function () {
-            searchbox.hide();
-            searchbox.clear();
-        }, 600);
-    }
-});
 
-// Close and clear searchbox 600ms after clicking the search button
-searchbox.onButton("click", function () {
-    setTimeout(function () {
-        searchbox.hide();
-        searchbox.clear();
-    }, 600);
-});
 
 
 
@@ -72,26 +45,91 @@ map.on('exitFullscreen', function(){
 //On peut rajouter plein d'options aux marqueurs et aux popups. A voir dans la documentation.
 
 
-function creer_marqueur(latitude,longitude){
-    var contenu_popup=latitude+","+longitude;
-    L.marker([latitude,longitude],{
-        riseOnhover:true,
-    }).bindPopup(contenu_popup).addTo(map)
+async function createPin(){
+    loadCarte()
+    await getAccident()
+   var markerCluster = new L.markerClusterGroup();  //créer un marqueurcluster pour regrouper les marqueurs
+
+    for(var i=0;i<listAccident.length;i++){
+        try{
+            var a=listAccident[i].fields.coordonnees[0]; 
+            var b=listAccident[i].fields.coordonnees[1];
+            var marker=L.marker([a,b])
+            pop=L.popup({content:"<h1> numero d'accident : "+listAccident[i].fields.num_acc+"</h1> "+ //numero d'accident
+                        "<p style='font-size:15px'>"+listAccident[i].fields.jour+"/"+listAccident[i].fields.mois+"/"+listAccident[i].fields.an+", "+ //date et l'heure
+                        listAccident[i].fields.hrmn+"</p>"+
+                    "<p style='font-size:15px'>"+"adresse: "+listAccident[i].fields.adr+"</p>"+
+                "<p style='font-size:15px'>"+"Condition Atmosphériques: "+listAccident[i].fields.atm+"</p>"
+            })  //adresse
+            marker.bindPopup(pop)    //ajouter le popup
+            markerCluster.addLayer(marker);
+            
+           
+        }
+        catch{
+            console.log("couldn't find cordinnate")
+        }
+    }
+   map.addLayer(markerCluster); //ajouter le cluster a la map
+   workCarte()
 }
 
-var lat_long="https://public.opendatasoft.com/api/records/1.0/search/?dataset=accidents-corporels-de-la-circulation-millesime&q=&rows=1000&facet=lat&facet=long&refine.datetime=2019";
 
-async function get_lat_long(){
-    var res=await fetch(lat_long);
-    var data=await res.json();
-    var lat=data.facet_groups[0].facets;
-    var long=data.facet_groups[1].facets;
-    console.log(lat);
-    console.log(long);
-    for(var i=0;i<10;i++){
-        creer_marqueur(lat[i].name,long[i].name);
-}
+function regrouper(){
+
+    
+    const noteSmall = document.getElementsByClassName("leaflet-marker-icon marker-cluster marker-cluster-small leaflet-zoom-animated leaflet-interactive ");
+    const noteMedium=document.getElementsByClassName("leaflet-marker-icon marker-cluster marker-cluster-medium leaflet-zoom-animated leaflet-interactive")
+    const noteLarge=document.getElementsByClassName("leaflet-marker-icon marker-cluster marker-cluster-large leaflet-zoom-animated leaflet-interactive")
+    //selectionner les objets  a chaque fois qu'on zoom ou on dezoom des numeros apparaissent pour indiquer le nombre de marqueurs regrouper
+    
+        
+    if(noteSmall.length>0){  //note sont des tableaux d'element
+        style(noteSmall)
+    }
+    if(noteMedium.length>0){
+        style(noteMedium)
+    }
+    if(noteLarge.length>0){
+        style(noteLarge) //appeler la fonction style
+    }
 }
 
-get_lat_long();
+function style(note){ 
+    for(var i=0;i<note.length;i++){  //iterer le tableau pour styler les elements
+       
+        
+    
+        note[i].style.backgroundColor = 'gray'
+        note[i].style.padding="15px"
+        note[i].style.borderRadius="70px"
+        note[i].style.color = 'white' 
+        
+        
+    }
+
+}  
+
+function regrouper(){  //appliquer le style a tous les clusters
+
+    
+    const noteSmall = document.getElementsByClassName("leaflet-marker-icon marker-cluster marker-cluster-small leaflet-zoom-animated leaflet-interactive ");
+    const noteMedium=document.getElementsByClassName("leaflet-marker-icon marker-cluster marker-cluster-medium leaflet-zoom-animated leaflet-interactive")
+    const noteLarge=document.getElementsByClassName("leaflet-marker-icon marker-cluster marker-cluster-large leaflet-zoom-animated leaflet-interactive")
+    //selectionner les objets  a chaque fois qu'on zoom ou on dezoom des numeros apparaissent pour indiquer le nombre de marqueurs regrouper
+    
+        
+    if(noteSmall.length>0){  //note sont des tableaux d'element
+        style(noteSmall)
+    }
+    if(noteMedium.length>0){
+        style(noteMedium)
+    }
+    if(noteLarge.length>0){
+        style(noteLarge) //appeler la fonction style
+    }
+}
+
+setInterval(regrouper, 500)  //on appel la fonction regrouper tous les 500ms
+
 

@@ -21,6 +21,8 @@ var nuitSelect=document.getElementById("nuit")
 
 
 
+
+
 function afficherChoix() {
     var choix = document.getElementById("choix-date");
     var choixDate = document.getElementById("choix-date-specifique");
@@ -113,9 +115,9 @@ async function getAllGravite(){  //recuperer toutes les conditions meterologique
 
 
 // Récupère tout les noms des regions de l'API
-function nameRegions() {
+function nomRegions() {
     // URL de l'API récupérant les noms des régions
-    var apiUrl1 = "https://data.opendatasoft.com/api/records/1.0/search/?dataset=accidents-corporels-de-la-circulation-millesime%40public&q=&facet=reg_name";
+    var apiUrl1 = "https://public.opendatasoft.com/api/records/1.0/search/?dataset=accidents-corporels-de-la-circulation-millesime&q=&rows=0&facet=reg_name";
   
     loadFiltre(regionSelect)
     // Récupération des regions de l'API
@@ -148,7 +150,8 @@ function nameRegions() {
 
 function nomDepartements(){
     // URL de l'API récupérant les noms des départements
-    var apiUrl2 = "https://data.opendatasoft.com/api/records/1.0/search/?dataset=accidents-corporels-de-la-circulation-millesime%40public&q=&facet=dep_name";
+    var apiUrl2 = "https://public.opendatasoft.com/api/records/1.0/search/?dataset=accidents-corporels-de-la-circulation-millesime&q=&rows=0&facet=dep_name";
+    
   
     loadFiltre(departementSelect)
       // Récupération des départements de l'API
@@ -156,7 +159,8 @@ function nomDepartements(){
           .then(response => response.json()) // Convertit en objet JSON les données récupérées
           .then(data => {
             var departement = data.facet_groups[0].facets; //variable departement contenant les données récupérées
-            departement.sort((a, b) => a.name.localeCompare(b.name)); // Tri par ordre alphabétique
+            departement.sort((a, b) => a.name.localeCompare(b.name));
+            
     
           // Ajout des communes à la liste déroulante
             
@@ -179,21 +183,20 @@ function nomDepartements(){
 
 // Récupère tout les noms des villes de l'API
 function nomVilles(){
-    // URL de l'API récupérant les noms des villes
-    var apiUrl3 = "https://data.opendatasoft.com/api/records/1.0/search/?dataset=accidents-corporels-de-la-circulation-millesime%40public&q=&facet=nom_com";
+    // URL de l'API rÃ©cupÃ©rant les noms des villes
+	var apiUrl3 = "https://public.opendatasoft.com/api/records/1.0/search/?dataset=accidents-corporels-de-la-circulation-millesime&q=&rows=0&facet=nom_com";
     loadFiltre(villeSelect)
-    
-	// Récupération des communes de l'API
+	// RÃ©cupÃ©ration des communes de l'API
 	fetch(apiUrl3)
-		.then(response => response.json()) // Convertit en objet JSON les données récupérées
+		.then(response => response.json()) // Convertit en objet JSON les donnÃ©es rÃ©cupÃ©rÃ©es
 		.then(data => {
-			var ville = data.facet_groups[0].facets; //variable ville contenant les données récupérées
-			ville.sort((a, b) => a.name.localeCompare(b.name)); // Tri par ordre alphabétique
+			var ville = data.facet_groups[0].facets; //variable ville contenant les donnÃ©es rÃ©cupÃ©rÃ©es
+			ville.sort((a, b) => a.name.localeCompare(b.name)); // Tri par ordre alphabÃ©tique
 
 
-			// Ajout des communes à la liste déroulante
+			// Ajout des communes Ã  la liste dÃ©roulante
 			
-            villeSelect.options.length = 1; // Suppression des options précédentes
+            villeSelect.options.length = 1; // Suppression des options prÃ©cÃ©dentes
 			ville.forEach(ville => {
 				var option = document.createElement("option");
 				option.value = ville.name;
@@ -204,7 +207,6 @@ function nomVilles(){
 	    },
         )
         .catch(console.log("erreur de fetch")) //gerer les erreurs
-
 }
 
 // Filtre les départements et les villes en fonction de la région selectionnée
