@@ -4,7 +4,8 @@
   margin:50%;
 }
 
-#spinner-graph,#spinner-table{
+#spinner-graph,#spinner-table,#spinner-carte{
+  z-index:200;
     
     animation: rotator 1.4s linear infinite;
   }
