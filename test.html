@@ -42,23 +42,44 @@
 </body>
 </html>
 <script>
-    listAccident=[]
+listDepartement=[]
+listAccident=[]
 listCommune=[]
 
+async function getDepartement(){
+    var api="https://public.opendatasoft.com/api/records/1.0/search/?dataset=accidents-corporels-de-la-circulation-millesime&q=&row=0&facet=dep_name"
+    try{
+
+        
+        var res= await fetch(api)
+        var data=await res.json()
+        for(var i=0;i<data.facet_groups[0].facets.length;i++){
+            listDepartement.push(data.facet_groups[0].facets[i].name)
+        }
+    }
+    
+    catch{
+        console.log("erreur de fetch")
+    }
+
+    console.log(listDepartement)
+
+}
 
 async function getCommune(){
 
 
 
+    await getDepartement()
     
-    
-    var api="https://public.opendatasoft.com/api/records/1.0/search/?dataset=accidents-corporels-de-la-circulation-millesime&q=&row=0&facet=nom_com"    
+    var api="https://public.opendatasoft.com/api/records/1.0/search/?dataset=accidents-corporels-de-la-circulation-millesime&q=&row=0&facet=nom_com&refine.dep_name="
+    for(var i=0;i<listDepartement.length;i++){    
         try{
 
         
-            var res= await fetch(api)
+            var res= await fetch(api+listDepartement[i])
             var data=await res.json()
-            for(var i=0;i<data.facet_groups[0].facets.length;i++){
+            for(var j=0;j<data.facet_groups[0].facets.length;j++){
                 listCommune.push(data.facet_groups[0].facets[i].name)
             }
         }
@@ -66,14 +87,14 @@ async function getCommune(){
         catch{
             console.log("erreur de fetch")
         }
+    }
     
     console.log(listCommune)
     
     
-    
-
-    
 }
+
+
 
 async function getAccident(){
     await getCommune()
@@ -83,9 +104,11 @@ async function getAccident(){
     for(var i=0;i<listCommune.length;i++){
         try{
             console.log(listCommune[i])
+            console.log(i)
             
             var res=await fetch(api+listCommune[i])
             var data=await res.json()
+            
             for(var j=0;j<data.records.length;j++){
                 listAccident.push(data.records[j])
             }
@@ -97,10 +120,10 @@ async function getAccident(){
             console.log("erreur de fetch")
         }
     }
-    //console.log(listAccident)
+    console.log(listAccident)
 }
     
-
+getAccident()
 
 
 
@@ -242,5 +265,5 @@ setInterval(regrouper, 500)  //on appel la fonction regrouper tous les 500ms
    
 
 
-createPin()
+//createPin()
 </script>
