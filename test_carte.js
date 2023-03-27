@@ -32,12 +32,8 @@ async function creations_marqueur(){
         try{
             var a=data.records[i].geometry.coordinates[0]; 
             var b=data.records[i].geometry.coordinates[1];
-<<<<<<<
             marqueur.addLayer(creer_marqueur(b,a,data,i));
-=======
-            creer_marqueur(b, a, data, i);
 
->>>>>>>
         }
         catch{
             console.log("Couldn't find coordinates");
