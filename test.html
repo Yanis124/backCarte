@@ -44,7 +44,7 @@
 <script>
 listDepartement=[]
 listAccident=[]
-listCommune=[]
+
 
 async function getDepartement(){
     var api="https://public.opendatasoft.com/api/records/1.0/search/?dataset=accidents-corporels-de-la-circulation-millesime&q=&row=0&facet=dep_name"
@@ -66,48 +66,22 @@ async function getDepartement(){
 
 }
 
-async function getCommune(){
 
 
 
+
+async function getAccident(){  //faire des appels par departement mais limite le nombre d'accident par departement a 10000
     await getDepartement()
-    
-    var api="https://public.opendatasoft.com/api/records/1.0/search/?dataset=accidents-corporels-de-la-circulation-millesime&q=&row=0&facet=nom_com&refine.dep_name="
-    for(var i=0;i<listDepartement.length;i++){    
-        try{
+    var api="https://public.opendatasoft.com/api/records/1.0/search/?dataset=accidents-corporels-de-la-circulation-millesime&q=&rows=9999&refine.dep_name="
 
-        
-            var res= await fetch(api+listDepartement[i])
-            var data=await res.json()
-            for(var j=0;j<data.facet_groups[0].facets.length;j++){
-                listCommune.push(data.facet_groups[0].facets[j].name)
-            }
-        }
-        
-        catch{
-            console.log("erreur de fetch")
-        }
-    }
-    
-    console.log(listCommune)
-    
-    
-}
-
-
-
-async function getAccident(){
-    await getCommune()
-    var api="https://public.opendatasoft.com/api/records/1.0/search/?dataset=accidents-corporels-de-la-circulation-millesime&q=&rows=9999&refine.nom_com="
-
-    console.log(listCommune.length)
-    for(var i=0;i<listCommune.length;i++){
-        console.log(listCommune[i])
+  
+    for(var i=0;i<listDepartement.length;i++){
+        console.log(listDepartement[i])
         console.log(i)
         try{
             
             
-            var res=await fetch(api+listCommune[i])
+            var res=await fetch(api+listDepartement[i])
             var data=await res.json()
             
             for(var j=0;j<data.records.length;j++){
@@ -124,7 +98,7 @@ async function getAccident(){
     console.log(listAccident)
 }
     
-getAccident()
+
 
 
 
@@ -266,5 +240,5 @@ setInterval(regrouper, 500)  //on appel la fonction regrouper tous les 500ms
    
 
 
-//createPin()
+createPin()
 </script>
