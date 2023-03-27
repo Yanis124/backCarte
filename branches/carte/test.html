@@ -80,7 +80,7 @@ async function getCommune(){
             var res= await fetch(api+listDepartement[i])
             var data=await res.json()
             for(var j=0;j<data.facet_groups[0].facets.length;j++){
-                listCommune.push(data.facet_groups[0].facets[i].name)
+                listCommune.push(data.facet_groups[0].facets[j].name)
             }
         }
         
