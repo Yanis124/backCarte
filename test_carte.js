@@ -21,13 +21,13 @@ function creer_marqueur(latitude,longitude,donnees,indice){
 }
 
 async function creations_marqueur(){
-    var res1=await fetch("https://public.opendatasoft.com/api/records/1.0/search/?dataset=accidents-corporels-de-la-circulation-millesime&q=&rows=1&facet=nom_com");
+    var res1=await fetch("https://public.opendatasoft.com/api/records/1.0/search/?dataset=accidents-corporels-de-la-circulation-millesime&q=&rows=1&facet=reg_name");
     var data1=await res1.json();
-    var liste_communes=data1.facet_groups[0].facets;
-    for(var y=0;y<liste_communes.length;y++){
-    var res=await fetch("https://public.opendatasoft.com/api/records/1.0/search/?dataset=accidents-corporels-de-la-circulation-millesime&q=&rows=5139&refine.nom_com="+liste_communes[y].name);
-    var data=await res.json();
-    var marqueur=new L.markerClusterGroup();
+    var list_reg=data1.facet_groups[0].facets;
+    for(var y=0;y<list_reg.length;y++){
+        var res=await fetch("https://public.opendatasoft.com/api/records/1.0/search/?dataset=accidents-corporels-de-la-circulation-millesime&q=&rows=5139&refine.reg_name="+list_reg[y].name);
+        var data=await res.json();
+/*     var marqueur=new L.markerClusterGroup();
     for(var i=0;i<data.records.length;i++){
         try{
             var a=data.records[i].geometry.coordinates[0]; 
@@ -39,7 +39,19 @@ async function creations_marqueur(){
             console.log("Couldn't find coordinates");
         }
         map.addLayer(marqueur);
-    }
+    } */
+        var markers = L.markerClusterGroup(); // Crée un groupe de marqueurs
+        for (var i = 0; i < data.records.length; i++) { // Parcours toute les données de chaque regions
+            try {
+                var a = data.records[i].geometry.coordinates[0];
+                var b = data.records[i].geometry.coordinates[1];
+                var marker = creer_marqueur(b, a, data, i); // Crée un marqueur individuel
+                markers.addLayer(marker); // Ajoute le marqueur individuel au groupe de marqueurs
+            } catch {
+                console.log("Couldn't find coordinates");
+            }
+        }
+        map.addLayer(markers); // Ajoute le groupe de marqueurs à la carte  
     }
 }
 creations_marqueur();
