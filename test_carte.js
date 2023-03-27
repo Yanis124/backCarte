@@ -10,6 +10,8 @@ var contenu=L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
     }).addTo(map);
 
 
+
+
 function creer_marqueur(latitude,longitude,donnees,indice){
     var contenu_popup=latitude+","+longitude+"\n";
     contenu_popup+=donnees.records[indice].recordid;
@@ -30,7 +32,12 @@ async function creations_marqueur(){
         try{
             var a=data.records[i].geometry.coordinates[0]; 
             var b=data.records[i].geometry.coordinates[1];
+<<<<<<<
             marqueur.addLayer(creer_marqueur(b,a,data,i));
+=======
+            creer_marqueur(b, a, data, i);
+
+>>>>>>>
         }
         catch{
             console.log("Couldn't find coordinates");
