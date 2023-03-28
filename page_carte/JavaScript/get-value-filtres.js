@@ -40,6 +40,7 @@ function getRegion() {      // Région sélectionnée
 
 
     selectedRegion = regionSelect.value; 
+    getDataFiltre()
 
 
     if(!selectedRegion || selectedRegion==="allRegions"){ //si on choisi "selectionner une regions on affiche tous les departements et les villes"
@@ -94,10 +95,12 @@ function getRegion() {      // Région sélectionnée
 }
 
 function getDepartement() {
+    
 
     // Departement sélectionnée
     
     selectedDepartement = departementSelect.value;
+    
 
     if(selectedDepartement==="allDepartements"){  //si on selectionne tous les departements on affiche toutes les villes de la regions selectionné
         getRegion()
@@ -148,10 +151,12 @@ function getGravite(){
 
 function getJour(){
     selectedLum=jourSelect.value
+    getDataFiltre()
     console.log(selectedLum)
 }
 
 function getNuit(){
-    selectedLum=jourSelect.value
+    selectedLum=nuitSelect.value
+    getDataFiltre()
     console.log(selectedLum)
 }

@@ -58,11 +58,11 @@ function dateLimit(){
 async function getAllMeteo(){  //recuperer toutes les conditions meterologiques
     var apiUrl1 = "https://public.opendatasoft.com/api/records/1.0/search/?dataset=accidents-corporels-de-la-circulation-millesime&q=&rows=0&facet=atm";
 
-    loadFiltre(meteoSelect)
+    
     try{
         var res=await fetch(apiUrl1)
         var data=await res.json()
-        workFiltre(meteoSelect)
+        
     }
 
     catch{
@@ -84,12 +84,12 @@ async function getAllMeteo(){  //recuperer toutes les conditions meterologiques
 async function getAllGravite(){  //recuperer toutes les conditions meterologiques
     var apiUrl1 = "https://public.opendatasoft.com/api/records/1.0/search/?dataset=accidents-corporels-de-la-circulation-millesime&q=&rows=0&facet=grav";
 
-    loadFiltre(graviteSelect)
+    
     try{
         
         var res=await fetch(apiUrl1)
         var data=await res.json()
-        workFiltre(graviteSelect)
+        
     }
 
     catch{
@@ -119,7 +119,7 @@ function nomRegions() {
     // URL de l'API récupérant les noms des régions
     var apiUrl1 = "https://public.opendatasoft.com/api/records/1.0/search/?dataset=accidents-corporels-de-la-circulation-millesime&q=&rows=0&facet=reg_name";
   
-    loadFiltre(regionSelect)
+    
     // Récupération des regions de l'API
     fetch(apiUrl1)
       .then(response => response.json()) // Convertit en objet JSON les données récupérées
@@ -138,7 +138,7 @@ function nomRegions() {
                 regionSelect.add(option);
             }
         });
-        workFiltre(regionSelect)
+        
       },
       )
       
@@ -153,7 +153,7 @@ function nomDepartements(){
     var apiUrl2 = "https://public.opendatasoft.com/api/records/1.0/search/?dataset=accidents-corporels-de-la-circulation-millesime&q=&rows=0&facet=dep_name";
     
   
-    loadFiltre(departementSelect)
+   
       // Récupération des départements de l'API
         fetch(apiUrl2)
           .then(response => response.json()) // Convertit en objet JSON les données récupérées
@@ -174,7 +174,7 @@ function nomDepartements(){
                 }
 
             });
-            workFiltre(departementSelect)
+            
           },
           )
           .catch(console.log("erreur de fetch")) //gerer les erreurs
@@ -185,7 +185,7 @@ function nomDepartements(){
 function nomVilles(){
     // URL de l'API rÃ©cupÃ©rant les noms des villes
 	var apiUrl3 = "https://public.opendatasoft.com/api/records/1.0/search/?dataset=accidents-corporels-de-la-circulation-millesime&q=&rows=0&facet=nom_com";
-    loadFiltre(villeSelect)
+    
 	// RÃ©cupÃ©ration des communes de l'API
 	fetch(apiUrl3)
 		.then(response => response.json()) // Convertit en objet JSON les donnÃ©es rÃ©cupÃ©rÃ©es
@@ -203,7 +203,7 @@ function nomVilles(){
 				option.text = ville.name;
 				villeSelect.add(option);
 			});
-            workFiltre(villeSelect)
+            
 	    },
         )
         .catch(console.log("erreur de fetch")) //gerer les erreurs
