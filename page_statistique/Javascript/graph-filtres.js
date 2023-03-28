@@ -8,7 +8,7 @@ const anneeGraphSelect=document.getElementById("annee-graph-select")
 
 
 var label=[] //la legende des graphs
-var datas=[] //chaque list represente un type de donnée datetime,atm ,sex,an-nais, grav,lum
+var datas=[] //chaque liste represente un type de donnée datetime,atm ,sex,an-nais, grav,lum
 var chart  //des variables globale qui contient le graph l'anne le lieu l'axe-x
 var inputAnneeGraph
 var inputLieu
@@ -139,7 +139,7 @@ function getLieu(){
 }
 
 
-//recuperer les données et affichier le graph
+//recuperer les données et affichier le graphe
 
 getData()  
 DrawFiltreLieu()
