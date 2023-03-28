@@ -6,9 +6,13 @@ section{
     background-color: var(--section-bg);
     justify-content: space-evenly;
     margin:2%;
-    margin-top: 8%;
+    margin-top: 15%;
     height: 700px; 
-    padding-top:5%;    
+    padding-top:5%;
+    
+
+    
+    
 }
 
 /*Filtres*/
@@ -20,6 +24,14 @@ form{
     color:var(--filtre-carte-color);
     font-weight: var(--filtre-carte-weight);
 
+    
+
+
+
+    
+
+
+
 }
 
 select,input[type="date"]{
@@ -27,6 +39,7 @@ select,input[type="date"]{
     width:30%;
     border: 1px solid transparent;
     background-color: var(--filtre-carte-bg);
+    
 
 }
 
@@ -34,6 +47,12 @@ input[type="date"]{
 
     width:20%;
 }
+
+
+
+
+
+
 
 
 
@@ -46,7 +65,10 @@ input[type="date"]{
     box-shadow: 3px 3px 3px var(--shadow-color);
     font-size: var(--text-font-small);
     border:1px solid var(--section-border);
-    background-color: #fff;    
+    background-color: #fff;
+
+
+    
 }
 
 
@@ -54,11 +76,12 @@ input[type="date"]{
 
 .filtre-container >div{
     height:15%;
-    /* display: flex; */
-    margin-top: 30px;
+    display: flex;
     align-items: center;
     width:90%;
     gap:10px;
+
+   
 }
 
 
@@ -138,100 +161,4 @@ input[type="date"]{
     position: absolute;
     margin:50%;
     z-index: 0;
-}
-
-/*Menu Barre Déroulante avec élément de type Checkbox*/
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
-}
-
-.container{
-    position: relative;
-    max-width: 300px; /*taille maximale de la box*/
-    width: 100%;
-}
-.select-btn{
-    display: flex;
-    height: 40px;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 16px;
-    border-radius: 8px;
-    cursor: pointer;
-    background-color: #fff;
-    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
-}
-.select-btn .btn-text{
-    font-size: 15px;
-    font-weight: 400;
-    color: #333;
-}
-.select-btn .arrow-dwn{
-    display: flex;
-    height: 21px;
-    width: 21px;
-    color: #fff;
-    font-size: 14px;
-    border-radius: 50%;
-    background: #6e93f7;
-    align-items: center;
-    justify-content: center;
-    transition: 0.3s;
-}
-.select-btn.open .arrow-dwn{
-    transform: rotate(-180deg);
-}
-.list-items{
-    position: relative;
-    margin-top: 5px;
-    border-radius: 8px;
-    padding: 16px;
-    background-color: #fff;
-    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
-    display: none;
-}
-.select-btn.open ~ .list-items{
-    display: block;
-}
-.list-items .item{
-    display: flex;
-    align-items: center;
-    list-style: none;
-    height: 35px;
-    cursor: pointer;
-    transition: 0.3s;
-    padding: 0 15px;
-    border-radius: 8px ;
-}
-.list-items .item:hover{
-    background-color: #e7edfe;
-}
-.item .item-text{
-    font-size: 14px;
-    font-weight: 100;
-    color: #333;
-}
-.item .checkbox{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 16px;
-    width: 16px;
-    border-radius: 4px;
-    margin-right: 12px;
-    border: 1.5px solid #c0c0c0;
-    transition: all 0.3s ease-in-out;
-}
-.checkbox .check-icon{
-    font-size: 11px;
-    transform: scale(0);
-        transition: all 0.3s ease-in-out;
-
-}
-.item.checked .check-icon{
-    transform: scale(1);
 }

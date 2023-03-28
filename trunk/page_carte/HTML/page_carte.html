@@ -14,24 +14,26 @@
         <link href="../CSS/style.css" rel="stylesheet" type="text/css"><!--Page css propre à la page-->
         <title>Carte des accidents de la route</title>
         <!--Intégration de la bibliothèque Leaflet-->
-        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI=" crossorigin=""/>
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"
+        integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI="
+        crossorigin=""/>
     
     
-        <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js" integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM=" crossorigin=""></script>
+     <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"
+     integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM="
+     crossorigin=""></script>
 
-        <link rel="stylesheet" href="../plugin/FullScreen/Control.FullScreen.css"> <!--plugin pour ajouter le boutton full screen-->
-        <script src="../plugin/FullScreen/Control.FullScreen.js"></script>
+     <link rel="stylesheet" href="../plugin/FullScreen/Control.FullScreen.css"> <!--plugin pour ajouter le boutton full screen-->
+     <script src="../plugin/FullScreen/Control.FullScreen.js"></script>
 
 
-        <link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css" />  <!-- integrer la bare de recherche -->
-        <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
+
 
     
 
-        <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.0.3/dist/MarkerCluster.css"> <!-- integrer les clusters dans la carte -->
-        <script src='https://unpkg.com/leaflet.markercluster@1.3.0/dist/leaflet.markercluster-src.js'></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.0.3/dist/MarkerCluster.css"> <!-- integrer les clusters dans la carte -->
+     <script src='https://unpkg.com/leaflet.markercluster@1.3.0/dist/leaflet.markercluster-src.js'></script>
      
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
 
 
     
@@ -73,7 +75,7 @@
             <form id="filtres">
 
 
-                <div class="filtre-container">
+                <div id="filtre-container" class="filtre-container">
 
                     
 
@@ -104,7 +106,7 @@
                     <!-- Filtre regions sans les regions outre mer-->  
                     <div>
                         <label for="region">Region </label>
-                        <select id="region" name="region" onchange="getRegion(); resetDepartement()">
+                        <select id="region" name="region" onchange="getRegion()">
                             <option value="allRegions">-- Sélectionner une region --</option>
                         </select>  
 
@@ -113,7 +115,7 @@
                     <!-- Filtre departement sans les departements outre mer--> 
                     <div>
                         <label for="departement">Département </label>
-                        <select id="departement" name="departement" onchange="getDepartement(); resetVilles()">
+                        <select id="departement" name="departement" onchange="getDepartement();">
                             <option value="allDepartements">-- Sélectionner un département --</option>
                         </select>
 
@@ -129,67 +131,17 @@
 
                     <!-- Filtre condition météorologique : normale, pluie légère, pluie forte, temps couverts, temps éblouissant, neige/grèle, borouillard/fumée, vent fort/tempête-->  
                     <!-- /!\ A FAIRE : ne pas afficher toutes les conditions météorologiques d'un coup mais juste selectionner une option ou plusieurs
-                    Rajouter des boutons checkbox aux conditions pour que l'utilisateur puisse en selectionner plusieurs-->   
-                    <div class="container">
-                        <div class="select-btn">
-                            <span class="btn-text">-- Condition Météorologique --</span>
-                            <span class="arrow-dwn">
-                                <i class="fa-solid fa-chevron-down"></i>
-                            </span>
-                        </div>
-                        <ul class="list-items">
-                            <li class="item" value="normale">
-                                <span class="checkbox">
-                                    <i class="fa-solid fa-check check-icon"></i>
-                                </span>
-                                <span class="item-text">Normale</span>
-                            </li>
-                            <li class="item" value="pluie_legere">
-                                <span class="checkbox">
-                                    <i class="fa-solid fa-check check-icon"></i>
-                                </span>
-                                <span class="item-text">Pluie Légère</span>
-                            </li>
-                            <li class="item" value="pluie_forte">
-                                <span class="checkbox">
-                                    <i class="fa-solid fa-check check-icon"></i>
-                                </span>
-                                <span class="item-text">Pluie Forte</span>
-                            </li>
-                            <li class="item" value="temps_couverts">
-                                <span class="checkbox">
-                                    <i class="fa-solid fa-check check-icon"></i>
-                                </span>
-                                <span class="item-text">Temps Couverts</span>
-                            </li>
-                            <li class="item" value="temps_eblouissant">
-                                <span class="checkbox">
-                                    <i class="fa-solid fa-check check-icon"></i>
-                                </span>
-                                <span class="item-text">Temps Éblouissant</span>
-                            </li>
-                            <li class="item" value="neige_grêle">
-                                <span class="checkbox">
-                                    <i class="fa-solid fa-check check-icon"></i>
-                                </span>
-                                <span class="item-text">Neige/Grêle</span>
-                            </li>
-                            <li class="item" value="brouillard_fumée">
-                                <span class="checkbox">
-                                    <i class="fa-solid fa-check check-icon"></i>
-                                </span>
-                                <span class="item-text">Brouillard/Fumée</span>
-                            </li>
-                            <li class="item" value="vent_fort_tempêtes">
-                                <span class="checkbox">
-                                    <i class="fa-solid fa-check check-icon"></i>
-                                </span>
-                                <span class="item-text">Vent Fort/Tempête</span>
-                            </li>
-                        </ul>
-                        
-                    </div>
+                                Rajouter des boutons checkbox aux conditions pour que l'utilisateur puisse en selectionner plusieurs-->   
+                    <div >   
 
+
+                            <label for="condition_meteorologique">Condition météorologique  </label>
+                            <select onchange="getMeteo()" name="condition_meteorologique" id="condition_meteorologique">
+                                <option value="">-- Sélectionner  --</option>
+                            </select>
+
+
+                    </div>
 
                     <!-- Filtre tranche d'âges : 0-18 ans, 18-30 ans, 30-50 ans, 50 ans et plus-->  
                     <!-- /!\ A FAIRE : ne pas afficher toutes les tranches d'ages d'un coup mais juste selectionner une option ou plusieurs
@@ -263,6 +215,7 @@
     <script src="../JavaScript/load-carte.js"></script>
     <script src="../JavaScript/page_carte.js"></script>
     <script src="../JavaScript/load-filtre.js"></script>
+    <script src="../JavaScript/filtres-data.js"></script>
     
 
 </html>
