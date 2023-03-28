@@ -52,9 +52,8 @@ map.on('exitFullscreen', function(){
 //On peut rajouter plein d'options aux marqueurs et aux popups. A voir dans la documentation.
 
 
-async function createPin(){
-    loadCarte()
-    await getAccident()
+function createPin(){
+    //loadCarte()
    var markerCluster = new L.markerClusterGroup( { animate: true,
     animateAddingMarkers: true});  //créer un marqueurcluster pour regrouper les marqueurs
 
