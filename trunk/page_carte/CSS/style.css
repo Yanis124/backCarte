@@ -159,7 +159,6 @@ input[type="date"]{
 
 #spinner-carte{
     position: absolute;
-    top:200px;
-    left:300px;
+    margin:50%;
     z-index: 0;
 }

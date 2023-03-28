@@ -20,7 +20,7 @@ var facets=["datetime","reg_name","dep_name","atm","sexe","an_nais","grav","lum"
 
 
 
-var titlesExemple=["Nombre d'accidents par année ","Nombre d'accidents par région ","Nombre d'accicents par département ","Nombre d'accidents par condition métérologique ","Nombre de personnes accidentées par sexe ","Nombre de personnes accidentées par tranche d'âge ","Nombre de personnes accidentées en fonction de la gravité de l'accident ","Nombre d'accidents en fonction de la luminosité "] //titre des graphs (exemple par default)
+var titlesExemple=["nombre d'accident par année ","nombre d'accident par région ","nombre d'accicent par département","nombre d'accident par conditions métérologique ","nombre de personnes accidentées par sexe ","nombre de personnes accidentées  par tranche d'age ","nombre de personnes accidentées par gravité de l'accident ","nombre d'accident jour/nuit "] //titre des graphs (exemple par default)
 
 var titles=[]
 
@@ -102,7 +102,7 @@ function updateTitles(){  //mettre a jour le titre du graph
         }
     }
     else{
-        titles[0]+="en France "
+        titles[0]+="France "
     }
 
     if(inputAnneeGraph && inputAnneeGraph!="toutes-les-annees"){
@@ -172,7 +172,7 @@ function selectColonne(inputChart){ //changer  le type de graph
     
 }
 
-function configCamembert(){   // la config de chaque type de graphe
+function configCamembert(){   // la config de chaque type de graph
     chart.config.type="pie"
     chart.options.scales.x.display=false
     chart.options.scales.y.display=false
@@ -184,7 +184,7 @@ function configCamembert(){   // la config de chaque type de graphe
 
 function configColonne(){
 
-    chart.config.type="bar"  //mettre a jour le type de graphe
+    chart.config.type="bar"  //mettre a jour le type de graph
     chart.options.scales.x.display=true
     chart.options.scales.y.display=true
     chart.data.datasets[0].backgroundColor=color_bar

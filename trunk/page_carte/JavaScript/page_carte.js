@@ -1,4 +1,11 @@
-
+var greenIcon = new L.Icon({ //modifier le marqueur
+    iconUrl: '../images/marker.svg',
+    shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+    iconSize: [40, 60],
+    iconAnchor: [12, 41],
+    popupAnchor: [1, -34],
+    shadowSize: [41, 41]
+  });
 
 
 
@@ -48,18 +55,20 @@ map.on('exitFullscreen', function(){
 async function createPin(){
     loadCarte()
     await getAccident()
-   var markerCluster = new L.markerClusterGroup();  //créer un marqueurcluster pour regrouper les marqueurs
+   var markerCluster = new L.markerClusterGroup( { animate: true,
+    animateAddingMarkers: true});  //créer un marqueurcluster pour regrouper les marqueurs
 
     for(var i=0;i<listAccident.length;i++){
         try{
             var a=listAccident[i].fields.coordonnees[0]; 
             var b=listAccident[i].fields.coordonnees[1];
-            var marker=L.marker([a,b])
+            var marker=L.marker([a,b],{icon: greenIcon})
             pop=L.popup({content:"<h1> numero d'accident : "+listAccident[i].fields.num_acc+"</h1> "+ //numero d'accident
-                        "<p style='font-size:15px'>"+listAccident[i].fields.jour+"/"+listAccident[i].fields.mois+"/"+listAccident[i].fields.an+", "+ //date et l'heure
-                        listAccident[i].fields.hrmn+"</p>"+
-                    "<p style='font-size:15px'>"+"adresse: "+listAccident[i].fields.adr+"</p>"+
-                "<p style='font-size:15px'>"+"Condition Atmosphériques: "+listAccident[i].fields.atm+"</p>"
+            "<p style='font-size:15px;color:#1b6698';>"+"<span style=' font-size:15px ;font-weight: 700;'>"+listAccident[i].fields.jour+"/"+listAccident[i].fields.mois+"/"+listAccident[i].fields.an+", "+ //date et l'heure
+            listAccident[i].fields.hrmn+"</span>"+"</p>"+
+                        "<ul style='display:flex;flex-direction:column; padding:0'>"+
+                    "<li style='font-size:15px;color:#1b6698';>"+"adresse: "+"<span style='font-size:15px;font-weight: 700';>"+listAccident[i].fields.adr+"</span>"+"</li>"+
+                "<li style='font-size:15px;color:#1b6698;'>"+"Condition Atmosphériques: "+"<span style= 'font-size:15px; font-weight: 700;'>"+listAccident[i].fields.atm+"</span>"+"</li></ul>"
             })  //adresse
             marker.bindPopup(pop)    //ajouter le popup
             markerCluster.addLayer(marker);
@@ -100,9 +109,17 @@ function style(note){
        
         
     
-        note[i].style.backgroundColor = 'gray'
+        note[i].style.backgroundColor = "black"
+        note[i].style.fontSize="10px"
+        
+        note[i].style.fontSize="20px"
         note[i].style.padding="15px"
+        
         note[i].style.borderRadius="70px"
+        note[i].style.borderColor="white"
+        note[i].style.borderWidth="2px"
+        note[i].style.borderStyle="solid"
+
         note[i].style.color = 'white' 
         
         
@@ -131,5 +148,4 @@ function regrouper(){  //appliquer le style a tous les clusters
 }
 
 setInterval(regrouper, 500)  //on appel la fonction regrouper tous les 500ms
-
 

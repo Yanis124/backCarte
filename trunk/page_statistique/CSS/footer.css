@@ -58,9 +58,10 @@ footer ul li{
 
 
 
-span{
+#nombre-accident{
     display: flex;
     font-size: 25px;
+    
 }
 
 
