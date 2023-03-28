@@ -26,9 +26,9 @@
                 <a class="anc-sous-titre" href="../../page_carte/HTML/page_carte.html"> <li >Carte</li> </a>
            
             
-                <a class="anc-sous-titre" href="../../page_carte/page_carte.html"> <li>Crédits</li> </a>
+                <a class="anc-sous-titre" href="../../page_carte/page_carte.html"> <li>Crédit</li> </a>
 
-                <a class="anc-sous-titre" href="../../page_A_propos_de_nous/page_a-propos-de-nous.html"> <li>À propos de nous</li> </a>
+                <a class="anc-sous-titre" href="../../page_A_propos_de_nous/page_a-propos-de-nous.html"> <li>a propos de nous</li> </a>
             </ul>
         
 
@@ -48,12 +48,12 @@
                 
                                 <div class="filtres-container">
                                     <div class="axe-x-container">
-                                        <label for="axe-x">Axe X :</label>
+                                        <label for="axe-x">axe X :</label>
                                         <select id="axe-x" onchange="afficherFiltres(); getValueX()" name="axe-x">
                                             <option value="datetime">année</option>
                                             <option value="reg_name">région</option>
                                             <option value="dep_name">département</option>
-                                            <option value="atm">condition métérologique</option>
+                                            <option value="atm">condition métérologiques</option>
                                             <option value="sexe">sexe</option>
                                             <option value="an_nais">tranche d'age</option>
                                             <option value="grav">gravité</option>
@@ -61,7 +61,7 @@
                                         </select>
                                     </div>
                                     <div class="colonne-container">
-                                        <label for="colonne">Type de graphe : </label>
+                                        <label for="colonne">colonne :</label>
                                         <select id="graph-select" onchange="getValueColonne()" name="colonne">
                                             <option value="courbe">courbe</option>
                                             <option value="colonne">colonne</option>
@@ -69,9 +69,9 @@
                                         </select>
                                     </div> 
                                     <div class="filtre-lieu-container" >
-                                        <label for="lieu">Lieu :</label>
+                                        <label for="lieu">lieu :</label>
                                         <select onchange="getLieu()" name="lieu" id="lieu-select">
-                                            <option value="tous-les-lieus">tous les lieux</option>
+                                            <option value="tous-les-lieus">tous les lieus</option>
                                             
                                         </select>
                                     </div>
@@ -93,7 +93,7 @@
                                 </div>                        
                         <div class="graph-container" id="graph-container">
                             <canvas id="canvas">
-                                <!-- le graphe sera afficher ici-->
+                                <!-- le graph sera afficher ici-->
                             </canvas>
                             <svg id="spinner-graph"  width="80px" height="80px" viewBox="0 0 66 66" >
                                 <circle class="path" fill="none" stroke-width="6" stroke-linecap="round" cx="33" cy="33" r="30"></circle>
@@ -108,13 +108,13 @@
                                 <thead>
                                     <tr>
                                         <th>
-                                            Classement
+                                            classement
                                         </th>
                                         <th>
-                                             Région
+                                             région
                                         </th>
                                         <th>
-                                            Nombre d'accidents
+                                            nombre d'accident 
                                         </th>
                                     </tr>
                                 </thead>
@@ -175,7 +175,7 @@
             </div>
             
             <div class="liens-utils-container">
-                <p>Liens utiles</p>
+                <p>Liens utils</p>
                 <ul>
                     <a href="https://public.opendatasoft.com/explore/?sort=modified"> <li>opendatasoft</li> </a>
                     <a href="https://www.data.gouv.fr/fr/"> <li>datagouv</li> </a>
@@ -183,7 +183,7 @@
             </div>  
             
             <div class="nombre-accident">
-                <p>Nombre d'accident enregistrés</p>
+                <p>nombre d'accident enregistrés</p>
                 <span id="nombre-accident"></span>
             </div>
         
