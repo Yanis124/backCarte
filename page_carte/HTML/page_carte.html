@@ -104,7 +104,7 @@
                     <!-- Filtre regions sans les regions outre mer-->  
                     <div>
                         <label for="region">Region </label>
-                        <select id="region" name="region" onchange="getRegion()">
+                        <select id="region" name="region" onchange="getRegion(); resetDepartement()">
                             <option value="allRegions">-- Sélectionner une region --</option>
                         </select>  
 
@@ -113,7 +113,7 @@
                     <!-- Filtre departement sans les departements outre mer--> 
                     <div>
                         <label for="departement">Département </label>
-                        <select id="departement" name="departement" onchange="getDepartement();">
+                        <select id="departement" name="departement" onchange="getDepartement(); resetVilles()">
                             <option value="allDepartements">-- Sélectionner un département --</option>
                         </select>
 
