@@ -15,7 +15,7 @@ if(choix_date=="date-specifique"){
         }
     }
 }
-else if (choix_date=="intervalle-dates"){ //Comment comparer des dates ?
+else if (choix_date=="intervalle-dates"){ //Comment comparer des dates ? AAAA-MM-JJ 
     for(var i=0;i<listAccident.length;i++){
 }
 }
@@ -23,8 +23,8 @@ else if (choix_date=="intervalle-dates"){ //Comment comparer des dates ?
 listAccidentDepartement=[]
 if(selectedDepartement)
        for(var i=0;i<listAccident.length;i++){
-        if(selectedDepartement==listAccident[i].fields.dep){//Problème departement en code ici et en nom autre part
-
+        if(selectedDepartement==listAccident[i].fields.dep_name){
+            listAccidentDepartement.push(listAccident[i]);   
         }
        } 
 }
