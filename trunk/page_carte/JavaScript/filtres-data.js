@@ -6,9 +6,7 @@ var listAccidentRegions=[]
 var filtre=false //pour indiquer a la fonction createPin d'utiliser listAccidntFiltre
 
 function getDataFiltre(){
-
-    filtre=true 
-    
+    filtre=true   
     if(selectedLum){
         listAccidentLum=[]
 
@@ -26,9 +24,7 @@ function getDataFiltre(){
                         listAccidentLum.push(listAccident[i])
                     }
                 }
-        }
-        
-        
+        }       
     }
     
 
