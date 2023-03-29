@@ -142,16 +142,11 @@ input[type="date"]{
 
 /*Menu Barre Déroulante avec élément de type Checkbox*/
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
-}
+
 
 .container{
-    position: relative;
-    max-width: 300px; /*taille maximale de la box*/
+   
+    
     width: 100%;
 }
 .select-btn{
@@ -164,6 +159,7 @@ input[type="date"]{
     cursor: pointer;
     background-color: #fff;
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+    width:50%;
 }
 .select-btn .btn-text{
     font-size: 15px;
@@ -190,12 +186,15 @@ input[type="date"]{
     margin-top: 5px;
     border-radius: 8px;
     padding: 16px;
-    background-color: #fff;
+    padding-left:0;
+    
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
     display: none;
+    z-index: 100;
 }
 .select-btn.open ~ .list-items{
     display: block;
+  
 }
 .list-items .item{
     display: flex;
@@ -206,9 +205,11 @@ input[type="date"]{
     transition: 0.3s;
     padding: 0 15px;
     border-radius: 8px ;
+  
 }
 .list-items .item:hover{
     background-color: #e7edfe;
+    
 }
 .item .item-text{
     font-size: 14px;
@@ -234,4 +235,8 @@ input[type="date"]{
 }
 .item.checked .check-icon{
     transform: scale(1);
+}
+
+.list-items li{
+    background-color: #fff;
 }
