@@ -1,0 +1,58 @@
+/* Bouton Radio Jour et Nuit cliquable */
+:root{
+    --primary-color : lightgrey;
+}
+*{
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+
+.radio-tile-group{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+} 
+.input-container{
+    position: relative;
+    height: 30px;
+    width: 65px;
+    margin: 0.5rem;
+}
+.input-container input{
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    cursor: pointer;
+    z-index: 2;
+    opacity: 0;
+}
+
+.input-container .radio-tile{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    border : 2px solid rgb(83, 77, 77);
+    border-radius: 14px;
+    transition: all 200ms ease;
+}
+
+.input-container label{
+    color : black;
+    font-size: 0.80rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px ;
+}
+
+input:checked + .radio-tile{
+    background-color: var(--primary-color);
+}
+input:hover + .radio-tile{
+    box-shadow: 0 0 12px var(--primary-color);
+}
+input:checked + .radio-tile label{
+    color: white;
+}
