@@ -1,3 +1,15 @@
+const selectBtn = document.querySelector(".select-btn"),
+    items = document.querySelectorAll(".item");
+
+selectBtn.addEventListener("click", () => {
+    selectBtn.classList.toggle("open");
+});
+items.forEach(item => {
+    item.addEventListener("click", () => {
+        item.classList.toggle("checked");
+    });
+}) 
+
 var greenIcon = new L.Icon({ //modifier le marqueur
     iconUrl: '../images/marker.svg',
     shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
