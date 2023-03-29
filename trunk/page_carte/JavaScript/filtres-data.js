@@ -5,7 +5,11 @@ var listAccidentRegions=[]
 
 var filtre=false //pour indiquer a la fonction createPin d'utiliser listAccidentFiltre
 
-function getDataFiltre(){
+async function getDataFiltre(){
+    loadCarte()  //ajouter une animation de chargement 
+    loadFiltre()
+
+    await new Promise(r => setTimeout(r, 2000)); //sleep(2) pour executer loadCarte() et loadFiltre() //a refaire 
     filtre=true   
     if(selectedLum){
         listAccidentLum=[]
