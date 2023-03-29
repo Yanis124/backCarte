@@ -185,8 +185,7 @@
                                 </span>
                                 <span class="item-text">Vent Fort/Tempête</span>
                             </li>
-                        </ul>
-                        
+                        </ul>   
                     </div>
 
                     <!-- Filtre tranche d'âges : 0-18 ans, 18-30 ans, 30-50 ans, 50 ans et plus--> 
@@ -220,19 +219,47 @@
                                 <span class="checkbox">
                                     <i class="fa-solid fa-check check-icon"></i>
                                 </span>
+                                <span class="item-text">30-50 ans</span>
+                            </li>
                         </ul>
                     </div>
 
                     <!-- Filtre Gravité accident : indemne, blessé léger, blessé hospitalisé, tué-->  
-                    <!-- /!\ A FAIRE : ne pas afficher toutes les types de gravité d'accident d'un coup mais juste selectionner une option ou plusieurs
-                                Rajouter des boutons checkbox aux conditions pour que l'utilisateur puisse en selectionner plusieurs--> 
-                    <div>        
-                        <label for="gravite">Gravité de l'accident  </label>
-                        <select onchange=" getGravite()" name="gravite" id="gravite" >
-                            <option value="allGravite">--selectionner une tranche d'age</option>
-                            <option value="tue">Tué</option>
-                        </select>
+                    <div class="container">
+                        <div class="select-btn">
+                            <span class="btn-text">-- Gravité de l'accident --</span>
+                            <span class="arrow-dwn">
+                                <i class="fa-solid fa-chevron-down"></i>
+                                </span>
+                        </div>
+                        <ul class="list-items">
+                            <li class="item" value="indemne">
+                                <span class="checkbox">
+                                    <i class="fa-solid fa-check check-icon"></i>
+                                </span>
+                                <span class="item-text">Indemne</span>
+                            </li>
+                            <li class="item" value="leger">
+                                <span class="checkbox">
+                                    <i class="fa-solid fa-check check-icon"></i>
+                                </span>
+                                <span class="item-text">Blessé Léger</span>
+                            </li>
+                            <li class="item" value="hospitalisé">
+                                <span class="checkbox">
+                                    <i class="fa-solid fa-check check-icon"></i>
+                                </span>
+                                <span class="item-text">Blessé Hospitalisé</span>
+                            </li>
+                            <li class="item" value="tue">
+                                <span class="checkbox">
+                                    <i class="fa-solid fa-check check-icon"></i>
+                                </span>
+                                <span class="item-text">Tué</span>
+                            </li>
+                        </ul>
                     </div>
+
                     <!-- Filtre Luminosité : Jour, Nuit--> 
                     <div>
                         
