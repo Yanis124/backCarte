@@ -1,4 +1,4 @@
-    <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="fr">
     <head>
         <meta charset="utf-8">
@@ -189,19 +189,38 @@
                         
                     </div>
 
-                    <!-- Filtre tranche d'âges : 0-18 ans, 18-30 ans, 30-50 ans, 50 ans et plus-->  
-                    <!-- /!\ A FAIRE : ne pas afficher toutes les tranches d'ages d'un coup mais juste selectionner une option ou plusieurs
-                                Rajouter des boutons checkbox aux conditions pour que l'utilisateur puisse en selectionner plusieurs--> 
-                    <div>
-                        <label for="tranche-age">Tranche d'âge  </label>
-                        <select onchange="getAge()" name="tranche-age" id="tranche-age" >
-                            <option value="allAges">--selectionner une tranche d'age</option>
-                            <option value="0-18">0-18 ans</option>
-                            <option value="18-30">18-30 ans</option>
-                            <option value="30-50">30-50 ans</option>
-                            <option value="50_et_plus">50 ans et plus</option>
-                        </select>
-                
+                    <!-- Filtre tranche d'âges : 0-18 ans, 18-30 ans, 30-50 ans, 50 ans et plus--> 
+                    <div class="container">
+                        <div class="select-btn">
+                            <span class="btn-text">-- Tranches d'âges --</span>
+                            <span class="arrow-dwn">
+                                <i class="fa-solid fa-chevron-down"></i>
+                                </span>
+                        </div>
+                        <ul class="list-items">
+                            <li class="item" value="0-18">
+                                <span class="checkbox">
+                                    <i class="fa-solid fa-check check-icon"></i>
+                                </span>
+                                <span class="item-text">0-18 ans</span>
+                            </li>
+                            <li class="item" value="18-30">
+                                <span class="checkbox">
+                                    <i class="fa-solid fa-check check-icon"></i>
+                                </span>
+                                <span class="item-text">18-30 ans</span>
+                            </li>
+                            <li class="item" value="30-50">
+                                <span class="checkbox">
+                                    <i class="fa-solid fa-check check-icon"></i>
+                                </span>
+                                <span class="item-text">30-50 ans</span>
+                            </li>
+                            <li class="item" value="50_et_plus">
+                                <span class="checkbox">
+                                    <i class="fa-solid fa-check check-icon"></i>
+                                </span>
+                        </ul>
                     </div>
 
                     <!-- Filtre Gravité accident : indemne, blessé léger, blessé hospitalisé, tué-->  
