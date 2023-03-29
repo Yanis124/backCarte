@@ -1,6 +1,6 @@
 const selectBtn = document.querySelectorAll(".select-btn"),
-    items = document.querySelectorAll(".item"),
-    resetBtn = document.querySelector('input[type="reset"]');
+items = document.querySelectorAll(".item"),
+resetBtn = document.querySelector('input[type="reset"]');
 
 selectBtn.forEach(selectBtn => {
     selectBtn.addEventListener("click", () => {
@@ -52,14 +52,19 @@ function initMap(){  //Initialisation de la carte
         maxwidth:100,
         position:"bottomleft"
     }).addTo(map)
-  }
-
-
-function removeMap(){
-    map.off()
-    map.remove()
 }
 
+
+function removePin(){  //supprimer tous les marqueurs
+    //console.log(markerCluster)
+    
+    markerCluster.clearLayers()
+   
+    //console.log(markerCluster)
+    
+}
+
+markerCluster = new L.markerClusterGroup( { animate: true,animateAddingMarkers: true});  //créer un marqueurcluster pour regrouper les marqueurs
 
 
  
@@ -68,14 +73,17 @@ function removeMap(){
 
 
 async function createPin(){
-    initMap()
+    
     loadCarte()
-    //loadFiltre()
+    loadFiltre()
     //console.log(listAccidentFiltre.length)
-    var markerCluster = new L.markerClusterGroup( { animate: true,animateAddingMarkers: true});  //créer un markercluster pour regrouper les marqueurs
+    markerCluster = new L.markerClusterGroup( { animate: true,animateAddingMarkers: true});  //créer un markercluster pour regrouper les marqueurs
     if(!filtre){ //on afficher tous les pin si on ne filtre pas
-        await getAccident()
         var list=listAccident
+        if(list.length<=0){
+            await getAccident()
+        }
+        
     }
     else{   //sinon ceux qui sont filtres
         var list=listAccidentFiltre
