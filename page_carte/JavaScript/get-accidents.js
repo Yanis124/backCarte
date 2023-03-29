@@ -31,7 +31,7 @@ async function getDepartement(){  //recuperer les departements
 
 async function getAccident(){  //faire des appels par departement mais limite le nombre d'accident par departement a 10000
     await getDepartement()
-    var api="https://public.opendatasoft.com/api/records/1.0/search/?dataset=accidents-corporels-de-la-circulation-millesime&q=&rows=1000&refine.dep_name="
+    var api="https://public.opendatasoft.com/api/records/1.0/search/?dataset=accidents-corporels-de-la-circulation-millesime&q=&rows=9999&refine.dep_name="
 
   
     for(var i=0;i<listDepartement.length;i++){
