@@ -37,7 +37,7 @@
     
         
     </head>
-    <body onload="nomRegions(); nomDepartements(); nomVilles() ; dateLimit() ; getAllMeteo() ;getAllGravite();createPin() ">
+    <body onload="nomRegions(); nomDepartements(); nomVilles() ; dateLimit() ; getAllMeteo() ;getAllGravite();initMap();createPin() ">
         <header id="#top">
         
             <ul class="list-header">
@@ -270,7 +270,7 @@
                     </div>
                 </div>
 
-                <div class="reset-container">
+                <div onclick="initFiltre()" class="reset-container">
                 
                     <input type="reset" value="Remettre à zéro">
                 </div>

@@ -42,34 +42,44 @@ function getDataFiltre(){
         listAccidentRegions=listAccident;
     }
 
-    selectDataFiltre()
+    selectDataFiltre()  //intersection des listes
 
-   console.log(listAccidentLum)
-   console.log(listAccidentRegions)
+
+
    
-   console.log(listAccidentFiltre)
-   initFiltreMap()
+   removePin()
+   createPin()
+   
 }
 
 
-function initFiltreMap(){
-    removeMap() //supprimer la map
-    createPin()  //creer les marqueurs
-}
 
 function selectDataFiltre(){
-    if(selectedRegion && !selectedLum){
-        listAccidentFiltre= listAccidentRegions.filter(x => listAccident.includes(x));  //intersection entre les deux listes
+    if(!selectedRegion){
+        listAccidentRegions=listAccident
     }
 
-    if(selectedLum && !selectedRegion){
-        listAccidentFiltre= listAccidentLum.filter(x => listAccident.includes(x));  //intersection entre les deux listes
+    if(!selectedLum){
+        listAccidentLum= listAccident
     }
+    console.log(listAccidentLum)
+    console.log(listAccidentRegions)
+   
+   
+   
 
-    if(selectedLum && selectedRegion){
-        listAccidentFiltre=listAccidentLum.filter(x => listAccidentRegions.includes(x));
+   
+    listAccidentFiltre=listAccidentLum.filter(x => listAccidentRegions.includes(x)); //intersection entre listRegion et listLum
 
-    }
+    console.log(listAccidentFiltre)
 }
 
+
+function initFiltre(){
+    selectedLum=selectedRegion=null //remettre a 0 les filtres 
+      
+    filtre=false   
+    removePin()     //supprimer lss marqueurs de la carte
+    createPin()     
+}
 
