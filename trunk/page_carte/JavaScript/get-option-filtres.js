@@ -1,4 +1,4 @@
-//definir les filtres comme variables globales pour avoir un access a leurs valeurs depuis tous les fichiers 
+//definir les filtres comme variables globales pour avoir un accès à leurs valeurs depuis tous les fichiers 
 
 var date=document.getElementById("date")
 var dateStart=document.getElementById("date-debut")
