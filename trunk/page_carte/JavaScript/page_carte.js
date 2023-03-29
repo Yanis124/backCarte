@@ -163,3 +163,12 @@ function style(note){
 
 setInterval(regrouper, 500)  //on appel la fonction regrouper tous les 500ms
 
+//Lors changement de region le departement selectionnné revient a -- selectionner
+function resetDepartement() {
+    document.getElementById("departement").selectedIndex = 0;
+    resetVille();
+}
+//Lors changement de region ou departement la ville selectionnné revient à -- selectionner
+function resetVille() {
+    document.getElementById("ville").selectedIndex = 0;
+}

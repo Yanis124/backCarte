@@ -42,13 +42,6 @@ function getRegion() {      // Région sélectionnée
     selectedRegion = regionSelect.value; 
     getDataFiltre()
 
-
-    if(!selectedRegion || selectedRegion==="allRegions"){ //si on choisi "selectionner une regions on affiche tous les departements et les villes"
-        nomDepartements()
-        nomVilles()
-    }
-    else{
-  
         // URL de l'API pour les départements de la région sélectionnée
         var apiUrl = "https://public.opendatasoft.com/api/records/1.0/search/?dataset=accidents-corporels-de-la-circulation-millesime&q=&rows=0&facet=dep_name&refine.reg_name=" + selectedRegion; // permet encoder un nouvel URL avec la region selectionné
     
@@ -90,7 +83,7 @@ function getRegion() {      // Région sélectionnée
                 villeSelect.add(option);
             });
         })
-    }
+
     console.log(selectedRegion)
 }
 
