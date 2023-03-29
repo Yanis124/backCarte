@@ -1,5 +1,6 @@
 const selectBtn = document.querySelector(".select-btn"),
     items = document.querySelectorAll(".item");
+    resetBtn = document.querySelector('input[type="reset"]');
 
 selectBtn.addEventListener("click", () => {
     selectBtn.classList.toggle("open");
@@ -8,7 +9,12 @@ items.forEach(item => {
     item.addEventListener("click", () => {
         item.classList.toggle("checked");
     });
-}) 
+});  
+items.forEach(item => {
+    resetBtn.addEventListener("click", () => {
+        item.classList.remove('checked');
+    });
+});
 
 var greenIcon = new L.Icon({ //modifier le marqueur
     iconUrl: '../images/marker.svg',
