@@ -1,9 +1,11 @@
-const selectBtn = document.querySelector(".select-btn"),
-    items = document.querySelectorAll(".item");
+const selectBtn = document.querySelectorAll(".select-btn"),
+    items = document.querySelectorAll(".item"),
     resetBtn = document.querySelector('input[type="reset"]');
 
-selectBtn.addEventListener("click", () => {
-    selectBtn.classList.toggle("open");
+selectBtn.forEach(selectBtn => {
+    selectBtn.addEventListener("click", () => {
+        selectBtn.classList.toggle("open");
+    }); 
 });
 items.forEach(item => {
     item.addEventListener("click", () => {
