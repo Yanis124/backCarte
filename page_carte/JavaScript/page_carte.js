@@ -72,7 +72,7 @@ function removeMap(){
 async function createPin(){
     initMap()
     loadCarte()
-    loadFiltre()
+    //loadFiltre()
     //console.log(listAccidentFiltre.length)
     var markerCluster = new L.markerClusterGroup( { animate: true,animateAddingMarkers: true});  //créer un marqueurcluster pour regrouper les marqueurs
     if(!filtre){ //on afficher tous les pin si on ne filtre pas
