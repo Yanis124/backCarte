@@ -62,17 +62,7 @@ function removeMap(){
 
 
 
-
-
-
-
-
-
-
-
-
  
-
 //Fonction pour créer un marqueur ainsi que le contenu de son popup.
 //On peut rajouter plein d'options aux marqueurs et aux popups. A voir dans la documentation.
 
@@ -82,7 +72,7 @@ async function createPin(){
     loadCarte()
     //loadFiltre()
     //console.log(listAccidentFiltre.length)
-    var markerCluster = new L.markerClusterGroup( { animate: true,animateAddingMarkers: true});  //créer un marqueurcluster pour regrouper les marqueurs
+    var markerCluster = new L.markerClusterGroup( { animate: true,animateAddingMarkers: true});  //créer un markercluster pour regrouper les marqueurs
     if(!filtre){ //on afficher tous les pin si on ne filtre pas
         await getAccident()
         var list=listAccident
@@ -120,9 +110,7 @@ async function createPin(){
 
 
 
-
-
-function regrouper(){
+function regrouper(){ //Appliquer le style a tous les clusters
 
     
     const noteSmall = document.getElementsByClassName("leaflet-marker-icon marker-cluster marker-cluster-small leaflet-zoom-animated leaflet-interactive ");
@@ -164,26 +152,6 @@ function style(note){
     }
 
 }  
-
-function regrouper(){  //appliquer le style a tous les clusters
-
-    
-    const noteSmall = document.getElementsByClassName("leaflet-marker-icon marker-cluster marker-cluster-small leaflet-zoom-animated leaflet-interactive ");
-    const noteMedium=document.getElementsByClassName("leaflet-marker-icon marker-cluster marker-cluster-medium leaflet-zoom-animated leaflet-interactive")
-    const noteLarge=document.getElementsByClassName("leaflet-marker-icon marker-cluster marker-cluster-large leaflet-zoom-animated leaflet-interactive")
-    //selectionner les objets  a chaque fois qu'on zoom ou on dezoom des numeros apparaissent pour indiquer le nombre de marqueurs regrouper
-    
-        
-    if(noteSmall.length>0){  //note sont des tableaux d'element
-        style(noteSmall)
-    }
-    if(noteMedium.length>0){
-        style(noteMedium)
-    }
-    if(noteLarge.length>0){
-        style(noteLarge) //appeler la fonction style
-    }
-}
 
 setInterval(regrouper, 500)  //on appel la fonction regrouper tous les 500ms
 

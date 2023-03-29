@@ -3,7 +3,7 @@ var listAccidentFiltre=[]
 var listAccidentLum=[]
 var listAccidentRegions=[]
 
-var filtre=false //pour indiquer a la fonction createPin d'utiliser listAccidntFiltre
+var filtre=false //pour indiquer a la fonction createPin d'utiliser listAccidentFiltre
 
 function getDataFiltre(){
     filtre=true   
@@ -38,14 +38,14 @@ function getDataFiltre(){
         }
        
     }
+    else if (selectedRegion=="allRegions"){
+        listAccidentRegions=listAccident;
+    }
 
     selectDataFiltre()
 
-
-
    console.log(listAccidentLum)
    console.log(listAccidentRegions)
-   
    
    console.log(listAccidentFiltre)
    initFiltreMap()
@@ -53,7 +53,7 @@ function getDataFiltre(){
 
 
 function initFiltreMap(){
-    removeMap() //supprmier la map
+    removeMap() //supprimer la map
     createPin()  //creer les marqueurs
 }
 
