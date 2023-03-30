@@ -3,19 +3,22 @@ items = document.querySelectorAll(".item"),
 resetBtn = document.querySelector('input[type="reset"]');
 
 selectBtn.forEach(selectBtn => {
-    selectBtn.addEventListener("click", () => {
-        selectBtn.classList.toggle("open");
-    }); 
+selectBtn.addEventListener("click", () => {
+    selectBtn.classList.toggle("open");
+}); 
 });
 items.forEach(item => {
-    item.addEventListener("click", () => {
-        item.classList.toggle("checked");
-    });
+item.addEventListener("click", () => {
+    item.classList.toggle("checked");
+    const selectedItems = document.querySelectorAll(".checked"); // Récupérer tous les éléments avec la classe "checked"
+    const selectedValues = Array.from(selectedItems).map(item => item.getAttribute("value")); // Récupérer les valeurs de l'attribut "value" des éléments sélectionnés
+    console.log(selectedValues); // Afficher les valeurs sélectionnées dans la console
+});
 });  
 items.forEach(item => {
-    resetBtn.addEventListener("click", () => {
-        item.classList.remove('checked');
-    });
+resetBtn.addEventListener("click", () => {
+    item.classList.remove('checked');
+});
 });
 
 var greenIcon = new L.Icon({ //modifier le marqueur
