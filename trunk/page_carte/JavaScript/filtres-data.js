@@ -3,6 +3,7 @@ var listAccidentFiltre=[];
 var listAccidentLum=[];
 var listAccidentRegions=[];
 var listAccGravite = [];
+var listAccidentVille=[];
 
 var filtre=false //pour indiquer a la fonction createPin d'utiliser listAccidentFiltre
 
@@ -46,7 +47,41 @@ async function getDataFiltre(){
     else if (selectedRegion=="allRegions"){
         listAccidentRegions=listAccident;
     }
-
+    
+    
+    /*
+    if(selectedVille){
+		listAccidentVille = []
+		
+		for(let i = 0; i<listAccident.length; i++){
+			if(listAccident[i].fields.com_name==selectedVille){
+				listAccidentVille.push(listAccident[i])
+			}
+		}
+	}
+	else if(selectedVille=="allVilles"){
+		listAccidentVille=listAccident);
+	} */
+    
+    /*
+    //Sert à sélectionner l'âge, la gravité de l'accident & les conditions météo
+    if(selectedValues){
+		listAccidentGAM = []
+		
+		//On commence par la météo
+		listAccidentMeteo = []
+		if(selectedValues.find(element => element == "Normale"){	
+			const retourMeteoNormal = listAccident.filter(accident => accident.fields.atm == "Normale")
+		}
+		
+		if(selectedValues.find(element => element == "Pluie forte"){	
+			const retourMeteoPluieForte = listAccident.filter(accident => accident.fields.atm == "Pluie forte")
+		}
+		
+		listAccidentMeteo = retournMeteoNormal + retourMeteoPluieForte
+		console.log(listAccidentMeteo)
+	}
+	*/
     selectDataFiltre()  //intersection des listes
 
 
