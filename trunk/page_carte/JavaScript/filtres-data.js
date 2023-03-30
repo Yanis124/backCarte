@@ -1,7 +1,8 @@
-var listAccidentFiltre=[]
+var listAccidentFiltre=[];
 
-var listAccidentLum=[]
-var listAccidentRegions=[]
+var listAccidentLum=[];
+var listAccidentRegions=[];
+var listAccGravite = [];
 
 var filtre=false //pour indiquer a la fonction createPin d'utiliser listAccidentFiltre
 
