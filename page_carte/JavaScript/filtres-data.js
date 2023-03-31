@@ -1,9 +1,15 @@
-var listAccidentFiltre=[];
+var listAccidentFiltre=[]
 
-var listAccidentLum=[];
-var listAccidentRegions=[];
-var listAccGravite = [];
-var listAccidentVille=[];
+var listAccidentLum=[]
+var listAccidentRegions=[]
+
+
+
+
+function execute(a){
+
+    console.log(a.children[1].innerText)
+}
 
 var filtre=false //pour indiquer a la fonction createPin d'utiliser listAccidentFiltre
 
@@ -47,41 +53,7 @@ async function getDataFiltre(){
     else if (selectedRegion=="allRegions"){
         listAccidentRegions=listAccident;
     }
-    
-    
-    /*
-    if(selectedVille){
-		listAccidentVille = []
-		
-		for(let i = 0; i<listAccident.length; i++){
-			if(listAccident[i].fields.com_name==selectedVille){
-				listAccidentVille.push(listAccident[i])
-			}
-		}
-	}
-	else if(selectedVille=="allVilles"){
-		listAccidentVille=listAccident);
-	} */
-    
-    /*
-    //Sert à sélectionner l'âge, la gravité de l'accident & les conditions météo
-    if(selectedValues){
-		listAccidentGAM = []
-		
-		//On commence par la météo
-		listAccidentMeteo = []
-		if(selectedValues.find(element => element == "Normale"){	
-			const retourMeteoNormal = listAccident.filter(accident => accident.fields.atm == "Normale")
-		}
-		
-		if(selectedValues.find(element => element == "Pluie forte"){	
-			const retourMeteoPluieForte = listAccident.filter(accident => accident.fields.atm == "Pluie forte")
-		}
-		
-		listAccidentMeteo = retournMeteoNormal + retourMeteoPluieForte
-		console.log(listAccidentMeteo)
-	}
-	*/
+
     selectDataFiltre()  //intersection des listes
 
 
@@ -115,8 +87,12 @@ function selectDataFiltre(){
 }
 
 
-function initFiltre(){
+async function initFiltre(){
     selectedLum=selectedRegion=null //remettre a 0 les filtres 
+    loadCarte()  //ajouter une animation de chargement 
+    loadFiltre()
+
+    await new Promise(r => setTimeout(r, 2000)); //sleep(2) pour executer loadCarte() et loadFiltre() //a refaire 
       
     filtre=false   
     removePin()     //supprimer lss marqueurs de la carte

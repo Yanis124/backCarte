@@ -9,6 +9,7 @@ header{
     z-index:10; 
     background-color: var(--header-bg);
     height:8%;  /* il prend 10% de la hauteur de la page*/
+    font-weight: var(--filtre-carte-weight);
     
     
     
@@ -47,7 +48,7 @@ ul a{
 
 /* le titre "Accidentologie " aura un style different des autres titres */
 .anc-title{
-    font-weight: bold;
+    font-weight: var(--text-title-weight);
     width:40%;  /*titre prend 40% de la largeur du header*/
     color:white;
     justify-content: start;

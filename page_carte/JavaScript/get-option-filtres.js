@@ -11,12 +11,15 @@ var villeSelect = document.getElementById("ville")
 
 var graviteSelect=document.getElementById("gravite")
 
-var meteoSelect=document.getElementById("condition_meteorologique")
+var meteoSelect=document.getElementById("weather-container")
 
 var ageSelect=document.getElementById("tranche-age")
 
 var jourSelect=document.getElementById("jour")
 var nuitSelect=document.getElementById("nuit")
+
+
+
 
 
 
@@ -69,19 +72,31 @@ async function getAllMeteo(){  //recuperer toutes les conditions meterologiques
         console.log("erreur de fetch") //gerer les erreurs
     }
 
+   
+
+    console.log(meteoSelect)
+
     
 
     //console.log(data)
-    for(var i=0;i<data.facet_groups[0].facets.length;i++){
-        var option = document.createElement("option"); 
-        option.value = data.facet_groups[0].facets[i].name; 
-        option.text = data.facet_groups[0].facets[i].name;
-        meteoSelect.add(option);
+    for(var i=0;i<data.facet_groups[0].facets.length;i++){  
+        var vale=data.facet_groups[0].facets[i]
+
+        var option=createElementCkeck(vale)
+        
+        meteoSelect.children[1].appendChild(option)
+
+        
 
     }
+    addEventChecked()
+    //console.log(meteoSelect)
 }
 
 async function getAllGravite(){  //recuperer toutes les conditions meterologiques
+    
+
+    
     var apiUrl1 = "https://public.opendatasoft.com/api/records/1.0/search/?dataset=accidents-corporels-de-la-circulation-millesime&q=&rows=0&facet=grav";
 
     
@@ -101,13 +116,21 @@ async function getAllGravite(){  //recuperer toutes les conditions meterologique
 
 
     //console.log(data)
-    for(var i=0;i<data.facet_groups[0].facets.length;i++){
-        var option = document.createElement("option"); 
-        option.value = data.facet_groups[0].facets[i].name; 
-        option.text = data.facet_groups[0].facets[i].name;
-        graviteSelect.add(option);
+    for(var i=0;i<data.facet_groups[0].facets.length;i++){  
+        var vale=data.facet_groups[0].facets[i]
+
+        var option=createElementCkeck(vale)
+        
+        graviteSelect.children[1].appendChild(option)
+
+        
 
     }
+    addEventChecked()
+    //console.log(graviteSelect)
+
+    
+    
 }
 
 
@@ -209,7 +232,54 @@ function nomVilles(){
         .catch(console.log("erreur de fetch")) //gerer les erreurs
 }
 
+function createElementCkeck(data){
+    var option = document.createElement("li"); 
+    option.className="item"
+    //console.log(data.facet_groups[0].facets[i].name)
+    option.value=data.name //ne marche pas
+    var span1=document.createElement("span")
+    span1.className="checkbox"
+    var span2=document.createElement("span")
+    span2.className="item-text"
+    span2.innerText=data.name
+    var I=document.createElement("i")
+    I.className="fa-solid fa-check check-icon"
+    span1.appendChild(I)
+    
+    option.appendChild(span1)
+    option.appendChild(span2)
+    return option
+
+}
+
 // Filtre les départements et les villes en fonction de la région selectionnée
 
 
 // Filtre villes en fonction du département selectionnée
+
+function addEventChecked(){  //ajouter l'evenement aux check box
+
+    const selectBtn = document.querySelectorAll(".select-btn"),
+    items = document.querySelectorAll(".item"),
+    resetBtn = document.querySelector('input[type="reset"]');
+
+    selectBtn.forEach(selectBtn => {
+    selectBtn.addEventListener("click", () => {
+        selectBtn.classList.toggle("open");
+    }); 
+    });
+    items.forEach(item => {
+    item.addEventListener("click", () => {
+        item.classList.toggle("checked");
+        const selectedItems = document.querySelectorAll(".checked"); // Récupérer tous les éléments avec la classe "checked"
+        const selectedValues = Array.from(selectedItems).map(item => item.getAttribute("value")); // Récupérer les valeurs de l'attribut "value" des éléments sélectionnés
+        console.log(selectedValues); // Afficher les valeurs sélectionnées dans la console
+    });
+    });  
+    items.forEach(item => {
+    resetBtn.addEventListener("click", () => {
+        item.classList.remove('checked');
+    });
+    });
+}
+
