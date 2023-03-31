@@ -12,6 +12,7 @@ section{
     display:flex;
     flex-direction: column;
     justify-content:flex-start;  
+    
 }
 
 .graph-text-container{
@@ -19,6 +20,7 @@ section{
     height: 5%;   /*le div du button graph prend 5% de la longeur de section*/
     justify-content: flex-start;
     align-items: end; /*aligner le button vers le bas pour qu'il soit coller au graph-table-container*/
+
     
 }
 
@@ -34,6 +36,7 @@ section{
     justify-content: space-around;
     padding-top:3%;
     height: 80%; /*le div du graph et du tableau prend 90% de la hauteur de section*/
+
     
     
 
@@ -47,6 +50,9 @@ section{
     flex-direction: column;
     height:90%; /*le div prend 90% de la hauteur du graph-table-container */
     transition: 0.3s all ease;
+    -moz-box-shadow: 0 0 7px var(--shadow-color);
+    -webkit-box-shadow: 0 0 7px var(--shadow-color);
+    box-shadow: 0 0 7px var(--shadow-color);
 }
 
 
@@ -84,6 +90,7 @@ section{
     width: 30%; /*le tableau prend 30% de la largeur du graph-table-container*/
     transition: 0.3s all ease;
 
+
 }
 
 .table-container{
@@ -91,6 +98,9 @@ section{
     height: 100%;
     overflow-y: scroll;
     background-color: #fff;
+    -moz-box-shadow: 0 0 7px var(--shadow-color);
+    -webkit-box-shadow: 0 0 7px var(--shadow-color);
+    box-shadow: 0 0 7px var(--shadow-color);
 }
 
 

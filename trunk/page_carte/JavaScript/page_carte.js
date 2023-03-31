@@ -1,27 +1,6 @@
-const selectBtn = document.querySelectorAll(".select-btn"),
-items = document.querySelectorAll(".item"),
-resetBtn = document.querySelector('input[type="reset"]');
 
-selectBtn.forEach(selectBtn => {
-selectBtn.addEventListener("click", () => {
-    selectBtn.classList.toggle("open");
-}); 
-});
-items.forEach(item => {
-item.addEventListener("click", () => {
-    item.classList.toggle("checked");
-    const selectedItems = document.querySelectorAll(".checked"); // Récupérer tous les éléments avec la classe "checked"
-    const selectedValues = Array.from(selectedItems).map(item => item.getAttribute("value")); // Récupérer les valeurs de l'attribut "value" des éléments sélectionnés
-    console.log(selectedValues); // Afficher les valeurs sélectionnées dans la console
-});
-});  
-items.forEach(item => {
-resetBtn.addEventListener("click", () => {
-    item.classList.remove('checked');
-});
-});
 
-var greenIcon = new L.Icon({ //modifier le marqueur
+var carIcon = new L.Icon({ //modifier le marqueur
     iconUrl: '../images/marker.svg',
     shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
     iconSize: [40, 60],
@@ -55,16 +34,13 @@ function initMap(){  //Initialisation de la carte
         maxwidth:100,
         position:"bottomleft"
     }).addTo(map)
+
+    
 }
 
 
 function removePin(){  //supprimer tous les marqueurs
-    //console.log(markerCluster)
-    
     markerCluster.clearLayers()
-   
-    //console.log(markerCluster)
-    
 }
 
 markerCluster = new L.markerClusterGroup( { animate: true,animateAddingMarkers: true});  //créer un marqueurcluster pour regrouper les marqueurs
@@ -96,17 +72,11 @@ async function createPin(){
         try{
                     var a=list[i].fields.coordonnees[0]; 
                     var b=list[i].fields.coordonnees[1];
-                    var marker=L.marker([a,b],{icon: greenIcon})
-                    var pop=L.popup({content:"<h1> numero d'accident : "+list[i].fields.num_acc+"</h1> "+ //numero d'accident
-                    "<p style='font-size:15px;color:#1b6698';>"+"<span style=' font-size:15px ;font-weight: 700;'>"+list[i].fields.jour+"/"+list[i].fields.mois+"/"+list[i].fields.an+", "+ //date et l'heure
-                    list[i].fields.hrmn+"</span>"+"</p>"+
-                                "<ul style='display:flex;flex-direction:column; padding:0'>"+
-                            "<li style='font-size:15px;color:#1b6698';>"+"adresse: "+"<span style='font-size:15px;font-weight: 700';>"+list[i].fields.adr+"</span>"+"</li>"+
-                        "<li style='font-size:15px;color:#1b6698;'>"+"Condition Atmosphériques: "+"<span style= 'font-size:15px; font-weight: 700;'>"+list[i].fields.atm+"</span>"+"</li>"+
-                        "<li style='font-size:15px;color:#1b6698;'>"+"lumiere: "+"<span style= 'font-size:15px; font-weight: 700;'>"+list[i].fields.lum+"</span>"+"</li>"+"</ul>"
-                    })  //adresse
+                    var marker=L.marker([a,b],{icon: carIcon}) //creer un marqueur
+                    pop=popUp(list,i)  
+                    
                     marker.bindPopup(pop)    //ajouter le popup
-                    markerCluster.addLayer(marker);
+                    markerCluster.addLayer(marker); //regrouper les marqueur dans des clusters
         }
         catch{
             console.log("couldn't find cordinnate")
@@ -115,56 +85,13 @@ async function createPin(){
     map.addLayer(markerCluster); //ajouter le cluster a la map
     
    
-    workCarte()
-    workFiltre()
+    workCarte()   //enlever l'annimation de chargement
+    workFiltre()  
 }
 
 
 
-function regrouper(){ //Appliquer le style a tous les clusters
 
-    
-    const noteSmall = document.getElementsByClassName("leaflet-marker-icon marker-cluster marker-cluster-small leaflet-zoom-animated leaflet-interactive ");
-    const noteMedium=document.getElementsByClassName("leaflet-marker-icon marker-cluster marker-cluster-medium leaflet-zoom-animated leaflet-interactive")
-    const noteLarge=document.getElementsByClassName("leaflet-marker-icon marker-cluster marker-cluster-large leaflet-zoom-animated leaflet-interactive")
-    //selectionner les objets  a chaque fois qu'on zoom ou on dezoom des numeros apparaissent pour indiquer le nombre de marqueurs regrouper
-    
-        
-    if(noteSmall.length>0){  //note sont des tableaux d'element
-        style(noteSmall)
-    }
-    if(noteMedium.length>0){
-        style(noteMedium)
-    }
-    if(noteLarge.length>0){
-        style(noteLarge) //appeler la fonction style
-    }
-}
-
-function style(note){ 
-    for(var i=0;i<note.length;i++){  //iterer le tableau pour styler les elements
-       
-        
-    
-        note[i].style.backgroundColor = "black"
-        note[i].style.fontSize="10px"
-        
-        note[i].style.fontSize="20px"
-        note[i].style.padding="15px"
-        
-        note[i].style.borderRadius="70px"
-        note[i].style.borderColor="white"
-        note[i].style.borderWidth="2px"
-        note[i].style.borderStyle="solid"
-
-        note[i].style.color = 'white' 
-        
-        
-    }
-
-}  
-
-setInterval(regrouper, 500)  //on appel la fonction regrouper tous les 500ms
 
 //Lors changement de region le departement selectionnné revient a -- selectionner
 function resetDepartement() {
@@ -175,3 +102,6 @@ function resetDepartement() {
 function resetVille() {
     document.getElementById("ville").selectedIndex = 0;
 }
+
+
+

@@ -140,8 +140,7 @@ function getAge(){
 function getGravite(){
     selectedGravite=graviteSelect.value
     console.log(selectedGravite)
-    get
-} 
+}
 
 function getJour(){
     selectedLum=jourSelect.value
@@ -154,11 +153,3 @@ function getNuit(){
     getDataFiltre()
     console.log(selectedLum)
 }
-
-/* const checkedItems = document.querySelectorAll('.item.checked');
-const values = [];
-checkedItems.forEach(item => {
-  values.push(item.getAttribute('value'));
-});
-console.log(values); */
-
