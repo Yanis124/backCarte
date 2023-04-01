@@ -2,27 +2,28 @@
 <html lang="fr">
     <head>
         <meta charset="utf-8">
-        <title>A-Propos-de-Nous</title>
+        <title>A Propos de Nous</title>
         <link href="../page_statistique/CSS/body.css" rel="stylesheet" type="text/css">
         <link href="../page_statistique/CSS/header.css" rel="stylesheet" type="text/css">
+        <link href="../page_statistique/CSS/footer.css" rel="stylesheet" type="text/css">
         <link rel="stylesheet" href="page_a_propos-de-nous.css" type="text/css">
+
     </head>
     <body>
-    <header>
-
-            <ul>
-
-                <a href="../page_accueil/page_accueil.html" class="anc-title"  ><li>Accidentologie</li></a> 
-
-                <a href="../page_carte/page_carte.html" class="anc-accueil"> <li>Carte</li></a>
-
-                <a href="../page_statistique/HTML/statistiques.html"class="anc-carte"><li>Statistiques</li></a>
-
+        <header id="#top">
+        
+            <ul class="list-header">
+                <a class="anc-title" href="../page_accueil/page_accueil.html" > <li>Accidentologie</li></a>
+            
+            
+                <a class="anc-sous-titre" href="../page_statistique/HTML/statistiques.html"> <li>Statistiques</li> </a>
+           
+            
+                <a class="anc-sous-titre" href="../page_carte/HTML/page_carte.html"> <li>Carte</li> </a>
+                <a class="anc-sous-titre" href="../page_crédit/page_credit.html"> <li>Crédits</li> </a>
             </ul>
-
-    </header>
-         <!--Nom de la page-->
-        <h1>À propos de nous?</h1>
+        
+        </header>
         <!--Composition de la page-->
         <h2>La mission de l'entreprise + objectifs</h2>
         <p>
@@ -87,9 +88,28 @@
 
         <!--Naviguation entre la page secondaire-->
         <footer>
-            <div class="navigation-secondaire">
-                <p class="p_crédit"><a href="../page_crédit/page_credit.html">Crédit</a></p>
-            </div> 
+            <div class="contactez-nous-container">
+                <p>Contactez-nous</p>
+                <ul>
+                    <a href="mailto:hammaciyanis@gmail.com"> <li>hammaciyanis@gmail.com</li> </a>
+                    <a href="mailto:maelle.bourbon@gmail.com"> <li>maelle.bourbon@gmail.com</li> </a>
+                    <a href="mailto:dylanchou2003@gmail.com"> <li>dylanchou2003@gmail.com</li> </a>
+                    <a href="mailto:poirier.seraphin@gmail.com"> <li>poirier.seraphin@gmail.com</li> </a>
+                </ul>
+            </div>
+            <div class="liens-utils-container">
+                <p>Liens utiles</p>
+                <ul>
+                    <a href="https://public.opendatasoft.com/explore/?sort=modified"> <li>opendatasoft</li> </a>
+                    <a href="https://www.data.gouv.fr/fr/"> <li>datagouv</li> </a>
+                </ul>
+            </div>  
+            
+            <div class="nombre-accident">
+                <p>Nombre d'accidents enregistrés</p>
+                <span id="nombre-accident"></span>
+            </div>
         </footer>
     </body>
+    <script src="../page_statistique/Javascript/nombre-accident.js"></script>
 </html>
