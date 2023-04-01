@@ -79,11 +79,11 @@ async function getData(){  //recuperer les données datetime, atm ,atm ,an-nais 
         }
     console.log(datas)
 
-    updateTitles() //mettre a jour les titres des graphs 
+    updateTitles() //mettre a jour les titres des graphes 
 
 
     if(!chart){
-        chart=courbe() //creer le graph si il n'existe pas
+        chart=courbe() //creer le graphe s'il n'existe pas
     }
     //console.log(datas)
     

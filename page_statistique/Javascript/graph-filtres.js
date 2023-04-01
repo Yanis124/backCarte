@@ -1,4 +1,4 @@
-// recuperer les donées a mettre dans le graph,recuperer la valeur des diferent filtres
+// recuperer les donées a mettre dans le graphe,recuperer la valeur des differents filtres
 
 
 const colonneSelect=document.getElementById("graph-select")
@@ -7,9 +7,9 @@ const lieuSelect=document.getElementById("lieu-select")
 const anneeGraphSelect=document.getElementById("annee-graph-select")
 
 
-var label=[] //la legende des graphs
-var datas=[] //chaque list represente un type de donnée datetime,atm ,sex,an-nais, grav,lum
-var chart  //des variables globale qui contient le graph l'anne le lieu l'axe-x
+var label=[] //la legende des graphes
+var datas=[] //chaque liste represente un type de donnée datetime,atm ,sex,an-nais, grav,lum
+var chart  //des variables globales qui contiennent le graphe l'annee le lieu l'axe-x
 var inputAnneeGraph
 var inputLieu
 var typeChart
@@ -33,7 +33,7 @@ async function DrawFiltreLieu(){  //recuperer toutes les régions
         console.log(listRegion)
     }
     catch{
-        // console.log("erruer")
+        // console.log("erreur")
     }
     for(var i=0;i<listRegion.length;i++){
         lieuSelect.innerHTML+="<option>"+listRegion[i].name+"</option>"
