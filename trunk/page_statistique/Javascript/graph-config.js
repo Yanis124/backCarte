@@ -20,7 +20,7 @@ var facets=["datetime","reg_name","dep_name","atm","sexe","an_nais","grav","lum"
 
 
 
-var titlesExemple=["nombre d'accident par année ","nombre d'accident par région ","nombre d'accicent par département","nombre d'accident par conditions métérologique ","nombre de personnes accidentées par sexe ","nombre de personnes accidentées  par tranche d'age ","nombre de personnes accidentées par gravité de l'accident ","nombre d'accident jour/nuit "] //titre des graphs (exemple par default)
+var titlesExemple=["nombre d'accidents par année ","nombre d'accidents par région ","nombre d'accidents par département","nombre d'accidents en fonction de la condition météorologique ","nombre de personnes accidentées par sexe ","nombre de personnes accidentées par tranche d'âge ","nombre de personnes accidentées en fonction de la gravité de l'accident ","nombre d'accidents de jour/nuit"] //titre des graphes (exemple par default)
 
 var titles=[]
 
@@ -36,12 +36,12 @@ const plugin = {
     }
   };
 
-var configLine={   //une configuration par default pour representer le nombre d'accident par année
+var configLine={   //une configuration par defaut pour representer le nombre d'accident par année
     type: 'line',
     data: {
         labels:[],
         datasets: [{
-            label: "nombre d'accident par année",
+            label: "nombre d'accidents par année",
             borderColor: border_color_line,
             borderWidth: 1,
             fill: false,
@@ -57,7 +57,7 @@ var configLine={   //une configuration par default pour representer le nombre d'
             },
             title: {
                 display: true,
-                text: "nombre d'accident par année",
+                text: "nombre d'accidents par année",
                 color:text_color,
                 font:{
                     size:20

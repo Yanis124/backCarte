@@ -26,12 +26,11 @@
                 <a class="anc-sous-titre" href="../../page_carte/HTML/page_carte.html"> <li >Carte</li> </a>
            
             
-                <a class="anc-sous-titre" href="../../page_carte/page_carte.html"> <li>Crédit</li> </a>
+                <a class="anc-sous-titre" href="../../page_crédit/page_credit.html"> <li>Crédits</li> </a>
 
-                <a class="anc-sous-titre" href="../../page_A_propos_de_nous/page_a-propos-de-nous.html"> <li>a propos de nous</li> </a>
+                <a class="anc-sous-titre" href="../../page_A_propos_de_nous/page_a-propos-de-nous.html"> <li>A propos de nous</li> </a>
             </ul>
         
-
     </header>
     <main>
         
@@ -53,15 +52,15 @@
                                             <option value="datetime">année</option>
                                             <option value="reg_name">région</option>
                                             <option value="dep_name">département</option>
-                                            <option value="atm">condition métérologiques</option>
+                                            <option value="atm">conditions métérologiques</option>
                                             <option value="sexe">sexe</option>
-                                            <option value="an_nais">tranche d'age</option>
+                                            <option value="an_nais">tranche d'âge</option>
                                             <option value="grav">gravité</option>
                                             <option value="lum">jour/nuit</option>
                                         </select>
                                     </div>
                                     <div class="colonne-container">
-                                        <label for="colonne">colonne :</label>
+                                        <label for="colonne">type de graphe:</label>
                                         <select id="graph-select" onchange="getValueColonne()" name="colonne">
                                             <option value="courbe">courbe</option>
                                             <option value="colonne">colonne</option>
@@ -93,7 +92,7 @@
                                 </div>                        
                         <div class="graph-container" id="graph-container">
                             <canvas id="canvas">
-                                <!-- le graph sera afficher ici-->
+                                <!-- le graphe sera afficher ici-->
                             </canvas>
                             <svg id="spinner-graph"  width="80px" height="80px" viewBox="0 0 66 66" >
                                 <circle class="path" fill="none" stroke-width="6" stroke-linecap="round" cx="33" cy="33" r="30"></circle>
@@ -114,7 +113,7 @@
                                              région
                                         </th>
                                         <th>
-                                            nombre d'accident 
+                                            nombre d'accidents
                                         </th>
                                     </tr>
                                 </thead>
@@ -175,7 +174,7 @@
             </div>
             
             <div class="liens-utils-container">
-                <p>Liens utils</p>
+                <p>Liens utiles</p>
                 <ul>
                     <a href="https://public.opendatasoft.com/explore/?sort=modified"> <li>opendatasoft</li> </a>
                     <a href="https://www.data.gouv.fr/fr/"> <li>datagouv</li> </a>
@@ -183,7 +182,7 @@
             </div>  
             
             <div class="nombre-accident">
-                <p>nombre d'accident enregistrés</p>
+                <p>Nombre d'accidents enregistrés</p>
                 <span id="nombre-accident"></span>
             </div>
         
