@@ -4,8 +4,9 @@ var listAccidentLum=[]
 var listAccidentRegions=[]
 
 var listAccidentTps=[]
- 
 
+var listAccidentDate=[]
+var choix_date=document.getElementById("choix-date");
 
 
 var filtre=false //pour indiquer a la fonction createPin d'utiliser listAccidentFiltre
@@ -46,7 +47,14 @@ async function getDataFiltre(){
         }
        
     }
-
+    if(choix_date.value=="date-specifique"){
+        listAccidentDate=[];
+        for(var i=0;i<listAccident.length;i++){
+            if((listAccident[i].fields.datetime).substring(0,10)==selectedDate){
+                listAccidentDate.push(listAccident[i]);
+            }
+        }
+    }
 
 
 
@@ -163,8 +171,6 @@ function selectDataFiltre(selectedValues){
         listAccidentLum=listAccident
     }
 
-    
-
     if (!selectedValues) {  
         listAccidentTps = listAccident;
         console.log("undefined")
@@ -176,6 +182,9 @@ function selectDataFiltre(selectedValues){
             console.log("lenght==0")
         }
     }
+    if(!choix_date){
+        listAccidentDate=listAccident;
+    }
 
     
 
@@ -183,6 +192,7 @@ function selectDataFiltre(selectedValues){
  
     var listAccidentFiltre1=listAccidentLum.filter(x => listAccidentRegions.includes(x)); //intersection entre listRegion et listLum
     listAccidentFiltre=listAccidentFiltre1.filter(x => listAccidentTps.includes(x)); //intersection entre listAccidentFiltre1 et listAccidentTps
+    listAccidentFiltre=listAccidentFiltre.filter(x=>listAccidentDate.includes(x));
 
     console.log(listAccidentFiltre)  
 }
