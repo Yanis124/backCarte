@@ -8,6 +8,8 @@ var listAccidentTps=[]
 var listAccidentDate=[]
 var choix_date=document.getElementById("choix-date");
 
+var listAccidentDepartement=[]
+
 
 var filtre=false //pour indiquer a la fonction createPin d'utiliser listAccidentFiltre
 
@@ -55,8 +57,15 @@ async function getDataFiltre(){
             }
         }
     }
-
-
+    if(selectedDepartement&&selectedDepartement!="allDepartements"){
+        listAccidentDepartement=[];
+        for(var i=0;i<listAccident.length;i++){
+            console.log(listAccident[i].fields.dep_name);
+            if(selectedDepartement==listAccident[i].fields.dep_name){
+                listAccidentDepartement.push(listAccident[i]);   
+            }
+        }
+    }
 
 
 
@@ -185,7 +194,9 @@ function selectDataFiltre(selectedValues){
     if(!choix_date){
         listAccidentDate=listAccident;
     }
-
+    if(!selectedDepartement||selectedDepartement=="allDepartements"){
+        listAccidentDepartement=listAccident;
+    }
     
 
     console.log(listAccidentFiltre);
@@ -193,13 +204,14 @@ function selectDataFiltre(selectedValues){
     var listAccidentFiltre1=listAccidentLum.filter(x => listAccidentRegions.includes(x)); //intersection entre listRegion et listLum
     listAccidentFiltre=listAccidentFiltre1.filter(x => listAccidentTps.includes(x)); //intersection entre listAccidentFiltre1 et listAccidentTps
     listAccidentFiltre=listAccidentFiltre.filter(x=>listAccidentDate.includes(x));
+    listAccidentFiltre=listAccidentFiltre.filter(x=>listAccidentDepartement.includes(x));
 
     console.log(listAccidentFiltre)  
 }
 
 
 async function initFiltre(){
-    selectedLum=selectedRegion=selectedValues=null //remettre a 0 les filtres 
+    selectedLum=selectedRegion=selectedValues=selectedDate=selectedDepartement=null //remettre a 0 les filtres 
     loadCarte()  //ajouter une animation de chargement 
     loadFiltre()
 
