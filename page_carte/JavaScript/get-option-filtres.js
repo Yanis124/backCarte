@@ -9,7 +9,7 @@ var departementSelect = document.getElementById("departement")
 var villeSelect = document.getElementById("ville")
 
 
-var graviteSelect=document.getElementById("gravite")
+var graviteSelect=document.getElementById("gravite-container")
 
 var meteoSelect=document.getElementById("weather-container")
 
@@ -17,13 +17,6 @@ var ageSelect=document.getElementById("tranche-age")
 
 var jourSelect=document.getElementById("jour")
 var nuitSelect=document.getElementById("nuit")
-
-
-
-
-
-
-
 
 
 function afficherChoix() {

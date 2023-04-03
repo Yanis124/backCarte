@@ -5,9 +5,11 @@ var listAccidentDate=[]
 var listAccidentLum=[]
 var listAccidentRegions=[]
 var listAccidentDepartement=[]
+var listAccidentVille=[]
 
 var listAccidentAtm=[]
 var listAccidentAge=[]
+var listAccidentGrv=[]
 
 var choix_date=document.getElementById("choix-date");
  
@@ -62,7 +64,21 @@ async function getDataFiltre(){
             }
         }
     }
+    
+/*----------VILLE----------*/
+    if(selectedVille&&selectedVille!="allVilles"){
+        listAccidentVille=[];
+        
+        for(var i=0;i<listAccident.length;i++){
+            console.log(listAccident[i].fields.com_name);
+            
+            if(selectedVille == listAccident[i].fields.com_name){
+                listAccidentVille.push(listAccident[i]);   
+            }
+        }
+    }    
 
+/*----------DATE UNIQUE----------*/
     if(choix_date.value=="date-specifique"){
         listAccidentDate=[];
         for(var i=0;i<listAccident.length;i++){
@@ -92,7 +108,8 @@ async  function filterList() {   //selectedValueAtm contient les valeurs selecti
 
         filtre=true;
         
-	if(selectedValuesAge){
+/*----------GRAVITE---------------*/
+	if(selectedValuesGravite){
 		for (let i = 0; i < selectedValuesGravite.length; i++) {
 			var gravIncluded = selectedValuesGravite[i];
 			
@@ -108,15 +125,17 @@ async  function filterList() {   //selectedValueAtm contient les valeurs selecti
 					let gravite_ind = gravArray[y];
 					let isIncluded = false;
 					
-					if (gravIncluded === "Indemne" && gravite_ind == "Indemne") {
+					if (gravIncluded === "Indemne" && gravite_ind == "indemne") {
 						isIncluded = true;
-					} else if (gravIncluded === "Blessé" && gravite_ind == "Blessé") {
+					} else if (gravIncluded === "Blessé léger" && gravite_ind == "blessé léger") {
 						isIncluded = true;
-					} else if (gravIncluded === "Tué" && gravite_ind == "Tué") {
+					} else if (gravIncluded === "Blessé hospitalisé" && gravite_ind == "blessé hospitalisé") {
+						isIncluded = true;
+					} else if (gravIncluded === "Tué" && gravite_ind == "tué") {
 						isIncluded = true;
 					}
 					if (isInRange) {
-						listAccidentAge.push(listAccident[j]);
+						listAccidentGrv.push(listAccident[j]);
 					}
 				}
 			}
@@ -289,6 +308,16 @@ function selectDataFiltre(){
             console.log("lenght==0")
         }
     }
+    
+    if(!listAccidentGrv){
+		listAccidentGrv = listAccident
+	}
+	
+	if(selectedValuesGravite){
+		if(selectedValuesGravite.length==0){
+			listAccidentGrv = listAccident;
+		}
+	}
 
  
     listAccidentFiltre=listAccidentLum.filter(x => listAccidentRegions.includes(x)); //intersection entre listRegion et listLum
@@ -296,6 +325,8 @@ function selectDataFiltre(){
     listAccidentFiltre=listAccidentFiltre.filter(x => listAccidentDepartement.includes(x));
     listAccidentFiltre=listAccidentFiltre.filter(x => listAccidentDate.includes(x));
     listAccidentFiltre=listAccidentFiltre.filter(x => listAccidentAge.includes(x));
+    listAccidentFiltre=listAccidentFiltre.filter(x => listAccidentGrv.includes(x));
+    listAccidentFiltre=listAccidentFiltre.filter(x => listAccidentVille.includes(x));
     console.log(listAccidentFiltre)  
 }
 
