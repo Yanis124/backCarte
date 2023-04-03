@@ -1,8 +1,7 @@
-@import url('https://fonts.googleapis.com/css2?family=Righteous&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300&display=swap');
 body{
-	background-color: #002851;
-	font-family: Righteous, cursive;
+	background-color: #0033cc;
+	font-family: 'Comfortaa', cursive;
 }
 
 header{
@@ -15,32 +14,42 @@ header{
     z-index:10; 
 }
 
-#boites{
-	padding-top: 5%;
+#titre{
+	padding:15px;
+	text-align: center;
+	color: white;
+	height: 100%;
 }
 
-#boite_gauche{
-	color: white;
-	font-size: 150px;
+h1{
+	font-size: 125px;
+}
+
+#btn_dte{
+	padding: 15px;
+	text-align: center;
+	width: 50%;
 	float: left;
-	width: 55%;
-	padding: 20px;
-}
-
-#boite_droite{
-	color: white;
-	font-size: 35px;
-	padding: 20px;
-}
-
-.boite_txt{
-	padding: 20px;
 }
 
 button{
-	background-color: white;
+	background-color: #ffff99;
 	padding: 20px;
-	font-family: Righteous, cursive;
+	font-family: 'Comfortaa', cursive;
 	font-size: 35px;
 	border-radius: 10px;
+}
+
+#expl_carte{
+	background-color: white;
+}
+
+h1.expl{
+	font-size: 45px;
+}
+
+#image_carte{
+	float: left;
+	width: 20%;
+	padding: 5px;
 }
