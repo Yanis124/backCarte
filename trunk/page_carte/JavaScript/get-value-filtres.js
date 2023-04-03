@@ -19,6 +19,7 @@ var selectedLum
 
 function getIntervalleDateStart(){  //limiter le choix dans le filtre date de fin et recuperer la date
     selectedDateEnd=dateStart.value
+    getDataFiltre()
     console.log(selectedDateEnd)
     dateEnd.setAttribute("min",selectedDateEnd)    
 
@@ -26,12 +27,14 @@ function getIntervalleDateStart(){  //limiter le choix dans le filtre date de fi
 
 function getIntervalleDateEnd(){  //limiter le choix dans le filtre date de debut et recuperrer la date
     selectedDateStart=dateEnd.value
+    getDataFiltre()
     console.log(selectedDateStart)
     dateStart.setAttribute("max",selectedDateStart)  
 }
 
 function getDate(){  //recuperer la date 
     selectedDate=date.value
+    getDataFiltre()
     console.log(selectedDate)
 }
 
@@ -93,7 +96,7 @@ function getDepartement() {
     // Departement sélectionnée
     
     selectedDepartement = departementSelect.value;
-    
+    getDataFiltre()
 
     if(selectedDepartement==="allDepartements"){  //si on selectionne tous les departements on affiche toutes les villes de la regions selectionné
         getRegion()
