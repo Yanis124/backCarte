@@ -6,10 +6,7 @@ var listAccidentRegions=[]
 var listAccidentTps=[]
  
 
-function execute(a){
 
-    console.log(a.children[1].innerText)
-}
 
 var filtre=false //pour indiquer a la fonction createPin d'utiliser listAccidentFiltre
 
@@ -51,96 +48,105 @@ async function getDataFiltre(){
     }
 
 
+
+
+
+
     selectDataFiltre()  //intersection des listes
 
-   removePin()
-   createPin()
+    removePin()
+    createPin()
    
 }
-  function filterList(selectedValues) {
-    filtre=true;
-    if (selectedValues.length === 0) {
-        listAccidentFiltre = listAccident;
-    }
-    else{
-        listAccidentFiltre=[];
+async  function filterList(selectedValues) {
+    loadCarte()  //ajouter une animation de chargement 
+    loadFiltre()
+
+    await new Promise(r => setTimeout(r, 2000)); //sleep(2) pour executer loadCarte() et loadFiltre() //a refaire 
+
+
+        filtre=true;
+
+        listAccidentTps=[];
 
         for (var i=0; i<selectedValues.length; i++){
             if(selectedValues[i]=="normale"){
                 for(var j=0;j<listAccident.length;j++){
                     if(listAccident[j].fields.atm=="normale" || listAccident[j].fields.atm=="Normale"){
-                        listAccidentFiltre.push(listAccident[j]);
+                        listAccidentTps.push(listAccident[j]);
                     }
                     
                 } 
-                console.log(listAccidentFiltre);
+                
             }
             if(selectedValues[i]=="pluie_legere"){
                 for(var j=0;j<listAccident.length;j++){
                     if(listAccident[j].fields.atm=="Pluie l\u00e9g\u00e8re"){
-                        listAccidentFiltre.push(listAccident[j]);
+                        listAccidentTps.push(listAccident[j]);
                     }
                     
                 } 
-                console.log(listAccidentFiltre);
+                
             }
             if(selectedValues[i]=="pluie_forte"){
                 for(var j=0;j<listAccident.length;j++){
                     if(listAccident[j].fields.atm=="Pluie forte"){
-                        listAccidentFiltre.push(listAccident[j]);
+                        listAccidentTps.push(listAccident[j]);
                     }
                     
                 } 
-                console.log(listAccidentFiltre);
+                
             }
             if(selectedValues[i]=="temps_couverts"){
                 for(var j=0;j<listAccident.length;j++){
                     if(listAccident[j].fields.atm=="Temps couvert"){
-                        listAccidentFiltre.push(listAccident[j]);
+                        listAccidentTps.push(listAccident[j]);
                     }
                     
                 } 
-                console.log(listAccidentFiltre);
+                
             }
             if(selectedValues[i]=="temps_eblouissant"){
                 for(var j=0;j<listAccident.length;j++){
                     if(listAccident[j].fields.atm=="Temps \u00e9blouissant"){
-                        listAccidentFiltre.push(listAccident[j]);
+                        listAccidentTps.push(listAccident[j]);
                     }
                     
                 } 
-                console.log(listAccidentFiltre);
+                
             }
             if(selectedValues[i]=="neige_grêle"){
                 for(var j=0;j<listAccident.length;j++){
                     if(listAccident[j].fields.atm=="Neige - gr\u00eale"){
-                        listAccidentFiltre.push(listAccident[j]);
+                        listAccidentTps.push(listAccident[j]);
                     }
                     
                 } 
-                console.log(listAccidentFiltre);
+                
             }
             if(selectedValues[i]=="brouillard_fumée"){
                 for(var j=0;j<listAccident.length;j++){
                     if(listAccident[j].fields.atm=="Brouillard - fum\u00e9e"){
-                        listAccidentFiltre.push(listAccident[j]);
+                        listAccidentTps.push(listAccident[j]);
                     }
                     
                 } 
-                console.log(listAccidentFiltre);
+                
             } 
             if(selectedValues[i]=="vent_fort_tempêtes"){
-                console.log("Essaie")
+                // console.log("Essaie")
                 for(var j=0;j<listAccident.length;j++){
                     if(listAccident[j].fields.atm=="Vent fort - temp\u00eate"){
-                        listAccidentFiltre.push(listAccident[j]);
+                        listAccidentTps.push(listAccident[j]);
                     }
                     
                 } 
-                console.log(listAccidentFiltre);
+                console.log(listAccidentTps);
             } 
         }
-    }
+    
+
+    selectDataFiltre(selectedValues)
     removePin()
     createPin()
 }  
@@ -148,8 +154,8 @@ async function getDataFiltre(){
 
 
 
-function selectDataFiltre(){
-     if(!selectedRegion||selectedRegion=="allRegions"){
+function selectDataFiltre(selectedValues){
+    if(!selectedRegion||selectedRegion=="allRegions"){
         listAccidentRegions=listAccident
     }
 
@@ -157,9 +163,26 @@ function selectDataFiltre(){
         listAccidentLum=listAccident
     }
 
+    
+
+    if (!selectedValues) {  
+        listAccidentTps = listAccident;
+        console.log("undefined")
+    }
+
+    if (selectedValues){
+        if(selectedValues.length == 0){ 
+            listAccidentTps = listAccident;
+            console.log("lenght==0")
+        }
+    }
+
+    
+
     console.log(listAccidentFiltre);
  
-      listAccidentFiltre=listAccidentLum.filter(x => listAccidentRegions.includes(x)); //intersection entre listRegion et listLum
+    var listAccidentFiltre1=listAccidentLum.filter(x => listAccidentRegions.includes(x)); //intersection entre listRegion et listLum
+    listAccidentFiltre=listAccidentFiltre1.filter(x => listAccidentTps.includes(x)); //intersection entre listAccidentFiltre1 et listAccidentTps
 
     console.log(listAccidentFiltre)  
 }

@@ -193,6 +193,7 @@ items.forEach(item => {
         const selectedItems = document.querySelectorAll(".checked"); // Récupérer tous les éléments avec la classe "checked"
         const selectedValues = Array.from(selectedItems).map(item => item.getAttribute("value")); // Récupérer les valeurs de l'attribut "value" des éléments sélectionnés
         console.log(selectedValues); // Afficher les valeurs sélectionnées dans la console
+        console.log(selectedValues.length)
         filterList(selectedValues);    
     });
 }); 
