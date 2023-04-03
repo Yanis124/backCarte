@@ -1,15 +1,16 @@
 var listAccidentFiltre=[]
 
+var listAccidentDate=[]
+
 var listAccidentLum=[]
 var listAccidentRegions=[]
-
-var listAccidentTps=[]
-
-var listAccidentDate=[]
-var choix_date=document.getElementById("choix-date");
-
 var listAccidentDepartement=[]
+
+var listAccidentAtm=[]
 var listAccidentAge=[]
+
+var choix_date=document.getElementById("choix-date");
+ 
 
 
 
@@ -21,7 +22,7 @@ async function getDataFiltre(){
 
     await new Promise(r => setTimeout(r, 2000)); //sleep(2) pour executer loadCarte() et loadFiltre() //a refaire 
     filtre=true   
-    if(selectedLum){
+    if(selectedLum){  //filtre lunmiere
         listAccidentLum=[]
 
         if(selectedLum=="jour"){
@@ -41,7 +42,7 @@ async function getDataFiltre(){
         }       
     }
     
-    if(selectedRegion){
+    if(selectedRegion){ //filtre region
         listAccidentRegions=[]
 
         for(var i=0;i<listAccident.length;i++){
@@ -51,15 +52,8 @@ async function getDataFiltre(){
         }
        
     }
-    if(choix_date.value=="date-specifique"){
-        listAccidentDate=[];
-        for(var i=0;i<listAccident.length;i++){
-            if((listAccident[i].fields.datetime).substring(0,10)==selectedDate){
-                listAccidentDate.push(listAccident[i]);
-            }
-        }
-    }
-    if(selectedDepartement&&selectedDepartement!="allDepartements"){
+
+    if(selectedDepartement&&selectedDepartement!="allDepartements"){ //filtre departement
         listAccidentDepartement=[];
         for(var i=0;i<listAccident.length;i++){
             console.log(listAccident[i].fields.dep_name);
@@ -69,6 +63,18 @@ async function getDataFiltre(){
         }
     }
 
+    if(choix_date.value=="date-specifique"){
+        listAccidentDate=[];
+        for(var i=0;i<listAccident.length;i++){
+            if((listAccident[i].fields.datetime).substring(0,10)==selectedDate){
+                listAccidentDate.push(listAccident[i]);
+            }
+        }
+    }
+
+
+
+
 
 
     selectDataFiltre()  //intersection des listes
@@ -77,7 +83,7 @@ async function getDataFiltre(){
     createPin()
    
 }
-async  function filterList(selectedValues) {
+async  function filterList() {   //selectedValueAtm contient les valeurs selectionnées dans le filtre atm
     loadCarte()  //ajouter une animation de chargement 
     loadFiltre()
 
@@ -85,87 +91,89 @@ async  function filterList(selectedValues) {
 
 
         filtre=true;
+    if(selectedValuesAtm){
 
-        listAccidentTps=[];
-        listAccidentAge=[];
+        listAccidentAtm=[];
 
-        for (var i=0; i<selectedValues.length; i++){
-            if(selectedValues[i]=="normale"){
+        for (var i=0; i<selectedValuesAtm.length; i++){
+            if(selectedValuesAtm[i]=="normale"){
                 for(var j=0;j<listAccident.length;j++){
                     if(listAccident[j].fields.atm=="normale" || listAccident[j].fields.atm=="Normale"){
-                        listAccidentTps.push(listAccident[j]);
+                        listAccidentAtm.push(listAccident[j]);
                     }
                     
                 } 
                 
             }
-            if(selectedValues[i]=="pluie_legere"){
+            if(selectedValuesAtm[i]=="pluie_legere"){
                 for(var j=0;j<listAccident.length;j++){
                     if(listAccident[j].fields.atm=="Pluie l\u00e9g\u00e8re"){
-                        listAccidentTps.push(listAccident[j]);
+                        listAccidentAtm.push(listAccident[j]);
                     }
                     
                 } 
                 
             }
-            if(selectedValues[i]=="pluie_forte"){
+            if(selectedValuesAtm[i]=="pluie_forte"){
                 for(var j=0;j<listAccident.length;j++){
                     if(listAccident[j].fields.atm=="Pluie forte"){
-                        listAccidentTps.push(listAccident[j]);
+                        listAccidentAtm.push(listAccident[j]);
                     }
                     
                 } 
                 
             }
-            if(selectedValues[i]=="temps_couverts"){
+            if(selectedValuesAtm[i]=="temps_couverts"){
                 for(var j=0;j<listAccident.length;j++){
                     if(listAccident[j].fields.atm=="Temps couvert"){
-                        listAccidentTps.push(listAccident[j]);
+                        listAccidentAtm.push(listAccident[j]);
                     }
                     
                 } 
                 
             }
-            if(selectedValues[i]=="temps_eblouissant"){
+            if(selectedValuesAtm[i]=="temps_eblouissant"){
                 for(var j=0;j<listAccident.length;j++){
                     if(listAccident[j].fields.atm=="Temps \u00e9blouissant"){
-                        listAccidentTps.push(listAccident[j]);
+                        listAccidentAtm.push(listAccident[j]);
                     }
                     
                 } 
                 
             }
-            if(selectedValues[i]=="neige_grêle"){
+            if(selectedValuesAtm[i]=="neige_grêle"){
                 for(var j=0;j<listAccident.length;j++){
                     if(listAccident[j].fields.atm=="Neige - gr\u00eale"){
-                        listAccidentTps.push(listAccident[j]);
+                        listAccidentAtm.push(listAccident[j]);
                     }
                     
                 } 
                 
             }
-            if(selectedValues[i]=="brouillard_fumée"){
+            if(selectedValuesAtm[i]=="brouillard_fumée"){
                 for(var j=0;j<listAccident.length;j++){
                     if(listAccident[j].fields.atm=="Brouillard - fum\u00e9e"){
-                        listAccidentTps.push(listAccident[j]);
+                        listAccidentAtm.push(listAccident[j]);
                     }
                     
                 } 
                 
             } 
-            if(selectedValues[i]=="vent_fort_tempêtes"){
+            if(selectedValuesAtm[i]=="vent_fort_tempêtes"){
                 // console.log("Essaie")
                 for(var j=0;j<listAccident.length;j++){
                     if(listAccident[j].fields.atm=="Vent fort - temp\u00eate"){
-                        listAccidentTps.push(listAccident[j]);
+                        listAccidentAtm.push(listAccident[j]);
                     }
                     
                 } 
-                console.log(listAccidentTps);
-            }
-                    //Liaison du filtre tranche d'âge    
-        for (let i = 0; i < selectedValues.length; i++) {
-            var ageRange = selectedValues[i];
+            } 
+        }
+    }
+
+    if(selectedValuesAge){
+        for (let i = 0; i < selectedValuesAge.length; i++) {
+            var ageRange = selectedValuesAge[i];
 
             for (let j = 0; j < listAccident.length; j++) {
                 let deathYear = listAccident[j].fields.an;
@@ -189,17 +197,15 @@ async  function filterList(selectedValues) {
                     }
 
                     if (isInRange) {
-                        listAccidentTps.push(listAccident[j]);
+                        listAccidentAge.push(listAccident[j]);
                     }
                 }
             }
         }
-
-            console.log(listAccidentTps); 
-        }
+    }
     
 
-    selectDataFiltre(selectedValues)
+    selectDataFiltre()
     removePin()
     createPin()
 }  
@@ -207,47 +213,63 @@ async  function filterList(selectedValues) {
 
 
 
-function selectDataFiltre(selectedValues){
+function selectDataFiltre(){
     if(!selectedRegion||selectedRegion=="allRegions"){
         listAccidentRegions=listAccident
     }
+    
 
     if(!selectedLum){
         listAccidentLum=listAccident
     }
 
-    if (!selectedValues) {  
-        listAccidentTps = listAccident;
+    console.log(listAccidentLum)
+
+    
+
+    if (!selectedValuesAtm) {  
+        listAccidentAtm = listAccident;
         console.log("undefined")
     }
 
-    if (selectedValues){
-        if(selectedValues.length == 0){ 
-            listAccidentTps = listAccident;
+    if (selectedValuesAtm){
+        if(selectedValuesAtm.length == 0){ 
+            listAccidentAtm = listAccident;
             console.log("lenght==0")
         }
     }
-    if(!choix_date){
-        listAccidentDate=listAccident;
-    }
-    if(!selectedDepartement||selectedDepartement=="allDepartements"){
-        listAccidentDepartement=listAccident;
-    }
-    
 
-    console.log(listAccidentFiltre);
+    if(!selectedDepartement){
+        listAccidentDepartement=listAccident
+    }
+
+    if(!selectedDate){
+        listAccidentDate=listAccident
+    }
+
+    if(!listAccidentAge){
+        listAccidentAge=listAccident
+    }
+
+    if (selectedValuesAge){
+        if(selectedValuesAge.length == 0){ 
+            listAccidentAge = listAccident;
+            console.log("lenght==0")
+        }
+    }
+
  
-    var listAccidentFiltre1=listAccidentLum.filter(x => listAccidentRegions.includes(x)); //intersection entre listRegion et listLum
-    listAccidentFiltre=listAccidentFiltre1.filter(x => listAccidentTps.includes(x)); //intersection entre listAccidentFiltre1 et listAccidentTps
-    listAccidentFiltre=listAccidentFiltre.filter(x=>listAccidentDate.includes(x));
-    listAccidentFiltre=listAccidentFiltre.filter(x=>listAccidentDepartement.includes(x));
-
+    listAccidentFiltre=listAccidentLum.filter(x => listAccidentRegions.includes(x)); //intersection entre listRegion et listLum
+    listAccidentFiltre=listAccidentFiltre.filter(x => listAccidentAtm.includes(x)); //intersection entre listAccidentFiltre1 et listAccidentAtm
+    listAccidentFiltre=listAccidentFiltre.filter(x => listAccidentDepartement.includes(x));
+    listAccidentFiltre=listAccidentFiltre.filter(x => listAccidentDate.includes(x));
+    listAccidentFiltre=listAccidentFiltre.filter(x => listAccidentAge.includes(x));
     console.log(listAccidentFiltre)  
 }
 
 
 async function initFiltre(){
-    selectedLum=selectedRegion=selectedValues=selectedDate=selectedDepartement=null //remettre a 0 les filtres 
+    selectedDepartement=selectedDate=selectedLum=selectedRegion=selectedValues=null //remettre a 0 les filtres 
     loadCarte()  //ajouter une animation de chargement 
     loadFiltre()
 

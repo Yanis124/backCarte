@@ -1,17 +1,22 @@
 
 
+#carte{
+    background-color: var(--header-title-hover) ;
+    box-sizing: border-box;
+    color:white;
+
+    
+}
+
+
+
 section{
     display: flex;
     border:solid 1px var(--header-title-border-hover);
     background-color: var(--section-bg);
     justify-content: space-evenly;
-    margin:2%;
-    margin-top: 100px;
     height: 700px; 
-    padding-top:5%;    
-        -moz-box-shadow: 0 0 7px var(--shadow-color);
-    -webkit-box-shadow: 0 0 7px var(--shadow-color);
-    box-shadow: 0 0 7px var(--shadow-color);
+    padding-top:130px;    
 }
 
 /*Filtres*/
@@ -20,9 +25,7 @@ form{
     height: 100%;
     display: flex;
     flex-direction: column;
-    color:var(--filtre-carte-color);
-    font-weight: var(--filtre-carte-weight);
-    color: #333;
+
 
 
 }
@@ -42,6 +45,7 @@ form{
     background-color: #fff;
     gap:30px;   
     padding:5%; 
+    border-radius:6px ;
 }
 
 
@@ -52,6 +56,7 @@ form{
     align-items: center;
     width:90%; 
     position: relative;
+
 }
 
 
@@ -82,6 +87,7 @@ form{
     -webkit-box-shadow: 0 0 7px var(--shadow-color);
     box-shadow: 0 0 7px var(--shadow-color);
     position: relative;
+    border-radius:6px ;
 
 
 
@@ -133,4 +139,17 @@ form{
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
 
 
+#back2Top {
+
+    display: none;
+    cursor: pointer;
+    position: fixed;
+    bottom: 50px;
+    right: 50px;
+    opacity: 0.7;
+
+}
+#back2Top:hover {
+    opacity:1;
+}
 

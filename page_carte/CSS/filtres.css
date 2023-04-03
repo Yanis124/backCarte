@@ -1,22 +1,25 @@
 
+
 .reset-container input{
     height: 100%;
-    background-color: #0086D6;
-    border: 1px solid #0086D6;
+    background-color: #0a6bff;
     color:white;
-    -moz-box-shadow: 0 0 7px var(--shadow-color);
-    -webkit-box-shadow: 0 0 7px var(--shadow-color);
     box-shadow: 0 0 7px var(--shadow-color);
-    height:50px;
+    height:45px;
+    width:120px;
     margin-right: 10%;
     font-weight: var(--filtre-carte-weight);
     transition: all 0.3s ease-in-out;
     border-radius: 6px;
+    font-family: inherit;
+    cursor: pointer;
+    border:none;
 }
 
 .reset-container input:hover{
-    cursor: pointer;
-    background-color: #0039d6;
+    
+    background-color: var(--reset-bg-hover);
+    transform: translateY(-2px);
 }
 
 
@@ -31,20 +34,22 @@
     padding: 0 16px;
     border-radius: 8px;
     cursor: pointer;
-    background-color: #f5f5f5;
-
+    background-color: var(--section-bg);
+    border:1px solid #6e93f7;
     width:60%;
 }
 
-.select-btn{
-    -moz-box-shadow: 0 0 5px #530ed3;
-    -webkit-box-shadow: 0 0 5px #120fdb;
-    box-shadow: 0 0 5px #1406d4;
+.select-btn.open{
+    -moz-box-shadow: 0 0 5px var(--blue-border-effect);
+    -webkit-box-shadow: 0 0 5px var(--blue-border-effect);
+    box-shadow: 0 0 5px var(--blue-border-effect);
 }
 .select-btn .btn-text{
-    font-size: 15px;
-    font-weight: 400;
-    color: #333;
+    font-size: var(--filtre-carte-size);
+    font-weight: var(--filtre-carte-weight);
+    color: var(--filtre-carte-color);
+
+
 }
 .select-btn .arrow-dwn{
     display: flex;
@@ -66,7 +71,7 @@
     position: relative;
     margin-top: 5px;
     border-radius: 8px;
-    padding: 16px;
+    padding: 5px;
     padding-left:0;
     padding-right:0;
     
@@ -88,10 +93,16 @@
     transition: 0.3s;
     padding: 0 15px;
     border-radius: 0px ;
-    background-color: #f5f5f5;
+    background-color: #efefef;
     border-bottom: solid var(--shadow-color) 1px;
     
   
+}
+
+.list-items .item:hover{
+    background-color: var(--graph-text-bg-hover);
+    transform: translateY(-2px);
+
 }
 
 
@@ -100,10 +111,7 @@
     
 }
 
-.list-items li :hover{
-    background-color: #e7edfe ;
-    
-}
+
 .item .item-text{
     font-size: 14px;
     font-weight: 100;
@@ -131,9 +139,69 @@
 }
 
 .item.checked{
-    background-color: #e7edfe ;
+    background-color: var(--graph-text-bg-hover) ;
 }
 .list-items li{
     background-color: #fff;
 }
 
+
+
+/*side bar*/
+
+
+.sidenav {
+    height: 100%; /* 100% Full-height */
+    width: 0; /* 0 width - change this with JavaScript */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Stay on top */
+    top: 0; /* Stay at the top */
+    right: 0;
+    background-color: #142E7B; /* Black*/
+    overflow-x: hidden; /* Disable horizontal scroll */
+    padding-top: 60px; /* Place content 60px from the top */
+    transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
+    
+  }
+.sidebar-container{
+    border-top:1px solid rgba(255,255,255,.1);;
+}
+  
+  /* The navigation menu links */
+  .sidenav a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 15px;
+    color: white;
+    display: block;
+    transition: 0.3s;
+  }
+
+
+  
+  /* When you mouse over the navigation links, change their color */
+  .sidenav a:hover {
+    color: white;
+    background-color: #0a6bff;
+  }
+
+
+  
+  /* Position and style the close button (top right corner) */
+  .sidenav .closebtn {
+    position: absolute;
+    top: 0;
+    right: 10px;
+    font-size: 36px;
+    
+  }
+
+  #sidebarCarte{
+    background-color: #0a6bff;
+  }
+  
+
+
+
+  
+  /* Style page content - use this if you want to push the page content to the right when you open the side navigation */
