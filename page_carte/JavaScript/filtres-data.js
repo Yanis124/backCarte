@@ -91,6 +91,38 @@ async  function filterList() {   //selectedValueAtm contient les valeurs selecti
 
 
         filtre=true;
+        
+	if(selectedValuesAge){
+		for (let i = 0; i < selectedValuesGravite.length; i++) {
+			var gravIncluded = selectedValuesGravite[i];
+			
+			//On boucle sur la liste des accidents
+			for (let j = 0; j < listAccident.length; j++) {
+				
+				//Pour chaque accident, on extrait la liste des gravités & on indique que le séparateur est une virgule
+				let grav = listAccident[j].fields.grav;
+				let gravArray = grav.split(",");
+				
+				//On tourne sur cette liste et on vérifie si elle contient une des gravités selectionnées par l'utilisateur
+				for (let y = 0; y < gravArray.length; y++) {
+					let gravite_ind = gravArray[y];
+					let isIncluded = false;
+					
+					if (gravIncluded === "Indemne" && gravite_ind == "Indemne") {
+						isIncluded = true;
+					} else if (gravIncluded === "Blessé" && gravite_ind == "Blessé") {
+						isIncluded = true;
+					} else if (gravIncluded === "Tué" && gravite_ind == "Tué") {
+						isIncluded = true;
+					}
+					if (isInRange) {
+						listAccidentAge.push(listAccident[j]);
+					}
+				}
+			}
+		}
+	}   
+    
     if(selectedValuesAtm){
 
         listAccidentAtm=[];
