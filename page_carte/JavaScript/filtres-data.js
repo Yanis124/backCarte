@@ -319,7 +319,7 @@ function selectDataFiltre(){
 		}
 	}
 
- 
+ /*
     listAccidentFiltre=listAccidentLum.filter(x => listAccidentRegions.includes(x)); //intersection entre listRegion et listLum
     listAccidentFiltre=listAccidentFiltre.filter(x => listAccidentAtm.includes(x)); //intersection entre listAccidentFiltre1 et listAccidentAtm
     listAccidentFiltre=listAccidentFiltre.filter(x => listAccidentDepartement.includes(x));
@@ -328,6 +328,7 @@ function selectDataFiltre(){
     listAccidentFiltre=listAccidentFiltre.filter(x => listAccidentGrv.includes(x));
     listAccidentFiltre=listAccidentFiltre.filter(x => listAccidentVille.includes(x));
     console.log(listAccidentFiltre)  
+    * */
 }
 
 
