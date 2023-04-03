@@ -56,87 +56,6 @@ function dateLimit(){
     dateEnd.setAttribute("max","2020-01-01")
 }
 
-
-
-async function getAllMeteo(){  //recuperer toutes les conditions meterologiques
-    var apiUrl1 = "https://public.opendatasoft.com/api/records/1.0/search/?dataset=accidents-corporels-de-la-circulation-millesime&q=&rows=0&facet=atm";
-
-    
-    try{
-        var res=await fetch(apiUrl1)
-        var data=await res.json()
-        
-    }
-
-    catch{
-        console.log("erreur de fetch") //gerer les erreurs
-    }
-
-   
-
-    console.log(meteoSelect)
-
-    
-
-    //console.log(data)
-    for(var i=0;i<data.facet_groups[0].facets.length;i++){  
-        var vale=data.facet_groups[0].facets[i]
-
-        var option=createElementCkeck(vale)
-        
-        meteoSelect.children[1].appendChild(option)
-
-        
-
-    }
-    addEventChecked()
-    //console.log(meteoSelect)
-}
-
-async function getAllGravite(){  //recuperer toutes les conditions meterologiques
-    
-
-    
-    var apiUrl1 = "https://public.opendatasoft.com/api/records/1.0/search/?dataset=accidents-corporels-de-la-circulation-millesime&q=&rows=0&facet=grav";
-
-    
-    try{
-        
-        var res=await fetch(apiUrl1)
-        var data=await res.json()
-        
-    }
-
-    catch{
-        console.log("erreur de fetch") //gerer les erreurs
-    }
-
-    
-
-
-
-    //console.log(data)
-    for(var i=0;i<data.facet_groups[0].facets.length;i++){  
-        var vale=data.facet_groups[0].facets[i]
-
-        var option=createElementCkeck(vale)
-        
-        graviteSelect.children[1].appendChild(option)
-
-        
-
-    }
-    addEventChecked()
-    //console.log(graviteSelect)
-
-    
-    
-}
-
-
-
-
-
 // Récupère tout les noms des regions de l'API
 function nomRegions() {
     // URL de l'API récupérant les noms des régions
@@ -257,29 +176,32 @@ function createElementCkeck(data){
 
 // Filtre villes en fonction du département selectionnée
 
-function addEventChecked(){  //ajouter l'evenement aux check box
+/* function addEventChecked(){  */ //ajouter l'evenement aux check box
 
-    const selectBtn = document.querySelectorAll(".select-btn"),
+const selectBtn = document.querySelectorAll(".select-btn"),
     items = document.querySelectorAll(".item"),
     resetBtn = document.querySelector('input[type="reset"]');
 
-    selectBtn.forEach(selectBtn => {
+selectBtn.forEach(selectBtn => {
     selectBtn.addEventListener("click", () => {
         selectBtn.classList.toggle("open");
     }); 
-    });
-    items.forEach(item => {
+});
+items.forEach(item => {
     item.addEventListener("click", () => {
         item.classList.toggle("checked");
         const selectedItems = document.querySelectorAll(".checked"); // Récupérer tous les éléments avec la classe "checked"
         const selectedValues = Array.from(selectedItems).map(item => item.getAttribute("value")); // Récupérer les valeurs de l'attribut "value" des éléments sélectionnés
         console.log(selectedValues); // Afficher les valeurs sélectionnées dans la console
+        filterList(selectedValues);    
     });
-    });  
-    items.forEach(item => {
+}); 
+
+
+ items.forEach(item => {
     resetBtn.addEventListener("click", () => {
         item.classList.remove('checked');
     });
-    });
-}
+});
+
 
