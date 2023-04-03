@@ -4,7 +4,6 @@ var listAccidentDate=[]
 var choix_date=(document.getElementById("choix-date")).value;
 
 var listAccidentDepartement=[]
-var choix_departement=(document.getElementById("departement")).value;
 
 function getDataFiltre(){
     listAccidentDate=[];
@@ -25,7 +24,6 @@ else if (choix_date=="intervalle-dates"){ //Comment comparer des dates ? AAAA-MM
         }
 }
 }
-
 listAccidentDepartement=[]
 if(selectedDepartement){
 
@@ -41,7 +39,7 @@ function selectDataFiltre(){
     if(!choix_departement||choix_departement=="allDepartements"){
         listAccidentDepartement=listAccident;
     }
-    if(choix_date==""){
+    if(!choix_date){
         listAccidentDate=listAccident;
     }
     listAccidentFiltre=listAccidentFiltre.filter(x => listAccidentDate.includes(x));
