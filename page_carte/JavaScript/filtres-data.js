@@ -49,10 +49,6 @@ async function getDataFiltre(){
         }
        
     }
-    else if (selectedRegion=="allRegions"){
-        listAccidentRegions=listAccident;
-    }
-
 
 
     selectDataFiltre()  //intersection des listes
@@ -153,12 +149,12 @@ async function getDataFiltre(){
 
 
 function selectDataFiltre(){
-     if(!selectedRegion){
+     if(!selectedRegion||selectedRegion=="allRegions"){
         listAccidentRegions=listAccident
     }
 
     if(!selectedLum){
-        listAccidentLum= listAccident
+        listAccidentLum=listAccident
     }
 
     console.log(listAccidentFiltre);
