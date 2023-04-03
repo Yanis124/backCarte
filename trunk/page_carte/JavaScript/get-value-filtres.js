@@ -218,3 +218,33 @@ function getAge(){
     });
     });
 }
+
+function getGrav(){
+    const selectBtn = document.querySelectorAll(".gravite-container .select-btn")
+    console.log(selectBtn)
+    items = document.querySelectorAll(".gravite-container .item"),
+    resetBtn = document.querySelector('input[type="reset"]');
+
+    selectBtn.forEach(selectBtn => {
+    selectBtn.addEventListener("click", () => {
+        selectBtn.classList.toggle("open");
+    }); 
+    });
+    items.forEach(item => {
+    item.addEventListener("click", () => {
+        item.classList.toggle("checked");
+        const selectedItems = document.querySelectorAll(".checked"); // Récupérer tous les éléments avec la classe "checked"
+        selectedValuesGravite = Array.from(selectedItems).map(item => item.getAttribute("value")); // Récupérer les valeurs de l'attribut "value" des éléments sélectionnés
+        console.log(selectedValuesGravite); // Afficher les valeurs sélectionnées dans la console
+        filterList();    
+    });
+    }); 
+
+
+    items.forEach(item => {
+    resetBtn.addEventListener("click", () => {
+        item.classList.remove('checked');
+    });
+    });
+}
+
