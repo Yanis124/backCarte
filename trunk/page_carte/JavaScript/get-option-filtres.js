@@ -151,25 +151,7 @@ function nomVilles(){
         .catch(console.log("erreur de fetch")) //gerer les erreurs
 }
 
-function createElementCkeck(data){
-    var option = document.createElement("li"); 
-    option.className="item"
-    //console.log(data.facet_groups[0].facets[i].name)
-    option.value=data.name //ne marche pas
-    var span1=document.createElement("span")
-    span1.className="checkbox"
-    var span2=document.createElement("span")
-    span2.className="item-text"
-    span2.innerText=data.name
-    var I=document.createElement("i")
-    I.className="fa-solid fa-check check-icon"
-    span1.appendChild(I)
-    
-    option.appendChild(span1)
-    option.appendChild(span2)
-    return option
 
-}
 
 // Filtre les départements et les villes en fonction de la région selectionnée
 
@@ -178,31 +160,12 @@ function createElementCkeck(data){
 
 /* function addEventChecked(){  */ //ajouter l'evenement aux check box
 
-const selectBtn = document.querySelectorAll(".select-btn"),
-    items = document.querySelectorAll(".item"),
-    resetBtn = document.querySelector('input[type="reset"]');
-
-selectBtn.forEach(selectBtn => {
-    selectBtn.addEventListener("click", () => {
-        selectBtn.classList.toggle("open");
-    }); 
-});
-items.forEach(item => {
-    item.addEventListener("click", () => {
-        item.classList.toggle("checked");
-        const selectedItems = document.querySelectorAll(".checked"); // Récupérer tous les éléments avec la classe "checked"
-        const selectedValues = Array.from(selectedItems).map(item => item.getAttribute("value")); // Récupérer les valeurs de l'attribut "value" des éléments sélectionnés
-        console.log(selectedValues); // Afficher les valeurs sélectionnées dans la console
-        console.log(selectedValues.length)
-        filterList(selectedValues);    
-    });
-}); 
 
 
- items.forEach(item => {
-    resetBtn.addEventListener("click", () => {
-        item.classList.remove('checked');
-    });
-});
+
+
+
+
+
 
 

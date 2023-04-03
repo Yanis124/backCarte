@@ -9,17 +9,18 @@ var selectedRegion
 var selectedDepartement
 var selectedVille
 
-var selectedMeteo
+var selectedValuesAtm=[]
 
-var selectedAge
+var selectedValuesAge=[]
 
-var selectedGravite
+var selectedValuesGravite=[]
 
 var selectedLum
 
+var choix_date=document.getElementById("choix-date");
+
 function getIntervalleDateStart(){  //limiter le choix dans le filtre date de fin et recuperer la date
     selectedDateEnd=dateStart.value
-    getDataFiltre()
     console.log(selectedDateEnd)
     dateEnd.setAttribute("min",selectedDateEnd)    
 
@@ -27,16 +28,19 @@ function getIntervalleDateStart(){  //limiter le choix dans le filtre date de fi
 
 function getIntervalleDateEnd(){  //limiter le choix dans le filtre date de debut et recuperrer la date
     selectedDateStart=dateEnd.value
-    getDataFiltre()
     console.log(selectedDateStart)
     dateStart.setAttribute("max",selectedDateStart)  
 }
 
 function getDate(){  //recuperer la date 
     selectedDate=date.value
-    getDataFiltre()
     console.log(selectedDate)
+    getDataFiltre()
 }
+
+
+
+
 
 function getRegion() {      // Région sélectionnée
 
@@ -96,7 +100,9 @@ function getDepartement() {
     // Departement sélectionnée
     
     selectedDepartement = departementSelect.value;
+
     getDataFiltre()
+    
 
     if(selectedDepartement==="allDepartements"){  //si on selectionne tous les departements on affiche toutes les villes de la regions selectionné
         getRegion()
@@ -130,10 +136,7 @@ function getVille(){
 }
 
 
-/* function getMeteo(){
-    selectedMeteo=meteoSelect.value
-    console.log(selectedMeteo)
-} */
+
 
 /* function getAge(){
     selectedAge=ageSelect.value
@@ -155,4 +158,63 @@ function getNuit(){
     selectedLum=nuitSelect.value
     getDataFiltre()
     console.log(selectedLum)
+}
+
+
+function getAtm(){
+    const selectBtn = document.querySelectorAll(".weather-container .select-btn")
+    console.log(selectBtn)
+    items = document.querySelectorAll(".weather-container .item"),
+    resetBtn = document.querySelector('input[type="reset"]');
+
+    selectBtn.forEach(selectBtn => {
+    selectBtn.addEventListener("click", () => {
+        selectBtn.classList.toggle("open");
+    }); 
+    });
+    items.forEach(item => {
+    item.addEventListener("click", () => {
+        item.classList.toggle("checked");
+        const selectedItems = document.querySelectorAll(".checked"); // Récupérer tous les éléments avec la classe "checked"
+        selectedValuesAtm = Array.from(selectedItems).map(item => item.getAttribute("value")); // Récupérer les valeurs de l'attribut "value" des éléments sélectionnés
+        console.log(selectedValuesAtm); // Afficher les valeurs sélectionnées dans la console
+        filterList();    
+    });
+    }); 
+
+
+    items.forEach(item => {
+    resetBtn.addEventListener("click", () => {
+        item.classList.remove('checked');
+    });
+    });
+}
+
+function getAge(){
+    const selectBtn = document.querySelectorAll(".age-container .select-btn")
+    console.log(selectBtn)
+    items = document.querySelectorAll(".age-container .item"),
+    resetBtn = document.querySelector('input[type="reset"]');
+
+    selectBtn.forEach(selectBtn => {
+    selectBtn.addEventListener("click", () => {
+        selectBtn.classList.toggle("open");
+    }); 
+    });
+    items.forEach(item => {
+    item.addEventListener("click", () => {
+        item.classList.toggle("checked");
+        const selectedItems = document.querySelectorAll(".checked"); // Récupérer tous les éléments avec la classe "checked"
+        selectedValuesAge = Array.from(selectedItems).map(item => item.getAttribute("value")); // Récupérer les valeurs de l'attribut "value" des éléments sélectionnés
+        console.log(selectedValuesAge); // Afficher les valeurs sélectionnées dans la console
+        filterList();    
+    });
+    }); 
+
+
+    items.forEach(item => {
+    resetBtn.addEventListener("click", () => {
+        item.classList.remove('checked');
+    });
+    });
 }

@@ -78,7 +78,7 @@ section{
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #dee5ef;
+    background-color: var(--section-border);
     height:70%; /*le graaph prend 70% de la longeur du graph-filtre-container*/
 }
 
