@@ -3,8 +3,8 @@ var listAccidentFiltre=[]
 var listAccidentLum=[]
 var listAccidentRegions=[]
 
-
-
+var listAccidentTps=[]
+ 
 
 function execute(a){
 
@@ -39,7 +39,6 @@ async function getDataFiltre(){
         }       
     }
     
-
     if(selectedRegion){
         listAccidentRegions=[]
 
@@ -54,41 +53,124 @@ async function getDataFiltre(){
         listAccidentRegions=listAccident;
     }
 
+
+
     selectDataFiltre()  //intersection des listes
 
-
-
-   
    removePin()
    createPin()
    
 }
+  function filterList(selectedValues) {
+    filtre=true;
+    if (selectedValues.length === 0) {
+        listAccidentFiltre = listAccident;
+    }
+    else{
+        listAccidentFiltre=[];
+
+        for (var i=0; i<selectedValues.length; i++){
+            if(selectedValues[i]=="normale"){
+                for(var j=0;j<listAccident.length;j++){
+                    if(listAccident[j].fields.atm=="normale" || listAccident[j].fields.atm=="Normale"){
+                        listAccidentFiltre.push(listAccident[j]);
+                    }
+                    
+                } 
+                console.log(listAccidentFiltre);
+            }
+            if(selectedValues[i]=="pluie_legere"){
+                for(var j=0;j<listAccident.length;j++){
+                    if(listAccident[j].fields.atm=="Pluie l\u00e9g\u00e8re"){
+                        listAccidentFiltre.push(listAccident[j]);
+                    }
+                    
+                } 
+                console.log(listAccidentFiltre);
+            }
+            if(selectedValues[i]=="pluie_forte"){
+                for(var j=0;j<listAccident.length;j++){
+                    if(listAccident[j].fields.atm=="Pluie forte"){
+                        listAccidentFiltre.push(listAccident[j]);
+                    }
+                    
+                } 
+                console.log(listAccidentFiltre);
+            }
+            if(selectedValues[i]=="temps_couverts"){
+                for(var j=0;j<listAccident.length;j++){
+                    if(listAccident[j].fields.atm=="Temps couvert"){
+                        listAccidentFiltre.push(listAccident[j]);
+                    }
+                    
+                } 
+                console.log(listAccidentFiltre);
+            }
+            if(selectedValues[i]=="temps_eblouissant"){
+                for(var j=0;j<listAccident.length;j++){
+                    if(listAccident[j].fields.atm=="Temps \u00e9blouissant"){
+                        listAccidentFiltre.push(listAccident[j]);
+                    }
+                    
+                } 
+                console.log(listAccidentFiltre);
+            }
+            if(selectedValues[i]=="neige_grêle"){
+                for(var j=0;j<listAccident.length;j++){
+                    if(listAccident[j].fields.atm=="Neige - gr\u00eale"){
+                        listAccidentFiltre.push(listAccident[j]);
+                    }
+                    
+                } 
+                console.log(listAccidentFiltre);
+            }
+            if(selectedValues[i]=="brouillard_fumée"){
+                for(var j=0;j<listAccident.length;j++){
+                    if(listAccident[j].fields.atm=="Brouillard - fum\u00e9e"){
+                        listAccidentFiltre.push(listAccident[j]);
+                    }
+                    
+                } 
+                console.log(listAccidentFiltre);
+            } 
+            if(selectedValues[i]=="vent_fort_tempêtes"){
+                console.log("Essaie")
+                for(var j=0;j<listAccident.length;j++){
+                    if(listAccident[j].fields.atm=="Vent fort - temp\u00eate"){
+                        listAccidentFiltre.push(listAccident[j]);
+                    }
+                    
+                } 
+                console.log(listAccidentFiltre);
+            } 
+        }
+    }
+    removePin()
+    createPin()
+}  
+
 
 
 
 function selectDataFiltre(){
-    if(!selectedRegion){
+     if(!selectedRegion){
         listAccidentRegions=listAccident
     }
 
     if(!selectedLum){
         listAccidentLum= listAccident
     }
-    console.log(listAccidentLum)
-    console.log(listAccidentRegions)
-   
-   
-   
 
-   
-    listAccidentFiltre=listAccidentLum.filter(x => listAccidentRegions.includes(x)); //intersection entre listRegion et listLum
+    console.log(listAccidentFiltre);
+ 
+      listAccidentFiltre=listAccidentLum.filter(x => listAccidentRegions.includes(x)); //intersection entre listRegion et listLum
 
-    console.log(listAccidentFiltre)
+    console.log(listAccidentFiltre)  
 }
 
 
 async function initFiltre(){
-    selectedLum=selectedRegion=null //remettre a 0 les filtres 
+    selectedLum=selectedRegion=selectedValues=null //remettre a 0 les filtres 
     loadCarte()  //ajouter une animation de chargement 
     loadFiltre()
 

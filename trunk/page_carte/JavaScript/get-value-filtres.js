@@ -127,20 +127,20 @@ function getVille(){
 }
 
 
-function getMeteo(){
+/* function getMeteo(){
     selectedMeteo=meteoSelect.value
     console.log(selectedMeteo)
-}
+} */
 
-function getAge(){
+/* function getAge(){
     selectedAge=ageSelect.value
     console.log(selectedAge)
-}
+} */
 
-function getGravite(){
+/* function getGravite(){
     selectedGravite=graviteSelect.value
     console.log(selectedGravite)
-}
+} */
 
 function getJour(){
     selectedLum=jourSelect.value
