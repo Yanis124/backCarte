@@ -9,6 +9,8 @@ var listAccidentDate=[]
 var choix_date=document.getElementById("choix-date");
 
 var listAccidentDepartement=[]
+var listAccidentAge=[]
+
 
 
 var filtre=false //pour indiquer a la fonction createPin d'utiliser listAccidentFiltre
@@ -85,6 +87,7 @@ async  function filterList(selectedValues) {
         filtre=true;
 
         listAccidentTps=[];
+        listAccidentAge=[];
 
         for (var i=0; i<selectedValues.length; i++){
             if(selectedValues[i]=="normale"){
@@ -159,7 +162,40 @@ async  function filterList(selectedValues) {
                     
                 } 
                 console.log(listAccidentTps);
-            } 
+            }
+                    //Liaison du filtre tranche d'âge    
+        for (let i = 0; i < selectedValues.length; i++) {
+            var ageRange = selectedValues[i];
+
+            for (let j = 0; j < listAccident.length; j++) {
+                let deathYear = listAccident[j].fields.an;
+                let years = listAccident[j].fields.an_nais;
+                let yearArray = years.split(",");
+        
+                for (let y = 0; y < yearArray.length; y++) {
+                    let age = deathYear - yearArray[y];
+                    let isInRange = false;
+
+                    if (ageRange === "0-18" && age <= 18) {
+                        isInRange = true;
+                    } else if (ageRange === "18-30" && age >= 18 && age <= 30) {
+                        isInRange = true;
+                    } else if (ageRange === "30-50" && age >= 30 && age <= 50) {
+                        isInRange = true;
+                    } else if (ageRange === "50-65" && age >= 50 && age <= 65) {
+                        isInRange = true;
+                    } else if (ageRange === "65_et_plus" && age >= 65) {
+                        isInRange = true;
+                    }
+
+                    if (isInRange) {
+                        listAccidentTps.push(listAccident[j]);
+                    }
+                }
+            }
+        }
+
+            console.log(listAccidentTps); 
         }
     
 
