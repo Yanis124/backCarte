@@ -1,7 +1,7 @@
 //definir les valeurs des filtre comme variables globales pour avoir un access direct depuis tous les fichiers 
-
-var selectedDate
-
+  
+var selectedDate   //definir une variable par filtre pour contenir les valeurs selectionnées
+ 
 var selectedDateStart  
 var selectedDateEnd
 
@@ -132,6 +132,7 @@ function getDepartement() {
 
 function getVille(){
     selectedVille=villeSelect.value
+    getDataFiltre()
     console.log(selectedVille)
 }
 
@@ -162,9 +163,10 @@ function getNuit(){
 
 
 function getAtm(){
-    const selectBtn = document.querySelectorAll(".weather-container .select-btn")
-    console.log(selectBtn)
-    items = document.querySelectorAll(".weather-container .item"),
+    const selectBtn = document.querySelectorAll("#weather .select-btn")
+    
+    items = document.querySelectorAll("#weather .item"),
+    
     resetBtn = document.querySelector('input[type="reset"]');
 
     selectBtn.forEach(selectBtn => {
@@ -175,9 +177,9 @@ function getAtm(){
     items.forEach(item => {
     item.addEventListener("click", () => {
         item.classList.toggle("checked");
-        const selectedItems = document.querySelectorAll(".checked"); // Récupérer tous les éléments avec la classe "checked"
+        const selectedItems = document.querySelectorAll("#weather .checked"); // Récupérer tous les éléments avec la classe "checked"
         selectedValuesAtm = Array.from(selectedItems).map(item => item.getAttribute("value")); // Récupérer les valeurs de l'attribut "value" des éléments sélectionnés
-        console.log(selectedValuesAtm); // Afficher les valeurs sélectionnées dans la console
+        //console.log(selectedValuesAtm); // Afficher les valeurs sélectionnées dans la console
         filterList();    
     });
     }); 
@@ -204,9 +206,9 @@ function getAge(){
     items.forEach(item => {
     item.addEventListener("click", () => {
         item.classList.toggle("checked");
-        const selectedItems = document.querySelectorAll(".checked"); // Récupérer tous les éléments avec la classe "checked"
+        const selectedItems = document.querySelectorAll(".age-container .checked"); // Récupérer tous les éléments avec la classe "checked"
         selectedValuesAge = Array.from(selectedItems).map(item => item.getAttribute("value")); // Récupérer les valeurs de l'attribut "value" des éléments sélectionnés
-        console.log(selectedValuesAge); // Afficher les valeurs sélectionnées dans la console
+        // Afficher les valeurs sélectionnées dans la console
         filterList();    
     });
     }); 
@@ -219,7 +221,7 @@ function getAge(){
     });
 }
 
-function getGrav(){
+function getGravite(){
     const selectBtn = document.querySelectorAll(".gravite-container .select-btn")
     console.log(selectBtn)
     items = document.querySelectorAll(".gravite-container .item"),
@@ -233,9 +235,9 @@ function getGrav(){
     items.forEach(item => {
     item.addEventListener("click", () => {
         item.classList.toggle("checked");
-        const selectedItems = document.querySelectorAll(".checked"); // Récupérer tous les éléments avec la classe "checked"
+        const selectedItems = document.querySelectorAll(".gravite-container .checked"); // Récupérer tous les éléments avec la classe "checked"
         selectedValuesGravite = Array.from(selectedItems).map(item => item.getAttribute("value")); // Récupérer les valeurs de l'attribut "value" des éléments sélectionnés
-        console.log(selectedValuesGravite); // Afficher les valeurs sélectionnées dans la console
+        //console.log(selectedValuesGravite); // Afficher les valeurs sélectionnées dans la console
         filterList();    
     });
     }); 
@@ -247,4 +249,3 @@ function getGrav(){
     });
     });
 }
-

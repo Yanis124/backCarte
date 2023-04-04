@@ -41,7 +41,7 @@
     
         
     </head>
-    <body onload="nomRegions(); nomDepartements(); nomVilles() ; dateLimit();getAtm();getAge(); getGrav(); initMap();createPin()">
+    <body onload="nomRegions(); nomDepartements(); nomVilles() ; dateLimit();getAtm();getAge(); getGravite(); initMap();createPin()">
         <header id="#top">
             <div id="mySidenav" class="sidenav">
                <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
@@ -156,13 +156,13 @@
                             <label for="ville"> ville : </label>
                             
                             <select onchange="getVille()" id="ville" name="ville">
-                                <option value="">-- Sélectionner une ville --</option>
+                                <option value="allVilles">-- Sélectionner une ville --</option>
                             </select>
                             
                         </div>
 
                         <!-- Filtre condition météorologique : normale, pluie légère, pluie forte, temps couverts, temps éblouissant, neige/grèle, borouillard/fumée, vent fort/tempête-->  
-                        <div class="weather-container">
+                        <div id="weather" class="weather-container">
                             <div class="select-btn">
                                 <span class="btn-text">-- Condition Météorologique --</span>
                                 <span  class="arrow-dwn">
