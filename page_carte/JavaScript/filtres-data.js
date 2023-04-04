@@ -138,13 +138,13 @@ async  function filterList() {   //selectedValueAtm contient les valeurs selecti
                          let gravite_ind = gravArray[y];
                          let isIncluded = false;
                         
-                         if (gravIncluded === "Indemne" && gravite_ind == "indemne") {
+                         if (gravIncluded === "indemne" && gravite_ind == "indemne") {
                              isIncluded = true;
-                         } else if (gravIncluded === "BlessÃ© lÃ©ger" && gravite_ind == "BlessÃ© lÃ©ger") {
+                         } else if (gravIncluded === "leger" && gravite_ind == "BlessÃ© lÃ©ger") {
                              isIncluded = true;
-                         } else if (gravIncluded === "BlessÃ© hospitalisÃ©" && gravite_ind == "BlessÃ© hospitalisÃ©") {
+                         } else if (gravIncluded === "hospitalise" && gravite_ind == "BlessÃ© hospitalisÃ©") {
                              isIncluded = true;
-                         } else if (gravIncluded === "TuÃ©" && gravite_ind == "TuÃ©") {
+                         } else if (gravIncluded === "tue" && gravite_ind == "TuÃ©") {
                              isIncluded = true;
                          }
                          if (isIncluded) {
