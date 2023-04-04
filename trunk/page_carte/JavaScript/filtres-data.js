@@ -109,40 +109,54 @@ async  function filterList() {   //selectedValueAtm contient les valeurs selecti
 
         filtre=true;
         
-        // if(selectedValuesGravite){                                    //ne marche pas
-        //     for (let i = 0; i < selectedValuesGravite.length; i++) {
-        //         var gravIncluded = selectedValuesGravite[i];
-                
-        //         //On boucle sur la liste des accidents
-        //         for (let j = 0; j < listAccident.length; j++) {
+        
+/*----------GRAVITE----------*/
+        if(selectedValuesGravite){                                    //ne marche pas
+             for (let i = 0; i < selectedValuesGravite.length; i++) {
+                 var gravIncluded = selectedValuesGravite[i];
+               
+                 //On boucle sur la liste des accidents
+                 for (let j = 0; j < listAccident.length; j++) {
                     
-        //             //Pour chaque accident, on extrait la liste des gravitÃ©s & on indique que le sÃ©parateur est une virgule
-        //             let grav = listAccident[j].fields.grav;
-        //             let gravArray = grav.split(",");
+                    //Pour chaque accident, on extrait la liste des gravitÃ©s & on indique que le sÃ©parateur est une virgule
+                    let gravi = listAccident[j].fields.grav;
+					let gravArray [];
+                     
+                     //si il y a une personne 
+                    try{                      
+						gravArray = gravi.split(",");
+					}
+					catch{
+						console.log("only 1 person harmed")
+						gravArray.push(gravi)
+					}
+                     
+                     //console.log(gravi);
                     
-        //             //On tourne sur cette liste et on vÃ©rifie si elle contient une des gravitÃ©s selectionnÃ©es par l'utilisateur
-        //             for (let y = 0; y < gravArray.length; y++) {
-        //                 let gravite_ind = gravArray[y];
-        //                 let isIncluded = false;
+                     //On tourne sur cette liste et on vÃ©rifie si elle contient une des gravitÃ©s selectionnÃ©es par l'utilisateur
+                     for (let y = 0; y < gravArray.length; y++) {
+                         let gravite_ind = gravArray[y];
+                         let isIncluded = false;
                         
-        //                 if (gravIncluded === "Indemne" && gravite_ind == "indemne") {
-        //                     isIncluded = true;
-        //                 } else if (gravIncluded === "BlessÃ© lÃ©ger" && gravite_ind == "blessÃ© lÃ©ger") {
-        //                     isIncluded = true;
-        //                 } else if (gravIncluded === "BlessÃ© hospitalisÃ©" && gravite_ind == "blessÃ© hospitalisÃ©") {
-        //                     isIncluded = true;
-        //                 } else if (gravIncluded === "TuÃ©" && gravite_ind == "tuÃ©") {
-        //                     isIncluded = true;
-        //                 }
-        //                 if (isInRange) {
-        //                     listAccidentGrv.push(listAccident[j]);
-        //                 }
-        //             }
-        //         }
-        //     }
-        // }   
+                         if (gravIncluded === "Indemne" && gravite_ind == "indemne") {
+                             isIncluded = true;
+                         } else if (gravIncluded === "BlessÃ© lÃ©ger" && gravite_ind == "BlessÃ© lÃ©ger") {
+                             isIncluded = true;
+                         } else if (gravIncluded === "BlessÃ© hospitalisÃ©" && gravite_ind == "BlessÃ© hospitalisÃ©") {
+                             isIncluded = true;
+                         } else if (gravIncluded === "TuÃ©" && gravite_ind == "TuÃ©") {
+                             isIncluded = true;
+                         }
+                         if (isIncluded) {
+                             listAccidentGrv.push(listAccident[j]);
+                         }
+                     }
+                 }
+             }
+         }   
     
-    if(selectedValuesAtm){  //filtre meteo
+    
+        if(selectedValuesAtm){  //filtre meteo
 
         listAccidentAtm=[];
 
@@ -314,9 +328,6 @@ function selectDataFiltre(){
         listAccidentAge=listAccident
     }
 
-
-
-
     if (selectedValuesAge){
         if(selectedValuesAge.length == 0){ 
             listAccidentAge = listAccident;
@@ -324,13 +335,23 @@ function selectDataFiltre(){
         }
     }
 
+	if(!selectedValuesGravite){
+		listAccidentGravite = listAccident
+	}
+	
+	if(selectedValuesGravite){
+		if(selectedValuesGravite.length = 0){
+			listAccidentGravite = listAccident;
+		}
+	}
  
-    listAccidentFiltre=listAccidentLum.filter(x => listAccidentRegions.includes(x)); //intersection entre listRegion et listLum
-    listAccidentFiltre=listAccidentFiltre.filter(x => listAccidentAtm.includes(x)); //intersection entre listAccidentFiltre et listAccidentLum
-    listAccidentFiltre=listAccidentFiltre.filter(x => listAccidentDepartement.includes(x)); //intersection entre listAccidentFiltre et listAccidentDepartement
-    listAccidentFiltre=listAccidentFiltre.filter(x => listAccidentDate.includes(x));//intersection entre listAccidentFiltre et listAccidentDate
-    listAccidentFiltre=listAccidentFiltre.filter(x => listAccidentAge.includes(x));//intersection entre listAccidentFiltre et listAccidentAge
-    listAccidentFiltre=listAccidentFiltre.filter(x => listAccidentVille.includes(x));//intersection entre listAccidentFiltre et listAccidentVille
+    listAccidentFiltre = listAccidentLum.filter(x => listAccidentRegions.includes(x)); //intersection entre listRegion et listLum
+    listAccidentFiltre = listAccidentFiltre.filter(x => listAccidentAtm.includes(x)); //intersection entre listAccidentFiltre et listAccidentLum
+    listAccidentFiltre = listAccidentFiltre.filter(x => listAccidentDepartement.includes(x)); //intersection entre listAccidentFiltre et listAccidentDepartement
+    listAccidentFiltre = listAccidentFiltre.filter(x => listAccidentDate.includes(x));//intersection entre listAccidentFiltre et listAccidentDate
+    listAccidentFiltre = listAccidentFiltre.filter(x => listAccidentAge.includes(x));//intersection entre listAccidentFiltre et listAccidentAge
+    listAccidentFiltre = listAccidentFiltre.filter(x => listAccidentVille.includes(x));//intersection entre listAccidentFiltre et listAccidentVille
+    listAccidentFiltre = listAccidentFiltre.filter (x => listAccidentGravite.includes(x));
     console.log(listAccidentFiltre)  
 }
 
