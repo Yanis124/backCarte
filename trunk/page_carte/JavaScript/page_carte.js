@@ -54,7 +54,7 @@ markerCluster = new L.markerClusterGroup( { animate: true,animateAddingMarkers: 
 async function createPin(){
     
     loadCarte()
-    loadFiltre()
+    // loadFiltre()
     //console.log(listAccidentFiltre.length)
     markerCluster = new L.markerClusterGroup( { animate: true,animateAddingMarkers: true});  //créer un markercluster pour regrouper les marqueurs
     if(!filtre){ //on afficher tous les pin si on ne filtre pas
@@ -86,7 +86,7 @@ async function createPin(){
     
    
     workCarte()   //enlever l'annimation de chargement
-    workFiltre()  
+    //workFiltre()  
 }
 
 

@@ -19,6 +19,8 @@ var jourSelect=document.getElementById("jour")
 var nuitSelect=document.getElementById("nuit")
 
 
+
+
 function afficherChoix() {
     var choix = document.getElementById("choix-date");
     var choixDate = document.getElementById("choix-date-specifique");
@@ -118,6 +120,11 @@ function nomDepartements(){
 
 // Récupère tout les noms des villes de l'API
 function nomVilles(){
+
+
+
+
+
     // URL de l'API rÃ©cupÃ©rant les noms des villes
 	var apiUrl3 = "https://public.opendatasoft.com/api/records/1.0/search/?dataset=accidents-corporels-de-la-circulation-millesime&q=&rows=0&facet=nom_com";
     
@@ -130,14 +137,15 @@ function nomVilles(){
 
 
 			// Ajout des communes Ã  la liste dÃ©roulante
+            console.log(villeSelect)
 			
-            villeSelect.options.length = 1; // Suppression des options prÃ©cÃ©dentes
+            villeSelect.children[1].innerHTML=""; ; // Suppression des options prÃ©cÃ©dentes
 			ville.forEach(ville => {
-				var option = document.createElement("option");
-				option.value = ville.name;
-				option.text = ville.name;
-				villeSelect.add(option);
+				var option = createList(ville.name)
+				villeSelect.children[1].append(option);
 			});
+            
+            addCheckVille()
             
 	    },
         )
@@ -154,7 +162,18 @@ function nomVilles(){
 /* function addEventChecked(){  */ //ajouter l'evenement aux check box
 
 
+function createList(valueList){
+    var list=document.createElement("li")
+    list.className="item"
+    list.value=valueList
+    var span2=document.createElement("span")
+    span2.className="item-text"
+    span2.innerText=valueList
+    list.append(span2)
+    return list
 
+
+}
 
 
 

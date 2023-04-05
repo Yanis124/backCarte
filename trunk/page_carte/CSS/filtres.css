@@ -26,28 +26,64 @@
 
 
 
+
+
+
+
+
+
+
 .select-btn{
+    position: relative;
+    display: inline-block;
+    padding-bottom: 6px;
     display: flex;
     height: 40px;
-    align-items: center;
+    align-items: end;
     justify-content: space-between;
-    padding: 0 16px;
-    border-radius: 8px;
     cursor: pointer;
-    background-color: var(--section-bg);
-    border:1px solid #6e93f7;
+    border-bottom: 1px solid rgb(178, 178, 178);
+    
+   
     width:60%;
 }
 
-.select-btn.open{
-    -moz-box-shadow: 0 0 5px var(--blue-border-effect);
-    -webkit-box-shadow: 0 0 5px var(--blue-border-effect);
-    box-shadow: 0 0 5px var(--blue-border-effect);
+@keyframes example {
+    from {width:0%}
+    to {width:100%}
+  }
+
+
+
+
+.select-btn.open:after {
+	position: absolute;
+	content: '';
+	height: 2px;
+    background: #0a6bff;
+    width: 0;
+    bottom: 0; 
+    animation-name: example;
+    animation-duration: 0.3s;
+    -webkit-animation-fill-mode: forwards; 
+    -moz-animation-fill-mode: forwards;    
+    -o-animation-fill-mode: forwards;      
+    -ms-animation-fill-mode: forwards;     
+    animation-fill-mode: forwards;         
+
+    
 }
+
+
+
+
+
+
+
 .select-btn .btn-text{
     font-size: var(--filtre-carte-size);
-    font-weight: var(--filtre-carte-weight);
-    color: var(--filtre-carte-color);
+    font-weight: 500;
+    color: #333;
 
 
 }
@@ -55,10 +91,9 @@
     display: flex;
     height: 21px;
     width: 21px;
-    color: #fff;
+    color: #0a6bff;
     font-size: 14px;
-    border-radius: 50%;
-    background: #6e93f7;
+    
     align-items: center;
     justify-content: center;
     transition: 0.3s;
@@ -70,10 +105,12 @@
 .list-items{
     position: relative;
     margin-top: 5px;
-    border-radius: 8px;
+    border-radius: 4px;
     padding: 5px;
     padding-left:0;
     padding-right:0;
+    overflow: auto;
+    height: 200px;
     
     
     display: none;
@@ -115,7 +152,7 @@
 .item .item-text{
     font-size: 14px;
     font-weight: 100;
-    color: #333;
+    color: #000;
 }
 .item .checkbox{
     display: flex;
@@ -144,6 +181,8 @@
 .list-items li{
     background-color: #fff;
 }
+
+
 
 
 

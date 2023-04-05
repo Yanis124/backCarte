@@ -91,13 +91,12 @@ function getRegion() {      // Région sélectionnée
         
                 // Mise à jour de la liste déroulante des villes
                 var villeSelect = document.getElementById("ville"); //Variable avec pour id = ville
-                villeSelect.options.length = 1; // Suppression des options précédentes
+                 villeSelect.children[1].innerHTML=""; // Suppression des options précédentes
                 ville.forEach(ville => {
-                    var option = document.createElement("option");
-                    option.value = ville.name;
-                    option.text = ville.name;
-                    villeSelect.add(option);
+                    var option = createList(ville.name)
+                    villeSelect.children[1].append(option); //ajouter les villes du departement dans me filtre ville
                 });
+                addCheckVille()
             })
         }
         getDataFiltre()
@@ -134,13 +133,13 @@ function getDepartement() {
   
         // Mise à jour de la liste déroulante des villes
         var villeSelect = document.getElementById("ville"); //Variable avec pour id = ville
-        villeSelect.options.length = 1; // Suppression des options précédentes
+        villeSelect.children[1].innerHTML=""; // Suppression des options précédentes
         ville.forEach(ville => {
-            var option = document.createElement("option");
-            option.value = ville.name;
-            option.text = ville.name;
-            villeSelect.add(option);
+            var option = createList(ville.name)
+            villeSelect.children[1].append(option); //ajouter les villes du departement dans me filtre ville
         });
+        addCheckVille()
+        
     })
     console.log(selectedDepartement)
     getDataFiltre()
@@ -149,12 +148,7 @@ function getDepartement() {
     
 }
 
-function getVille(){
-    selectedVille=villeSelect.value
-    
-    console.log(selectedVille)
-    getDataFiltre()
-}
+
 
 
 
@@ -199,7 +193,7 @@ function getAtm(){
         item.classList.toggle("checked");
         const selectedItems = document.querySelectorAll("#weather .checked"); // Récupérer tous les éléments avec la classe "checked"
         selectedValuesAtm = Array.from(selectedItems).map(item => item.getAttribute("value")); // Récupérer les valeurs de l'attribut "value" des éléments sélectionnés
-        //console.log(selectedValuesAtm); // Afficher les valeurs sélectionnées dans la console
+        
         filterList();    
     });
     }); 
@@ -263,9 +257,76 @@ function getGravite(){
     }); 
 
 
+
+
     items.forEach(item => {
     resetBtn.addEventListener("click", () => {
         item.classList.remove('checked');
     });
     });
 }
+
+
+function addCheckVille(){  //simuler le comportement de la checklist 
+    
+    var text=document.querySelector("#ville-choice")
+    var villeText=document.querySelector(".ville-text")
+    items = document.querySelectorAll(".ville-container .item"),
+    resetBtn = document.querySelector('input[type="reset"]');
+
+    
+    items.forEach(item => {
+    item.addEventListener("click", () => {
+        
+        
+
+        for(var i=0;i<villeSelect.children[1].children.length;i++){  //ajouter du style a la ville selectionnée
+            villeSelect.children[1].children[i].style.backgroundColor="#f5f5f5"  
+        }
+
+        selectedVille=item.innerText     //recuperer la valeur 
+        item.classList.toggle("checked");
+        item.style.backgroundColor="#b4dbd6"
+        console.log(text)
+        text.innerHTML=selectedVille
+        villeText.style.position="absolute"
+        villeText.style.fontSize="10px"
+        villeText.style.top="0"
+        
+
+
+        console.log(villeSelect.children[1].length)
+    
+        getDataFiltre() 
+    });
+    }); 
+
+    items.forEach(item => {
+    item.addEventListener("mouseover", () => {
+        item.style.backgroundColor="#b4dbd6"
+    
+    });
+    });
+
+    items.forEach(item => {
+    item.addEventListener("mouseleave", () => {
+        item.style.backgroundColor="#f5f5f5"
+    
+    });
+    });
+
+
+    items.forEach(item => {
+    resetBtn.addEventListener("click", () => {
+        item.classList.remove('checked');
+    });
+    });
+}
+
+const selectBtn = document.querySelectorAll(".ville-container .select-btn")  //ajouter un evenement pour ouvrire le menu deroulant des villes
+
+selectBtn.forEach(selectBtn => {
+    selectBtn.addEventListener("click", () => {
+        selectBtn.classList.toggle("open");
+    }); 
+});

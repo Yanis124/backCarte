@@ -126,7 +126,7 @@
                         <!-- Filtre regions sans les regions outre mer-->  
                         <div class="region-container">
 
-                            <label for="region"> region : </label>
+                            
                             
                             <select id="region" name="region" onchange="getRegion();">
                                 <option value="allRegions">-- Sélectionner une region --</option>
@@ -151,20 +151,25 @@
                         </div>
 
                         <!-- Filtre ville sans les villes outre mer-->
-                        <div class="ville-container">
-
-                            <label for="ville"> ville : </label>
-                            
-                            <select onchange="getVille()" id="ville" name="ville">
-                                <option value="allVilles">-- Sélectionner une ville --</option>
-                            </select>
-                            
+                        <div class="ville-container" id="ville">
+                            <div class="select-btn">
+                                <div class="btn-text"> <span class="ville-text"> Ville </span> 
+                                    <span id="ville-choice"> </span>
+                                </div>
+                                <span class="arrow-dwn">
+                                    <i class="fa-solid fa-chevron-down"></i>
+                                </span>
+                            </div>
+                            <ul class="list-items">
+                                
+                            </ul>
                         </div>
+                        
 
                         <!-- Filtre condition météorologique : normale, pluie légère, pluie forte, temps couverts, temps éblouissant, neige/grèle, borouillard/fumée, vent fort/tempête-->  
                         <div id="weather" class="weather-container">
                             <div class="select-btn">
-                                <span class="btn-text">-- Condition Météorologique --</span>
+                                <span class="btn-text"> Condition Météorologique </span>
                                 <span  class="arrow-dwn">
                                     <i class="fa-solid fa-chevron-down"></i>
                                 </span>
@@ -225,7 +230,7 @@
                         <!-- Filtre tranche d'âges : 0-18 ans, 18-30 ans, 30-50 ans, 50 ans et plus--> 
                         <div class="age-container">
                             <div class="select-btn">
-                                <span class="btn-text">-- Tranches d'âges --</span>
+                                <span class="btn-text"> Tranches d'âges </span>
                                 <span class="arrow-dwn">
                                     <i class="fa-solid fa-chevron-down"></i>
                                     </span>
@@ -261,7 +266,7 @@
                         <!-- Filtre Gravité accident : indemne, blessé léger, blessé hospitalisé, tué-->  
                         <div class="gravite-container">
                             <div class="select-btn">
-                                <span class="btn-text">-- Gravité de l'accident --</span>
+                                <span class="btn-text"> Gravité de l'accident </span>
                                 <span class="arrow-dwn">
                                     <i class="fa-solid fa-chevron-down"></i>
                                     </span>
@@ -352,11 +357,3 @@
     
 
 </html>
-<script>
-
-
-
-
-
-
-</script>
