@@ -47,49 +47,60 @@ function getRegion() {      // Région sélectionnée
 
 
     selectedRegion = regionSelect.value; 
-    getDataFiltre()
 
-        // URL de l'API pour les départements de la région sélectionnée
-        var apiUrl = "https://public.opendatasoft.com/api/records/1.0/search/?dataset=accidents-corporels-de-la-circulation-millesime&q=&rows=0&facet=dep_name&refine.reg_name=" + selectedRegion; // permet encoder un nouvel URL avec la region selectionné
+    selectedDepartement=selectedVille=null //mettre a 0 departement et ville si on selectionne une autre region 
+
+        console.log(selectedRegion)
+        if(selectedRegion==="allRegions"){
+            nomDepartements()
+            nomVilles()
+        }
+
+        else{
+        
+            // URL de l'API pour les départements de la région sélectionnée
+            var apiUrl = "https://public.opendatasoft.com/api/records/1.0/search/?dataset=accidents-corporels-de-la-circulation-millesime&q=&rows=0&facet=dep_name&refine.reg_name=" + selectedRegion; // permet encoder un nouvel URL avec la region selectionné
+        
+            fetch(apiUrl)
+                .then(response => response.json()) // Convertit en objet JSON les données récupérées
+                .then(data => {
+                    var departement = data.facet_groups[0].facets; //variable departement contenant les données récupérées
+                    departement.sort((a, b) => a.name.localeCompare(b.name)); // Tri par ordre alphabétique
+        
+                    // Mise à jour de la liste déroulante des départements
+                    var departementSelect = document.getElementById("departement"); //Variable avec pour id = departement
+                    departementSelect.options.length = 1; // suppression des options précédentes
+                    departement.forEach(departement => {
+                        var option = document.createElement("option");
+                        option.value = departement.name;
+                        option.text = departement.name;
+                        departementSelect.add(option);
+                    });
+                })
+            
     
-        fetch(apiUrl)
+            
+            // URL de l'API pour les villes de la région sélectionnée
+            var apiUrl1 = "https://public.opendatasoft.com/api/records/1.0/search/?dataset=accidents-corporels-de-la-circulation-millesime&q=&rows=0&facet=nom_com&refine.reg_name=" +selectedRegion; // permet encoder un nouvel URL avec la region selectionné
+        
+            fetch(apiUrl1)
             .then(response => response.json()) // Convertit en objet JSON les données récupérées
             .then(data => {
-                var departement = data.facet_groups[0].facets; //variable departement contenant les données récupérées
-                departement.sort((a, b) => a.name.localeCompare(b.name)); // Tri par ordre alphabétique
-    
-                // Mise à jour de la liste déroulante des départements
-                var departementSelect = document.getElementById("departement"); //Variable avec pour id = departement
-                departementSelect.options.length = 1; // suppression des options précédentes
-                departement.forEach(departement => {
+                var ville = data.facet_groups[0].facets; //variable villes contenant les données récupérées
+                ville.sort((a, b) => a.name.localeCompare(b.name)); // Tri par ordre alphabétique
+        
+                // Mise à jour de la liste déroulante des villes
+                var villeSelect = document.getElementById("ville"); //Variable avec pour id = ville
+                villeSelect.options.length = 1; // Suppression des options précédentes
+                ville.forEach(ville => {
                     var option = document.createElement("option");
-                    option.value = departement.name;
-                    option.text = departement.name;
-                    departementSelect.add(option);
+                    option.value = ville.name;
+                    option.text = ville.name;
+                    villeSelect.add(option);
                 });
             })
-        
-  
-        
-        // URL de l'API pour les villes de la région sélectionnée
-        var apiUrl1 = "https://public.opendatasoft.com/api/records/1.0/search/?dataset=accidents-corporels-de-la-circulation-millesime&q=&rows=0&facet=nom_com&refine.reg_name=" +selectedRegion; // permet encoder un nouvel URL avec la region selectionné
-    
-        fetch(apiUrl1)
-        .then(response => response.json()) // Convertit en objet JSON les données récupérées
-        .then(data => {
-            var ville = data.facet_groups[0].facets; //variable villes contenant les données récupérées
-            ville.sort((a, b) => a.name.localeCompare(b.name)); // Tri par ordre alphabétique
-    
-            // Mise à jour de la liste déroulante des villes
-            var villeSelect = document.getElementById("ville"); //Variable avec pour id = ville
-            villeSelect.options.length = 1; // Suppression des options précédentes
-            ville.forEach(ville => {
-                var option = document.createElement("option");
-                option.value = ville.name;
-                option.text = ville.name;
-                villeSelect.add(option);
-            });
-        })
+        }
+        getDataFiltre()
 
     console.log(selectedRegion)
 }
@@ -101,12 +112,16 @@ function getDepartement() {
     
     selectedDepartement = departementSelect.value;
 
-    getDataFiltre()
+    selectedVille=null //mettre a 0 ville si il selectionne un autre departement
+
+    
     
 
     if(selectedDepartement==="allDepartements"){  //si on selectionne tous les departements on affiche toutes les villes de la regions selectionné
         getRegion()
+        
     }
+    else{
     // URL de l'API pour les villes du département sélectionnée
     var apiUrl2 = "https://public.opendatasoft.com/api/records/1.0/search/?dataset=accidents-corporels-de-la-circulation-millesime&q=&rows=0&facet=nom_com&refine.dep_name=" +selectedDepartement; // permet encoder un nouvel URL avec la region selectionné
   
@@ -128,12 +143,17 @@ function getDepartement() {
         });
     })
     console.log(selectedDepartement)
+    getDataFiltre()
+    }
+
+    
 }
 
 function getVille(){
     selectedVille=villeSelect.value
-    getDataFiltre()
+    
     console.log(selectedVille)
+    getDataFiltre()
 }
 
 
