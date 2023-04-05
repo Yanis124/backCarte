@@ -136,7 +136,7 @@ async  function filterList() {   //selectedValueAtm contient les valeurs selecti
                          let isIncluded = false;
                          
                         
-                         console.log(gravIncluded +" "+gravite_ind)
+
                          if (gravIncluded =="Indemne" && gravite_ind == "Indemne") {
                              isIncluded = true;
                          } else if (gravIncluded == "Blessé" && gravite_ind == "Blessé") {
@@ -146,10 +146,12 @@ async  function filterList() {   //selectedValueAtm contient les valeurs selecti
                          }
                          if (isIncluded) {
                              listAccidentGravite.push(listAccident[j]);
+                             break //quitter la boucle une fois que l'accident est ajouter dans la liste 
                          }
                      }
                  }
              }
+             console.log("end of grav")
          }   
     
     
@@ -254,20 +256,21 @@ async  function filterList() {   //selectedValueAtm contient les valeurs selecti
                     let age = deathYear - yearArray[y];
                     let isInRange = false;
 
-                    if (ageRange === "0-18" && age <= 18) {
+                    if (ageRange == "0-18" && age <= 18) {
                         isInRange = true;
-                    } else if (ageRange === "18-30" && age >= 18 && age <= 30) {
+                    } else if (ageRange == "18-30" && age >= 18 && age <= 30) {
                         isInRange = true;
-                    } else if (ageRange === "30-50" && age >= 30 && age <= 50) {
+                    } else if (ageRange == "30-50" && age >= 30 && age <= 50) {
                         isInRange = true;
-                    } else if (ageRange === "50-65" && age >= 50 && age <= 65) {
+                    } else if (ageRange == "50-65" && age >= 50 && age <= 65) {
                         isInRange = true;
-                    } else if (ageRange === "65_et_plus" && age >= 65) {
+                    } else if (ageRange == "65_et_plus" && age >= 65) {
                         isInRange = true;
                     }
 
                     if (isInRange) {
                         listAccidentAge.push(listAccident[j]);
+                        break;
                     }
                 }
             }
@@ -342,16 +345,16 @@ function selectDataFiltre(){
 		}
 	}
 
-    console.log(listAccidentVille)
- 
-    listAccidentFiltre = listAccidentLum.filter(x => listAccidentRegions.includes(x)); //intersection entre listRegion et listLum
-    listAccidentFiltre = listAccidentFiltre.filter(x => listAccidentAtm.includes(x)); //intersection entre listAccidentFiltre et listAccidentLum
-    listAccidentFiltre = listAccidentFiltre.filter(x => listAccidentDepartement.includes(x)); //intersection entre listAccidentFiltre et listAccidentDepartement
-    listAccidentFiltre = listAccidentFiltre.filter(x => listAccidentDate.includes(x));//intersection entre listAccidentFiltre et listAccidentDate
-    listAccidentFiltre = listAccidentFiltre.filter(x => listAccidentAge.includes(x));//intersection entre listAccidentFiltre et listAccidentAge
-    listAccidentFiltre = listAccidentFiltre.filter(x => listAccidentVille.includes(x));//intersection entre listAccidentFiltre et listAccidentVille
-    listAccidentFiltre = listAccidentFiltre.filter (x => listAccidentGravite.includes(x));
-    console.log(listAccidentFiltre)  
+    listAccidentFiltre = listAccidentLum.filter((x) =>
+    listAccidentRegions.includes(x) &&
+    listAccidentAtm.includes(x) &&
+    listAccidentDepartement.includes(x) &&
+    listAccidentDate.includes(x) &&
+    listAccidentAge.includes(x) &&
+    listAccidentVille.includes(x) &&
+    listAccidentGravite.includes(x));
+    console.log(listAccidentFiltre)
+    console.log("end intersect ...")  
 }
 
 
