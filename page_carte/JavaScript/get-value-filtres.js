@@ -38,12 +38,23 @@ function getDate(){  //recuperer la date
     getDataFiltre()
 }
 
+function resetVille(){
+    var text=document.querySelector("#ville-choice")   //remettre a 0 le filtre ville
+    var villeText=document.querySelector(".ville-text")
 
+ 
+    text.innerHTML=""
+    console.log(text)
+    villeText.style.position="relative"
+    villeText.style.fontSize="15px"
+
+}
 
 
 
 function getRegion() {      // Région sélectionnée
 
+    resetVille()
 
 
     selectedRegion = regionSelect.value; 
@@ -105,6 +116,17 @@ function getRegion() {      // Région sélectionnée
 }
 
 function getDepartement() {
+
+    var text=document.querySelector("#ville-choice")   //remettre a 0 le filtre ville
+    var villeText=document.querySelector(".ville-text")
+
+ 
+    text.innerHTML=""
+    console.log(text)
+    villeText.style.position="relative"
+    villeText.style.fontSize="15px"
+
+    
     
 
     // Departement sélectionnée
@@ -112,6 +134,8 @@ function getDepartement() {
     selectedDepartement = departementSelect.value;
 
     selectedVille=null //mettre a 0 ville si il selectionne un autre departement
+
+
 
     
     
@@ -141,12 +165,12 @@ function getDepartement() {
         addCheckVille()
         
     })
-    console.log(selectedDepartement)
-    getDataFiltre()
+        getDataFiltre()
     }
 
     
 }
+
 
 
 
@@ -208,13 +232,14 @@ function getAtm(){
 
 function getAge(){
     const selectBtn = document.querySelectorAll(".age-container .select-btn")
-    console.log(selectBtn)
+    
     items = document.querySelectorAll(".age-container .item"),
     resetBtn = document.querySelector('input[type="reset"]');
 
     selectBtn.forEach(selectBtn => {
     selectBtn.addEventListener("click", () => {
         selectBtn.classList.toggle("open");
+        
     }); 
     });
     items.forEach(item => {
@@ -237,7 +262,6 @@ function getAge(){
 
 function getGravite(){
     const selectBtn = document.querySelectorAll(".gravite-container .select-btn")
-    console.log(selectBtn)
     items = document.querySelectorAll(".gravite-container .item"),
     resetBtn = document.querySelector('input[type="reset"]');
 
@@ -267,9 +291,9 @@ function getGravite(){
 }
 
 
-function addCheckVille(){  //simuler le comportement de la checklist 
+function addCheckVille(){  //simuler le comportement de la checklist dans le filtre ville
     
-    var text=document.querySelector("#ville-choice")
+    var textChoix=document.querySelector("#ville-choice")
     var villeText=document.querySelector(".ville-text")
     items = document.querySelectorAll(".ville-container .item"),
     resetBtn = document.querySelector('input[type="reset"]');
@@ -277,6 +301,8 @@ function addCheckVille(){  //simuler le comportement de la checklist
     
     items.forEach(item => {
     item.addEventListener("click", () => {
+
+
         
         
 
@@ -287,15 +313,17 @@ function addCheckVille(){  //simuler le comportement de la checklist
         selectedVille=item.innerText     //recuperer la valeur 
         item.classList.toggle("checked");
         item.style.backgroundColor="#b4dbd6"
-        console.log(text)
-        text.innerHTML=selectedVille
+        
+        
+        textChoix.innerHTML=selectedVille
+        textChoix.style.color="#000"
         villeText.style.position="absolute"
-        villeText.style.fontSize="10px"
+        villeText.style.fontSize="12px"
         villeText.style.top="0"
         
 
 
-        console.log(villeSelect.children[1].length)
+        
     
         getDataFiltre() 
     });
@@ -323,10 +351,15 @@ function addCheckVille(){  //simuler le comportement de la checklist
     });
 }
 
+
+
 const selectBtn = document.querySelectorAll(".ville-container .select-btn")  //ajouter un evenement pour ouvrire le menu deroulant des villes
 
 selectBtn.forEach(selectBtn => {
     selectBtn.addEventListener("click", () => {
         selectBtn.classList.toggle("open");
     }); 
-});
+})
+
+
+

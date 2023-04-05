@@ -46,6 +46,7 @@
     
    
     width:60%;
+    
 }
 
 @keyframes example {
@@ -64,7 +65,7 @@
     width: 0;
     bottom: 0; 
     animation-name: example;
-    animation-duration: 0.3s;
+    animation-duration: 0.5s;
     -webkit-animation-fill-mode: forwards; 
     -moz-animation-fill-mode: forwards;    
     -o-animation-fill-mode: forwards;      
@@ -72,6 +73,10 @@
     animation-fill-mode: forwards;         
 
     
+}
+
+.select-btn.open .btn-text{
+    color:#000;
 }
 
 
