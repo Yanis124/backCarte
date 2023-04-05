@@ -22,7 +22,7 @@ async function getDataFiltre(){
     loadCarte()  //ajouter une animation de chargement 
     loadFiltre()
 
-    await new Promise(r => setTimeout(r, 2000)); //sleep(2) pour executer loadCarte() et loadFiltre() //a refaire 
+    await new Promise(r => setTimeout(r, 100)); //sleep(2) pour executer loadCarte() et loadFiltre() //a refaire 
     filtre=true   
     if(selectedLum){  //filtre lunmiere
         listAccidentLum=[]
@@ -58,7 +58,6 @@ async function getDataFiltre(){
     if(selectedDepartement&&selectedDepartement!="allDepartements"){ //filtre departement
         listAccidentDepartement=[];
         for(var i=0;i<listAccident.length;i++){
-            console.log(listAccident[i].fields.dep_name);
             if(selectedDepartement==listAccident[i].fields.dep_name){
                 listAccidentDepartement.push(listAccident[i]);   
             }
@@ -100,18 +99,15 @@ async  function filterList() {   //selectedValueAtm contient les valeurs selecti
     loadCarte()  //ajouter une animation de chargement 
     loadFiltre()
 
-    await new Promise(r => setTimeout(r, 2000)); //sleep(2) pour executer loadCarte() et loadFiltre() //a refaire
+    await new Promise(r => setTimeout(r, 100)); //sleep(2) pour executer loadCarte() et loadFiltre() //a refaire
     
-    console.log(selectedValuesAtm);
-    console.log(selectedValuesAge)
-    console.log(selectedValuesGravite)
 
 
         filtre=true;
         
         
 /*----------GRAVITE----------*/
-        if(selectedValuesGravite){                                    //ne marche pas
+        if(selectedValuesGravite){                                    
              for (let i = 0; i < selectedValuesGravite.length; i++) {
                  var gravIncluded = selectedValuesGravite[i];
                
@@ -120,7 +116,7 @@ async  function filterList() {   //selectedValueAtm contient les valeurs selecti
                     
                     //Pour chaque accident, on extrait la liste des gravitÃ©s & on indique que le sÃ©parateur est une virgule
                     let gravi = listAccident[j].fields.grav;
-					let gravArray [];
+					let gravArray =[];
                      
                      //si il y a une personne 
                     try{                      
@@ -296,7 +292,7 @@ function selectDataFiltre(){
         listAccidentLum=listAccident
     }
 
-    console.log(listAccidentLum)
+    
 
     
 
@@ -312,11 +308,11 @@ function selectDataFiltre(){
         }
     }
 
-    if(!selectedDepartement ||selectedRegion=="allDepartements"){
+    if(!selectedDepartement ||selectedDepartement=="allDepartements"){
         listAccidentDepartement=listAccident
     }
 
-    if(!selectedVille ||selectedRegion=="allVilles"){
+    if(!selectedVille ||selectedVille=="allVilles"){
         listAccidentVille=listAccident
     }
 
@@ -344,6 +340,8 @@ function selectDataFiltre(){
 			listAccidentGravite = listAccident;
 		}
 	}
+
+    console.log(listAccidentVille)
  
     listAccidentFiltre = listAccidentLum.filter(x => listAccidentRegions.includes(x)); //intersection entre listRegion et listLum
     listAccidentFiltre = listAccidentFiltre.filter(x => listAccidentAtm.includes(x)); //intersection entre listAccidentFiltre et listAccidentLum
@@ -351,17 +349,17 @@ function selectDataFiltre(){
     listAccidentFiltre = listAccidentFiltre.filter(x => listAccidentDate.includes(x));//intersection entre listAccidentFiltre et listAccidentDate
     listAccidentFiltre = listAccidentFiltre.filter(x => listAccidentAge.includes(x));//intersection entre listAccidentFiltre et listAccidentAge
     listAccidentFiltre = listAccidentFiltre.filter(x => listAccidentVille.includes(x));//intersection entre listAccidentFiltre et listAccidentVille
-    listAccidentFiltre = listAccidentFiltre.filter (x => listAccidentGravite.includes(x));
+    // listAccidentFiltre = listAccidentFiltre.filter (x => listAccidentGravite.includes(x));
     console.log(listAccidentFiltre)  
 }
 
 
 async function initFiltre(){
-    selectedDepartement=selectedDate=selectedLum=selectedRegion=selectedValuesAtm=selectedValuesAge=null //remettre a 0 les filtres 
+    selectedVille=selectedDepartement=selectedDate=selectedLum=selectedRegion=selectedValuesAtm=selectedValuesAge=null //remettre a 0 les filtres 
     loadCarte()  //ajouter une animation de chargement 
     loadFiltre()
 
-    await new Promise(r => setTimeout(r, 2000)); //sleep(2) pour executer loadCarte() et loadFiltre() //a refaire 
+    await new Promise(r => setTimeout(r, 100)); //sleep(2) pour executer loadCarte() et loadFiltre() //a refaire 
       
     filtre=false   
     removePin()     //supprimer lss marqueurs de la carte
