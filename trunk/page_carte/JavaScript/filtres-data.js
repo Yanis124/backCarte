@@ -107,7 +107,8 @@ async  function filterList() {   //selectedValueAtm contient les valeurs selecti
         
         
 /*----------GRAVITE----------*/
-        if(selectedValuesGravite){                                    
+        if(selectedValuesGravite){   
+            listAccidentGravite=[]                                 
              for (let i = 0; i < selectedValuesGravite.length; i++) {
                  var gravIncluded = selectedValuesGravite[i];
                
@@ -133,18 +134,18 @@ async  function filterList() {   //selectedValueAtm contient les valeurs selecti
                      for (let y = 0; y < gravArray.length; y++) {
                          let gravite_ind = gravArray[y];
                          let isIncluded = false;
+                         
                         
-                         if (gravIncluded === "indemne" && gravite_ind == "indemne") {
+                         console.log(gravIncluded +" "+gravite_ind)
+                         if (gravIncluded =="Indemne" && gravite_ind == "Indemne") {
                              isIncluded = true;
-                         } else if (gravIncluded === "leger" && gravite_ind == "BlessÃ© lÃ©ger") {
+                         } else if (gravIncluded == "Blessé" && gravite_ind == "Blessé") {
                              isIncluded = true;
-                         } else if (gravIncluded === "hospitalise" && gravite_ind == "BlessÃ© hospitalisÃ©") {
-                             isIncluded = true;
-                         } else if (gravIncluded === "tue" && gravite_ind == "TuÃ©") {
+                         } else if (gravIncluded == "Tué" && gravite_ind == "Tué") {
                              isIncluded = true;
                          }
                          if (isIncluded) {
-                             listAccidentGrv.push(listAccident[j]);
+                             listAccidentGravite.push(listAccident[j]);
                          }
                      }
                  }
@@ -336,7 +337,7 @@ function selectDataFiltre(){
 	}
 	
 	if(selectedValuesGravite){
-		if(selectedValuesGravite.length = 0){
+		if(selectedValuesGravite.length == 0){
 			listAccidentGravite = listAccident;
 		}
 	}
@@ -349,13 +350,13 @@ function selectDataFiltre(){
     listAccidentFiltre = listAccidentFiltre.filter(x => listAccidentDate.includes(x));//intersection entre listAccidentFiltre et listAccidentDate
     listAccidentFiltre = listAccidentFiltre.filter(x => listAccidentAge.includes(x));//intersection entre listAccidentFiltre et listAccidentAge
     listAccidentFiltre = listAccidentFiltre.filter(x => listAccidentVille.includes(x));//intersection entre listAccidentFiltre et listAccidentVille
-    // listAccidentFiltre = listAccidentFiltre.filter (x => listAccidentGravite.includes(x));
+    listAccidentFiltre = listAccidentFiltre.filter (x => listAccidentGravite.includes(x));
     console.log(listAccidentFiltre)  
 }
 
 
 async function initFiltre(){
-    selectedVille=selectedDepartement=selectedDate=selectedLum=selectedRegion=selectedValuesAtm=selectedValuesAge=null //remettre a 0 les filtres 
+    selectedVille=selectedDepartement=selectedDate=selectedLum=selectedRegion=selectedValuesAtm=selectedValuesAge=selectedValuesGravite= null //remettre a 0 les filtres 
     loadCarte()  //ajouter une animation de chargement 
     //loadFiltre()
 
