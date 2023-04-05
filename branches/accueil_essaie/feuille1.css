@@ -1,0 +1,169 @@
+ul{
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    font-size: 110%;
+}
+
+
+/*-------------------------------------------------------------------------------*/
+
+
+/* CSS
+-------------------------------------------------------------------------------*/
+
+body {
+    margin: 0
+}
+
+body {
+    font-family: 'Catamaran', sans-serif; /*REVOIR LA POLICE*/
+}
+
+a {
+    text-decoration: none;
+}
+
+.vert_horz_center { /*Metre au centre les texte des images*/
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+h1{
+    font-weight:bold;
+}
+
+
+/* HEADER */
+
+header {
+    width: 100%; /*Le header prend toute la place de la page*/
+    padding: 20px 0px;
+    text-transform: uppercase;
+    font-size: 18px;
+    line-height: 13px;
+    z-index: 800;
+}
+
+header .menu a {
+    color: black;
+    display: block;
+}
+
+header .menu a:hover {
+    transform: scale(1.02);
+}
+
+header .menu {
+    display: flex; /*mettre les pages carte et statistiques l'une a coté de l'autre*/
+    align-items: center;
+    list-style: none;
+}
+
+header .menu li:not(:last-child) {
+    margin-right: 35px; /* espace entre CRÉDITSb et STATISTIQUES*/
+}
+
+/* FIN MASQUE */
+
+#header_absolute {
+    position:absolute; /*Mettre les pages CRÉDITS et STATISTIQUES sur la photo d'accueil*/
+}
+
+#header_absolute .container-fluid {
+    padding-right: 70px;/*Marge a droite des pages CRÉDITS et STATISTIQUES*/
+}
+
+#header_absolute .menu { /* Mettre les pages CRÉDITS et STATISTIQUES à la fin*/
+    justify-content: flex-end;
+}
+
+#header_fixed {
+    position:fixed;/*Afficher le deuxième menu quand on deroule*/
+    background-color: white;
+    top: -70px; /*Pour pas afficher tout de suite le deuxième menu*/
+    transition: top 300ms ease; /*Permet l'affichage du deuxième menu de haut en bas moins violent*/
+}
+
+#header_fixed.sticky_header {
+    top: 0px; /*Mettre en haut de la page le deuxième menu*/
+}
+
+#header_fixed .menu { /*METTRE AU CENTRE LE DEUXIMÈME MENU*/
+    justify-content: center;
+}
+
+
+.blue_background { /*COULEUR D'ARRIÈRE PLAN*/
+    background-color: darkblue;/*REVOIR LA COULEUR*/
+}
+
+.blue_background #header_absolute a {
+    color: white; /*Couleur HEADER premier*/
+}
+
+/* FOOTER */
+
+footer {
+    background-color: rgb(233, 233, 233);
+    padding: 40px 0px;/*Taille du foooter*/
+}
+
+.menu-menu_footer-container .menu {
+    display: flex; /*Mettre CRÉDIT et A PROPOS DE NOUS à coté*/
+    justify-content: center;
+}
+
+.menu-menu_footer-container .menu li {
+    list-style: none; /*Enleve les pints de la liste*/
+    padding: 0px 20px; /*Eloignement de la barre de séparation*/
+    text-transform:uppercase;
+    font-size: 15px;
+    border-right: 1px solid #9ea8ba; /*Barre de séparation entre CRÉDIT et A PROPOS DE NOUS*/
+}
+
+.menu-menu_footer-container .menu li:last-child {
+    border-right: 0px; /*enleve le trait après A PROPOS DE NOUS*/
+}
+
+.menu-menu_footer-container .menu li a {
+    color: black; /*couleur du texte footer*/
+}
+
+
+/* HOME */
+
+.home article {
+    padding-top: 0px;
+}
+
+/* BANNER */
+
+#banner {
+    width: 100%;
+    height: 100vh;
+    background-size: cover !important; /*L'image doit être redimensionne pour remplier l'arrière plan sans deformation en conservant son rapport hauteur/largeur d'origine et !important indique que cette propriété doit être appliquée en priorité, même si elle est surchargée*/
+    min-height: 200px; /*Si la page se reduit en hauteur le titre et le sous titre suivent A REVOIR */
+    position:relative; /*pour que les images se mettent les une endessous des autres*/
+}
+
+#content_banner { /*texte sur les images*/
+    position:absolute;
+    text-align:center;
+    color: white; /*Changement de la couleur de toute les police sur les photos*/
+    text-transform:uppercase; 
+    width: 55vw;
+}
+
+#content_banner h1 {
+    font-family: 'BigJohn'; /*Changer la police*/
+    font-size: 5vw;
+    margin-bottom: 25px;
+}
+
+#content_banner h2 {
+    font-weight: 100;
+    font-size: 22px;
+}
