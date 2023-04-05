@@ -20,7 +20,7 @@ var filtre=false //pour indiquer a la fonction createPin d'utiliser listAccident
 
 async function getDataFiltre(){
     loadCarte()  //ajouter une animation de chargement 
-    loadFiltre()
+    // loadFiltre()
 
     await new Promise(r => setTimeout(r, 100)); //sleep(2) pour executer loadCarte() et loadFiltre() //a refaire 
     filtre=true   
@@ -97,7 +97,7 @@ async function getDataFiltre(){
 }
 async  function filterList() {   //selectedValueAtm contient les valeurs selectionnées dans le filtre atm
     loadCarte()  //ajouter une animation de chargement 
-    loadFiltre()
+    //loadFiltre()
 
     await new Promise(r => setTimeout(r, 100)); //sleep(2) pour executer loadCarte() et loadFiltre() //a refaire
     
@@ -357,7 +357,7 @@ function selectDataFiltre(){
 async function initFiltre(){
     selectedVille=selectedDepartement=selectedDate=selectedLum=selectedRegion=selectedValuesAtm=selectedValuesAge=null //remettre a 0 les filtres 
     loadCarte()  //ajouter une animation de chargement 
-    loadFiltre()
+    //loadFiltre()
 
     await new Promise(r => setTimeout(r, 100)); //sleep(2) pour executer loadCarte() et loadFiltre() //a refaire 
       
