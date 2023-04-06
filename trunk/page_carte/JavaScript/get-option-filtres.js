@@ -66,15 +66,14 @@ function nomRegions() {
         
   
 
-        
+        regionSelect.children[1].innerHTML="";
         region.forEach(region => {
             if (region.name !== "Mayotte" && region.name !== "Guadeloupe" && region.name !== "Martinique" && region.name !== "Guyane" && region.name !== "La Réunion"){ //Enlever les regions d'outre mer
-                var option = document.createElement("option"); 
-                option.value = region.name; 
-                option.text = region.name;
-                regionSelect.add(option);
+                var option = createList(region.name)
+                regionSelect.children[1].append(option);
             }
         });
+        addEventRegion()
         
       },
       )
@@ -101,16 +100,16 @@ function nomDepartements(){
     
           // Ajout des communes à la liste déroulante
             
-            departementSelect.options.length = 1; // suppression des options précédentes
+            departementSelect.children[1].innerHTML=""; // suppression des options précédentes
             departement.forEach(departement => {
                 if (departement.name !== "Mayotte" && departement.name !== "Guadeloupe" && departement.name !== "Martinique" && departement.name !== "Guyane" && departement.name !== "La Réunion"){ //Enlever les departements d'outre mer
-                    var option = document.createElement("option");
-                    option.value = departement.name;
-                    option.text = departement.name;
-                    departementSelect.add(option);
+                    var option = createList(departement.name)
+                    departementSelect.children[1].append(option);
                 }
 
             });
+            addEventDepartement()
+            
             
           },
           )
@@ -120,10 +119,6 @@ function nomDepartements(){
 
 // Récupère tout les noms des villes de l'API
 function nomVilles(){
-
-
-
-
 
     // URL de l'API rÃ©cupÃ©rant les noms des villes
 	var apiUrl3 = "https://public.opendatasoft.com/api/records/1.0/search/?dataset=accidents-corporels-de-la-circulation-millesime&q=&rows=0&facet=nom_com";
@@ -137,18 +132,19 @@ function nomVilles(){
 
 
 			// Ajout des communes Ã  la liste dÃ©roulante
-            console.log(villeSelect)
+            // console.log(villeSelect)
 			
-            villeSelect.children[1].innerHTML=""; ; // Suppression des options prÃ©cÃ©dentes
+            villeSelect.children[1].innerHTML="";  // Suppression des options prÃ©cÃ©dentes
 			ville.forEach(ville => {
 				var option = createList(ville.name)
 				villeSelect.children[1].append(option);
-			});
+			})
+            addEventVille()
             
-            addCheckVille()
-            
-	    },
+	    }
+        
         )
+        
         .catch(console.log("erreur de fetch")) //gerer les erreurs
 }
 
@@ -162,18 +158,15 @@ function nomVilles(){
 /* function addEventChecked(){  */ //ajouter l'evenement aux check box
 
 
-function createList(valueList){
-    var list=document.createElement("li")
-    list.className="item"
-    list.value=valueList
-    var span2=document.createElement("span")
-    span2.className="item-text"
-    span2.innerText=valueList
-    list.append(span2)
-    return list
 
 
-}
+
+
+
+
+
+
+
 
 
 

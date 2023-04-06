@@ -42,10 +42,10 @@ form{
     box-shadow: 0 0 7px var(--shadow-color);
     font-size: var(--text-font-small);
     border:1px solid var(--section-border);
-    background-color: #fff;
-    gap:30px;   
+    background-color: #fff; 
     padding:5%; 
     border-radius:6px ;
+    gap:20px;
 }
 
 

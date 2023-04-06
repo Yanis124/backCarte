@@ -1,6 +1,7 @@
 var listAccidentFiltre=[]   //definir une liste d'accident par filtre
 
 var listAccidentDate=[]
+var listAccidentIntervallDate=[]
 
 var listAccidentLum=[]
 var listAccidentRegions=[]
@@ -11,7 +12,6 @@ var listAccidentAtm=[]
 var listAccidentAge=[]
 var listAccidentGravite=[]
 
-var chosenDate=document.getElementById("choix-date");
 
 
 var filtre=false //pour indiquer a la fonction createPin d'utiliser listAccidentFiltre
@@ -73,7 +73,7 @@ async function getDataFiltre(){
         }
     } 
 
-    if(chosenDate.value=="date-specifique"){  //filtre date specifique
+    if(selectedDate){  //filtre date specifique
         listAccidentDate=[];
         for(var i=0;i<listAccident.length;i++){
             if((listAccident[i].fields.datetime).substring(0,10)==selectedDate){
@@ -82,8 +82,8 @@ async function getDataFiltre(){
         }
     }
     //Intervalle de dates
-    if(chosenDate.value=="intervalle-dates"){
-        listAccidentDate=[];
+    if(selectedDateStart && selectedDateEnd){
+        listAccidentIntervallDate=[];
         var date_debut=new Date(selectedDateStart).getTime();
         var date_fin=new Date(selectedDateEnd).getTime();
         console.log(date_debut);
@@ -94,12 +94,12 @@ async function getDataFiltre(){
             //console.log(date_accident);
         
             if((date_debut<=date_accident)&&(date_fin>=date_accident)){
-				console.log("entrée bouclée");
-                listAccidentDate.push(listAccident[i]);
+				
+                listAccidentIntervallDate.push(listAccident[i]);
             }
             
         }
-        console.log(listAccidentDate.length);
+        
     }
 
 
@@ -301,76 +301,66 @@ async  function filterList() {   //selectedValueAtm contient les valeurs selecti
 
 
 function selectDataFiltre(){
-    if(!selectedRegion||selectedRegion=="allRegions"){
-        listAccidentRegions=listAccident
-    }
-    
 
     if(!selectedLum){
         listAccidentLum=listAccident
     }
 
-    if (!selectedValuesAtm) {  
-        listAccidentAtm = listAccident;
-        console.log("undefined")
+    listAccidentFiltre = listAccidentLum.filter((x) =>    //Reduire la compexité 
+                                                            // faire une intersection que si le filtre est selectionné
+    listAccident.includes(x))
+    
+
+    if(selectedRegion){
+        listAccidentFiltre= listAccidentFiltre.filter((x) =>listAccidentRegions.includes(x))
+    }
+    
+
+   
+
+ 
+
+    if (selectedValuesAtm && selectedValuesAtm.length>0) {  
+        listAccidentFiltre= listAccidentFiltre.filter((x) =>listAccidentAtm.includes(x))
     }
 
-    if (selectedValuesAtm){
-        if(selectedValuesAtm.length == 0){ 
-            listAccidentAtm = listAccident;
-            console.log("lenght==0")
-        }
+
+    if(selectedDepartement){
+        listAccidentFiltre= listAccidentFiltre.filter((x) =>listAccidentDepartement.includes(x))
     }
 
-    if(!selectedDepartement ||selectedDepartement=="allDepartements"){
-        listAccidentDepartement=listAccident
-        console.log("!selectedDepartement");
+    if(selectedVille){
+        listAccidentFiltre= listAccidentFiltre.filter((x) =>listAccidentVille.includes(x))
     }
 
-    if(!selectedVille ||selectedVille=="allVilles"){
-        listAccidentVille=listAccident
+
+
+    if(selectedDate){
+        listAccidentFiltre= listAccidentFiltre.filter((x) =>listAccidentDate.includes(x))
     }
 
-    if(!chosenDate){
-		listAccidentDate=listAccident;
-	}
-
-    if(!selectedValuesAge){
-        listAccidentAge=listAccident
+    if(selectedDateStart && selectedDateEnd){
+        listAccidentFiltre= listAccidentFiltre.filter((x) =>listAccidentIntervallDate.includes(x))
     }
 
-    if (selectedValuesAge){
-        if(selectedValuesAge.length == 0){ 
-            listAccidentAge = listAccident;
-            console.log("lenght==0")
-        }
+    if(selectedValuesAge && selectedValuesAge.length>0){
+        listAccidentFiltre= listAccidentFiltre.filter((x) =>listAccidentAge.includes(x))
     }
 
-	if(!selectedValuesGravite){
-		listAccidentGravite = listAccident
+
+	if(selectedValuesGravite && selectedValuesGravite.length>0){
+        listAccidentFiltre= listAccidentFiltre.filter((x) =>listAccidentGravite.includes(x))
 	}
 	
-	if(selectedValuesGravite){
-		if(selectedValuesGravite.length == 0){
-			listAccidentGravite = listAccident;
-		}
-	}
+	
 
-    listAccidentFiltre = listAccidentLum.filter((x) =>
-    listAccidentRegions.includes(x) &&
-    listAccidentAtm.includes(x) &&
-    listAccidentDepartement.includes(x) &&
-    listAccidentDate.includes(x) &&
-    listAccidentAge.includes(x) &&
-    listAccidentVille.includes(x) &&
-    listAccidentGravite.includes(x));
     console.log(listAccidentFiltre)
-    console.log("end intersect ...")  
+      
 }
 
 
 async function initFiltre(){
-    selectedVille=selectedDepartement=selectedDate=selectedLum=selectedRegion=selectedValuesAtm=selectedValuesAge=selectedValuesGravite= null //remettre a 0 les filtres 
+    selectedVille=selectedDepartement=selectedDate=selectedLum=selectedRegion=selectedValuesAtm=selectedValuesAge=selectedValuesGravite=selectedDateEnd=selectedDateStart= null //remettre a 0 les filtres 
     loadCarte()  //ajouter une animation de chargement 
     //loadFiltre()
 
