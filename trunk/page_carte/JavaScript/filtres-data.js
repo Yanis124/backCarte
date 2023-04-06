@@ -1,6 +1,7 @@
 var listAccidentFiltre=[]   //definir une liste d'accident par filtre
 
 var listAccidentDate=[]
+
 var listAccidentIntervallDate=[]
 
 var listAccidentLum=[]
@@ -17,20 +18,6 @@ var listAccidentAge=[]
 
 var listAccidentGravite=[]
 
-<<<<<<< .mine
-var chosenDate=document.getElementById("choix-date");
-||||||| .r172
-var choix_date=document.getElementById("choix-date");
-=======
->>>>>>> .r180
-
-<<<<<<< .mine
-||||||| .r172
-
-
-=======
-
->>>>>>> .r180
 var filtre=false //pour indiquer a la fonction createPin d'utiliser listAccidentFiltre
 
 async function getDataFiltre(){
@@ -135,14 +122,8 @@ async function getDataFiltre(){
 
     } 
 
-<<<<<<< .mine
-    if(chosenDate.value=="date-specifique"){  //filtre date specifique
-
-||||||| .r172
-    if(choix_date.value=="date-specifique"){  //filtre date specifique
-=======
     if(selectedDate){  //filtre date specifique
->>>>>>> .r180
+
         listAccidentDate=[];
 
         for(var i=0;i<listAccident.length;i++){
@@ -158,18 +139,10 @@ async function getDataFiltre(){
     }
 
     //Intervalle de dates
-<<<<<<< .mine
 
-    if(chosenDate.value=="intervalle-dates"){
-
-        listAccidentDate=[];
-||||||| .r172
-    if(choix_date.value=="intervalle-dates"){
-        listAccidentDate=[];
-=======
     if(selectedDateStart && selectedDateEnd){
+
         listAccidentIntervallDate=[];
->>>>>>> .r180
 
         var date_debut=new Date(selectedDateStart).getTime();
 
@@ -190,32 +163,18 @@ async function getDataFiltre(){
         
 
             if((date_debut<=date_accident)&&(date_fin>=date_accident)){
-<<<<<<< .mine
 
-				console.log("entree boucle");
-
-                listAccidentDate.push(listAccident[i]);
-||||||| .r172
-				console.log("entree boucle");
-                listAccidentDate.push(listAccident[i]);
-=======
 				
+
                 listAccidentIntervallDate.push(listAccident[i]);
->>>>>>> .r180
 
             }
 
             
 
         }
-<<<<<<< .mine
 
-        console.log(listAccidentDate.length);
-||||||| .r172
-        console.log(listAccidentDate.length);
-=======
         
->>>>>>> .r180
 
     }
 
@@ -583,265 +542,81 @@ async  function filterList() {   //selectedValueAtm contient les valeurs selecti
 
 function selectDataFiltre(){
 
-    if(!selectedRegion||selectedRegion=="allRegions"){
-
-        listAccidentRegions=listAccident
-
-<<<<<<< .mine
-    }
-
-    
-||||||| .r172
-function selectDataFiltre(){
-    if(!selectedRegion||selectedRegion=="allRegions"){
-        listAccidentRegions=listAccident
-    }
-    
-=======
-function selectDataFiltre(){
->>>>>>> .r180
-
     if(!selectedLum){
 
         listAccidentLum=listAccident
 
     }
 
-<<<<<<< .mine
-    if (!selectedValuesAtm) {  
-
-        listAccidentAtm = listAccident;
-
-        console.log("undefined")
-||||||| .r172
-    if (!selectedValuesAtm) {  
-        listAccidentAtm = listAccident;
-        console.log("undefined")
-=======
     listAccidentFiltre = listAccidentLum.filter((x) =>    //Reduire la compexité 
+
                                                             // faire une intersection que si le filtre est selectionné
+
     listAccident.includes(x))
+
     
 
     if(selectedRegion){
+
         listAccidentFiltre= listAccidentFiltre.filter((x) =>listAccidentRegions.includes(x))
->>>>>>> .r180
 
     }
+
     
 
-<<<<<<< .mine
-    if (selectedValuesAtm){
-
-        if(selectedValuesAtm.length == 0){ 
-
-            listAccidentAtm = listAccident;
-
-            console.log("lenght==0")
-
-        }
-||||||| .r172
-    if (selectedValuesAtm){
-        if(selectedValuesAtm.length == 0){ 
-            listAccidentAtm = listAccident;
-            console.log("lenght==0")
-        }
-=======
    
 
  
 
     if (selectedValuesAtm && selectedValuesAtm.length>0) {  
+
         listAccidentFiltre= listAccidentFiltre.filter((x) =>listAccidentAtm.includes(x))
->>>>>>> .r180
 
     }
-
-<<<<<<< .mine
-    if(!selectedDepartement ||selectedDepartement=="allDepartements"){
-
-        listAccidentDepartement=listAccident
-
-        console.log("!selectedDepartement");
-||||||| .r172
-    if(!selectedDepartement ||selectedDepartement=="allDepartements"){
-        listAccidentDepartement=listAccident
-        console.log("!selectedDepartement");
-=======
 
     if(selectedDepartement){
+
         listAccidentFiltre= listAccidentFiltre.filter((x) =>listAccidentDepartement.includes(x))
->>>>>>> .r180
 
     }
 
-<<<<<<< .mine
-    if(!selectedVille ||selectedVille=="allVilles"){
-
-        listAccidentVille=listAccident
-||||||| .r172
-    if(!selectedVille ||selectedVille=="allVilles"){
-        listAccidentVille=listAccident
-=======
     if(selectedVille){
+
         listAccidentFiltre= listAccidentFiltre.filter((x) =>listAccidentVille.includes(x))
->>>>>>> .r180
 
     }
-
-<<<<<<< .mine
-    if(!chosenDate || chosenDate=="notChosen"){
-
-        listAccidentDate=listAccident;
-
-        console.log("!selectedDate");
-||||||| .r172
-    if(!chosenDate){
-        listAccidentDate=listAccident;
-        console.log("!selectedDate");
-=======
-
 
     if(selectedDate){
+
         listAccidentFiltre= listAccidentFiltre.filter((x) =>listAccidentDate.includes(x))
->>>>>>> .r180
 
     }
-<<<<<<< .mine
-		
 
-    /*
-
-    if(choix_date){
-
-		
-
-		listAccidentDate=listAccident;
-
-		console.log("selectedDate");
-
-	}*/
-||||||| .r172
-    /*
-    if(choix_date){
-		
-		listAccidentDate=listAccident;
-		console.log("selectedDate");
-	}*/
-=======
->>>>>>> .r180
-
-<<<<<<< .mine
-    if(!selectedValuesAge){
-
-        listAccidentAge=listAccident
-||||||| .r172
-    if(!selectedValuesAge){
-        listAccidentAge=listAccident
-=======
     if(selectedDateStart && selectedDateEnd){
+
         listAccidentFiltre= listAccidentFiltre.filter((x) =>listAccidentIntervallDate.includes(x))
->>>>>>> .r180
 
     }
 
-<<<<<<< .mine
-    if (selectedValuesAge){
-
-        if(selectedValuesAge.length == 0){ 
-
-            listAccidentAge = listAccident;
-
-            console.log("lenght==0")
-
-        }
-||||||| .r172
-    if (selectedValuesAge){
-        if(selectedValuesAge.length == 0){ 
-            listAccidentAge = listAccident;
-            console.log("lenght==0")
-        }
-=======
     if(selectedValuesAge && selectedValuesAge.length>0){
+
         listAccidentFiltre= listAccidentFiltre.filter((x) =>listAccidentAge.includes(x))
->>>>>>> .r180
 
     }
-
-<<<<<<< .mine
-	if(!selectedValuesGravite){
-
-		listAccidentGravite = listAccident
-||||||| .r172
-	if(!selectedValuesGravite){
-		listAccidentGravite = listAccident
-=======
 
 	if(selectedValuesGravite && selectedValuesGravite.length>0){
+
         listAccidentFiltre= listAccidentFiltre.filter((x) =>listAccidentGravite.includes(x))
->>>>>>> .r180
 
 	}
 
 	
-<<<<<<< .mine
 
-	if(selectedValuesGravite){
-
-		if(selectedValuesGravite.length == 0){
-
-			listAccidentGravite = listAccident;
-
-		}
-
-	}
-||||||| .r172
-	if(selectedValuesGravite){
-		if(selectedValuesGravite.length == 0){
-			listAccidentGravite = listAccident;
-		}
-	}
-=======
 	
->>>>>>> .r180
-
-<<<<<<< .mine
-    listAccidentFiltre = listAccidentLum.filter((x) =>
-
-    listAccidentRegions.includes(x) &&
-
-    listAccidentAtm.includes(x) &&
-
-    listAccidentDepartement.includes(x) &&
-
-    listAccidentDate.includes(x) &&
-
-    listAccidentAge.includes(x) &&
-
-    listAccidentVille.includes(x) &&
-
-    listAccidentGravite.includes(x));
-||||||| .r172
-    listAccidentFiltre = listAccidentLum.filter((x) =>
-    listAccidentRegions.includes(x) &&
-    listAccidentAtm.includes(x) &&
-    listAccidentDepartement.includes(x) &&
-    listAccidentDate.includes(x) &&
-    listAccidentAge.includes(x) &&
-    listAccidentVille.includes(x) &&
-    listAccidentGravite.includes(x));
-=======
->>>>>>> .r180
 
     console.log(listAccidentFiltre)
-<<<<<<< .mine
 
-    console.log("end intersect ...")  
-||||||| .r172
-    console.log("end intersect ...")  
-=======
       
->>>>>>> .r180
 
 }
 
