@@ -11,8 +11,7 @@ var listAccidentAtm=[]
 var listAccidentAge=[]
 var listAccidentGravite=[]
 
-var choix_date=document.getElementById("choix-date");
-
+var chosenDate=document.getElementById("choix-date");
 
 
 var filtre=false //pour indiquer a la fonction createPin d'utiliser listAccidentFiltre
@@ -74,7 +73,7 @@ async function getDataFiltre(){
         }
     } 
 
-    if(choix_date.value=="date-specifique"){  //filtre date specifique
+    if(chosenDate.value=="date-specifique"){  //filtre date specifique
         listAccidentDate=[];
         for(var i=0;i<listAccident.length;i++){
             if((listAccident[i].fields.datetime).substring(0,10)==selectedDate){
@@ -83,7 +82,7 @@ async function getDataFiltre(){
         }
     }
     //Intervalle de dates
-    if(choix_date.value=="intervalle-dates"){
+    if(chosenDate.value=="intervalle-dates"){
         listAccidentDate=[];
         var date_debut=new Date(selectedDateStart).getTime();
         var date_fin=new Date(selectedDateEnd).getTime();
@@ -95,7 +94,7 @@ async function getDataFiltre(){
             //console.log(date_accident);
         
             if((date_debut<=date_accident)&&(date_fin>=date_accident)){
-				console.log("entree boucle");
+				console.log("entrée bouclée");
                 listAccidentDate.push(listAccident[i]);
             }
             
@@ -333,15 +332,8 @@ function selectDataFiltre(){
     }
 
     if(!chosenDate){
-        listAccidentDate=listAccident;
-        console.log("!selectedDate");
-    }
-    /*
-    if(choix_date){
-		
 		listAccidentDate=listAccident;
-		console.log("selectedDate");
-	}*/
+	}
 
     if(!selectedValuesAge){
         listAccidentAge=listAccident
