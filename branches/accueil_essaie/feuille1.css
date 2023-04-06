@@ -1,18 +1,3 @@
-ul{
-    margin: 0;
-    padding: 0;
-    border: 0;
-    outline: 0;
-    font-size: 110%;
-}
-
-
-/*-------------------------------------------------------------------------------*/
-
-
-/* CSS
--------------------------------------------------------------------------------*/
-
 body {
     margin: 0
 }
@@ -25,7 +10,7 @@ a {
     text-decoration: none;
 }
 
-.vert_horz_center { /*Metre au centre les texte des images*/
+.center { /*Mettre au centre les texte des images*/
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -35,6 +20,15 @@ h1{
     font-weight:bold;
 }
 
+/* NAVIGATION PAGE FORMAT */
+
+ul{
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    font-size: 110%;
+}
 
 /* HEADER */
 
@@ -47,36 +41,42 @@ header {
     z-index: 800;
 }
 
-header .menu a {
+header .pages a {
     color: black;
     display: block;
 }
 
-header .menu a:hover {
+header .pages a:hover {
     transform: scale(1.02);
 }
 
-header .menu {
+header .pages {
     display: flex; /*mettre les pages carte et statistiques l'une a coté de l'autre*/
     align-items: center;
     list-style: none;
 }
 
-header .menu li:not(:last-child) {
-    margin-right: 35px; /* espace entre CRÉDITSb et STATISTIQUES*/
+/*  header .pages li:first-child{
+    margin-right: 80%;   
+} */ 
+ header .pages li:nth-child(2) {
+    margin-right: 35px;
+} 
+
+header .pages li:not(:last-child) {
+    margin-right: 35px; /* espace entre CRÉDITS et STATISTIQUES*/
 }
 
-/* FIN MASQUE */
 
 #header_absolute {
     position:absolute; /*Mettre les pages CRÉDITS et STATISTIQUES sur la photo d'accueil*/
 }
 
-#header_absolute .container-fluid {
+#header_absolute .container {
     padding-right: 70px;/*Marge a droite des pages CRÉDITS et STATISTIQUES*/
 }
 
-#header_absolute .menu { /* Mettre les pages CRÉDITS et STATISTIQUES à la fin*/
+#header_absolute .pages { /* Mettre les pages CRÉDITS et STATISTIQUES à la fin*/
     justify-content: flex-end;
 }
 
@@ -91,55 +91,20 @@ header .menu li:not(:last-child) {
     top: 0px; /*Mettre en haut de la page le deuxième menu*/
 }
 
-#header_fixed .menu { /*METTRE AU CENTRE LE DEUXIMÈME MENU*/
+#header_fixed .pages { /*METTRE AU CENTRE LE DEUXIMÈME MENU*/
     justify-content: center;
 }
 
 
-.blue_background { /*COULEUR D'ARRIÈRE PLAN*/
+.header { /*COULEUR D'ARRIÈRE PLAN*/
     background-color: darkblue;/*REVOIR LA COULEUR*/
 }
 
-.blue_background #header_absolute a {
+.header #header_absolute a {
     color: white; /*Couleur HEADER premier*/
 }
 
-/* FOOTER */
-
-footer {
-    background-color: rgb(233, 233, 233);
-    padding: 40px 0px;/*Taille du foooter*/
-}
-
-.menu-menu_footer-container .menu {
-    display: flex; /*Mettre CRÉDIT et A PROPOS DE NOUS à coté*/
-    justify-content: center;
-}
-
-.menu-menu_footer-container .menu li {
-    list-style: none; /*Enleve les pints de la liste*/
-    padding: 0px 20px; /*Eloignement de la barre de séparation*/
-    text-transform:uppercase;
-    font-size: 15px;
-    border-right: 1px solid #9ea8ba; /*Barre de séparation entre CRÉDIT et A PROPOS DE NOUS*/
-}
-
-.menu-menu_footer-container .menu li:last-child {
-    border-right: 0px; /*enleve le trait après A PROPOS DE NOUS*/
-}
-
-.menu-menu_footer-container .menu li a {
-    color: black; /*couleur du texte footer*/
-}
-
-
-/* HOME */
-
-.home article {
-    padding-top: 0px;
-}
-
-/* BANNER */
+/* DIFFERENT BANNERS */
 
 #banner {
     width: 100%;
@@ -167,3 +132,32 @@ footer {
     font-weight: 100;
     font-size: 22px;
 }
+
+/* FOOTER */
+
+footer {
+    background-color: rgb(233, 233, 233);
+    padding: 40px 0px;/*Taille du foooter*/
+}
+
+.footer-set_up .pages {
+    display: flex; /*Mettre CRÉDIT et A PROPOS DE NOUS à coté*/
+    justify-content: center;
+}
+
+.footer-set_up .pages li {
+    list-style: none; /*Enleve les pints de la liste*/
+    padding: 0px 20px; /*Eloignement de la barre de séparation*/
+    text-transform:uppercase;
+    font-size: 15px;
+    border-right: 1px solid #9ea8ba; /*Barre de séparation entre CRÉDIT et A PROPOS DE NOUS*/
+}
+
+.footer-set_up .pages li:last-child {
+    border-right: 0px; /*enleve le trait après A PROPOS DE NOUS*/
+}
+
+.footer-set_up .pages li a {
+    color: black; /*couleur du texte footer*/
+}
+
