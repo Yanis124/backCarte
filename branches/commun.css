@@ -72,7 +72,7 @@ header .pages li:nth-child(2) {
 
 #header_fixed {
     position:fixed;/*Afficher le deuxième menu quand on deroule*/
-    background-color: white;
+    background-color:white; /* white */
     top: -100px; /*Pour pas afficher tout de suite le deuxième menu*/
     transition: top 300ms ease; /*Permet l'affichage du deuxième menu de haut en bas moins violent*/
 }
@@ -91,17 +91,17 @@ header .pages li:nth-child(2) {
 
 
 .header { /*COULEUR D'ARRIÈRE PLAN*/
-    background-color: grey;/*REVOIR LA COULEUR*/
+    background-color: white;/*REVOIR LA COULEUR*/
 }
 
 .header #header_absolute a {
-    color: white; /*Couleur HEADER premier*/
+    color: black; /*Couleur HEADER premier*/
 }
 
 /* FOOTER */
 
 footer {
-    background-color: rgb(233, 233, 233);
+    background-color: white;
     padding: 40px 0px;/*Taille du foooter*/
 }
 

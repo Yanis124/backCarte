@@ -13,8 +13,13 @@ h1{
 
 /* NAVIGATION PAGE FORMAT */
 
-
-
+/* HEADER */
+.header #header_absolute a {
+    color: white; /*Couleur HEADER premier*/
+}
+.header { /*COULEUR D'ARRIÈRE PLAN*/
+    background-color: darkblue;/*REVOIR LA COULEUR*/
+}
 
 
 /* DIFFERENT BANNERS */
