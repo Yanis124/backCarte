@@ -117,10 +117,10 @@
 
                         <!-- Si sélectionne du filtre Intervalle de Date alors affichage d'un élément choix de date Début et d'un élément choix de date de Fin-->
                         <div class="date-container" id="choix-intervalle-dates" style="display: none;">
-                            <label for="date-debut"  >Date de début </label>
-                            <input onchange="getIntervalleDateStart();getIntervalleDateEnd();" type="date" id="date-debut" name="date-debut">
+                            <label for="date-debut"  >Date de début  </label>
+                            <input onchange="getIntervalleDate();" type="date" id="date-debut" name="date-debut">
                             <label for="date-fin">Date de fin </label>
-                            <input onchange="getIntervalleDateStart();getIntervalleDateEnd();" type="date" id="date-fin" name="date-fin">
+                            <input onchange="getIntervalleDate();" type="date" id="date-fin" name="date-fin">
                         </div>
 
                     
@@ -128,7 +128,7 @@
                         <div class="region-container">
 
                             
-                            
+                            <label for="region">region : </label>
                             <select id="region" name="region" onchange="getRegion();">
                                 <option value="allRegions">-- Sélectionner une region --</option>
                             </select>  

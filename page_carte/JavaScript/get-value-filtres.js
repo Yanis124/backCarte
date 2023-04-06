@@ -17,9 +17,8 @@ var selectedValuesGravite=[]
 
 var selectedLum
 
-var chosenDate=document.getElementById("choix-date");
 
-function getIntervalleDateStart(){  //limiter le choix dans le filtre date de début et recuperer la date
+function getIntervalleDate(){  //limiter le choix dans le filtre date de début et recuperer la date
     if(dateStart.value==""){
         selectedDateStart="2012-01-01";
     }
@@ -27,10 +26,6 @@ function getIntervalleDateStart(){  //limiter le choix dans le filtre date de d�
        selectedDateStart=dateStart.value 
     }
     console.log(selectedDateStart)
-
-}
-
-function getIntervalleDateEnd(){  //limiter le choix dans le filtre date de fin et recuperer la date
     dateEnd.setAttribute("min",selectedDateStart);
     if (dateEnd.value==""){
         selectedDateEnd="2020-01-01";
@@ -43,6 +38,7 @@ function getIntervalleDateEnd(){  //limiter le choix dans le filtre date de fin 
     
     getDataFiltre();
 }
+
 
 function getDate(){  //recuperer la date 
     selectedDate=date.value
