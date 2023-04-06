@@ -160,7 +160,7 @@ async function extractRecords(responses) {
 }
 
 async function getAccident(){
-    var api="https://public.opendatasoft.com/api/records/1.0/search/?dataset=accidents-corporels-de-la-circulation-millesime&q=&rows=1000&refine.dep_name="
+    var api="https://public.opendatasoft.com/api/records/1.0/search/?dataset=accidents-corporels-de-la-circulation-millesime&q=&rows=9999&refine.dep_name="
     var urls = [];
 
     for(var i=0;i<listDepartement.length;i++){

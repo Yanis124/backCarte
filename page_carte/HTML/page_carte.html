@@ -2,10 +2,9 @@
 <html lang="fr">
     <head>
         <meta charset="utf-8">
-        
+        <!--Page css pour le header et le footer-->
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <!--Page css pour le header et le footer-->
         <link href="../../page_statistique/CSS/body.css" rel="stylesheet" type="text/css">
         <link href="../../page_statistique/CSS/header.css" rel="stylesheet" type="text/css">
         <link href="../../page_statistique/CSS/footer.css" rel="stylesheet" type="text/css">
@@ -25,7 +24,7 @@
     
         <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js" integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM=" crossorigin=""></script>
 
-        <link rel="stylesheet" href="../plugin/FullScreen/Control.FullScreen.css"> <!--plugin pour ajouter le bouton full screen-->
+        <link rel="stylesheet" href="../plugin/FullScreen/Control.FullScreen.css"> <!--plugin pour ajouter le boutton full screen-->
         <script src="../plugin/FullScreen/Control.FullScreen.js"></script>
 
 
@@ -42,7 +41,7 @@
     
         
     </head>
-    <body onload="nomRegions(); nomDepartements(); nomVilles() ; dateLimit();getAtm();getAge(); getGravite(); initMap();createPin()">
+    <body onload="nomRegions(); nomDepartements(); nomVilles() ;openFiltreList(); dateLimit();getAtm();getAge(); getGravite(); initMap();createPin()">
         <header id="#top">
             <div id="mySidenav" class="sidenav">
                <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
@@ -65,10 +64,10 @@
 
                 
                 <a class="open-nav" onclick="openNav()"  > <li> <img src="../images/hamburger.png"></li></a>
-                <a  class="anc-sous-titre" id="carte" href="../../page_carte/HTML/page_carte.html"> <li >Carte</li> </a>
+                <a  class="anc-sous-titre" id="carte" href="../../page_crédit/page_credit.html"> <li >Carte</li> </a>
                 <a  class="anc-sous-titre" href="../../page_statistique/HTML/statistiques.html"> <li >Statistiques</li> </a>
            
-
+                
                 <a  class="anc-sous-titre" href="../../page_crédit/page_credit.html"> <li>Crédits</li> </a>
                 <a  class="anc-sous-titre" href="../../page_A_propos_de_nous/page_a-propos-de-nous.html"> <li>A propos de nous</li> </a>
             </ul>
@@ -103,7 +102,7 @@
                         <!--Filtre date ou intervalle de date-->
                         <div class="choice-date-container">
                             <label for="choix-date">Choisissez une Date ou un Intervalle de Date </label>
-                            <select id="choix-date" onchange="afficherChoix();">
+                            <select id="choix-date" onchange="afficherChoix()" onFocus="opening();">
                                 <option value="">-- Sélectionnez une option --</option>
                                 <option value="date-specifique">Date spécifique</option>
                                 <option value="intervalle-dates">Intervalle de dates</option>
@@ -117,39 +116,48 @@
 
                         <!-- Si sélectionne du filtre Intervalle de Date alors affichage d'un élément choix de date Début et d'un élément choix de date de Fin-->
                         <div class="date-container" id="choix-intervalle-dates" style="display: none;">
-                            <label for="date-debut"  >Date de début  </label>
-                            <input onchange="getIntervalleDate();" type="date" id="date-debut" name="date-debut">
+                            <label for="date-debut"  >Date de début </label>
+                            <input onchange="getIntervalleDateStart(); getIntervalleDate()" type="date" id="date-debut" name="date-debut">
                             <label for="date-fin">Date de fin </label>
-                            <input onchange="getIntervalleDate();" type="date" id="date-fin" name="date-fin">
+                            <input onchange="getIntervalleDateEnd(); getIntervalleDate()" type="date" id="date-fin" name="date-fin">
                         </div>
 
                     
                         <!-- Filtre regions sans les regions outre mer-->  
-                        <div class="region-container">
-
+                        <div class="region-container" id="region">
+                            <div class="select-btn">
+                                <div class="btn-text"> <span class="region-text"> Region </span> 
+                                    <span id="region-choice"> </span>
+                                </div>
+                                <span class="arrow-dwn">
+                                    <i class="fa-solid fa-chevron-down"></i>
+                                </span>
+                            </div>
+                            <ul class="list-items">
+                                
+                            </ul>
                             
-                            <label for="region">region : </label>
-                            <select id="region" name="region" onchange="getRegion();">
-                                <option value="allRegions">-- Sélectionner une region --</option>
-                            </select>  
+                            
+                             
 
+                        </div>
+
+                        <div class="departement-container" id="departement">
+                            <div class="select-btn">
+                                <div class="btn-text"> <span class="departement-text"> Departement </span> 
+                                    <span id="departement-choice"> </span>
+                                </div>
+                                <span class="arrow-dwn">
+                                    <i class="fa-solid fa-chevron-down"></i>
+                                </span>
+                            </div>
+                            <ul class="list-items">
+                                
+                            </ul>
                         </div>
 
                         <!-- Filtre departement sans les departements outre mer--> 
-                        <div class="departement-container">
-
-                            <label for="departement"> departement : </label>
-                            
-                            <select id="departement" name="departement" onchange="getDepartement();" >
-                                
-                                <option value="allDepartements">-- Sélectionner un département --</option>
-                                
-                            </select>
                         
-                            
-                            
-
-                        </div>
 
                         <!-- Filtre ville sans les villes outre mer-->
                         <div class="ville-container" id="ville">
@@ -170,7 +178,9 @@
                         <!-- Filtre condition météorologique : normale, pluie légère, pluie forte, temps couverts, temps éblouissant, neige/grèle, borouillard/fumée, vent fort/tempête-->  
                         <div id="weather" class="weather-container">
                             <div class="select-btn">
-                                <span class="btn-text"> Condition Météorologique </span>
+                                <div class="btn-text"> <span class="weather-text"> Condition Météorologique </span>
+                                    <span id="weather-choice"> </span>
+                                </div>
                                 <span  class="arrow-dwn">
                                     <i class="fa-solid fa-chevron-down"></i>
                                 </span>
@@ -198,7 +208,7 @@
                                     <span class="checkbox">
                                         <i class="fa-solid fa-check check-icon"></i>
                                     </span>
-                                    <span class="item-text">Temps Couvert</span>
+                                    <span class="item-text">Temps Couverts</span>
                                 </li>
                                 <li class="item" value="temps_eblouissant" id="condition_meteorologique">
                                     <span class="checkbox">
@@ -231,7 +241,9 @@
                         <!-- Filtre tranche d'âges : 0-18 ans, 18-30 ans, 30-50 ans, 50 ans et plus--> 
                         <div class="age-container">
                             <div class="select-btn">
-                                <span class="btn-text"> Tranches d'âge </span>
+                                <div class="btn-text"> <span class="age-text"> Tranches d'âges </span> 
+                                <span id="age-choice">   </span>
+                                </div>
                                 <span class="arrow-dwn">
                                     <i class="fa-solid fa-chevron-down"></i>
                                     </span>
@@ -267,7 +279,9 @@
                         <!-- Filtre Gravité accident : indemne, blessé léger, blessé hospitalisé, tué-->  
                         <div class="gravite-container">
                             <div class="select-btn">
-                                <span class="btn-text"> Gravité de l'accident </span>
+                                <div class="btn-text">  <span class="gravite-text"> Gravité de l'accident </span> 
+                                <span id="gravite-choice" > </span>
+                                </div>
                                 <span class="arrow-dwn">
                                     <i class="fa-solid fa-chevron-down"></i>
                                     </span>
@@ -349,6 +363,7 @@
 
     <script src="../JavaScript/cluster-popup.js"></script>
     <script src="../JavaScript/style.js"></script>
+    <script src="../JavaScript/filtre-lieu.js"></script>
     
 
 </html>
