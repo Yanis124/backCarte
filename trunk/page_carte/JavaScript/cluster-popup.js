@@ -4,7 +4,7 @@ function regrouper(){ //Appliquer le style a tous les clusters
     const noteSmall = document.getElementsByClassName("leaflet-marker-icon marker-cluster marker-cluster-small leaflet-zoom-animated leaflet-interactive ");
     const noteMedium=document.getElementsByClassName("leaflet-marker-icon marker-cluster marker-cluster-medium leaflet-zoom-animated leaflet-interactive")
     const noteLarge=document.getElementsByClassName("leaflet-marker-icon marker-cluster marker-cluster-large leaflet-zoom-animated leaflet-interactive")
-    //selectionner les objets  a chaque fois qu'on zoom ou on dezoom des numeros apparaissent pour indiquer le nombre de marqueurs regrouper
+    //Selectionner les objets à chaque fois qu'on zoom ou on dezoom des numeros apparaissent pour indiquer le nombre de marqueurs regroupés
     
    
     
@@ -26,8 +26,8 @@ function regrouper(){ //Appliquer le style a tous les clusters
     }
 }
 
-function style(note){   //ajouter du style aux clusters    
-    for(var i=0;i<note.length;i++){  //iterer le tableau pour styler les elements
+function style(note){   //Ajouter du style aux clusters    
+    for(var i=0;i<note.length;i++){  //Iterer le tableau pour styler les elements
             var Div=note[i]
             var number=note[i].children[0].children[0]
             var numberDiv=note[i].children[0]
@@ -57,7 +57,7 @@ function style(note){   //ajouter du style aux clusters
 }  
 
 
-function popUp(list,i){  //creer les popups
+function popUp(list,i){  //Créer les popups
     //les informations de l'accident
     var idAccident=popUpData(list[i].fields.num_acc)
     var day=popUpData(list[i].fields.jour)
@@ -78,14 +78,14 @@ function popUp(list,i){  //creer les popups
     var fontSizeTitle="17px"
     var fontWeigth="700"
     
-    var pop=L.popup({content:"<h1 style='font-size:"+fontSizeTitle+";'>"+"numero d'accident:"+idAccident+"</h1>"//numero d'accident
-    +"<p style='font-size:"+fontSize +";color:"+colorText+"'>"+"<span style='font-size:"+fontSize +";font-weight:"+fontWeigth+";'>"+day+"/"+month+"/"+year+"," //date et l'heure
+    var pop=L.popup({content:"<h1 style='font-size:"+fontSizeTitle+";'>"+"numero d'accident: "+idAccident+"</h1>"//numero d'accident
+    +"<p style='font-size:"+fontSize +";color:"+colorText+"'>"+"<span style='font-size:"+fontSize +";font-weight:"+fontWeigth+";'>"+day+"/"+month+"/"+year+", " //date et l'heure
     +time+"</span>"+"</p>"
     +"<ul style='display:flex;flex-direction:column; padding:0'>"
     +"<li style='font-size:"+fontSize+";color:"+colorText+";'>"+"adresse: "+"<span style='font-size:"+fontSize+";font-weight:"+fontWeigth+";'>"+adress+"</span>"+"</li>"
-    +"<li style='font-size:"+fontSize+";color:"+colorText+";'>"+"Condition Atmosphériques: "+"<span style='font-size:+"+fontSize+";font-weight:"+fontWeigth+";'>"+atm+"</span>"+"</li>"
-    +"<li style='font-size:"+fontSize+";color:"+colorText+";'>"+"lumiere:"+"<span style='font-size:"+fontSize+";font-weight:"+fontWeigth+";'>"+lum+"</span>"+"</li>"
-    +"<li style='font-size:"+fontSize+";color:"+colorText+";'>"+"Gravité:"+"<span style='font-size:"+fontSize+";font-weight:"+fontWeigth+";'>"+grav+"</span>"+"</li>"
+    +"<li style='font-size:"+fontSize+";color:"+colorText+";'>"+"Condition atmosphérique: "+"<span style='font-size:+"+fontSize+";font-weight:"+fontWeigth+";'>"+atm+"</span>"+"</li>"
+    +"<li style='font-size:"+fontSize+";color:"+colorText+";'>"+"lumiere: "+"<span style='font-size:"+fontSize+";font-weight:"+fontWeigth+";'>"+lum+"</span>"+"</li>"
+    +"<li style='font-size:"+fontSize+";color:"+colorText+";'>"+"Gravité: "+"<span style='font-size:"+fontSize+";font-weight:"+fontWeigth+";'>"+grav+"</span>"+"</li>"
 
     +"</ul>"
     }) 
@@ -93,8 +93,8 @@ function popUp(list,i){  //creer les popups
     return pop
 }
 
-function popUpData(data){   //si la donnée n'est pas disponnible dans l'api 
-    var message="indisponible"
+function popUpData(data){   //si la donnée n'est pas disponible dans l'api 
+    var message="Indisponible"
     if(!data){
         return message
     }
@@ -102,5 +102,5 @@ function popUpData(data){   //si la donnée n'est pas disponnible dans l'api
 
 }
 
-setInterval(regrouper, 500)  //on appel la fonction regrouper tous les 500ms
+setInterval(regrouper, 500)  //on appelle la fonction regrouper() tous les 500ms
 

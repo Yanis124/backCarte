@@ -1,4 +1,4 @@
-//definir les valeurs des filtre comme variables globales pour avoir un access direct depuis tous les fichiers 
+//definir les valeurs des filtres comme variables globales pour avoir un accès direct depuis tous les fichiers 
   
 var selectedDate   //definir une variable par filtre pour contenir les valeurs selectionnées
  
@@ -19,17 +19,29 @@ var selectedLum
 
 var choix_date=document.getElementById("choix-date");
 
-function getIntervalleDateStart(){  //limiter le choix dans le filtre date de fin et recuperer la date
-    selectedDateEnd=dateStart.value
-    console.log(selectedDateEnd)
-    dateEnd.setAttribute("min",selectedDateEnd)    
+function getIntervalleDateStart(){  //limiter le choix dans le filtre date de début et recuperer la date
+    if(dateStart.value==""){
+        selectedDateStart="2012-01-01";
+    }
+    else{
+       selectedDateStart=dateStart.value 
+    }
+    console.log(selectedDateStart)
 
 }
 
-function getIntervalleDateEnd(){  //limiter le choix dans le filtre date de debut et recuperrer la date
-    selectedDateStart=dateEnd.value
-    console.log(selectedDateStart)
-    dateStart.setAttribute("max",selectedDateStart)  
+function getIntervalleDateEnd(){  //limiter le choix dans le filtre date de fin et recuperer la date
+    dateEnd.setAttribute("min",selectedDateStart);
+    if (dateEnd.value==""){
+        selectedDateEnd="2020-01-01";
+    }
+    else{
+      selectedDateEnd=dateEnd.value  
+    }
+    console.log(selectedDateEnd)
+    dateStart.setAttribute("max",selectedDateEnd)
+    
+    getDataFiltre();
 }
 
 function getDate(){  //recuperer la date 
@@ -59,7 +71,7 @@ function getRegion() {      // Région sélectionnée
 
     selectedRegion = regionSelect.value; 
 
-    selectedDepartement=selectedVille=null //mettre a 0 departement et ville si on selectionne une autre region 
+    selectedDepartement=selectedVille=null //Mettre a 0 departement et ville si on selectionne une autre region 
 
         console.log(selectedRegion)
         if(selectedRegion==="allRegions"){
@@ -140,7 +152,7 @@ function getDepartement() {
     
     
 
-    if(selectedDepartement==="allDepartements"){  //si on selectionne tous les departements on affiche toutes les villes de la regions selectionné
+    if(selectedDepartement==="allDepartements"){  //si on selectionne tous les departements on affiche toutes les villes de la region selectionnée
         getRegion()
         
     }

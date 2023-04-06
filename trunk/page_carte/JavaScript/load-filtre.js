@@ -1,4 +1,4 @@
-// var filter=document.getElementById("filtre-container") //bloquer les filtres avant d'afficher les accicents
+// var filter=document.getElementById("filtre-container") //bloquer les filtres avant d'afficher les accidents
 // console.log(filter.childElementCount)
 
 // function loadFiltre(){
