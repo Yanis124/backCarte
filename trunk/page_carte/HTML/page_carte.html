@@ -102,8 +102,16 @@
                         <!--Filtre date ou intervalle de date-->
                         <div class="choice-date-container">
                             <label for="choix-date">Choisissez une Date ou un Intervalle de Date </label>
+<<<<<<< .mine
+                            <select id="choix-date" onchange="afficherChoix();" value="notChosen">
+                                <option value="notChosen">-- Sélectionnez une option --</option>
+||||||| .r170
+                            <select id="choix-date" onchange="afficherChoix();">
+                                <option value="">-- Sélectionnez une option --</option>
+=======
                             <select id="choix-date" onchange="afficherChoix()" onFocus="opening();">
                                 <option value="">-- Sélectionnez une option --</option>
+>>>>>>> .r180
                                 <option value="date-specifique">Date spécifique</option>
                                 <option value="intervalle-dates">Intervalle de dates</option>
                             </select>
