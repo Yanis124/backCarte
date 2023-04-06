@@ -90,18 +90,9 @@ async function createPin(){
 }
 
 
-
-
-
 //Lors changement de region le departement selectionnné revient a -- selectionner
 function resetDepartement() {
     document.getElementById("departement").selectedIndex = 0;
     resetVille();
 }
-//Lors changement de region ou departement la ville selectionnné revient à -- selectionner
-function resetVille() {
-    document.getElementById("ville").selectedIndex = 0;
-}
-
-
 

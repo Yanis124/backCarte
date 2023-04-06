@@ -1,7 +1,7 @@
 var listDepartement= [
     "Paris",
-    "Bouches-du-Rhône",
     "Seine-Saint-Denis",
+    "Bouches-du-Rhône",
     "Hauts-de-Seine",
     "Val-de-Marne",
     "Rhône",
@@ -93,7 +93,7 @@ var listDepartement= [
     "Cantal",
     "Lozère",
     "Creuse"
-] // it's better to directly hard code these data instead of caling getDepartement(). You can also write these in a file and load it.
+] // it's better to directly hard code these data instead of calling getDepartement(). You can also write these in a file and load it.
 var listAccident=[]
 
 // async function getDepartement(){  //recuperer les departements

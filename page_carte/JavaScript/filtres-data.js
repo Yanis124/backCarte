@@ -12,7 +12,6 @@ var listAccidentAge=[]
 var listAccidentGravite=[]
 
 var choix_date=document.getElementById("choix-date");
- 
 
 
 
@@ -83,10 +82,21 @@ async function getDataFiltre(){
             }
         }
     }
-
-
-
-
+    //Intervalle de dates
+    if(choix_date.value=="intervalle-dates"){
+        listAccidentDate=[];
+        var date_debut=new Date(selectedDateStart).getTime();
+        var date_fin=new Date(selectedDateEnd).getTime();
+        console.log(date_debut);
+        console.log(date_fin);
+        for(var i=0;i<listAccident.length;i++){
+            var date_accident=new Date((listAccident[i].fields.datetime).substring(0,10)).getTime();
+            console.log(date_accident);
+            if((date_debut<=date_accident)&&(date_fin>=date_accident)){
+                listAccidentDate.push(listAccident[i]);
+            }
+        }
+    }
 
 
     selectDataFiltre()  //intersection des listes
