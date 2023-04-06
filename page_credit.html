@@ -3,29 +3,64 @@
     <head>
         <title>Crédits</title>
         <meta charset="utf-8">
-
+<!-- 
         <link href="../page_statistique/CSS/body.css" rel="stylesheet" type="text/css">
         <link href="../page_statistique/CSS/header.css" rel="stylesheet" type="text/css">
-        <link href="../page_statistique/CSS/footer.css" rel="stylesheet" type="text/css">
+        <link href="../page_statistique/CSS/footer.css" rel="stylesheet" type="text/css"> -->
+        
+        <link href="https://fonts.googleapis.com/css?family=Catamaran:400,700&display=swap" rel="stylesheet"> <!-- style de header -->
 
-        <link rel="stylesheet" href="page_credit.css">
-    </head>
-    <body>
+        <link rel="stylesheet" href="../commun.css" type="text/css">
+       <link rel="stylesheet" href="page_credit.css">
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <body class="header">
     
-        <header id="#top">
-        
-            <ul class="list-header">
-                <a class="anc-title" href="../page_accueil/page_accueil.html" > <li >Accidentologie</li></a>
-            
-            
-                <a class="anc-sous-titre" href="../page_statistique/HTML/statistiques.html"> <li >Statistiques</li> </a>
-           
-            
-                <a class="anc-sous-titre" href="../page_carte/HTML/page_carte.html"> <li>Carte</li> </a>
-                <a class="anc-sous-titre" href="../page_A_propos_de_nous/page_a-propos-de-nous.html"> <li>A propos de nous</li> </a>
-            </ul>
-        
-        </header>
+		<header id="header_absolute">
+
+			<div class="container">
+
+				<div>
+					
+					<div>
+
+                        <ul class="pages">
+							<li><a href=""><img src="../accueil_essaie/logo.jpg" alt="Logo de Accidentologie"></a></li>
+                            <li><a href=""> Carte</a></li>
+                            <li><a href="">  Statistiques</a></li>
+                		</ul>
+					</div>
+
+			</div>
+
+		</header>
+
+<!-- SECOND HEADER-->
+ 		<header id="header_fixed">
+
+			<div class="container">
+
+				<div>
+
+					<div>
+
+						<div>
+                            <ul class="pages">
+								<li><a href=""><img src="../accueil_essaie/logo.jpg" alt="Logo de Accidentologie"></a></li>
+                                <li><a href="">Carte</a></li>
+								<li><a href="">Statistiques</a></li>
+
+							</ul>
+						</div>
+					</div>
+
+				</div>
+
+			</div>
+
+		</header>
+
+        <center>
 
             <!--Nom de la page-->
             <h1>Crédit</h1> 
@@ -52,31 +87,30 @@
                 Nullam dapibus ornare ex sit amet dapibus. Etiam sed neque vulputate justo auctor auctor at sed est. Suspendisse tempus nulla eget magna pulvinar aliquam. Cras pulvinar sollicitudin orci, ut finibus enim bibendum sed. In ornare bibendum accumsan. Suspendisse ut nibh sed sem posuere hendrerit. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Aliquam sodales ex quis consectetur sagittis. Maecenas viverra fringilla ipsum, vehicula tristique mi rutrum facilisis. Quisque pretium varius faucibus. Donec vitae augue ante. Pellentesque at mi ante. Ut rutrum ultricies orci ut vestibulum. Donec ac lobortis mi, vitae commodo sem.  
             </p>
         </dernier_p>
+    </center>    
 
         <!--Naviguation entre la page secondaire-->
-        <footer>
-            <div class="contactez-nous-container">
-                <p>Contactez-nous</p>
-                <ul>
-                    <a href="mailto:hammaciyanis@gmail.com"> <li>hammaciyanis@gmail.com</li> </a>
-                    <a href="mailto:maelle.bourbon@gmail.com"> <li>maelle.bourbon@gmail.com</li> </a>
-                    <a href="mailto:dylanchou2003@gmail.com"> <li>dylanchou2003@gmail.com</li> </a>
-                    <a href="mailto:poirier.seraphin@gmail.com"> <li>poirier.seraphin@gmail.com</li> </a>
-                </ul>
-            </div>
-            <div class="liens-utils-container">
-                <p>Liens utiles</p>
-                <ul>
-                    <a href="https://public.opendatasoft.com/explore/?sort=modified"> <li>opendatasoft</li> </a>
-                    <a href="https://www.data.gouv.fr/fr/"> <li>datagouv</li> </a>
-                </ul>
-            </div>  
+            <footer id="footer">
+
+                <div class="container">
             
-            <div class="nombre-accident">
-                <p>Nombre d'accidents enregistrés</p>
-                <span id="nombre-accident"></span>
-            </div>
-        </footer>
+                    <div>
+            
+                        <div>
+            
+                            <div class="footer-set_up">
+                                <ul class="pages">
+                                    <li><a href="">Crédit</a></li>
+                                    <li><a href="">À Propos de Nous</a></li>
+                                </ul>
+                                
+                            </div>
+                        </div>
+                    </div>
+            
+                </div>
+            
+            </footer>
     </body>
-    <script src="../page_statistique/Javascript/nombre-accident.js"></script><!-- Donne le nombre d'accidents au total-->
+    <script type="text/javascript" src="../accueil_essaie/scroll.js"></script>
 </html>
