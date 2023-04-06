@@ -95,14 +95,14 @@ function updateTitles(){  //mettre a jour le titre du graph
         }
     }
 
-    if(inputLieu && inputLieu!="tous-les-lieus"){
+    if(inputLieu && inputLieu!="tous-les-lieux"){
         titles[0]+=inputLieu+" "
         if(!inputAnneeGraph || inputAnneeGraph=="toutes-les-annees"){
             titles[0]+=listAnneeLieu[0].name+"-"+listAnneeLieu[listAnneeLieu.length-1].name
         }
     }
     else{
-        titles[0]+="France "
+        titles[0]+="en France "
     }
 
     if(inputAnneeGraph && inputAnneeGraph!="toutes-les-annees"){
