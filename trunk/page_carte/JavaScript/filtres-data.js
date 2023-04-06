@@ -89,14 +89,18 @@ async function getDataFiltre(){
         var date_fin=new Date(selectedDateEnd).getTime();
         console.log(date_debut);
         console.log(date_fin);
+        
         for(var i=0;i<listAccident.length;i++){
             var date_accident=new Date((listAccident[i].fields.datetime).substring(0,10)).getTime();
-            console.log(date_accident);
+            //console.log(date_accident);
+        
             if((date_debut<=date_accident)&&(date_fin>=date_accident)){
 				console.log("entree boucle");
                 listAccidentDate.push(listAccident[i]);
             }
+            
         }
+        console.log(listAccidentDate.length);
     }
 
 
@@ -307,10 +311,6 @@ function selectDataFiltre(){
         listAccidentLum=listAccident
     }
 
-    
-
-    
-
     if (!selectedValuesAtm) {  
         listAccidentAtm = listAccident;
         console.log("undefined")
@@ -325,15 +325,23 @@ function selectDataFiltre(){
 
     if(!selectedDepartement ||selectedDepartement=="allDepartements"){
         listAccidentDepartement=listAccident
+        console.log("!selectedDepartement");
     }
 
     if(!selectedVille ||selectedVille=="allVilles"){
         listAccidentVille=listAccident
     }
 
-    if(!selectedDate){
-        listAccidentDate=listAccident
+    if(!chosenDate){
+        listAccidentDate=listAccident;
+        console.log("!selectedDate");
     }
+    /*
+    if(choix_date){
+		
+		listAccidentDate=listAccident;
+		console.log("selectedDate");
+	}*/
 
     if(!selectedValuesAge){
         listAccidentAge=listAccident

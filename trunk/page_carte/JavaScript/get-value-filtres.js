@@ -17,7 +17,7 @@ var selectedValuesGravite=[]
 
 var selectedLum
 
-var choix_date=document.getElementById("choix-date");
+var chosenDate=document.getElementById("choix-date");
 
 function getIntervalleDateStart(){  //limiter le choix dans le filtre date de début et recuperer la date
     if(dateStart.value==""){
@@ -182,22 +182,6 @@ function getDepartement() {
 
     
 }
-
-
-
-
-
-
-
-/* function getAge(){
-    selectedAge=ageSelect.value
-    console.log(selectedAge)
-} */
-
-/* function getGravite(){
-    selectedGravite=graviteSelect.value
-    console.log(selectedGravite)
-} */
 
 function getJour(){
     selectedLum=jourSelect.value
