@@ -298,7 +298,7 @@ async function getAccident(){
 
     var urls = [];
 
-    for(var i=0;i<1;i++){//listDepartement.length
+    for(var i=0;i<listDepartement.length;i++){
 
         urls.push(api+listDepartement[i])
 
