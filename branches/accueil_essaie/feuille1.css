@@ -87,8 +87,12 @@ header .pages li:nth-child(2) {
 #header_fixed {
     position:fixed;/*Afficher le deuxième menu quand on deroule*/
     background-color: white;
-    top: -70px; /*Pour pas afficher tout de suite le deuxième menu*/
+    top: -100px; /*Pour pas afficher tout de suite le deuxième menu*/
     transition: top 300ms ease; /*Permet l'affichage du deuxième menu de haut en bas moins violent*/
+}
+
+#header_fixed li:last-child{
+    padding-right: 25px;
 }
 
 #header_fixed.sticky_header {
