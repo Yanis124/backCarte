@@ -32,6 +32,7 @@ ul{
 
 /* HEADER */
 
+
 header {
     width: 100%; /*Le header prend toute la place de la page*/
     padding: 20px 0px;
@@ -56,14 +57,17 @@ header .pages {
     list-style: none;
 }
 
-/*  header .pages li:first-child{
-    margin-right: 80%;   
-} */ 
- header .pages li:nth-child(2) {
-    margin-right: 35px;
-} 
 
-header .pages li:not(:last-child) {
+header .pages li:first-child{
+    margin-right: auto;
+}
+
+header .pages a img{
+    width: 75px;
+    padding-left: 25px;
+}
+
+header .pages li:nth-child(2) {
     margin-right: 35px; /* espace entre CRÉDITS et STATISTIQUES*/
 }
 
