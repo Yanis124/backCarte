@@ -1,6 +1,7 @@
 function regroupeAge(ageList){ //regrouper les tranches d'age et mettre les donnees dans la liste datas  0-18 18-60 +60 
     var countsSmall=0
-    var countsMed=0
+    var countsMedS=0
+    var countsMedH=0
     var countsLarg=0
     for(var i=0;i<ageList.length;i++){
 
@@ -8,11 +9,15 @@ function regroupeAge(ageList){ //regrouper les tranches d'age et mettre les donn
             countsSmall+=ageList[i].count
         }
 
-        else if(ageList[i].name>=1960 && ageList[i].name<=2001){  //18-59
-            countsMed+=ageList[i].count
+        else if(ageList[i].name>=1989 && ageList[i].name<=2001){  //18-30
+            countsMedS+=ageList[i].count
         }
 
-        else if(ageList[i].name<=1959){   //+61
+		else if(ageList[i].name>=1960 && ageList[i].name<=1988){  //31-59
+            countsMedH+=ageList[i].count
+        }
+        
+        else if(ageList[i].name<=1959){   //+60
             countsLarg+=ageList[i].count
             
         }
@@ -21,8 +26,11 @@ function regroupeAge(ageList){ //regrouper les tranches d'age et mettre les donn
     datas.push(countsSmall)
     label.push("0-17")
                             
-    datas.push(countsMed)
-    label.push("18-59")
+    datas.push(countsMedS)
+    label.push("18-30")
+    
+    datas.push(countsMedH)
+    label.push("31-59")
 
     datas.push(countsLarg)
     label.push("+60")

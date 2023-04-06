@@ -8,7 +8,7 @@ async function getData(){  //recuperer les données datetime, atm ,atm ,an-nais 
 
     loadGraph() //afficher l'annimation
 
-    if(inputLieu && inputAnneeGraph && inputAnneeGraph!="toutes-les-annees" && inputLieu!="tous-les-lieus"){ //si l'utilisateur rentre annee
+    if(inputLieu && inputAnneeGraph && inputAnneeGraph!="toutes-les-annees" && inputLieu!="tous-les-lieux"){ //si l'utilisateur rentre annee
         try{
             var res=await fetch(apiGraphX+inputValueX+"&refine.datetime="+inputAnneeGraph+"&refine.reg_name="+inputLieu) //ajouter le filtre année a l'api
         
@@ -20,7 +20,7 @@ async function getData(){  //recuperer les données datetime, atm ,atm ,an-nais 
         }
     }
 
-    else if(inputLieu && (!inputAnneeGraph || inputAnneeGraph=="toutes-les-annees") && inputLieu!="tous-les-lieus"){ //si l'utilisateur rentre annee
+    else if(inputLieu && (!inputAnneeGraph || inputAnneeGraph=="toutes-les-annees") && inputLieu!="tous-les-lieux"){ //si l'utilisateur rentre annee
         try{
             var res=await fetch(apiGraphX+inputValueX+"&refine.reg_name="+inputLieu) //ajouter le filtre lieu a l'api
         
@@ -33,7 +33,7 @@ async function getData(){  //recuperer les données datetime, atm ,atm ,an-nais 
         }
     }
     
-    else if(inputAnneeGraph &&(!inputLieu || inputLieu=="tous-les-lieus") && inputAnneeGraph!="toutes-les-annees"){ //si l'utilisateur rentre une annee
+    else if(inputAnneeGraph &&(!inputLieu || inputLieu=="tous-les-lieux") && inputAnneeGraph!="toutes-les-annees"){ //si l'utilisateur rentre une annee
         try{
             var res=await fetch(apiGraphX+inputValueX+"&refine.datetime="+inputAnneeGraph) //ajouter le filtre année a l'api
         
