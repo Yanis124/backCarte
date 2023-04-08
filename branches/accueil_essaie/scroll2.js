@@ -65,11 +65,11 @@ prevBtn.addEventListener('click', () => {
   
 });
 
-nextBtn.click()
+prevBtn.click()
  
 
 setInterval(function(){
-  nextBtn.click()
+  prevBtn.click()
 },5000)
 
 
