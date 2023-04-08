@@ -24,20 +24,22 @@ function slideIn() {
 
 function slideOut() {
   images[currentIndex].classList.add('slide-out');
-  images[currentIndex].classList.remove('active')
+  
+  
 }
 
 function slideOutPrev(){
     console.log(currentIndex)
     images[currentIndex].classList.add('slide-out-prev')
-    images[currentIndex].classList.remove('active')
+    
     
 }
 
 
 function changeImage() {
   images[currentIndex].classList.remove('slide-in', 'slide-out','slide-out-prev');
-  images[currentIndex].classList.add('active');
+  
+  
   
 }
 
