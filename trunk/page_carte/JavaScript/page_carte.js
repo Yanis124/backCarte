@@ -52,6 +52,8 @@ markerCluster = new L.markerClusterGroup( { animate: true,animateAddingMarkers: 
 
 
 async function createPin(){
+
+    
     
     loadCarte()
     // loadFiltre()
@@ -67,26 +69,32 @@ async function createPin(){
     else{   //sinon ceux qui sont filtres
         var list=listAccidentFiltre
     }
-        
-    for(var i=0;i<list.length;i++){
-        try{
-                    var a=list[i].fields.coordonnees[0]; 
-                    var b=list[i].fields.coordonnees[1];
-                    var marker=L.marker([a,b],{icon: carIcon}) //creer un marqueur
-                    pop=popUp(list,i)  
-                    
-                    marker.bindPopup(pop)    //ajouter le popup
-                    markerCluster.addLayer(marker); //regrouper les marqueur dans des clusters
-        }
-        catch{
-            console.log("couldn't find cordinnate")
-        }
-    }
-    map.addLayer(markerCluster); //ajouter le cluster a la map
+
+    var deb=Date.now()
     
+    var i=0
+    for (var item of list) {
+        try {
+          var a = item.fields.coordonnees[0]; 
+          var b = item.fields.coordonnees[1];
+          const marker = L.marker([a, b], { icon: carIcon }); // create a marker
+          const pop = popUp(list, i);
+          i=i+1
+          marker.bindPopup(pop); // add the popup to the marker
+          markerCluster.addLayer(marker); // add the marker to the markerCluster
+        } catch (error) {
+          console.log("Couldn't find coordinates");
+        }
+      }
+      
+      map.addLayer(markerCluster); // add the markerCluster to the map
+      
    
     workCarte()   //enlever l'annimation de chargement
     //workFiltre()  
+    var fin=Date.now()
+
+    console.log(`draw pin time : ${ fin-deb} ms`)
 }
 
 

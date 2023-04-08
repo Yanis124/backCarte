@@ -1,21 +1,42 @@
 var listAccidentFiltre=[]   //definir une liste d'accident par filtre
+
 var listAccidentDate=[]
 var listAccidentIntervallDate=[]
+
 var listAccidentLum=[]
 var listAccidentRegions=[]
 var listAccidentDepartement=[]
 var listAccidentVille=[]
+
 var listAccidentAtm=[]
 var listAccidentAge=[]
 var listAccidentGravite=[]
+
+var init=false
+var deb
+var fin
+var selectedFiltre
+
+
+
 var filtre=false //pour indiquer a la fonction createPin d'utiliser listAccidentFiltre
+
 async function getDataFiltre(){
+
+    init=true
+
+    deb = Date.now()
+
+    
     loadCarte()  //ajouter une animation de chargement 
     // loadFiltre()
+
     await new Promise(r => setTimeout(r, 100)); //sleep(2) pour executer loadCarte() et loadFiltre() //a refaire 
     filtre=true   
     if(selectedLum){  //filtre lunmiere
+        selectedFiltre="Lum"
         listAccidentLum=[]
+
         if(selectedLum=="jour"){
             for(var i=0;i<listAccident.length;i++){
                 if(listAccident[i].fields.lum=="Plein jour" || listAccident[i].fields.lum=="Crépuscule ou aube"){
@@ -30,11 +51,15 @@ async function getDataFiltre(){
                         listAccidentLum.push(listAccident[i])
                     }
                 }
-        }       
+        } 
+        
+          
     }
     
     if(selectedRegion){ //filtre region
         listAccidentRegions=[]
+        selectedFiltre="Region"
+
         for(var i=0;i<listAccident.length;i++){
             if(listAccident[i].fields.reg_name==selectedRegion){
                 listAccidentRegions.push(listAccident[i])
@@ -42,16 +67,23 @@ async function getDataFiltre(){
         }
        
     }
+
     if(selectedDepartement&&selectedDepartement!="allDepartements"){ //filtre departement
         listAccidentDepartement=[];
+
+        selectedFiltre="Departement"
+
         for(var i=0;i<listAccident.length;i++){
             if(selectedDepartement==listAccident[i].fields.dep_name){
                 listAccidentDepartement.push(listAccident[i]);   
             }
         }
     }
+
     if(selectedVille&&selectedVille!="allVilles"){ //filtre ville
         listAccidentVille=[];
+
+        selectedFiltre="Ville"
         
         for(var i=0;i<listAccident.length;i++){
             
@@ -60,8 +92,12 @@ async function getDataFiltre(){
             }
         }
     } 
+
     if(selectedDate){  //filtre date specifique
         listAccidentDate=[];
+
+        selectedFiltre="Date"
+
         for(var i=0;i<listAccident.length;i++){
             if((listAccident[i].fields.datetime).substring(0,10)==selectedDate){
                 listAccidentDate.push(listAccident[i]);
@@ -71,6 +107,8 @@ async function getDataFiltre(){
     //Intervalle de dates
     if(selectedDateStart && selectedDateEnd){
         listAccidentIntervallDate=[];
+
+        selectDataFiltre="intervalle de date"
         var date_debut=new Date(selectedDateStart).getTime();
         var date_fin=new Date(selectedDateEnd).getTime();
         console.log(date_debut);
@@ -88,7 +126,14 @@ async function getDataFiltre(){
         }
         
     }
+    fin = Date.now();
+
+    console.log(`Execution time using :${selectedFiltre} ${fin - deb} ms`)    
+
+
+
     selectDataFiltre()  //intersection des listes
+
     removePin()
     createPin()
    
@@ -96,14 +141,24 @@ async function getDataFiltre(){
 async  function filterList() {   //selectedValueAtm contient les valeurs selectionnées dans le filtre atm
     loadCarte()  //ajouter une animation de chargement 
     //loadFiltre()
+
+    init=true
+
     await new Promise(r => setTimeout(r, 100)); //sleep(2) pour executer loadCarte() et loadFiltre() //a refaire
     
+
+
         filtre=true;
+
+        deb=Date.now()
         
         
 /*----------GRAVITE----------*/
         if(selectedValuesGravite){   
-            listAccidentGravite=[]                                 
+            listAccidentGravite=[]  
+            
+            selectedFiltre="gravite"
+
              for (let i = 0; i < selectedValuesGravite.length; i++) {
                  var gravIncluded = selectedValuesGravite[i];
                
@@ -131,6 +186,7 @@ async  function filterList() {   //selectedValueAtm contient les valeurs selecti
                          let isIncluded = false;
                          
                         
+
                          if (gravIncluded =="Indemne" && gravite_ind == "Indemne") {
                              isIncluded = true;
                          } else if (gravIncluded == "Blessé" && gravite_ind == "Blessé") {
@@ -145,12 +201,16 @@ async  function filterList() {   //selectedValueAtm contient les valeurs selecti
                      }
                  }
              }
-             console.log("end of grav")
+             
          }   
     
     
         if(selectedValuesAtm){  //filtre meteo
+
         listAccidentAtm=[];
+
+        selectedFiltre="atm"
+
         for (var i=0; i<selectedValuesAtm.length; i++){
             if(selectedValuesAtm[i]=="normale"){
                 for(var j=0;j<listAccident.length;j++){
@@ -226,10 +286,15 @@ async  function filterList() {   //selectedValueAtm contient les valeurs selecti
             } 
         }
     }
+
     if(selectedValuesAge){ //filtre age
         listAccidentAge=[]
+
+        selectedFiltre="age"
+
         for (let i = 0; i < selectedValuesAge.length; i++) {
             var ageRange = selectedValuesAge[i];
+
             for (let j = 0; j < listAccident.length; j++) {
                 let deathYear = listAccident[j].fields.an;
                 let years = listAccident[j].fields.an_nais;
@@ -245,6 +310,7 @@ async  function filterList() {   //selectedValueAtm contient les valeurs selecti
                 for (let y = 0; y < yearArray.length; y++) {
                     let age = deathYear - yearArray[y];
                     let isInRange = false;
+
                     if (ageRange == "0-18" && age <= 18) {
                         isInRange = true;
                     } else if (ageRange == "18-30" && age >= 18 && age <= 30) {
@@ -256,6 +322,7 @@ async  function filterList() {   //selectedValueAtm contient les valeurs selecti
                     } else if (ageRange == "65_et_plus" && age >= 65) {
                         isInRange = true;
                     }
+
                     if (isInRange) {
                         listAccidentAge.push(listAccident[j]);
                         break;
@@ -264,58 +331,106 @@ async  function filterList() {   //selectedValueAtm contient les valeurs selecti
             }
         }
     }
+    fin=Date.now()
+
+    console.log(`execution time filtre ${selectedFiltre} ${fin-deb} ms`)
     
+
     selectDataFiltre()
     removePin()
     createPin()
 }  
+
+
+
+
 function selectDataFiltre(){
+
+
+    start =Date.now()
+
     if(!selectedLum){
-        listAccidentLum=listAccident
+        listAccidentFiltre= listAccident
     }
-    listAccidentFiltre = listAccidentLum.filter((x) =>    //Reduire la compexité 
-                                                            // faire une intersection que si le filtre est selectionné
-    listAccident.includes(x))
+    else{
+
+        listAccidentFiltre = listAccidentLum.filter((x) =>    
+        listAccident.includes(x))
+    }
     
+
     if(selectedRegion){
         listAccidentFiltre= listAccidentFiltre.filter((x) =>listAccidentRegions.includes(x))
     }
     
+
    
+
  
+
     if (selectedValuesAtm && selectedValuesAtm.length>0) {  
         listAccidentFiltre= listAccidentFiltre.filter((x) =>listAccidentAtm.includes(x))
     }
+
+
     if(selectedDepartement){
         listAccidentFiltre= listAccidentFiltre.filter((x) =>listAccidentDepartement.includes(x))
     }
+
     if(selectedVille){
         listAccidentFiltre= listAccidentFiltre.filter((x) =>listAccidentVille.includes(x))
     }
+
+
+
     if(selectedDate){
         listAccidentFiltre= listAccidentFiltre.filter((x) =>listAccidentDate.includes(x))
     }
+
     if(selectedDateStart && selectedDateEnd){
         listAccidentFiltre= listAccidentFiltre.filter((x) =>listAccidentIntervallDate.includes(x))
     }
+
     if(selectedValuesAge && selectedValuesAge.length>0){
         listAccidentFiltre= listAccidentFiltre.filter((x) =>listAccidentAge.includes(x))
     }
+
+
 	if(selectedValuesGravite && selectedValuesGravite.length>0){
         listAccidentFiltre= listAccidentFiltre.filter((x) =>listAccidentGravite.includes(x))
 	}
+
+    end =Date.now()
+
+    console.log(`intersection time : ${ end -start} ms `)
+
+    
+
+    
 	
 	
+
     console.log(listAccidentFiltre)
       
 }
-async function initFiltre(){
-    selectedVille=selectedDepartement=selectedDate=selectedLum=selectedRegion=selectedValuesAtm=selectedValuesAge=selectedValuesGravite=selectedDateEnd=selectedDateStart= null //remettre a 0 les filtres 
-    loadCarte()  //ajouter une animation de chargement 
-    //loadFiltre()
-    await new Promise(r => setTimeout(r, 100)); //sleep(2) pour executer loadCarte() et loadFiltre() //a refaire 
+
+
+async function initFiltre(){  //eviter de cliquer plusieurs fois sur remettre a 0 d'affiler
+    if(init){
+        selectedVille=selectedDepartement=selectedDate=selectedLum=selectedRegion=selectedValuesAtm=selectedValuesAge=selectedValuesGravite=selectedDateEnd=selectedDateStart= null //remettre a 0 les filtres 
+        loadCarte()  //ajouter une animation de chargement 
+        //loadFiltre()
+
+        await new Promise(r => setTimeout(r, 100)); //sleep(2) pour executer loadCarte() et loadFiltre() //a refaire 
       
-    filtre=false   
-    removePin()     //supprimer lss marqueurs de la carte
-    createPin()     
+        filtre=false
+        
+        init=false
+    
+        removePin()     //supprimer lss marqueurs de la carte
+        createPin()
+    }
+    
+
 }
+
