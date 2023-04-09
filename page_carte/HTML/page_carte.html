@@ -62,7 +62,7 @@
         <main id="main">
             <section id="section">
                 <div id="mapContainer" class="map-container">
-                    <div id="map" name="map" onLoad="carte();">
+                    <div id="map" name="map">
                         <!-- emplacement de la map-->
                         
                         
@@ -280,12 +280,25 @@
                             </ul>
                         </div>
                         <!-- Filtre Luminosité : Jour, Nuit--> 
-                        <div>
-                            
-                            <input onclick="getJour()" type="radio" name="lum" id="jour" value="jour">
-                            <label for="jour">Jour</label>
-                            <input onclick="getNuit()" type="radio" name="lum" id="nuit" value="nuit" >
-                            <label for="nuit">Nuit</label>
+                        <div class="lum-container">
+
+                            <div class="jour-container">
+                                <p>Jour</p>
+                                <label class="switch">
+                                    <input type="checkbox" value="jour" onclick="getJour(this)" id="jour">
+                                    <span class="slider round"></span>
+                                </label>
+                            </div>
+
+                            <div class="nuit-container">
+                                <p>Nuit</p>
+                                <label class="switch">
+                                    <input type="checkbox" value="nuit" onclick="getNuit(this)" id="nuit">
+                                    <span class="slider round"></span>
+                                </label>
+
+                            </div>
+                              
                         </div>
                     </div>
                     <div onclick="initFiltre()" class="reset-container">

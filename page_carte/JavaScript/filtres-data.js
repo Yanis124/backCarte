@@ -56,7 +56,7 @@ async function getDataFiltre(){
           
     }
     
-    if(selectedRegion){ //filtre region
+    if(selectedRegion && selectedRegion!="toutes les regions"){ //filtre region
         listAccidentRegions=[]
         selectedFiltre="Region"
 
@@ -68,7 +68,7 @@ async function getDataFiltre(){
        
     }
 
-    if(selectedDepartement&&selectedDepartement!="allDepartements"){ //filtre departement
+    if(selectedDepartement && selectedDepartement!="tous les departements"){ //filtre departement
         listAccidentDepartement=[];
 
         selectedFiltre="Departement"
@@ -80,8 +80,11 @@ async function getDataFiltre(){
         }
     }
 
-    if(selectedVille&&selectedVille!="allVilles"){ //filtre ville
+    
+
+    if(selectedVille && selectedVille!="toutes les villes"){ //filtre ville
         listAccidentVille=[];
+        
 
         selectedFiltre="Ville"
         
@@ -359,7 +362,7 @@ function selectDataFiltre(){
     }
     
 
-    if(selectedRegion){
+    if(selectedRegion && selectedRegion!="toutes les regions"){
         listAccidentFiltre= listAccidentFiltre.filter((x) =>listAccidentRegions.includes(x))
     }
     
@@ -373,11 +376,11 @@ function selectDataFiltre(){
     }
 
 
-    if(selectedDepartement){
+    if(selectedDepartement && selectedDepartement!="tous les departements"){
         listAccidentFiltre= listAccidentFiltre.filter((x) =>listAccidentDepartement.includes(x))
     }
 
-    if(selectedVille){
+    if(selectedVille && selectedVille!="toutes les villes"){
         listAccidentFiltre= listAccidentFiltre.filter((x) =>listAccidentVille.includes(x))
     }
 

@@ -1,6 +1,6 @@
 
 
-
+/*reset button*/
 
 .reset-container input{
     height: 100%;
@@ -31,7 +31,7 @@
 
 
 
-
+/*check list*/
 
 
 
@@ -44,18 +44,17 @@
     align-items: end;
     justify-content: space-between;
     cursor: pointer;
-    border-bottom: 1px solid rgb(178, 178, 178);
+    border-bottom: 1px solid #e8e5e5;
     
    
-    width:60%;
+    width:100%;
     
 }
 
-@keyframes example {
+@keyframes border-filtre {
     from {width:0%}
     to {width:100%}
   }
-
 
 
 
@@ -66,7 +65,7 @@
     background: #0a6bff;
     width: 0;
     bottom: 0; 
-    animation-name: example;
+    animation-name: border-filtre;
     animation-duration: 0.5s;
     -webkit-animation-fill-mode: forwards; 
     -moz-animation-fill-mode: forwards;    
@@ -85,6 +84,7 @@
 
 .select-btn.open .btn-text{
     color:#000;
+    font-weight: 500;
 }
 
 
@@ -199,7 +199,7 @@
 
 
 
-/*side bar*/
+/*side bar header*/
 
 
 .sidenav {
@@ -255,5 +255,80 @@
 
 
 
+/*radio button ( filtre lum/ date|intervalle de date )*/
+
+.lum-container{
+  display: flex;
+  gap:20px;
+  font-size: var(--filtre-carte-size);
+}
+
+.jour-container,.nuit-container{
+  display: flex;
+  gap:15px;
   
-  /* Style page content - use this if you want to push the page content to the right when you open the side navigation */
+  align-items: center;
+  
+}
+
+/* The switch - the box around the slider */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    height: 25px;
+  }
+
+/* Hide default HTML checkbox */
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+
+/* The slider */
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #eeeeee;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+
+  .slider:before {
+    position: absolute;
+    content: "";
+    height: 20px;
+    width: 20px;
+    left: 4px;
+    bottom: 3px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+
+  input:checked + .slider {
+    background-color: #0a6bff;
+  }
+
+ 
+
+  input:checked + .slider:before {
+    -webkit-transform: translateX(22px);
+    -ms-transform: translateX(22px);
+    transform: translateX(22px);
+  }
+
+  /* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+

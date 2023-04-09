@@ -54,8 +54,9 @@ form{
 .filtre-container >div{
     height:15%;
     align-items: center;
-    width:90%; 
+
     position: relative;
+  
 
 }
 
@@ -101,33 +102,6 @@ form{
     z-index:0;
 }
 
-
-
-
-
-
-
-
-@media screen and (max-width: 768px) {
-    section{
-        flex-direction: column;
-        gap:5%;
-        align-items: center;
-        height:1300px;
-    }
-
-    .map-container,form{
-        width:80%;
-        height: 50%;
-        
-    }
-
-    .filtre-container{
-        font-size: 10px;
-    }
-
-}
-
 #spinner-carte{
     position: absolute;
     top:50%;
@@ -152,4 +126,46 @@ form{
 #back2Top:hover {
     opacity:1;
 }
+
+@media screen and (min-width: 992px) {
+    .filtre-container >div{
+        width:60%
+    }
+}
+
+@media screen and (max-width: 992px) {
+    .filtre-container >div{
+        width:80%
+    }
+}
+
+
+
+
+@media screen and (max-width: 768px) {
+    section{
+        flex-direction: column;
+        gap:5%;
+        align-items: center;
+        height:1300px;
+    }
+
+    .map-container,form{
+        width:80%;
+        height: 50%;
+        
+    }
+
+
+}
+
+@media screen and (max-width: 480px) {
+    
+}
+
+
+
+
+
+
 
