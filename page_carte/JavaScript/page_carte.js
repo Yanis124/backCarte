@@ -53,11 +53,9 @@ markerCluster = new L.markerClusterGroup( { animate: true,animateAddingMarkers: 
 
 async function createPin(){
 
-    
-    
     loadCarte()
-    // loadFiltre()
-    //console.log(listAccidentFiltre.length)
+    loadFiltre()
+
     markerCluster = new L.markerClusterGroup( { animate: true,animateAddingMarkers: true});  //créer un markercluster pour regrouper les marqueurs
     if(!filtre){ //on afficher tous les pin si on ne filtre pas
         var list=listAccident
@@ -91,16 +89,10 @@ async function createPin(){
       
    
     workCarte()   //enlever l'annimation de chargement
-    //workFiltre()  
+    workFiltre()  
     var fin=Date.now()
 
     console.log(`draw pin time : ${ fin-deb} ms`)
 }
 
-
-//Lors changement de region le departement selectionnné revient a -- selectionner
-function resetDepartement() {
-    document.getElementById("departement").selectedIndex = 0;
-    resetVille();
-}
 

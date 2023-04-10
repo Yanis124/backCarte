@@ -29,7 +29,7 @@
     
         
     </head>
-    <body onload="nomRegions(); nomDepartements(); nomVilles() ;openFiltreList(); dateLimit();getAtm();getAge(); getGravite(); initMap();createPin()">
+    <body onload="nomRegions(); nomDepartements(); nomVilles() ;openFiltreList(); dateLimit();getAtm();getAge(); getGravite(); initMap();createPin();resetDate()">
         <header id="#top">
             <div id="mySidenav" class="sidenav">
                <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
@@ -79,23 +79,34 @@
             
                 <form id="filtres">
                     <div id="filtre-container" class="filtre-container">
+
+                        <div class="date-container">  <!--Filtre date ou intervalle de date-->
                         
-                        <!--Filtre date ou intervalle de date-->
-                        <div class="choice-date-container">
-                            <label for="choix-date">Choisissez une Date ou un Intervalle de Date </label>
-                            <select id="choix-date" onchange="afficherChoix()" onFocus="opening();">
-                                <option value="">-- Sélectionnez une option --</option>
-                                <option value="date-specifique">Date spécifique</option>
-                                <option value="intervalle-dates">Intervalle de dates</option>
-                            </select>
+                           
+                            <div class="date-specifique-container" id="switch-container">
+                                <p>Date spécifique</p>
+                                <label class="switch">
+                                    <input type="checkbox" value="specifique-date" onclick="displayDate(this)" id="specifique-date">
+                                    <span class="slider round"></span>
+                                </label>
+
+                            </div>
+                            <div class="intervalle-date-container" id="switch-container">
+                                <p>Intervalle de date</p>
+                                <label class="switch">
+                                    <input type="checkbox" value="date-interval" onclick="displayDateInterval(this)" id="interval-date">
+                                    <span class="slider round"></span>
+                                </label>
+
+                            </div>
                         </div>
                         <!-- Si sélectionne du filtre Date alors affichage d'un élément choix de date spécifique-->
-                        <div class="date-container" id="choix-date-specifique" style="display: none;">
+                        <div class="date-container" id="date-specifique-container" style="display: none;">
                             <label for="date-specifique">Choisissez une date </label>
                             <input onchange="getDate()" id="date" type="date" id="date-specifique" name="date-specifique">
                         </div>
                         <!-- Si sélectionne du filtre Intervalle de Date alors affichage d'un élément choix de date Début et d'un élément choix de date de Fin-->
-                        <div class="date-container" id="choix-intervalle-dates" style="display: none;">
+                        <div class="date-container" id="date-interval-container" style="display: none;">
                             <label for="date-debut"  >Date de début </label>
                             <input onchange="getIntervalleDateStart(); getIntervalleDate()" type="date" id="date-debut" name="date-debut">
                             <label for="date-fin">Date de fin </label>
@@ -282,7 +293,7 @@
                         <!-- Filtre Luminosité : Jour, Nuit--> 
                         <div class="lum-container">
 
-                            <div class="jour-container">
+                            <div class="jour-container" id="switch-container">
                                 <p>Jour</p>
                                 <label class="switch">
                                     <input type="checkbox" value="jour" onclick="getJour(this)" id="jour">
@@ -290,7 +301,7 @@
                                 </label>
                             </div>
 
-                            <div class="nuit-container">
+                            <div class="nuit-container" id="switch-container">
                                 <p>Nuit</p>
                                 <label class="switch">
                                     <input type="checkbox" value="nuit" onclick="getNuit(this)" id="nuit">

@@ -17,16 +17,18 @@ var listClass=[".ville-container",".weather-container",".age-container",".gravit
 
 function getIntervalleDateStart(){
     selectedDateStart=dateStart.value
+    setDateLimit()
 }
 
 function getIntervalleDateEnd(){
     selectedDateEnd=dateEnd.value
+    setDateLimit()
 }
 
 function getIntervalleDate(){  //filtrer les données si on a la date de but et de fin
     selectedDate=null  //mettre a 0 la valeur de date
 
-    if(selectedDateEnd && selectedDateEnd){
+    if(selectedDateEnd && selectedDateStart){
         getDataFiltre()
     }
 }
@@ -36,6 +38,12 @@ function getDate(){  //recuperer la date
     selectedDate=date.value
 
     getDataFiltre()
+}
+
+function setDateLimit(){  //selectedDateStart <= selectedDateEnd
+    dateEnd.setAttribute("min",selectedDateStart)
+    dateStart.setAttribute("max",selectedDateEnd)
+
 }
 
 function getRegion() {      // Région sélectionnée
@@ -140,15 +148,12 @@ function getJour(inputJour){  //recuperer la valeur du filtre jour
     if(!inputJour.checked){
         selectedLum=null
         textLum[0].style.color="#333"
-        textLum[0].style.fontWeight="500"
     }
 
     else{
         console.log(textLum)
         textLum[0].style.color="#000"
-        textLum[0].style.fontWeight="600"
         textLum[1].style.color="#333"
-        textLum[1].style.fontWeight="500"
         selectedLum=jourSelect.value
         var inputNuit=document.getElementById("nuit")  //remettre a 0 le button nuit
         if(inputNuit.checked){
@@ -163,14 +168,11 @@ function getNuit(inputNuit){ //recuperer la valeur du filtre nuit
     if(!inputNuit.checked){
         selectedLum=null
         textLum[1].style.color="#333"
-        textLum[1].style.fontWeight="500"
     }
 
     else{
         textLum[1].style.color="#000"
-        textLum[1].style.fontWeight="600"
         textLum[0].style.color="#333"
-        textLum[0].style.fontWeight="500"
         selectedLum=nuitSelect.value
         var inputJour=document.getElementById("jour") //remettre a 0 le button jour
         if(inputJour.checked){

@@ -1,6 +1,9 @@
 //definir les filtres comme variables globales pour avoir un accès à leurs valeurs depuis tous les fichiers 
 
+
 var date=document.getElementById("date")
+var startDate=document.getElementById("date-debut")
+var endDate=document.getElementById("date-fin")
 
 var dateStart=document.getElementById("date-debut")
 var dateEnd=document.getElementById("date-fin")
@@ -14,29 +17,66 @@ var ageSelect=document.getElementById("tranche-age")
 var jourSelect=document.getElementById("jour")
 var nuitSelect=document.getElementById("nuit")
 
-function afficherChoix() {
+function displayDate(inputChoice){
+    var dateSpecifiqueContainer=document.getElementById("date-specifique-container")
+    var dateIntervalContainer=document.getElementById("date-interval-container")
+    var textDate=document.querySelector('.date-specifique-container p')
+    var textIntervalDate=document.querySelector('.intervalle-date-container p')
 
-    var choix = document.getElementById("choix-date");
-    var choixDate = document.getElementById("choix-date-specifique");
-    var choixInterval = document.getElementById("choix-intervalle-dates");
+    if(!inputChoice.checked){
+        dateSpecifiqueContainer.style.display="none"
+        textDate.style.color="#333"
+        selectedDate=null
+        date.value = ''; //reset date
+        getDataFiltre()
+    }
+    else{
+        var inputDateInterval=document.getElementById("interval-date")
 
-    if (choix.value == "date-specifique") {
-        choixDate.style.display = "flex";
-        choixInterval.style.display = "none";
-    } 
+        dateSpecifiqueContainer.style.display="flex"
+        dateIntervalContainer.style.display="none"
+        textDate.style.color='#000'
+        textIntervalDate.style.color="#333"
     
-    else if (choix.value == "intervalle-dates") {
-        choixDate.style.display = "none";
-        choixInterval.style.display = "flex";
-    } 
-    
-    else {
-        choixDate.style.display = "none";
-        choixInterval.style.display = "none";
+        
+
+        if(inputDateInterval.checked){
+            inputDateInterval.checked=false
+            textDate.style.color='#333'
+        }
     }
 }
 
-function dateLimit(){
+function displayDateInterval(inputChoice){
+    var dateSpecifiqueContainer=document.getElementById("date-specifique-container")
+    var dateIntervalContainer=document.getElementById("date-interval-container")
+    var textIntervalDate=document.querySelector('.intervalle-date-container p')
+    var textDate=document.querySelector('.date-specifique-container p')
+
+    if(!inputChoice.checked){
+        dateIntervalContainer.style.display="none"
+        textIntervalDate.style.color="#333"
+        selectedDateStart=selectedDataEnd =null
+        startDate.value=endDate.value=''
+
+        getDataFiltre()
+    }
+    else{
+
+        var inputDateSpecifique=document.getElementById("specifique-date")
+
+        dateIntervalContainer.style.display="flex"
+        dateSpecifiqueContainer.style.display="none"
+        textIntervalDate.style.color="#000"
+        textDate.style.color="#333"
+        if(inputDateSpecifique.checked){
+            inputDateSpecifique.checked=false
+            textIntervalDate.style.color="#333"
+        }
+    }
+}
+
+function dateLimit(){  //definir une limite de date 
 
     date.setAttribute("min","2012-01-01") //limiter le choix de la date 
     date.setAttribute("max","2020-01-01")
@@ -122,4 +162,15 @@ function nomVilles(){
 }
 
 
+//reset date/interval date
 
+function resetDate(){
+    var resetBtn = document.querySelector('input[type="reset"]');
+    resetBtn.addEventListener("click",()=>{
+        var dateSpecifiqueContainer=document.getElementById("date-specifique-container")
+        var dateIntervalContainer=document.getElementById("date-interval-container")
+
+        dateSpecifiqueContainer.style.display="none"
+        dateIntervalContainer.style.display="none"
+    })
+}

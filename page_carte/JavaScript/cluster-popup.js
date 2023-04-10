@@ -31,7 +31,7 @@ function style(note){   //Ajouter du style aux clusters
             var Div=note[i]
             var number=note[i].children[0].children[0]
             var numberDiv=note[i].children[0]
-            //console.log(element)
+            
             number.style.fontSize="17px"
             number.style.color = 'white'   
 
@@ -85,8 +85,7 @@ function popUp(list,i){  //Créer les popups
     +"<li style='font-size:"+fontSize+";color:"+colorText+";'>"+"adresse: "+"<span style='font-size:"+fontSize+";font-weight:"+fontWeigth+";'>"+adress+"</span>"+"</li>"
     +"<li style='font-size:"+fontSize+";color:"+colorText+";'>"+"Condition atmosphérique: "+"<span style='font-size:+"+fontSize+";font-weight:"+fontWeigth+";'>"+atm+"</span>"+"</li>"
     +"<li style='font-size:"+fontSize+";color:"+colorText+";'>"+"lumiere: "+"<span style='font-size:"+fontSize+";font-weight:"+fontWeigth+";'>"+lum+"</span>"+"</li>"
-    +"<li style='font-size:"+fontSize+";color:"+colorText+";'>"+"Gravité: "+"<span style='font-size:"+fontSize+";font-weight:"+fontWeigth+";'>"+grav+"</span>"+"</li>"
-
+    +"<li style='font-size:"+fontSize+";color:"+colorText+";'>"+"Gravité: "+"<span style='font-size:"+fontSize+";font-weight:"+fontWeigth+";'>"+displaydata(grav)+"</span> </li>"
     +"</ul>"
     }) 
     //console.log(pop)
@@ -99,7 +98,33 @@ function popUpData(data){   //si la donnée n'est pas disponible dans l'api
         return message
     }
     return data
+}
 
+function displaydata(data){
+    var arr = data.split(','); // split the string by comma delimiter
+    if(arr.length>3){
+        var fourth = arr.slice(0, 3);
+        var leftArr=arr.slice(3,arr.length)
+        var result=""
+        fourth.forEach(element => {
+            result+=element+","
+        });
+        result+=" "
+        leftArr.forEach(element=>{
+            result+=element+","            
+        })
+
+        return result
+        
+    }
+
+    else{
+        return data
+    }
+
+    
+
+    
 }
 
 setInterval(regrouper, 500)  //on appelle la fonction regrouper() tous les 500ms

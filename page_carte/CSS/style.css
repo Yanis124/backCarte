@@ -30,6 +30,10 @@ form{
 
 }
 
+form p,form label{
+    color:#333;
+}
+
 
 .filtre-container{
     height:80%;
@@ -126,11 +130,22 @@ form{
 #back2Top:hover {
     opacity:1;
 }
+.date-container{
+    width:100%
+}
+
+
 
 @media screen and (min-width: 992px) {
-    .filtre-container >div{
+
+
+    .filtre-container  >div {
         width:60%
     }
+
+    
+
+
 }
 
 @media screen and (max-width: 992px) {
