@@ -53,6 +53,8 @@ markerCluster = new L.markerClusterGroup( { animate: true,animateAddingMarkers: 
 
 async function createPin(){
 
+
+
     loadCarte()
     loadFiltre()
 
@@ -70,24 +72,33 @@ async function createPin(){
 
     var deb=Date.now()
     
-    var i=0
-    for (var item of list) {
+
+
+    
+    let a
+    let b
+    let marker
+    let pop
+
+    for (let i = 0; i < list.length; i++) {
         try {
-          var a = item.fields.coordonnees[0]; 
-          var b = item.fields.coordonnees[1];
-          const marker = L.marker([a, b], { icon: carIcon }); // create a marker
-          const pop = popUp(list, i);
-          i=i+1
-          marker.bindPopup(pop); // add the popup to the marker
-          markerCluster.addLayer(marker); // add the marker to the markerCluster
-        } catch (error) {
-          console.log("Couldn't find coordinates");
+            a = list[i].fields.coordonnees[0];
+            b = list[i].fields.coordonnees[1];
+            marker = L.marker([a, b], { icon: carIcon });
+            pop = popUp(list, i);
+            marker.bindPopup(pop);
+            markerCluster.addLayers(marker);
+        } 
+        catch (error) {
+            console.log("Couldn't find coordinates");
         }
-      }
+    }
+
+    
+    map.addLayer(markerCluster);
+
       
-      map.addLayer(markerCluster); // add the markerCluster to the map
-      
-   
+
     workCarte()   //enlever l'annimation de chargement
     workFiltre()  
     var fin=Date.now()
