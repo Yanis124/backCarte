@@ -1,23 +1,35 @@
-// var filter=document.getElementById("filtre-container") //bloquer les filtres avant d'afficher les accidents
-// console.log(filter.childElementCount)
+var filter=document.getElementById("filtre-container") //bloquer les filtres lors du chargement des accidents
+var switchTab=document.querySelectorAll("#switch-container")
+var selectBtn=document.querySelectorAll(".select-btn")
 
-// function loadFiltre(){
-//     for(var i=0;i<filter.childElementCount;i++){
-//         filter.children[i].style.opacity="0.6"
+
+function loadFiltre(){
+        switchTab.forEach(element=>{
+        element.style.pointerEvents="none",
+        element.style.cursor="not-allowed",
         
-//         filter.children[i].children[1].style.cursor="not-allowed"
-//     }
-    
-// }
+        element.style.opacity="0.6"})
 
-
-
-// function workFiltre(){
-
-//     for(var i=0;i<filter.childElementCount;i++){
-//         filter.children[i].style.opacity="1"
+        selectBtn.forEach(element=>{
+            element.style.pointerEvents="none",
+        element.style.cursor="not-allowed",
         
-//         filter.children[i].children[1].style.cursor="pointer"
-//     }
+        element.style.opacity="0.6"
+        }) 
+}
+
+ function workFiltre(){
+    switchTab.forEach(element=>{
+        element.style.pointerEvents="auto",
+        element.style.cursor="pointer",
+        
+        element.style.opacity="1"})
+
+        selectBtn.forEach(element=>{
+        element.style.pointerEvents="auto",
+        element.style.cursor="pointer",
+        
+        element.style.opacity="1"
+        })
     
-// }
+ }

@@ -257,19 +257,25 @@
 
 /*radio button ( filtre lum/ date|intervalle de date )*/
 
-.lum-container{
+.lum-container,.date-container{
   display: flex;
   gap:20px;
   font-size: var(--filtre-carte-size);
+  width:100%
 }
 
-.jour-container,.nuit-container{
+
+
+.jour-container,.nuit-container,.date-specifique-container,.intervalle-date-container{
   display: flex;
-  gap:15px;
+  gap:5px;
   
   align-items: center;
+
   
 }
+
+
 
 /* The switch - the box around the slider */
 .switch {
@@ -290,6 +296,7 @@
 .slider {
     position: absolute;
     cursor: pointer;
+    width:50px;
     top: 0;
     left: 0;
     right: 0;

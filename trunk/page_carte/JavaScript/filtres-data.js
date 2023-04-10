@@ -29,7 +29,7 @@ async function getDataFiltre(){
 
     
     loadCarte()  //ajouter une animation de chargement 
-    // loadFiltre()
+    loadFiltre()
 
     await new Promise(r => setTimeout(r, 100)); //sleep(2) pour executer loadCarte() et loadFiltre() //a refaire 
     filtre=true   
@@ -111,7 +111,7 @@ async function getDataFiltre(){
     if(selectedDateStart && selectedDateEnd){
         listAccidentIntervallDate=[];
 
-        selectDataFiltre="intervalle de date"
+        selectedFiltre="intervalle de date"
         var date_debut=new Date(selectedDateStart).getTime();
         var date_fin=new Date(selectedDateEnd).getTime();
         console.log(date_debut);
@@ -143,19 +143,13 @@ async function getDataFiltre(){
 }
 async  function filterList() {   //selectedValueAtm contient les valeurs selectionnées dans le filtre atm
     loadCarte()  //ajouter une animation de chargement 
-    //loadFiltre()
+    loadFiltre()
 
     init=true
-
     await new Promise(r => setTimeout(r, 100)); //sleep(2) pour executer loadCarte() et loadFiltre() //a refaire
-    
-
-
         filtre=true;
 
         deb=Date.now()
-        
-        
 /*----------GRAVITE----------*/
         if(selectedValuesGravite){   
             listAccidentGravite=[]  
@@ -279,7 +273,6 @@ async  function filterList() {   //selectedValueAtm contient les valeurs selecti
                 
             } 
             if(selectedValuesAtm[i]=="vent_fort_tempêtes"){
-                // console.log("Essaie")
                 for(var j=0;j<listAccident.length;j++){
                     if(listAccident[j].fields.atm=="Vent fort - temp\u00eate"){
                         listAccidentAtm.push(listAccident[j]);
@@ -338,7 +331,6 @@ async  function filterList() {   //selectedValueAtm contient les valeurs selecti
 
     console.log(`execution time filtre ${selectedFiltre} ${fin-deb} ms`)
     
-
     selectDataFiltre()
     removePin()
     createPin()
@@ -348,7 +340,6 @@ async  function filterList() {   //selectedValueAtm contient les valeurs selecti
 
 
 function selectDataFiltre(){
-
 
     start =Date.now()
 
@@ -366,11 +357,6 @@ function selectDataFiltre(){
         listAccidentFiltre= listAccidentFiltre.filter((x) =>listAccidentRegions.includes(x))
     }
     
-
-   
-
- 
-
     if (selectedValuesAtm && selectedValuesAtm.length>0) {  
         listAccidentFiltre= listAccidentFiltre.filter((x) =>listAccidentAtm.includes(x))
     }
@@ -422,7 +408,7 @@ async function initFiltre(){  //eviter de cliquer plusieurs fois sur remettre a 
     if(init){
         selectedVille=selectedDepartement=selectedDate=selectedLum=selectedRegion=selectedValuesAtm=selectedValuesAge=selectedValuesGravite=selectedDateEnd=selectedDateStart= null //remettre a 0 les filtres 
         loadCarte()  //ajouter une animation de chargement 
-        //loadFiltre()
+        loadFiltre()
 
         await new Promise(r => setTimeout(r, 100)); //sleep(2) pour executer loadCarte() et loadFiltre() //a refaire 
       
