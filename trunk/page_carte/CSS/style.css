@@ -49,14 +49,14 @@ form p,form label{
     background-color: #fff; 
     padding:5%; 
     border-radius:6px ;
-    gap:20px;
+    
 }
 
 
 
 
 .filtre-container >div{
-    height:15%;
+    height: calc(100% / 9);
     align-items: center;
 
     position: relative;
@@ -93,12 +93,9 @@ form p,form label{
     box-shadow: 0 0 7px var(--shadow-color);
     position: relative;
     border-radius:6px ;
-
-
-
-
-
 }
+
+
 
 #map{
     width:100%;
@@ -134,7 +131,39 @@ form p,form label{
     width:100%
 }
 
+/*input date*/
 
+input:focus {
+    outline: none;
+}
+
+
+
+
+
+
+
+
+.interval-container{
+    position: relative;
+    width:60%
+}
+
+.interval-container span,.date-container span{
+    position: absolute;
+    left:0;
+    bottom: 0;
+    padding-bottom:6px ;
+    color:#333;
+}
+
+
+input[type="date"]:in-range::-webkit-datetime-edit-year-field, 
+input[type="date"]:in-range::-webkit-datetime-edit-month-field, 
+input[type="date"]:in-range::-webkit-datetime-edit-day-field, 
+input[type="date"]:in-range::-webkit-datetime-edit-text {color: transparent; }
+
+/*media query*/
 
 @media screen and (min-width: 992px) {
 
@@ -142,10 +171,6 @@ form p,form label{
     .filtre-container  >div {
         width:60%
     }
-
-    
-
-
 }
 
 @media screen and (max-width: 992px) {
@@ -153,6 +178,13 @@ form p,form label{
         width:80%
     }
 }
+
+
+@media screen and ( min-width: 769px){
+    .filtre-container{
+        gap:15px;
+    }
+} 
 
 
 
@@ -175,8 +207,14 @@ form p,form label{
 }
 
 @media screen and (max-width: 480px) {
-    
+    .filtre-container{
+        gap:10px;
+    }
 }
+
+@media screen and ( min-width: 480px){
+
+}  
 
 
 

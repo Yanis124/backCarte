@@ -22,12 +22,20 @@ function displayDate(inputChoice){
     var dateIntervalContainer=document.getElementById("date-interval-container")
     var textDate=document.querySelector('.date-specifique-container p')
     var textIntervalDate=document.querySelector('.intervalle-date-container p')
+    var textDateValue=document.querySelector("#date-specifique-container span")
+    var textDateIntervalValue=document.querySelectorAll("#date-interval-container span")
+    
 
     if(!inputChoice.checked){
         dateSpecifiqueContainer.style.display="none"
         textDate.style.color="#333"
         selectedDate=null
-        date.value = ''; //reset date
+        date.value = null; 
+        textDateValue.innerText="Date"
+        textDateValue.style.color="#333"
+       
+
+
         getDataFiltre()
     }
     else{
@@ -43,7 +51,15 @@ function displayDate(inputChoice){
         if(inputDateInterval.checked){
             inputDateInterval.checked=false
             textDate.style.color='#333'
+            textDateIntervalValue[0].innerText="Debut"
+            textDateIntervalValue[1].innerText="Fin"
+            textDateIntervalValue[0].style.color=textDateIntervalValue[1].style.color="#333"
+            startDate.value=endDate.value=null
+            selectedDateEnd=selectedDateStart=null
+
+            
         }
+        getDataFiltre()
     }
 }
 
@@ -52,12 +68,23 @@ function displayDateInterval(inputChoice){
     var dateIntervalContainer=document.getElementById("date-interval-container")
     var textIntervalDate=document.querySelector('.intervalle-date-container p')
     var textDate=document.querySelector('.date-specifique-container p')
+    var textDateIntervalValue=document.querySelectorAll("#date-interval-container span")
+    var textDateValue=document.querySelector("#date-specifique-container span")
+    
 
     if(!inputChoice.checked){
         dateIntervalContainer.style.display="none"
         textIntervalDate.style.color="#333"
         selectedDateStart=selectedDataEnd =null
-        startDate.value=endDate.value=''
+        textDateIntervalValue[0]=textDateIntervalValue[1]=""
+        textDateIntervalValue[0].innerText="debut"
+        textDateIntervalValue[1].innerText="Fin"
+        textDateIntervalValue[0].style.color=textDateIntervalValue[1].style.color="#333"
+        startDate.value=endDate.value=null // reset  input date
+        selectedDateEnd=selectedDateStart=null
+        
+
+   
 
         getDataFiltre()
     }
@@ -69,10 +96,17 @@ function displayDateInterval(inputChoice){
         dateSpecifiqueContainer.style.display="none"
         textIntervalDate.style.color="#000"
         textDate.style.color="#333"
+
         if(inputDateSpecifique.checked){
             inputDateSpecifique.checked=false
-            textIntervalDate.style.color="#333"
+            textDateValue.innerText="Date"
+            textDateValue.style.color="#333"
+            date.value=null
+            selectedDate=null
+            
+            
         }
+        getDataFiltre()
     }
 }
 

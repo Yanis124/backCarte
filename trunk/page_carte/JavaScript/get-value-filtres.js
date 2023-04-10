@@ -16,12 +16,21 @@ var textLum=document.querySelectorAll('.lum-container p')
 var listClass=[".ville-container",".weather-container",".age-container",".gravite-container",".departement-container",".region-container"]
 
 function getIntervalleDateStart(){
+    var textDate=document.querySelectorAll('#date-interval-container span')
+    textDate[0].style.color="gray"
+
     selectedDateStart=dateStart.value
+    textDate[0].innerText=selectedDateStart
+
     setDateLimit()
 }
 
 function getIntervalleDateEnd(){
+    var textDate=document.querySelectorAll('#date-interval-container span')
+    textDate[1].style.color="gray"
+
     selectedDateEnd=dateEnd.value
+    textDate[1].innerText=selectedDateEnd
     setDateLimit()
 }
 
@@ -35,7 +44,11 @@ function getIntervalleDate(){  //filtrer les données si on a la date de but et 
 
 function getDate(){  //recuperer la date 
     selectedDateEnd=selectedDateStart=null //mettre a 0 l'intervalle de date
+    var textDate=document.querySelector('#date-specifique-container span')
+    textDate.style.color="gray"
+    
     selectedDate=date.value
+    textDate.innerText=selectedDate
 
     getDataFiltre()
 }

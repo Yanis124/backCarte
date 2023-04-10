@@ -35,7 +35,7 @@
 
 
 
-.select-btn{
+.select-btn,#date,#date-debut,#date-fin{
     position: relative;
     display: inline-block;
     padding-bottom: 6px;
@@ -44,11 +44,9 @@
     align-items: end;
     justify-content: space-between;
     cursor: pointer;
+    border:none;
     border-bottom: 1px solid #e8e5e5;
-    
-   
-    width:100%;
-    
+    width:100%; 
 }
 
 @keyframes border-filtre {
@@ -93,14 +91,14 @@
 
 
 
-.select-btn .btn-text{
+.select-btn .btn-text,.date-container span{
     font-size: var(--filtre-carte-size);
     font-weight: 500;
     color: #333;
 
 
 }
-.select-btn .arrow-dwn{
+.select-btn .arrow-dwn,input[type="date"]::-webkit-calendar-picker-indicator {
     display: flex;
     height: 21px;
     width: 21px;
@@ -111,6 +109,12 @@
     justify-content: center;
     transition: 0.3s;
 }
+
+input[type="date"]::-webkit-calendar-picker-indicator {  /*changer les dimensions de l'iconne calendrier */
+  height: 15px;
+  width: 15px;
+}
+
 .select-btn.open .arrow-dwn{
     transform: rotate(-180deg);
 }
