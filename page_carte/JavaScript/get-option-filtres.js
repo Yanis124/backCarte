@@ -26,19 +26,22 @@ function displayDate(inputChoice){
     var textDateIntervalValue=document.querySelectorAll("#date-interval-container span")
     
 
-    if(!inputChoice.checked){
+    if(!inputChoice.checked){  // cacher date
         dateSpecifiqueContainer.style.display="none"
         textDate.style.color="#333"
-        selectedDate=null
+        
         date.value = null; 
         textDateValue.innerText="Date"
         textDateValue.style.color="#333"
        
-
-
-        getDataFiltre()
+        if(selectedDate){
+            selectedDate=null
+            getDataFiltre()
+        }
+        
     }
-    else{
+
+    else{     //afficehr date
         var inputDateInterval=document.getElementById("interval-date")
 
         dateSpecifiqueContainer.style.display="flex"
@@ -48,7 +51,7 @@ function displayDate(inputChoice){
     
         
 
-        if(inputDateInterval.checked){
+        if(inputDateInterval.checked){ //cacher intervalle de date
             inputDateInterval.checked=false
             textDate.style.color='#333'
             textDateIntervalValue[0].innerText="Debut"
@@ -57,9 +60,11 @@ function displayDate(inputChoice){
             startDate.value=endDate.value=null
             selectedDateEnd=selectedDateStart=null
 
-            
+            if(selectedDate){
+                getDataFiltre()
+            }    
         }
-        getDataFiltre()
+        
     }
 }
 
@@ -72,23 +77,27 @@ function displayDateInterval(inputChoice){
     var textDateValue=document.querySelector("#date-specifique-container span")
     
 
-    if(!inputChoice.checked){
+    if(!inputChoice.checked){    //cacher intervalle de date
         dateIntervalContainer.style.display="none"
         textIntervalDate.style.color="#333"
-        selectedDateStart=selectedDataEnd =null
+        
         textDateIntervalValue[0]=textDateIntervalValue[1]=""
         textDateIntervalValue[0].innerText="debut"
         textDateIntervalValue[1].innerText="Fin"
         textDateIntervalValue[0].style.color=textDateIntervalValue[1].style.color="#333"
         startDate.value=endDate.value=null // reset  input date
-        selectedDateEnd=selectedDateStart=null
+
         
 
    
+        if(selectedDateStart && selectedDateEnd){
+            selectedDateStart=selectedDataEnd =null
+            getDataFiltre()
+        }
+        
 
-        getDataFiltre()
     }
-    else{
+    else{ // afficher date 
 
         var inputDateSpecifique=document.getElementById("specifique-date")
 
@@ -97,16 +106,18 @@ function displayDateInterval(inputChoice){
         textIntervalDate.style.color="#000"
         textDate.style.color="#333"
 
-        if(inputDateSpecifique.checked){
+        if(inputDateSpecifique.checked){   //  cacher date
             inputDateSpecifique.checked=false
             textDateValue.innerText="Date"
             textDateValue.style.color="#333"
             date.value=null
             selectedDate=null
-            
+            if(selectedDateEnd && selectedDateStart){
+                getDataFiltre()
+            }    
             
         }
-        getDataFiltre()
+        
     }
 }
 

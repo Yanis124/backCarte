@@ -44,7 +44,6 @@ form p,form label{
     -moz-box-shadow: 0 0 7px var(--shadow-color);
     -webkit-box-shadow: 0 0 7px var(--shadow-color);
     box-shadow: 0 0 7px var(--shadow-color);
-    font-size: var(--text-font-small);
     border:1px solid var(--section-border);
     background-color: #fff; 
     padding:5%; 
@@ -110,6 +109,8 @@ form p,form label{
     z-index: 0;
 }
 
+
+
 /*Menu Barre Déroulante avec élément de type Checkbox*/
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
 
@@ -136,11 +137,6 @@ form p,form label{
 input:focus {
     outline: none;
 }
-
-
-
-
-
 
 
 
@@ -210,11 +206,13 @@ input[type="date"]:in-range::-webkit-datetime-edit-text {color: transparent; }
     .filtre-container{
         gap:10px;
     }
+
+    .filtre-container>div{
+        width:100%;
+    }
 }
 
-@media screen and ( min-width: 480px){
-
-}  
+ 
 
 
 
