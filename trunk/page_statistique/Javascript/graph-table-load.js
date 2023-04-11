@@ -1,4 +1,4 @@
-//afficher les animations et le message d'erreur dans le graph et le tableau 
+    //afficher les animations et le message d'erreur dans le graphe et le tableau 
 
 
 const spinnerGraph=document.getElementById("spinner-graph")   

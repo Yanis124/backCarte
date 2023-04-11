@@ -59,10 +59,10 @@ async function getData(){  //recuperer les données datetime, atm ,atm ,an-nais 
     console.log(data)
 
     
-    workGraph() //les données ont bien été récuperer
+    workGraph() //les données ont bien été récuperé
 
 
-        datas=[] //renitialiser la liste datas et label 
+        datas=[] //réinitialiser la liste datas et label 
         label=[]
 
         if(data.facet_groups[0].name=="an_nais"){
@@ -79,11 +79,11 @@ async function getData(){  //recuperer les données datetime, atm ,atm ,an-nais 
         }
     console.log(datas)
 
-    updateTitles() //mettre a jour les titres des graphes 
+    updateTitles() //mettre à jour les titres des graphes 
 
 
     if(!chart){
-        chart=courbe() //creer le graphe s'il n'existe pas
+        chart=courbe() //créer le graphe s'il n'existe pas
     }
     //console.log(datas)
     
@@ -91,15 +91,15 @@ async function getData(){  //recuperer les données datetime, atm ,atm ,an-nais 
 
     selectData()  //mettre les données dans le graph
 
-    selectX()    //selectionner le type de graph par default
+    selectX()    //selectionner le type de graphe par default
         
 }
 
 
-function selectX(){  //selectionner le type de graph(par defaut date=>courbe sexe=>camembert ....) et les données 
+function selectX(){  //selectionner le type de graphe (par defaut date=>courbe sexe=>camembert ....) et les données 
     //console.log(inputValueX)
     if(inputValueX==facets[0]){
-        if(!typeChart){ //si l'utilisateur n'a pas choisi de type de graph on affiche le type par defaut
+        if(!typeChart){ //si l'utilisateur n'a pas choisi de type de graphe on affiche le type par defaut
             selectColonne("courbe")
 
         } 

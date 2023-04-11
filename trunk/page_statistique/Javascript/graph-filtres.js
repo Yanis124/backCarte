@@ -41,8 +41,8 @@ async function DrawFiltreLieu(){  //recuperer toutes les régions
 
 }
 
-async function DrawFiltreAnnee(){  // mettre a jour le filtre année (secondaire) pour qu'il affiche que les années correspendant a un lieu
-                                      //par exemple l'api n'a pas les données de l'Aquitaine pour l'année 2013 donc on ne propose pas 2013 dans le filtre annee
+async function DrawFiltreAnnee(){  // mettre a jour le filtre année (secondaire) pour qu'il affiche que les années correspendant à un lieu
+                                      //par exemple l'api n'a pas les données de l'Aquitaine pour l'année 2013 donc on ne propose pas 2013 dans le filtre année
 
     if(anneeGraphSelect.childElementCount>0){
         anneeGraphSelect.innerHTML="<select  name='annee' onchange='getAnnee()' id='annee-graph-select'></select>"
@@ -89,17 +89,13 @@ async function DrawFiltreAnnee(){  // mettre a jour le filtre année (secondaire
 
 
 
-
-
-
-function getValueColonne(){  //recuperer le type de graph choisi
+function getValueColonne(){  //récuperer le type de graphe choisi
     typeChart = colonneSelect.value
-    
-    selectColonne()   //changer le type de graph 
+    selectColonne()   //changer le type de graphe
     
 }
 
-function getValueX(){    //recuperer la donnée a afficher
+function getValueX(){    //recuperer la donnée à afficher
 
     inputValueX=xSelect.value
 
@@ -131,15 +127,15 @@ function getLieu(){
     inputLieu=lieuSelect.value
     inputAnneeGraph="toutes-les-annees" //mettre a 0 le filtre annee (secondaire) si on change de lieu
 
-    DrawFiltreAnnee()  //afficher que les années durant lequelles on a des données pour un lieu
+    DrawFiltreAnnee()  //afficher seulement les années durant lesquelles on a des données pour un lieu
     
 
 
-    getData() //mettre a jour les données
+    getData() //mettre à jour les données
 }
 
 
-//recuperer les données et affichier le graph
+//recuperer les données et afficher le graphe
 
 getData()  
 DrawFiltreLieu()

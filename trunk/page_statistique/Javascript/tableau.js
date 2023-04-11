@@ -12,7 +12,7 @@ var inputAnneeTable  //contient l'année
 async function getDataTable(){
     loadTable() //afficher l'animation
 
-    if(inputAnneeTable && inputAnneeTable !="toutes-les-annees"){ //si inputAnneeTable n'est pas definie et diferent de tout
+    if(inputAnneeTable && inputAnneeTable !="toutes-les-annees"){ //si inputAnneeTable n'est pas definie et different de tout
         try{
         
             var res=await fetch(apiTable+"&refine.datetime="+inputAnneeTable)
