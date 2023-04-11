@@ -33,7 +33,7 @@ function  disapearTableau(){  //faire disparaitre le tableau si l'utilisateur cl
     }
 }
 
-function tableOpacity(){   //diminuer l'opacity du tableau ou du graph si on survole le boutton graphe
+function tableOpacity(){   //diminuer l'opacity du tableau ou du graphe si on survole le bouton graphe
 
     
     if(button.innerText=="Graphe"){

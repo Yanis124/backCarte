@@ -1,4 +1,4 @@
-function regroupeAge(ageList){ //regrouper les tranches d'age et mettre les donnees dans la liste datas  0-18 18-60 +60 
+function regroupeAge(ageList){ //regrouper les tranche d'âge et mettre les données dans la liste datas  0-18 18-60 +60 
     var countsSmall=0
     var countsMedS=0
     var countsMedH=0
