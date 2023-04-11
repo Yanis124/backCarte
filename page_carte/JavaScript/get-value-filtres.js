@@ -18,7 +18,6 @@ var listClass=[".ville-container",".weather-container",".age-container",".gravit
 function getIntervalleDateStart(){
     var textDate=document.querySelectorAll('#date-interval-container span')
     textDate[0].style.color="gray"
-
     selectedDateStart=dateStart.value
     textDate[0].innerText=selectedDateStart
 
@@ -28,13 +27,13 @@ function getIntervalleDateStart(){
 function getIntervalleDateEnd(){
     var textDate=document.querySelectorAll('#date-interval-container span')
     textDate[1].style.color="gray"
-
     selectedDateEnd=dateEnd.value
     textDate[1].innerText=selectedDateEnd
+
     setDateLimit()
 }
 
-function getIntervalleDate(){  //filtrer les données si on a la date de but et de fin
+function getIntervalleDate(){  //filtrer les données si on a la date début et de fin
     selectedDate=null  //mettre a 0 la valeur de date
 
     if(selectedDateEnd && selectedDateStart){
@@ -65,7 +64,7 @@ function getRegion() {      // Région sélectionnée
 
     resetDepartement()
 
-    selectedDepartement=selectedVille=null //mettre a 0 departement et ville si on selectionne une autre region 
+    selectedDepartement=selectedVille=null //mettre à 0 departement et ville si on selectionne une autre region 
 
         if(selectedRegion==="toutes les regions"){
             nomDepartements()

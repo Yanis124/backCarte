@@ -41,7 +41,7 @@ function displayDate(inputChoice){
         
     }
 
-    else{     //afficehr date
+    else{     //afficher date
         var inputDateInterval=document.getElementById("interval-date")
 
         dateSpecifiqueContainer.style.display="flex"
@@ -207,7 +207,7 @@ function nomVilles(){
 }
 
 
-//reset date/interval date
+//reset date/intervalle date
 
 function resetDate(){
     var resetBtn = document.querySelector('input[type="reset"]');
