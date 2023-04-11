@@ -341,7 +341,7 @@ async  function filterList() {   //selectedValueAtm contient les valeurs selecti
 
 function selectDataFiltre(){
 
-    start =Date.now()
+    start=Date.now()
 
     if(!selectedLum){
         listAccidentFiltre= listAccident
@@ -393,18 +393,12 @@ function selectDataFiltre(){
 
     console.log(`intersection time : ${ end -start} ms `)
 
-    
-
-    
-	
-	
-
     console.log(listAccidentFiltre)
       
 }
 
 
-async function initFiltre(){  //eviter de cliquer plusieurs fois sur remettre a 0 d'affiler
+async function initFiltre(){  //éviter de cliquer plusieurs fois sur remettre à 0 de suite
     if(init){
         selectedVille=selectedDepartement=selectedDate=selectedLum=selectedRegion=selectedValuesAtm=selectedValuesAge=selectedValuesGravite=selectedDateEnd=selectedDateStart= null //remettre a 0 les filtres 
         loadCarte()  //ajouter une animation de chargement 
@@ -416,7 +410,7 @@ async function initFiltre(){  //eviter de cliquer plusieurs fois sur remettre a 
         
         init=false
     
-        removePin()     //supprimer lss marqueurs de la carte
+        removePin()     //supprimer les marqueurs de la carte
         createPin()
     }
     
