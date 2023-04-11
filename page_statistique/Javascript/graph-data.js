@@ -89,9 +89,9 @@ async function getData(){  //recuperer les données datetime, atm ,atm ,an-nais 
     
     //selectX() //creer le graphe en choisissant son type et ses données
 
-    selectData()  //mettre les données dans le graph
+    selectData()  //mettre les données dans le graphe
 
-    selectX()    //selectionner le type de graphe par default
+    selectX()    //selectionner le type de graphe par defaut
         
 }
 
@@ -103,6 +103,7 @@ function selectX(){  //selectionner le type de graphe (par defaut date=>courbe s
             selectColonne("courbe")
 
         } 
+        colonneSelect.value="courbe";
         
     }
     else if(inputValueX==facets[1]|| inputValueX==facets[2]){
@@ -111,14 +112,14 @@ function selectX(){  //selectionner le type de graphe (par defaut date=>courbe s
             selectColonne("colonne")
             
         } 
-        
+        colonneSelect.value="colonne";
     }
 
     else if(inputValueX==facets[3]|| inputValueX==facets[4] || inputValueX==facets[5]|| inputValueX==facets[6] || inputValueX==facets[7]|| inputValueX==facets[8]){
         if(!typeChart){
             selectColonne("camembert")  
         }
-
+        colonneSelect.value="camembert";
 
     }
 }

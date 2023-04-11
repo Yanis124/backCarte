@@ -49,7 +49,7 @@ async function DrawFiltreAnnee(){  // mettre a jour le filtre année (secondaire
         anneeGraphSelect.innerHTML+="<option value='toutes-les-annees'>"+"toutes les années"+"</option>"
     }
     
-    if(inputLieu && inputLieu !="tous-les-lieux"){ //on recupere les années de la region selectionée
+    if(inputLieu && inputLieu !="tous-les-lieux"){ //on recupère les années de la region selectionée
         try{                                              
             var res=await fetch(apiGraphAnnee+inputLieu)
             var data=await res.json()
@@ -90,9 +90,9 @@ async function DrawFiltreAnnee(){  // mettre a jour le filtre année (secondaire
 
 
 function getValueColonne(){  //récuperer le type de graphe choisi
+    
     typeChart = colonneSelect.value
     selectColonne()   //changer le type de graphe
-    
 }
 
 function getValueX(){    //recuperer la donnée à afficher
