@@ -126,7 +126,7 @@ function selectData(){  //mettre a jour les données du graphe
 
 function selectColonne(inputChart){ //changer  le type de graphe
     
-    if(inputChart=="colonne" || typeChart=="colonne"){ //type de graphe par defaut ou changer le type des graphe par le filtre colonne
+    if(inputChart=="colonne" || typeChart=="colonne"){ //type de graphe par defaut ou changer le type des graphes par le filtre colonne
         
         configColonne() 
 
