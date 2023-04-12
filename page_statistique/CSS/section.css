@@ -4,37 +4,33 @@
 
 
 
-section{
-
-    margin:2%; /*decaler la section de 2% */
-    margin-top:12%; /*decaler la section de 12% du header  pour que le header soit visible*/
-    height: 700px;
+.section-graph{
     display:flex;
     flex-direction: column;
-    justify-content:flex-start;  
+    justify-content:flex-start; 
+    background-color: #fff; 
+    padding-top:130px; 
+    padding-bottom: 30px;
+    gap:20px;
     
 }
 
-.graph-text-container{
-    display: flex;
-    height: 5%;   /*le div du button graph prend 5% de la longeur de section*/
-    justify-content: flex-start;
-    align-items: end; /*aligner le button vers le bas pour qu'il soit coller au graph-table-container*/
 
-    
-}
 
 
 
 
 
 .graph-table-container{
+    border:1px solid var(--section-border);
+    background-color: #f5f5f5;
     display: flex;
-    flex-direction:row;
-    border:solid 1px var(--section-border);
-    background-color: var(--section-bg);
     justify-content: space-around;
     padding-top:3%;
+    margin:1%;
+    margin-top:0;
+    margin-bottom: 0;
+    padding-bottom: 20px;
     height: 80%; /*le div du graph et du tableau prend 90% de la hauteur de section*/
 
     
@@ -48,7 +44,7 @@ section{
 .graph-filtres-container{
     display: flex;
     flex-direction: column;
-    height:90%; /*le div prend 90% de la hauteur du graph-table-container */
+    height:95%; /*le div prend 90% de la hauteur du graph-table-container */
     transition: 0.3s all ease;
     -moz-box-shadow: 0 0 7px var(--shadow-color);
     -webkit-box-shadow: 0 0 7px var(--shadow-color);
@@ -64,7 +60,7 @@ section{
     justify-content: space-around;
     align-items: center;
     background-color: var(--section-filtre-bg);
-    height: 30%; /*le div prend 30% de la hauteur du graph-filtres-container*/
+    height: 20%; /*le div prend 30% de la hauteur du graph-filtres-container*/
     width:100%;
 
 }
@@ -79,24 +75,26 @@ section{
     justify-content: center;
     align-items: center;
     background-color: var(--section-border);
-    height:70%; /*le graaph prend 70% de la longeur du graph-filtre-container*/
+    height:80%; /*le graaph prend 70% de la longeur du graph-filtre-container*/
+    width: 100%;
 }
 
 
 
 
 .table-annee-container{
-    height:90%; /*le tableau prend 90% de la hauteur du graph-table-container*/
+    height:95%; /*le tableau prend 90% de la hauteur du graph-table-container*/
     width: 30%; /*le tableau prend 30% de la largeur du graph-table-container*/
     transition: 0.3s all ease;
-
-
+    display: flex;
+    flex-direction: column;
+    gap:10px;
 }
 
 .table-container{
-    width:100%;
-    height: 100%;
-    overflow-y: scroll;
+    height: 90%;
+    overflow-x: hidden;
+    overflow-y: auto;
     background-color: #fff;
     -moz-box-shadow: 0 0 7px var(--shadow-color);
     -webkit-box-shadow: 0 0 7px var(--shadow-color);
@@ -106,32 +104,66 @@ section{
 
 
 
+
+
 .annee-container{
 
     display: flex;
     justify-content: flex-end;
+    align-items: center;
     height: 10%; /*div prend 10% de la hauteur du table-annee-container*/
     margin-right:5%;
 }
 
 
 
+@media screen and (max-width: 991px) {   /*s'applique aux ecrants avec une largeur <768px */
+
+    
 
 
+    .graph-table-container{
+        flex-direction: column;
+        gap:40px;
+        align-items: center;
+    }
+
+    .table-annee-container{
+        width:95%
+    }
+
+    .graph-filtres-container{
+        width:95%;   /*le graph prend 90% de la largeur de graph-table-container*/
+    }
 
 
-
-.telecharger-container{
-    display: flex;
-    height: 10%; /*le div prend 10% de la hauteur de la section*/
-    align-items: end;
-    justify-content: end;
-    flex-direction: column;
-    margin-right:8%; /*ajouter de l'espace a droite*/
 
 }
 
+@media screen and (min-width:992px){   /*s'applique aux ecrants avec une largeur >768px */
+   
+    .graph-filtres-container{
+        width:55%;  /*le tableau prend 60% de la largeur*/
+    }
 
+    .table-annee-container{
+        width:35%;
+    }
+
+    .table-annee-container{             /*afficher le tableau*/
+        display: flex;
+        flex-direction: column;
+    }   
+
+    .table-annee-container{
+        display: inline-block;
+    }
+
+    .graph-table-container{
+        height: 600px;
+    }
+
+}
 
 
 

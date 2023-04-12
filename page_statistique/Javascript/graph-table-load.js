@@ -1,14 +1,15 @@
-    //afficher les animations et le message d'erreur dans le graphe et le tableau 
+//afficher les animations et le message d'erreur dans le graph et le tableau 
 
 
 const spinnerGraph=document.getElementById("spinner-graph")   
 const erreursGraph=document.getElementById("erreurs-graph")
 
-const spinnerTable=document.getElementById("spinner-table")
-const errerusTable=document.getElementById("erreurs-table")
+
+const erreursTable=document.getElementById("erreurs-table")
 
 const tableRegionData=document.getElementById("table-region-data")
-const tableContainer=document.getElementById("table-container")
+
+
 
 function loadGraph(){
     canvas.style.display="none"  
@@ -34,26 +35,26 @@ function workGraph() {                              //supprimer l'animation si l
     }
 }
 
-function loadTable(){
-    tableRegionData.style.display="none"
-    spinnerTable.style.display="block"
-    errerusTable.style.display="none"
+
+
+async function loadTable(){
+    
+    tableRegionData.className="table-loading"
+    erreursTable.style.display="none"
+    await new Promise(r => setTimeout(r, 500)); 
 }
 
 function erreurTable(){
     console.log("erreur de fetch")
-    tableRegionData.style.display="none"
-    spinnerTable.style.display="none"
-    errerusTable.style.display="block"
+    tableRecords.style.display="none"
+    erreursTable.style.display="block"
 }
 
 function workTable() {
-    spinnerTable.style.display="none"
+    tableRegionData.className=""
+    //spinnerTable.style.display="none"
     
-    if(errerusTable.style.display!="block"){
+    if(erreursTable.style.display!="block"){
         tableRegionData.style.display="table"
-
-        
-
     }
 }

@@ -60,48 +60,6 @@ body{
 }
 
 
-@media screen and (max-width: 769px) {   /*s'applique aux ecrants avec une largeur <768px */
-    .graph-text-container button{
-        display:none;  /*cacher le boutton graph*/
-    }
-
-    .table-annee-container{
-        display: none; /*cacher le tableau*/
-    }
-
-    .graph-filtres-container{
-        width:90%;   /*le graph prend 90% de la largeur de graph-table-container*/
-    }
-
-}
-
-@media screen and (max-width: 576px) {   /*s'applique aux ecrants avec une largeur <768px */
-
-    .telecharger-container img{
-        display: none; /*cacher l'image dans le boutton télécharger*/
-    }
-
-}
-     
-        
-
-@media screen and (min-width:769px){   /*s'applique aux ecrants avec une largeur >768px */
-    .graph-filtres-container{
-        width:60%;  /*le tableau prend 60% de la largeur*/
-    }
-
-    .table-annee-container{             /*afficher le tableau*/
-        display: flex;
-        flex-direction: column;
-    }   
-
-
-
-    
-
-
-}
-
 
 
    

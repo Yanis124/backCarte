@@ -12,11 +12,13 @@
     <link rel="stylesheet" href="../CSS/button-section.css">
     <link rel="stylesheet" href="../CSS/footer.css">
     <link rel="stylesheet" href="../CSS/spine.css">
+    <link rel="stylesheet" href="../../page_carte/CSS/filtres.css">
+    <link rel="stylesheet" href="../../page_carte/CSS/style.css">
     
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <title>Statistiques</title>
 </head>
-<body >
+<body onload="createFirstTbody() ;DrawTable()" >
     <header id="#top">
         
             <ul class="list-header">
@@ -28,31 +30,24 @@
             
                 <a class="anc-sous-titre" href="../../page_crédit/page_credit.html"> <li>Crédits</li> </a>
 
-                <a class="anc-sous-titre" href="../../page_A_propos_de_nous/page_a-propos-de-nous.html"> <li>À propos de nous</li> </a>
+                <a class="anc-sous-titre" href="../../page_A_propos_de_nous/page_a-propos-de-nous.html"> <li>A propos de nous</li> </a>
             </ul>
         
     </header>
     <main>
         
-        <section>
-            <div class="graph-text-container"  >
-               
-                <button  id="button-graph" onmousemove="tableOpacity()" onmouseleave="tableRemoveOpacity()" onclick=" disapearTableau()">Graphe</button>
-                
-              
-                
-            </div>
+        <section class="section-graph">
             <div class="graph-table-container" >
                     <div class="graph-filtres-container" id="graph-filtres-container">
                 
                                 <div class="filtres-container">
                                     <div class="axe-x-container">
                                         <label for="axe-x">axe X :</label>
-                                        <select id="axe-x" onchange="afficherFiltres(); getValueX();typeChart='';selectX();" name="axe-x">
+                                        <select id="axe-x" onchange="afficherFiltres(); getValueX()" name="axe-x">
                                             <option value="datetime">année</option>
                                             <option value="reg_name">région</option>
                                             <option value="dep_name">département</option>
-                                            <option value="atm">condition métérologique</option>
+                                            <option value="atm">conditions métérologiques</option>
                                             <option value="sexe">sexe</option>
                                             <option value="an_nais">tranche d'âge</option>
                                             <option value="grav">gravité</option>
@@ -101,7 +96,7 @@
                         </div>
                     </div>
                     <div class="table-annee-container" id="table">
-                        <div class="table-container">
+                        <div class="table-container" id="table-container">
 
                             <table id="table-region-data">
                                 <thead>
@@ -117,14 +112,12 @@
                                         </th>
                                     </tr>
                                 </thead>
-                                <tbody id="table-region">
-                                </tbody>
-                            </table>
 
-                                <svg id="spinner-table"  width="80px" height="80px" viewBox="0 0 66 66" >
-                                    <circle class="path" fill="none" stroke-width="6" stroke-linecap="round" cx="33" cy="33" r="30"></circle>
-                                </svg>
-                                <p id="erreurs-table" > message d'erreur</p>
+                            </table>
+                            <tbody>
+                                
+                            </tbody>
+                            <p id="erreurs-table" > message d'erreur</p>
                           
 
                         </div>
@@ -152,12 +145,16 @@
             </div>
             <div class="telecharger-container">
                 
-                <button onmouseover="changeImageTelechargerWhite()" onmouseleave="changeImageTelechargerDark()" onclick="download()">télécharger
-                    <img style="vertical-align:middle"   id="image-telecharger" src="../images/téléchargerdark.png" alt="télécharger" title="télécharger">
+                <button onclick="download()">télécharger
+                    <img style="vertical-align:middle"   id="image-telecharger" src="../images/téléchargerwhite.svg" alt="télécharger" title="télécharger">
+                    <a href="#" class="info"><span>télécharger le graph</span></a>
+                    
                 </button>
+                
                 
                     
             </div>
+            
                 
         </section>
     </main>
@@ -207,3 +204,4 @@
 <script src="../Javascript/nombre-accident.js"></script>
 <script src="../Javascript/graph-download.js"></script>
 <script src="../Javascript/tableau.js"></script>
+
