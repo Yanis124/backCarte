@@ -1,37 +1,69 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../CSS/body.css">
-    <link rel="stylesheet" href="../CSS/header.css">
     <link rel="stylesheet" href="../CSS/section.css">
     <link rel="stylesheet" href="../CSS/table.css">
     <link rel="stylesheet" href="../CSS/select.css">
     <link rel="stylesheet" href="../CSS/button-section.css">
-    <link rel="stylesheet" href="../CSS/footer.css">
     <link rel="stylesheet" href="../CSS/spine.css">
+
+    <link href="https://fonts.googleapis.com/css?family=Catamaran:400,700&display=swap" rel="stylesheet"> <!-- style de header -->
+
+    <link rel="stylesheet" href="../../commun.css" type="text/css">
     
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <title>Statistiques</title>
 </head>
-<body >
-    <header id="#top">
-        
-            <ul class="list-header">
-                <a class="anc-title" href="../../page_accueil/page_accueil.html" > <li >Accidentologie</li></a>
-            
-            
-                <a class="anc-sous-titre" href="../../page_carte/HTML/page_carte.html"> <li >Carte</li> </a>
-           
-            
-                <a class="anc-sous-titre" href="../../page_crédit/page_credit.html"> <li>Crédits</li> </a>
+<body class="header">
+    
+		<header id="header_absolute">
 
-                <a class="anc-sous-titre" href="../../page_A_propos_de_nous/page_a-propos-de-nous.html"> <li>À propos de nous</li> </a>
-            </ul>
-        
-    </header>
+			<div class="container">
+
+				<div>
+					
+					<div>
+
+                        <ul class="pages">
+							<li><a href=""><img src="../../accueil_essaie/logo.jpg" alt="Logo de Accidentologie"></a></li>
+                            <li><a href=""> Carte</a></li>
+                            <li><a href="">  Statistiques</a></li>
+                		</ul>
+					</div>
+
+			</div>
+
+		</header>
+
+<!-- SECOND HEADER-->
+ 		<header id="header_fixed">
+
+			<div class="container">
+
+				<div>
+
+					<div>
+
+						<div>
+                            <ul class="pages">
+								<li><a href=""><img src="../../accueil_essaie/logo.jpg" alt="Logo de Accidentologie"></a></li>
+                                <li><a href="">Carte</a></li>
+								<li><a href="">Statistiques</a></li>
+
+							</ul>
+						</div>
+					</div>
+
+				</div>
+
+			</div>
+
+		</header>
     <main>
         
         <section>
@@ -47,37 +79,37 @@
                 
                                 <div class="filtres-container">
                                     <div class="axe-x-container">
-                                        <label for="axe-x">axe X :</label>
+                                        <label for="axe-x">Axe X :</label>
                                         <select id="axe-x" onchange="afficherFiltres(); getValueX();typeChart='';selectX();" name="axe-x">
-                                            <option value="datetime">année</option>
-                                            <option value="reg_name">région</option>
-                                            <option value="dep_name">département</option>
-                                            <option value="atm">condition métérologique</option>
-                                            <option value="sexe">sexe</option>
-                                            <option value="an_nais">tranche d'âge</option>
-                                            <option value="grav">gravité</option>
-                                            <option value="lum">jour/nuit</option>
+                                            <option value="datetime">Année</option>
+                                            <option value="reg_name">Région</option>
+                                            <option value="dep_name">Département</option>
+                                            <option value="atm">Condition Métérologique</option>
+                                            <option value="sexe">Sexe</option>
+                                            <option value="an_nais">Tranche D'Âge</option>
+                                            <option value="grav">Gravité</option>
+                                            <option value="lum">Jour/Nuit</option>
                                         </select>
                                     </div>
                                     <div class="colonne-container">
-                                        <label for="colonne">type de graphe:</label>
+                                        <label for="colonne">Type de Graphe:</label>
                                         <select id="graph-select" onchange="getValueColonne()" name="colonne">
-                                            <option value="courbe">courbe</option>
-                                            <option value="colonne">colonne</option>
-                                            <option value="camembert">camembert</option>
+                                            <option value="courbe">Courbe</option>
+                                            <option value="colonne">Colonne</option>
+                                            <option value="camembert">Camembert</option>
                                         </select>
                                     </div> 
                                     <div class="filtre-lieu-container" >
-                                        <label for="lieu">lieu :</label>
+                                        <label for="lieu">Lieu :</label>
                                         <select onchange="getLieu()" name="lieu" id="lieu-select">
-                                            <option value="tous-les-lieux">tous les lieux</option>
+                                            <option value="tous-les-lieux">Tous les Lieux</option>
                                             
                                         </select>
                                     </div>
                                     <div class="filtre-annee-container" style="display:none"> <!-- filtre annee caché car on affiche le nombre d'accient par annee par defaut-->
-                                        <label for="annee">année:</label>
+                                        <label for="annee">Année:</label>
                                         <select  name="annee" onchange="getAnnee()" id="annee-graph-select">
-                                            <option value="toutes-les-annees">toutes les années</option>
+                                            <option value="toutes-les-annees">Toutes les Années</option>
                                             <option value="2019">2019</option>
                                             <option value="2018">2018</option>
                                             <option value="2017">2017</option>
@@ -107,13 +139,13 @@
                                 <thead>
                                     <tr>
                                         <th>
-                                            classement
+                                            Classement
                                         </th>
                                         <th>
-                                             région
+                                             Région
                                         </th>
                                         <th>
-                                            nombre d'accidents
+                                            Nombre d'Accidents
                                         </th>
                                     </tr>
                                 </thead>
@@ -124,13 +156,13 @@
                                 <svg id="spinner-table"  width="80px" height="80px" viewBox="0 0 66 66" >
                                     <circle class="path" fill="none" stroke-width="6" stroke-linecap="round" cx="33" cy="33" r="30"></circle>
                                 </svg>
-                                <p id="erreurs-table" > message d'erreur</p>
+                                <p id="erreurs-table" > Message d'Erreur</p>
                           
 
                         </div>
                         <div  class="annee-container" >
                             <select  class="filtre-annee" name="annee" id="annee-table-select" onchange=" getAnneeTable()" >
-                                <option value="toutes-les-annees">toutes les années</option>
+                                <option value="toutes-les-annees">Toutes les Années</option>
                                 <option value="2019">2019</option>
                                 <option value="2018">2018</option>
                                 <option value="2017">2017</option>
@@ -161,37 +193,28 @@
                 
         </section>
     </main>
-    <footer>
-        
-            <div class="contactez-nous-container">
-                <p>Contactez-nous</p>
-                <ul>
-                    <a href="mailto:hammaciyanis@gmail.com"> <li>hammaciyanis@gmail.com</li> </a>
-                    <a href="mailto:maelle.bourbon@gmail.com"> <li>maelle.bourbon@gmail.com</li> </a>
-                    <a href="mailto:dylanchou2003@gmail.com"> <li>dylanchou2003@gmail.com</li> </a>
-                    <a href="mailto:poirier.seraphin@gmail.com"> <li>poirier.seraphin@gmail.com</li> </a>
-                </ul>
-            </div>
-            
-            <div class="liens-utils-container">
-                <p>Liens utiles</p>
-                <ul>
-                    <a href="https://public.opendatasoft.com/explore/?sort=modified"> <li>opendatasoft</li> </a>
-                    <a href="https://www.data.gouv.fr/fr/"> <li>datagouv</li> </a>
-                </ul>
-            </div>  
-            
-            <div class="nombre-accident">
-                <p>Nombre d'accidents enregistrés</p>
-                <span id="nombre-accident"></span>
-            </div>
-        
-        
+        <!--Naviguation entre les pages secondaire-->
+        <footer id="footer">
 
+            <div class="container">
         
-            
+                <div>
         
-    </footer>
+                    <div>
+        
+                        <div class="footer-set_up">
+                            <ul class="pages">
+                                <li><a href="">Crédit</a></li>
+                                <li><a href="">À Propos de Nous</a></li>
+                            </ul>
+                            
+                        </div>
+                    </div>
+                </div>
+        
+            </div>
+        
+        </footer>
 
 
     </div>
@@ -207,3 +230,5 @@
 <script src="../Javascript/nombre-accident.js"></script>
 <script src="../Javascript/graph-download.js"></script>
 <script src="../Javascript/tableau.js"></script>
+<script type="text/javascript" src="../../accueil_essaie/scroll.js"></script>
+

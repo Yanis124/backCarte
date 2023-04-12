@@ -5,13 +5,6 @@
 
 /*definir des constantes couleur font...*/
 :root{
-    --header-bg:#14227b; /*variable du header*/
-    --header-title-hover:#0677da;
-    --header-text-size:15px;
-    --header-text-weight:700;
-    --header-text-title-weight:800;
-    --header-text-color:yellow;
-
     --section-bg:#f5f5f5; /*variables de la section*/
     --section-border:#DEE5EF;
     --section-filtre-bg:#a1b0b8;
@@ -37,16 +30,7 @@
     
     
     --filtre-carte-weight:700;
-    --filtre-carte-size:15px;
-
-    --footer-bg:#051039;
-    --footer-title-font:25px;
-    --footer-title-weight:600;
-    --footer-text-weight:500;
-    --footer-text-font:15px;
-    --link-color:#ff9800;
-
-    
+    --filtre-carte-size:15px;    
 }
 
 html{  
@@ -60,32 +44,32 @@ body{
 }
 
 
-@media screen and (max-width: 769px) {   /*s'applique aux ecrants avec une largeur <768px */
+@media screen and (max-width: 769px) {   /*s'applique aux ecrans avec une largeur <768px */
     .graph-text-container button{
-        display:none;  /*cacher le boutton graph*/
+        display:none;  /*Cacher le bouton graphe*/
     }
 
     .table-annee-container{
-        display: none; /*cacher le tableau*/
+        display: none; /*Cacher le Tableau*/
     }
 
     .graph-filtres-container{
-        width:90%;   /*le graph prend 90% de la largeur de graph-table-container*/
+        width:90%;   /*le graphe prend 90% de la largeur de graphe-table-container*/
     }
 
 }
 
-@media screen and (max-width: 576px) {   /*s'applique aux ecrants avec une largeur <768px */
+@media screen and (max-width: 576px) {   /*s'applique aux ecrans avec une largeur <768px */
 
     .telecharger-container img{
-        display: none; /*cacher l'image dans le boutton télécharger*/
+        display: none; /*cacher l'image dans le bouton télécharger*/
     }
 
 }
      
         
 
-@media screen and (min-width:769px){   /*s'applique aux ecrants avec une largeur >768px */
+@media screen and (min-width:769px){   /*s'applique aux ecrans avec une largeur >768px */
     .graph-filtres-container{
         width:60%;  /*le tableau prend 60% de la largeur*/
     }
@@ -94,12 +78,6 @@ body{
         display: flex;
         flex-direction: column;
     }   
-
-
-
-    
-
-
 }
 
 
