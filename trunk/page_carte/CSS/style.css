@@ -1,5 +1,3 @@
-
-
 #carte{
     background-color: var(--header-title-hover) ;
     box-sizing: border-box;
@@ -10,12 +8,11 @@
 
 
 
-section{
+#section-carte{
     display: flex;
     border:solid 1px var(--header-title-border-hover);
     background-color: var(--section-bg);
     justify-content: space-evenly;
-    height: 700px; 
     padding-top:130px;    
 }
 
@@ -65,7 +62,7 @@ form p,form label{
 
 
 
-.reset-container{
+.reset-container,.telecharger-container{
     display: flex;
     justify-content: end;
     align-items: center;
@@ -125,6 +122,8 @@ form p,form label{
     opacity: 0.7;
 
 }
+
+
 #back2Top:hover {
     opacity:1;
 }
@@ -161,7 +160,7 @@ input[type="date"]:in-range::-webkit-datetime-edit-text {color: transparent; }
 
 /*media query*/
 
-@media screen and (min-width: 992px) {
+@media screen and (min-width: 991px) {
 
 
     .filtre-container  >div {
@@ -180,13 +179,17 @@ input[type="date"]:in-range::-webkit-datetime-edit-text {color: transparent; }
     .filtre-container{
         gap:15px;
     }
+
+    #section-carte{
+        height:700px
+    }
 } 
 
 
 
 
 @media screen and (max-width: 768px) {
-    section{
+    #section-carte{
         flex-direction: column;
         gap:5%;
         align-items: center;
@@ -197,6 +200,10 @@ input[type="date"]:in-range::-webkit-datetime-edit-text {color: transparent; }
         width:80%;
         height: 50%;
         
+    }
+
+    .filtre-container{
+        gap:10px;
     }
 
 
@@ -211,6 +218,15 @@ input[type="date"]:in-range::-webkit-datetime-edit-text {color: transparent; }
         width:100%;
     }
 }
+
+ 
+
+
+
+
+
+
+
 
  
 
