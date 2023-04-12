@@ -6,18 +6,21 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <link href="../../page_statistique/CSS/body.css" rel="stylesheet" type="text/css">
-        <link href="../../page_statistique/CSS/header.css" rel="stylesheet" type="text/css">
-        <link href="../../page_statistique/CSS/footer.css" rel="stylesheet" type="text/css">
+        
         <link rel="stylesheet" href="../../page_statistique/CSS/select.css">
         <link rel="stylesheet" href="../../page_statistique/CSS/spine.css">
         <link rel="stylesheet" href="../CSS/filtres.css">
-        <link rel="icon" href="../../A.png">
         
         <link href="../CSS/style.css" rel="stylesheet" type="text/css"><!--Page css propre à la page-->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"> <!-- CSS pour avoir les symboles du menu deroulant avec checkbox -->
         <title>Carte des accidents de la route</title>
         <!--Intégration de la bibliothèque Leaflet-->
         <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI=" crossorigin=""/>
+        <link href="https://fonts.googleapis.com/css?family=Catamaran:400,700&display=swap" rel="stylesheet"> <!-- style de header -->
+
+        <link rel="stylesheet" href="../../commun.css" type="text/css">
+
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     
     
         <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js" integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM=" crossorigin=""></script>
@@ -29,34 +32,51 @@
     
         
     </head>
-    <body onload="nomRegions(); nomDepartements(); nomVilles() ;openFiltreList(); dateLimit();getAtm();getAge(); getGravite(); initMap();createPin();resetDate()">
-        <header id="#top">
-            <div id="mySidenav" class="sidenav">
-               <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-                <div class="sidebar-container">
-                    <a id="sidebarCarte" href="../../page_crédit/page_credit.html">Carte</a>
-                    <a href="../../page_statistique/HTML/statistiques.html">Statistiques</a>
-                    <a href="../../page_crédit/page_credit.html">Crédits</a>
-                    <a href="../../page_A_propos_de_nous/page_a-propos-de-nous.html">À propos de nous </a>
+    <body class="header" onload="nomRegions(); nomDepartements(); nomVilles() ;openFiltreList(); dateLimit();getAtm();getAge(); getGravite(); initMap();createPin();resetDate()">
+    
+            <header id="header_absolute">
+    
+                <div class="container">
+    
+                    <div>
+                        
+                        <div>
+    
+                            <ul class="pages">
+                                <li><a href=""><img src="../../accueil_essaie/logo.jpg" alt="Logo de Accidentologie"></a></li>
+                                <li><a href=""> Carte</a></li>
+                                <li><a href="">  Statistiques</a></li>
+                            </ul>
+                        </div>
+    
                 </div>
-            </div>
-            
-              
-              <!-- Use any element to open the sidenav -->
-              
-        
-            <ul class="list-header">
-                
-                <a class="anc-title" href="../../page_accueil/page_accueil.html" > <li >Accidentologie</li></a>
-                
-                <a class="open-nav" onclick="openNav()"  > <li> <img src="../images/hamburger.png"></li></a>
-                <a  class="anc-sous-titre" id="carte" href="../../page_crédit/page_credit.html"> <li >Carte</li> </a>
-                <a  class="anc-sous-titre" href="../../page_statistique/HTML/statistiques.html"> <li >Statistiques</li> </a>
-           
-                
-                <a  class="anc-sous-titre" href="../../page_crédit/page_credit.html"> <li>Crédits</li> </a>
-                <a  class="anc-sous-titre" href="../../page_A_propos_de_nous/page_a-propos-de-nous.html"> <li>À propos de nous</li> </a>
-            </ul>
+    
+            </header>
+    
+    <!-- SECOND HEADER-->
+             <header id="header_fixed">
+    
+                <div class="container">
+    
+                    <div>
+    
+                        <div>
+    
+                            <div>
+                                <ul class="pages">
+                                    <li><a href=""><img src="../../accueil_essaie/logo.jpg" alt="Logo de Accidentologie"></a></li>
+                                    <li><a href="">Carte</a></li>
+                                    <li><a href="">Statistiques</a></li>
+    
+                                </ul>
+                            </div>
+                        </div>
+    
+                    </div>
+    
+                </div>
+    
+            </header>
         
         </header>
         <main id="main">
@@ -227,7 +247,7 @@
                             </ul>   
                         </div>
     
-                        <!-- Filtre tranche d'âge : 0-18 ans, 18-30 ans, 30-50 ans, 50 ans et plus--> 
+                        <!-- Filtre tranche d'âge : 0-18 ans, 18-30 ans, 30-50 ans, 50-65 ans, 65 ans et plus--> 
                         <div class="age-container">
                             <div class="select-btn">
                                 <div class="btn-text"> <span class="age-text"> Tranche d'âge </span> 
@@ -256,7 +276,13 @@
                                     </span>
                                     <span class="item-text">30-50 ans</span>
                                 </li>
-                                <li class="item" value="50_et_plus">
+                                <li class="item" value="50-65">
+                                    <span class="checkbox">
+                                        <i class="fa-solid fa-check check-icon"></i>
+                                    </span>
+                                    <span class="item-text">50-65 ans</span>
+                                </li>
+                                <li class="item" value="65_et_plus">
                                     <span class="checkbox">
                                         <i class="fa-solid fa-check check-icon"></i>
                                     </span>
@@ -323,31 +349,28 @@
                     </div>
                 </form>
             </section>  
-            <footer>
-                <div class="contactez-nous-container">
-                    <p>Contactez-nous</p>
-                    <ul>
-                        <a href="mailto:hammaciyanis@gmail.com" onmouseover="appearMessageImg(this)" onmouseleave="hideMessageImg(this)"> <li>hammaciyanis@gmail.com</li> <img src="../../page_carte/images/message.svg" alt="message"> </a>
-                        <a href="mailto:maelle.bourbon@gmail.com" onmouseover="appearMessageImg(this)" onmouseleave="hideMessageImg(this)"> <li>maelle.bourbon@gmail.com</li> <img src="../../page_carte/images/message.svg" alt="message"> </a>
-                        <a href="mailto:dylanchou2003@gmail.com" onmouseover="appearMessageImg(this)" onmouseleave="hideMessageImg(this)"> <li>dylanchou2003@gmail.com</li> <img src="../../page_carte/images/message.svg" alt="message"> </a>
-                        <a href="mailto:poirier.seraphin@gmail.com" onmouseover="appearMessageImg(this)" onmouseleave="hideMessageImg(this)"> <li>poirier.seraphin@gmail.com</li> <img src="../../page_carte/images/message.svg" alt="message"> </a>
-                    </ul>
+        <!--Naviguation entre les pages secondaire-->
+        <footer id="footer">
+
+            <div class="container">
+        
+                <div>
+        
+                    <div>
+        
+                        <div class="footer-set_up">
+                            <ul class="pages">
+                                <li><a href="">Crédit</a></li>
+                                <li><a href="">À Propos de Nous</a></li>
+                            </ul>
+                            
+                        </div>
+                    </div>
                 </div>
-                
-                <div class="liens-utils-container">
-                    <p>Liens utiles</p>
-                    <ul>
-                        <a href="https://public.opendatasoft.com/explore/?sort=modified" onmouseover="appearMessageImg(this)" onmouseleave="hideMessageImg(this)"> <li>opendatasoft</li> <img src="../images/diagonal-arrow .svg" alt="message"> </a>
-                        <a href="https://www.data.gouv.fr/fr/" onmouseover="appearMessageImg(this)" onmouseleave="hideMessageImg(this)"> <li>datagouv</li> <img src="../images/diagonal-arrow .svg" alt="message"> </a>
-                    </ul>
-                </div>
-                
-                
-                <div class="nombre-accident">
-                    <p>Nombre d'accidents enregistrés</p>
-                    <span id="nombre-accident"></span>
-                </div>
-            </footer>
+        
+            </div>
+        
+        </footer>
         </main>
         <a id="back2Top" title="Back to top"  onclick="topFunction()"> <img src="https://uploads-ssl.webflow.com/620a7ac0833f49433b0bee1f/620c30eb8af8774df7fbe800_BACK%20TO%20TOP.png" alt="nav-img"> </a>
     </body>
@@ -362,6 +385,8 @@
     <script src="../JavaScript/cluster-popup.js"></script>
     <script src="../JavaScript/style.js"></script>
     <script src="../JavaScript/filtre-lieu.js"></script>
+    <script type="text/javascript" src="../../accueil_essaie/scroll.js"></script>
+
     
 </html>
 
