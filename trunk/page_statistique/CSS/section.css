@@ -44,11 +44,11 @@
 .graph-filtres-container{
     display: flex;
     flex-direction: column;
-    height:95%; /*le div prend 90% de la hauteur du graph-table-container */
     transition: 0.3s all ease;
     -moz-box-shadow: 0 0 7px var(--shadow-color);
     -webkit-box-shadow: 0 0 7px var(--shadow-color);
     box-shadow: 0 0 7px var(--shadow-color);
+    border-radius: 6px;
 }
 
 
@@ -77,6 +77,7 @@
     background-color: var(--section-border);
     height:80%; /*le graaph prend 70% de la longeur du graph-filtre-container*/
     width: 100%;
+    
 }
 
 
@@ -99,6 +100,7 @@
     -moz-box-shadow: 0 0 7px var(--shadow-color);
     -webkit-box-shadow: 0 0 7px var(--shadow-color);
     box-shadow: 0 0 7px var(--shadow-color);
+    border-radius: 6px;
 }
 
 
@@ -126,14 +128,17 @@
         flex-direction: column;
         gap:40px;
         align-items: center;
+        height:1300px;
     }
 
     .table-annee-container{
-        width:95%
+        width:95%;
+        height:600px;
     }
 
     .graph-filtres-container{
         width:95%;   /*le graph prend 90% de la largeur de graph-table-container*/
+        height:600px;
     }
 
 
