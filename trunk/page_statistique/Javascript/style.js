@@ -76,8 +76,3 @@ function afficherFiltres() {
     }
 
 }
-
-
-
-
-

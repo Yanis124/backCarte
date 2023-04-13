@@ -20,7 +20,7 @@ var facets=["datetime","reg_name","dep_name","atm","sexe","an_nais","grav","lum"
 
 
 
-var titlesExemple=["nombre d'accidents par année ","nombre d'accidents par région ","nombre d'accidents par département ","nombre d'accidents en fonction de la condition météorologique ","nombre de personnes accidentées par sexe ","nombre de personnes accidentées par tranche d'âge ","nombre de personnes accidentées en fonction de la gravité de l'accident ","nombre d'accidents de jour/nuit "] //titre des graphes (exemple par default)
+var titlesExemple=["Nombre d'Accidents par Année ","Nombre d'Accidents par Région ","Nombre d'Accidents par Département ","Nombre d'Accidents d'après la Condition Météorologique ","Nombre de Personnes Accidentées par Sexe ","Nombre de Personnes Accidentées par Tranche d'Âge ","Nombre de Personnes Accidentées d'après la Gravité de l'Accident ","Nombre d'Accidents de Jour/Nuit "] //titre des graphes (exemple par defaut)
 
 var titles=[]
 

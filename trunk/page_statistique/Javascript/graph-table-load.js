@@ -52,7 +52,6 @@ function erreurTable(){
 
 function workTable() {
     tableRegionData.className=""
-    //spinnerTable.style.display="none"
     
     if(erreursTable.style.display!="block"){
         tableRegionData.style.display="table"
