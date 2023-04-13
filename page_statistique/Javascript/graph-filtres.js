@@ -33,7 +33,7 @@ async function DrawFiltreLieu(){  //recuperer toutes les régions
         console.log(listRegion)
     }
     catch{
-        // console.log("erreur")
+         console.log("erreur")
     }
     for(var i=0;i<listRegion.length;i++){
         lieuSelect.innerHTML+="<option>"+listRegion[i].name+"</option>"
