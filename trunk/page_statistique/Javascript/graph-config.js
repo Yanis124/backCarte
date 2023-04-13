@@ -1,4 +1,4 @@
-//la creation du graph , modifier son style,type... ,modifier ses données
+//la creation du graphe , modifier son style,type... ,modifier ses données
 hover_effect="0.7"
 
 bg_color=["rgb(255,255,255)"]
@@ -41,7 +41,7 @@ var configLine={   //une configuration par defaut pour representer le nombre d'a
     data: {
         labels:[],
         datasets: [{
-            label: "nombre d'accidents par année",
+            label: "Nombre d'Accidents par Année",
             borderColor: border_color_line,
             borderWidth: 1,
             fill: false,
@@ -57,7 +57,7 @@ var configLine={   //une configuration par defaut pour representer le nombre d'a
             },
             title: {
                 display: true,
-                text: "nombre d'accidents par année",
+                text: "Nombre d'Accidents par Année",
                 color:text_color,
                 font:{
                     size:20
@@ -131,9 +131,9 @@ function selectColonne(inputChart){ //changer  le type de graphe
         configColonne() 
 
         if(!typeChart){  // on change l'afichage du filtre colonne si l'utilisateur n'a pas utiliser le filtre colonne 
-            colonneSelect[0].innerHTML="colonne"
-            colonneSelect[1].innerHTML="courbe"
-            colonneSelect[2].innerHTML="camembert"
+            colonneSelect[0].innerHTML="Colonne"
+            colonneSelect[1].innerHTML="Courbe"
+            colonneSelect[2].innerHTML="Camembert"
             colonneSelect[0].value="colonne"
             colonneSelect[1].value="courbe"
             colonneSelect[2].value="camembert"
@@ -145,9 +145,9 @@ function selectColonne(inputChart){ //changer  le type de graphe
         
         configCamembert()
         if(!typeChart){
-            colonneSelect[0].innerHTML="camembert"
-            colonneSelect[1].innerHTML="colonne"
-            colonneSelect[2].innerHTML="courbe"
+            colonneSelect[0].innerHTML="Camembert"
+            colonneSelect[1].innerHTML="Colonne"
+            colonneSelect[2].innerHTML="Courbe"
             colonneSelect[0].value="camembert"
             colonneSelect[1].value="colonne"
             colonneSelect[2].value="courbe"
@@ -159,9 +159,9 @@ function selectColonne(inputChart){ //changer  le type de graphe
         //chart=courbe()
         configCourbe()
         if(!typeChart){
-            colonneSelect[0].innerHTML="courbe"
-            colonneSelect[1].innerHTML="camembert"
-            colonneSelect[2].innerHTML="colonne"
+            colonneSelect[0].innerHTML="Courbe"
+            colonneSelect[1].innerHTML="Camembert"
+            colonneSelect[2].innerHTML="Colonne"
             colonneSelect[0].value="courbe"
             colonneSelect[1].value="camembert"
             colonneSelect[2].value="colonne"
