@@ -60,14 +60,6 @@ function tableRemoveOpacity(){  //enlever l'effet d'opacity
 }
 
 
-function changeImageTelechargerWhite(){                   //changer l'image dans le bouton télécharger si on le survole
-    imageTelecharger.src="../images/téléchargerwhite.svg"
-}
-
-function changeImageTelechargerDark(){
-    imageTelecharger.src="../images/téléchargerdark.png"
-}
-
 function afficherFiltres() {
 
 
