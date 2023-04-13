@@ -5,21 +5,28 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../CSS/body.css">
-    <link rel="stylesheet" href="../CSS/header.css">
+    <!--<link rel="stylesheet" href="../CSS/header.css">
+    <link rel="stylesheet" href="../CSS/footer.css">-->    
     <link rel="stylesheet" href="../CSS/section.css">
     <link rel="stylesheet" href="../CSS/table.css">
     <link rel="stylesheet" href="../CSS/select.css">
     <link rel="stylesheet" href="../CSS/button-section.css">
-    <link rel="stylesheet" href="../CSS/footer.css">
+    
     <link rel="stylesheet" href="../CSS/spine.css">
     <link rel="stylesheet" href="../../page_carte/CSS/filtres.css">
     <link rel="stylesheet" href="../../page_carte/CSS/style.css">
+
+
+    <link href="https://fonts.googleapis.com/css?family=Catamaran:400,700&display=swap" rel="stylesheet"> <!-- style de header -->
+
+    <link rel="stylesheet" href="../../commun.css" type="text/css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <title>Statistiques</title>
 </head>
-<body onload="createFirstTbody() ;DrawTable()" >
-    <header id="#top">
+<body onload="createFirstTbody() ;DrawTable()" class="header">
+    <!--<header id="#top">
         
             <ul class="list-header">
                 <a class="anc-title" href="../../page_accueil/page_accueil.html" > <li >Accidentologie</li></a>
@@ -33,7 +40,51 @@
                 <a class="anc-sous-titre" href="../../page_A_propos_de_nous/page_a-propos-de-nous.html"> <li>A propos de nous</li> </a>
             </ul>
         
+    </header>-->
+    <header id="header_absolute">
+
+        <div class="container">
+
+            <div>
+                
+                <div>
+
+                    <ul class="pages">
+                        <li><a href=""><img src="../../page_carte/images/logo.jpg" alt="Logo de Accidentologie"></a></li>
+                        <li><a href=""> Carte</a></li>
+                        <li><a href="">  Statistiques</a></li>
+                    </ul>
+                </div>
+
+        </div>
+
     </header>
+
+<!-- SECOND HEADER-->
+     <header id="header_fixed">
+
+        <div class="container">
+
+            <div>
+
+                <div>
+
+                    <div>
+                        <ul class="pages">
+                            <li><a href=""><img src="../../page_carte/images/logo.jpg" alt="Logo de Accidentologie"></a></li>
+                            <li><a href="">Carte</a></li>
+                            <li><a href="">Statistiques</a></li>
+
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </header>
+
     <main>
         
         <section class="section-graph">
@@ -47,7 +98,7 @@
                                             <option value="datetime">année</option>
                                             <option value="reg_name">région</option>
                                             <option value="dep_name">département</option>
-                                            <option value="atm">conditions métérologiques</option>
+                                            <option value="atm">condition métérologique</option>
                                             <option value="sexe">sexe</option>
                                             <option value="an_nais">tranche d'âge</option>
                                             <option value="grav">gravité</option>
@@ -158,7 +209,7 @@
                 
         </section>
     </main>
-    <footer>
+    <!--<footer>
         
             <div class="contactez-nous-container">
                 <p>Contactez-nous</p>
@@ -181,6 +232,7 @@
             <div class="nombre-accident">
                 <p>Nombre d'accidents enregistrés</p>
                 <span id="nombre-accident"></span>
+                <script src="../Javascript/nombre-accident.js"></script>
             </div>
         
         
@@ -188,8 +240,29 @@
         
             
         
-    </footer>
+    </footer>-->
+    <!--Navigation entre les pages secondaire-->
+    <footer id="footer">
 
+        <div class="container">
+    
+            <div>
+    
+                <div>
+    
+                    <div class="footer-set_up">
+                        <ul class="pages">
+                            <li><a href="">Crédits</a></li>
+                            <li><a href="">À Propos de Nous</a></li>
+                        </ul>
+                        
+                    </div>
+                </div>
+            </div>
+    
+        </div>
+    
+    </footer>
 
     </div>
 </body>
@@ -201,7 +274,7 @@
 <script src="../Javascript/graph-data.js"></script>
 <script src="../Javascript/graph-filtres.js"></script>
 <script src="../Javascript/init-filtre.js"></script>
-<script src="../Javascript/nombre-accident.js"></script>
+
 <script src="../Javascript/graph-download.js"></script>
 <script src="../Javascript/tableau.js"></script>
 
