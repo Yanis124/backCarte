@@ -100,7 +100,7 @@ async function createPin(){
       
 
     workCarte()   //enlever l'annimation de chargement
-    workFiltre()  
+    workFiltre()  //réactiver les filtres
     var fin=Date.now()
 
     console.log(`draw pin time : ${ fin-deb} ms`)
