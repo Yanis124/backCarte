@@ -1,8 +1,13 @@
-var filter=document.getElementById("filtre-container") //bloquer les filtres lors du chargement des accidents
+//bloquer les filtres lors du chargement des accidents
+var filter=document.getElementById("filtre-container") 
+
+//Récupère les éléments "date" et "luminosité"
 var switchTab=document.querySelectorAll("#switch-container")
+
+//récupère tous les autres filtres
 var selectBtn=document.querySelectorAll(".select-btn")
 
-
+//Quand un accident est sélectionné, les filtres sont inaccessibles
 function loadFiltre(){
         switchTab.forEach(element=>{
         element.style.pointerEvents="none",
@@ -18,6 +23,8 @@ function loadFiltre(){
         }) 
 }
 
+
+//Une fois les marqueurs chargés, l'utilisateur peut réutiliser les filtres
  function workFiltre(){
     switchTab.forEach(element=>{
         element.style.pointerEvents="auto",
