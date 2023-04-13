@@ -2,12 +2,13 @@
 <html lang="fr">
     <head>
         <meta charset="utf-8">
-        <!--Page css pour le header et le footer-->
+
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <link href="../../page_statistique/CSS/body.css" rel="stylesheet" type="text/css">
-        <link href="../../page_statistique/CSS/header.css" rel="stylesheet" type="text/css">
-        <link href="../../page_statistique/CSS/footer.css" rel="stylesheet" type="text/css">
+        <!--<link href="../../page_statistique/CSS/footer.css" rel="stylesheet" type="text/css">
+        <link href="../../page_statistique/CSS/header.css" rel="stylesheet" type="text/css">-->
+
         <link rel="stylesheet" href="../../page_statistique/CSS/select.css">
         <link rel="stylesheet" href="../../page_statistique/CSS/spine.css">
         <link rel="stylesheet" href="../CSS/filtres.css">
@@ -19,7 +20,12 @@
         <!--Intégration de la bibliothèque Leaflet-->
         <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI=" crossorigin=""/>
     
-    
+        <!-- style de header -->
+
+        <link rel="stylesheet" href="../../commun.css" type="text/css">
+
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
         <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js" integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM=" crossorigin=""></script>
         <link rel="stylesheet" href="../plugin/FullScreen/Control.FullScreen.css"> <!--plugin pour ajouter le boutton full screen-->
         <script src="../plugin/FullScreen/Control.FullScreen.js"></script>
@@ -30,7 +36,7 @@
         
     </head>
     <body onload="nomRegions(); nomDepartements(); nomVilles() ;openFiltreList(); dateLimit();getAtm();getAge(); getGravite(); initMap();createPin();resetDate()">
-        <header id="#top">
+        <!--<header id="#top">
             <div id="mySidenav" class="sidenav">
                <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
                 <div class="sidebar-container">
@@ -42,7 +48,7 @@
             </div>
             
               
-              <!-- Use any element to open the sidenav -->
+              <!-- Use any element to open the sidenav ->
               
         
             <ul class="list-header">
@@ -58,7 +64,54 @@
                 <a  class="anc-sous-titre" href="../../page_A_propos_de_nous/page_a-propos-de-nous.html"> <li>A propos de nous</li> </a>
             </ul>
         
+        </header>-->
+
+        <header id="header_absolute">
+    
+            <div class="container">
+
+                <div>
+                    
+                    <div>
+
+                        <ul class="pages">
+                            <li><a href=""><img src="../images/logo.jpg" alt="Logo de Accidentologie"></a></li>
+                            <li><a href=""> Carte</a></li>
+                            <li><a href="">  Statistiques</a></li>
+                        </ul>
+                    </div>
+
+            </div>
+
         </header>
+
+<!-- SECOND HEADER-->
+         <header id="header_fixed">
+
+            <div class="container">
+
+                <div>
+
+                    <div>
+
+                        <div>
+                            <ul class="pages">
+                                <li><a href=""><img src="../images/logo.jpg" alt="Logo de Accidentologie"></a></li>
+                                <li><a href="page_carte.html">Carte</a></li>
+                                <li><a href="../../page_statistique/HTML/statistiques.html">Statistiques</a></li>
+
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </header>
+    
+    </header>
+
         <main id="main">
             <section id="section-carte">
                 <div id="mapContainer" class="map-container">
@@ -323,7 +376,7 @@
                     </div>
                 </form>
             </section>  
-            <footer>
+            <!--<footer>
                 <div class="contactez-nous-container">
                     <p>Contactez-nous</p>
                     <ul>
@@ -347,6 +400,29 @@
                     <p>Nombre d'accidents enregistrés</p>
                     <span id="nombre-accident"></span>
                 </div>
+            </footer>-->
+
+
+            <footer id="footer">
+
+                <div class="container">
+            
+                    <div>
+            
+                        <div>
+            
+                            <div class="footer-set_up">
+                                <ul class="pages">
+                                    <li><a href="">Crédits</a></li>
+                                    <li><a href="">À Propos de Nous</a></li>
+                                </ul>
+                                
+                            </div>
+                        </div>
+                    </div>
+            
+                </div>
+            
             </footer>
         </main>
         <a id="back2Top" title="Back to top"  onclick="topFunction()"> <img src="https://uploads-ssl.webflow.com/620a7ac0833f49433b0bee1f/620c30eb8af8774df7fbe800_BACK%20TO%20TOP.png" alt="nav-img"> </a>
@@ -362,6 +438,8 @@
     <script src="../JavaScript/cluster-popup.js"></script>
     <script src="../JavaScript/style.js"></script>
     <script src="../JavaScript/filtre-lieu.js"></script>
+    <script type="text/javascript" src="../JavaScript/scroll.js"></script>
+
     
 </html>
 
