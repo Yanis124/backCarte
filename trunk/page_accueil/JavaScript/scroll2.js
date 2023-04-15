@@ -2,7 +2,7 @@
 
 const nextBtn = document.querySelector('.right-button');
 const prevBtn = document.querySelector('.left-button');
-const images = document.querySelectorAll('img');
+const images = document.querySelectorAll('article img');
 
 let first=images.length-1
 
@@ -72,7 +72,7 @@ prevBtn.click()
 
 setInterval(function(){
   prevBtn.click()
-},5000)
+},7000)
 
 
 
