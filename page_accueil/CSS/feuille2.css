@@ -1,14 +1,5 @@
-body {
-    margin: 0
-}
 
-body {
-    font-family: 'Catamaran', sans-serif; /*REVOIR LA POLICE*/
-}
 
-a {
-    text-decoration: none;
-}
 
 .center { /*Mettre au centre les texte des images*/
     top: 50%;
@@ -22,54 +13,18 @@ h1{
 
 /* NAVIGATION PAGE FORMAT */
 
-ul{
-    margin: 0;
-    padding: 0;
-    border: 0;
-    outline: 0;
-    font-size: 110%;
-}
-
-/* HEADER */
-
-header {
-    width: 100%;
-    padding: 20px;
-    text-transform: uppercase;
-    font-size: 18px;
-    z-index:999;
-    position:fixed;/*Afficher le deuxième menu quand on deroule*/
-    top:0;
-    height:40px;
-    
-    background-color: white;
-    transition: top 300ms ease; /*Permet l'affichage du deuxième menu de haut en bas moins violent*/
-    display: flex;
-    
-    border-bottom: 1px solid gray;
-    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.4);
-    
-}
 
 
 
 
 
 
- .pages {
-    display: flex; /*mettre les pages carte et statistiques l'une a coté de l'autre*/
-    align-items: center;
-    justify-content: center;
-    list-style: none;
-    gap:40px;
-    padding-right:30px; 
-}
 
 
 
-a{
-    color:#051039
-}
+
+
+
 
 
 
@@ -123,10 +78,10 @@ a{
     background-image:linear-gradient(
         rgba(0, 0, 0, 0.5),
         rgba(0, 0, 0, 0.5)
-      ), url(pexels-mike-b-5351108.jpg);
+      ), url(../images/pexels-mike-b-5351108.jpg);
 }
 
-img{
+article img{
 position: absolute;
   top: 0;
   left: 0;
@@ -251,13 +206,7 @@ footer {
 
 
 
-@media screen and ( min-width: 769px){
-    
-    
-    header{
-        justify-content: end;
-    }
-}
+
 
 
 @media screen and (max-width: 768px) {
@@ -269,16 +218,10 @@ footer {
         font-size: 20px;
     }
 
-    header{
-        justify-content: center;
-    }
+
 }
 
-@media screen and (min-width: 481px) {
-    header .pages{
-        gap:40px;
-    }
-}
+
 
 
 
@@ -288,11 +231,6 @@ footer {
     }
     #content_banner h2{
         font-size: 15px;
-    }
-
-    header .pages{
-        gap:20px;
-        font-size: 14px;
     }
 }
     
