@@ -9,7 +9,7 @@
     box-shadow: 0 0 7px var(--shadow-color);
     height:45px;
     width:120px;
-    margin-right: 10%;
+    margin-right: 5%;
     font-weight: var(--filtre-carte-weight);
     transition: all 0.3s ease-in-out;
     border-radius: 6px;
@@ -75,6 +75,8 @@
 
 #weather-choice,#ville-choice,#age-choice,#gravite-choice,#departement-choice,#region-choice{
     color:gray;
+    position: absolute;
+    bottom: 0;
     
 }
 

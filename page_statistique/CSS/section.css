@@ -9,9 +9,7 @@
     flex-direction: column;
     justify-content:flex-start; 
     background-color: #fff; 
-    padding-top:130px; 
-    padding-bottom: 30px;
-    gap:20px;
+    padding-top:80px; 
     
 }
 
@@ -22,14 +20,10 @@
 
 
 .graph-table-container{
-    border:1px solid var(--section-border);
     background-color: #f5f5f5;
     display: flex;
     justify-content: space-around;
     padding-top:3%;
-    margin:1%;
-    margin-top:0;
-    margin-bottom: 0;
     padding-bottom: 20px;
     height: 80%; /*le div du graph et du tableau prend 90% de la hauteur de section*/
 
@@ -116,6 +110,13 @@
     height: 10%; /*div prend 10% de la hauteur du table-annee-container*/
     margin-right:5%;
 }
+
+.telecharger-container{
+    padding-top:20px;
+    padding-bottom:20px;    
+}
+
+
 
 
 
