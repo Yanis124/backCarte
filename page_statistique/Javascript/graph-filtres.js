@@ -51,7 +51,7 @@ async function DrawFiltreAnnee(){  // mettre a jour le filtre année (secondaire
     
     if(inputLieu && inputLieu !="tous-les-lieux"){ //on recupère les années de la region selectionée
         try{                                              
-            var res=await fetch(apiGraphAnnee+inputLieu)
+            var res=await fetch(apiGraphAnnee+inputLieu+exculdeYear)
             var data=await res.json()
         }
         catch{
@@ -62,14 +62,16 @@ async function DrawFiltreAnnee(){  // mettre a jour le filtre année (secondaire
 
 
         for(var i=0;i<listAnneeLieu.length;i++){
-            anneeGraphSelect.innerHTML+="<option value="+listAnneeLieu[i].name+">"+listAnneeLieu[i].name+"</option>"
+            
+                anneeGraphSelect.innerHTML+="<option value="+listAnneeLieu[i].name+">"+listAnneeLieu[i].name+"</option>"
+            
         }
     
 
     }
     else{
         try{                                              
-            var res=await fetch(apiGraphToutesAnnee)
+            var res=await fetch(apiGraphToutesAnnee+exculdeYear)
             var data=await res.json()
         }
         catch{
@@ -80,7 +82,9 @@ async function DrawFiltreAnnee(){  // mettre a jour le filtre année (secondaire
 
 
         for(var i=0;i<listAnneeLieu.length;i++){
-            anneeGraphSelect.innerHTML+="<option value="+listAnneeLieu[i].name+">"+listAnneeLieu[i].name+"</option>"
+            if(listAnneeLieu !=2011){
+                anneeGraphSelect.innerHTML+="<option value="+listAnneeLieu[i].name+">"+listAnneeLieu[i].name+"</option>"
+            }
         }
 
 

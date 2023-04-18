@@ -66,7 +66,7 @@ function getRegion() {      // Région sélectionnée
 
     selectedDepartement=selectedVille=null //mettre à 0 departement et ville si on selectionne une autre region 
 
-        if(selectedRegion==="toutes les regions"){
+        if(selectedRegion=="toutes les regions"){
             nomDepartements()
 
             nomVilles()
@@ -125,7 +125,7 @@ function getDepartement(){
 
     selectedVille=null //mettre a 0 ville si il selectionne un autre departement
 
-    if(selectedDepartement==="tous les departements"){  //si on selectionne tous les departements on affiche toutes les villes de la regions selectionné
+    if(selectedDepartement=="tous les departements"){  //si on selectionne tous les departements on affiche toutes les villes de la regions selectionné
         getRegion()
     }
 

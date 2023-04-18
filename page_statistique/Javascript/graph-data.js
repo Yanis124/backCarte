@@ -1,6 +1,7 @@
 
 
 var apiGraphX="https://data.opendatasoft.com/api/records/1.0/search/?dataset=accidents-corporels-de-la-circulation-millesime%40public&q=&rows=0&facet="
+var exculdeYear="&exclude.datetime=2011"
 
 
 
@@ -22,7 +23,7 @@ async function getData(){  //recuperer les données datetime, atm ,atm ,an-nais 
 
     else if(inputLieu && (!inputAnneeGraph || inputAnneeGraph=="toutes-les-annees") && inputLieu!="tous-les-lieux"){ //si l'utilisateur rentre annee
         try{
-            var res=await fetch(apiGraphX+inputValueX+"&refine.reg_name="+inputLieu) //ajouter le filtre lieu a l'api
+            var res=await fetch(apiGraphX+inputValueX+"&refine.reg_name="+inputLieu+exculdeYear) //ajouter le filtre lieu a l'api
         
             var data=await res.json()
             
@@ -47,7 +48,7 @@ async function getData(){  //recuperer les données datetime, atm ,atm ,an-nais 
 
     else{ //si l'utilisateur ne choisit pas d'année ni de lieu ou "toutes les années et tous les lieus"
         try{
-            var res=await fetch(apiGraphX+inputValueX)
+            var res=await fetch(apiGraphX+inputValueX+exculdeYear)
         
             var data=await res.json()
         }
@@ -115,7 +116,8 @@ function selectX(){  //selectionner le type de graphe (par defaut date=>courbe s
 
     else if(inputValueX==facets[3]|| inputValueX==facets[4] || inputValueX==facets[5]|| inputValueX==facets[6] || inputValueX==facets[7]|| inputValueX==facets[8]){
         if(!typeChart){
-            selectColonne("camembert")  
+            selectColonne("camembert") 
+             
         }
 
     }

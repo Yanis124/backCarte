@@ -1,72 +1,77 @@
-var listDepartement= [
-    //"Paris",]
+var listDepartement= 
+    [//"Paris"
 
+     
      "Seine-Saint-Denis",]
-//     "Bouches-du-Rhône",
-//     "Hauts-de-Seine",
-//     "Val-de-Marne",
-//     "Rhône",
-//     "Alpes-Maritimes",
-//     "Gironde",
-//     "Essonne",
-//     "Nord",
-//     "Val-d'Oise",
-//     "Haute-Garonne",
-//     "Yvelines",
-//     "Var",
-//     "Seine-et-Marne",
-//     "Hérault",
-//     "Ille-et-Vilaine",
-//     "Pyrénées-Atlantiques",
-//     "Seine-Maritime",
-//     "Bas-Rhin",
-//     "Indre-et-Loire",
-//     "Maine-et-Loire",
-//     "Loire-Atlantique",
-//     "Finistère",
-//     "Isère",
-//     "Charente-Maritime",
-//     "Pas-de-Calais",
-//     "Meurthe-et-Moselle",
-//     "Loire",
-//     "Gard",
-//     "Morbihan",
-//     "Calvados",
-//     "Somme",
-//     "Moselle",
-//     "Puy-de-Dôme",
-//     "Haute-Savoie",
-//     "Haut-Rhin",
-//     "Loiret",
-//     "Manche",
-//     "Côtes-d'Armor",
-//     "Haute-Vienne",
-//     "Ain",
-//     "Oise",
-//     "Drôme",
-//     "Aude",
-//     "Marne",
-//     "Vienne",
-//     "Saône-et-Loire",
-//     "Doubs",
-//     "Eure",
-//     "Vendée",
-//     "Pyrénées-Orientales",
-//     "Sarthe",
-//     "Eure-et-Loir",
-//     "Loir-et-Cher",
-//     "Vaucluse",
-//     "Aisne",
-//     "Aube",
-//     "Cher",
-//     "Allier",
-//     "Côte-d'Or",
-//     "Yonne",
-//     "Corrèze",
-//     "Ardèche",
-//     "Indre",
-//     "Dordogne",
-//     "Savoie",
+     //"Bouches-du-Rhône",
+      //"Hauts-de-Seine",]
+        //"Val-de-Marne",
+         //"Rhône",
+         //"Alpes-Maritimes",
+         //"Gironde",
+        
+     //"Essonne",
+     //"Nord",
+     //"Val-d'Oise",
+     //"Haute-Garonne",
+     //"Yvelines",
+     //"Var",
+     //"Seine-et-Marne",
+     //"Hérault",
+     //"Ille-et-Vilaine",
+     //"Pyrénées-Atlantiques",
+     //"Seine-Maritime",
+     //"Bas-Rhin",
+     //"Indre-et-Loire",
+     //"Maine-et-Loire",
+     //"Loire-Atlantique",
+     //"Finistère",
+     //"Isère",
+     //"Charente-Maritime",
+     //"Pas-de-Calais",
+     //"Meurthe-et-Moselle",]
+    //"Loire",
+     //"Gard",
+     //"Morbihan",
+     //"Calvados",
+     //"Somme",
+     //"Moselle",
+     //"Puy-de-Dôme"
+     //"Haute-Savoie",
+     //"Haut-Rhin",
+     //"Loiret",
+     //"Manche",
+     //"Côtes-d'Armor",
+     //"Haute-Vienne",
+     //"Ain",
+     //"Oise",
+     //"Drôme",
+     //"Aude",
+     //"Marne",
+     //"Vienne",
+     //"Saône-et-Loire",
+     //"Doubs",
+     //"Eure",
+     //"Vendée",
+     //"Pyrénées-Orientales",
+     //"Sarthe",
+    //"Eure-et-Loir",
+     //"Loir-et-Cher",
+     //"Vaucluse",
+     //"Aisne",
+     //"Aube",
+     //"Cher",
+     //"Allier",
+     //"Côte-d'Or",
+     //"Yonne",
+     //"Corrèze",
+     //"Ardèche",
+     //"Indre",
+     //"Dordogne",
+     //"Savoie",]
+
+
+
 //     "Deux-Sèvres",
 //     "Nièvre",
 //     "Vosges",
@@ -164,11 +169,14 @@ async function getAccident(){
 
     var deb=Date.now()
 
-    var api="https://public.opendatasoft.com/api/records/1.0/search/?dataset=accidents-corporels-de-la-circulation-millesime&q=&rows=1&refine.dep_name="
+    var api="https://public.opendatasoft.com/api/records/1.0/search/?dataset=accidents-corporels-de-la-circulation-millesime&q=&rows=9999&refine.dep_name="
     var urls = [];
+    var listYears=["2012","2013","2014","2015","2016","2017","2018","2019"]
 
     for(var i=0;i<listDepartement.length;i++){
-        urls.push(api+listDepartement[i])
+        for(var j=0;j<listYears.length;j++){
+            urls.push(api+listDepartement[i]+"&refine.datetime="+listYears[j])
+        }
     }
 
     let responses = await fetchAccidents(urls);
@@ -185,6 +193,8 @@ async function getAccident(){
 
 async function correctAccident(){
 
+    var i=0
+
     await getAccident()
     for(let i=0;i<listAccident.length;i++){
         try{
@@ -195,7 +205,10 @@ async function correctAccident(){
         }
         catch{
             console.log("no coordinate")
+            listAccident[i]=null  
         }
+        i++
+        console.log(i+"/"+listAccident.length)
     }
     return listAccident
 
