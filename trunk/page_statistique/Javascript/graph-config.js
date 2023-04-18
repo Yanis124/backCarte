@@ -37,7 +37,7 @@ const plugin = {
   };
 
 var configLine={   //une configuration par defaut pour representer le nombre d'accidents par année
-    type: 'line',
+    type: 'bar',
     data: {
         labels:[],
         datasets: [{
@@ -46,6 +46,7 @@ var configLine={   //une configuration par defaut pour representer le nombre d'a
             borderWidth: 1,
             fill: false,
             data:[],
+            
         }]
     },
     options: {
@@ -60,7 +61,7 @@ var configLine={   //une configuration par defaut pour representer le nombre d'a
                 text: "Nombre d'Accidents par Année",
                 color:text_color,
                 font:{
-                    size:20
+                    size:15
                 }
             },
             legend:{
@@ -70,7 +71,29 @@ var configLine={   //une configuration par defaut pour representer le nombre d'a
                         size:15
                     }
                 }
-            }
+            },
+            datalabels: {
+                anchor: 'center',
+                align: 'end',
+                backgroundColor: null,
+                borderColor: null,
+                borderRadius: 4,
+                borderWidth: 1,
+                color: '#fff',
+                font: function(context) {
+                  var width = context.chart.width;
+                  var size = Math.round(width / 40);
+                   return {
+                     size: size,
+                    weight: 600
+                  };
+                },
+                offset: 4,
+                padding: 20,
+                formatter: function(value) {
+                   return Math.round(value * 10) / 10
+                }
+              }
         },
         scales:{
             y:{
@@ -83,8 +106,17 @@ var configLine={   //une configuration par defaut pour representer le nombre d'a
             },
         },
     },
-    plugins:[plugin]
+    plugins:[]
 } 
+
+Chart.register(plugin,ChartDataLabels);
+
+
+
+
+
+
+
 
 
 function updateTitles(){  //mettre à jour le titre du graphe 
@@ -179,10 +211,15 @@ function configCamembert(){   // la config de chaque type de graphe
     chart.data.datasets[0].backgroundColor=color_pie
     chart.data.datasets[0].borderColor=border_color_bar_pie
     chart.data.datasets[0].hoverBackgroundColor=color_pie_hover
+    Chart.register(ChartDataLabels);
+    
+    
+    
     chart.update()    
 }
 
 function configColonne(){
+   
 
     chart.config.type="bar"  //mettre à jour le type de graphe
     chart.options.scales.x.display=true
@@ -190,8 +227,11 @@ function configColonne(){
     chart.data.datasets[0].backgroundColor=color_bar
     chart.data.datasets[0].borderColor=border_color_bar_pie
     chart.data.datasets[0].hoverBackgroundColor=color_bar_hover
+    Chart.unregister(ChartDataLabels);
+        
     
     chart.update() 
+    
 }
 
 function configCourbe(){
@@ -202,6 +242,7 @@ function configCourbe(){
     chart.data.datasets[0].backgroundColor=color_line
     chart.data.datasets[0].hoverBackgroundColor=color_line_hover
     chart.data.datasets[0].pointHoverRadius=6
+    Chart.unregister(ChartDataLabels);
     chart.update()
 }
 

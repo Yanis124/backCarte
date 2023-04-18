@@ -123,6 +123,7 @@ function addEventRegion(){
     item.addEventListener("click", () => {
 
         selectedRegion=item.innerText     //recuperer la valeur
+        console.log(selectedRegion)
         item.classList.toggle("checked");
 
         closeList()

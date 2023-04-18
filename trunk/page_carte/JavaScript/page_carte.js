@@ -81,6 +81,9 @@ async function createPin(){
     let pop
 
     for (let i = 0; i < list.length; i++) {
+        if(i%100000==0){
+            await new Promise(r => setTimeout(r, 2000)); //sleep(2) pour executer loadCarte() et loadFiltre() //a refaire 
+        }
         try {
             a = list[i].fields.coordonnees[0];
             b = list[i].fields.coordonnees[1];

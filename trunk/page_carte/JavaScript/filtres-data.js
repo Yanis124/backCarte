@@ -100,16 +100,23 @@ async function getDataFiltre(){
         listAccidentDate=[];
 
         selectedFiltre="Date"
+        
 
         for(var i=0;i<listAccident.length;i++){
-            if((listAccident[i].fields.datetime).substring(0,10)==selectedDate){
-                listAccidentDate.push(listAccident[i]);
+            try{
+                if((listAccident[i].fields.datetime).substring(0,10)==selectedDate){
+                    listAccidentDate.push(listAccident[i]);
+                }
+            }
+            catch{
+                console.log("no date")
             }
         }
     }
     //Intervalle de dates
     if(selectedDateStart && selectedDateEnd){
         listAccidentIntervallDate=[];
+        
 
         selectedFiltre="intervalle de date"
         var date_debut=new Date(selectedDateStart).getTime();
@@ -118,12 +125,17 @@ async function getDataFiltre(){
         console.log(date_fin);
         
         for(var i=0;i<listAccident.length;i++){
+            try{
             var date_accident=new Date((listAccident[i].fields.datetime).substring(0,10)).getTime();
             //console.log(date_accident);
         
             if((date_debut<=date_accident)&&(date_fin>=date_accident)){
 				
                 listAccidentIntervallDate.push(listAccident[i]);
+            }
+            }
+            catch{
+                console.log("no date")
             }
             
         }
