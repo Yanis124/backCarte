@@ -22,7 +22,7 @@ function initMap(){  //Initialisation de la carte
         wheelDebounceTime:0,
         wheelPxPerZoomLevel:50,
         minZoom:5,
-    }).setView(locationBase,13);
+    }).setView(locationBase,8);
     L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: '&copy;<a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
     }).addTo(map);

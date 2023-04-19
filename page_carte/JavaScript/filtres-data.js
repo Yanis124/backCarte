@@ -126,13 +126,14 @@ async function getDataFiltre(){
         
         for(var i=0;i<listAccident.length;i++){
             try{
-            var date_accident=new Date((listAccident[i].fields.datetime).substring(0,10)).getTime();
-            //console.log(date_accident);
-        
-            if((date_debut<=date_accident)&&(date_fin>=date_accident)){
-				
-                listAccidentIntervallDate.push(listAccident[i]);
-            }
+            
+                var date_accident=new Date((listAccident[i].fields.datetime).substring(0,10)).getTime();
+                //console.log(date_accident);
+            
+                if((date_debut<=date_accident)&&(date_fin>=date_accident)){
+                    
+                    listAccidentIntervallDate.push(listAccident[i]);
+                }
             }
             catch{
                 console.log("no date")
