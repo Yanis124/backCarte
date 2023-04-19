@@ -138,8 +138,7 @@ async function createPin(){
                 map.addLayer(listMarkerCluster[~~(i/record)]);
                 loadCarte
                 await new Promise(r => setTimeout(r, waitingTime)); 
-                workCarte()
-                workFiltre()
+
                
             }
             
@@ -149,6 +148,9 @@ async function createPin(){
             console.log("Couldn't find coordinates");
         }
     }
+
+    workCarte()
+    workFiltre()
 
     try{
 
