@@ -133,22 +133,23 @@ function dateLimit(){  //definir une limite de date
 
 function nomRegions() {
     // URL de l'API récupérant les noms des régions
-    var apiUrl1 = "https://public.opendatasoft.com/api/records/1.0/search/?dataset=accidents-corporels-de-la-circulation-millesime&q=&rows=0&facet=reg_name";
+    var apiUrl1 = "https://geo.api.gouv.fr/regions?&fields=nom,code,codesPostaux,departement,region&format=json";
 
     // Récupération des regions de l'API
     fetch(apiUrl1)
       .then(response => response.json()) // Convertit en objet JSON les données récupérées
       .then(data => {
 
-        var region = data.facet_groups[0].facets; //variable region contenant les données récupérées
+        var region = data; //variable region contenant les données récupérées
+        console.log(region)
 
-        region.sort((a, b) => a.name.localeCompare(b.name)); // Tri par ordre alphabétique
+        region.sort((a, b) => a.nom.localeCompare(b.nom)); // Tri par ordre alphabétique
         regionSelect.children[1].innerHTML="";
         regionSelect.children[1].append(createList("toutes les regions"))
         region.forEach(region => {
 
-            if (region.name !== "Mayotte" && region.name !== "Guadeloupe" && region.name !== "Martinique" && region.name !== "Guyane" && region.name !== "La Réunion"){ //Enlever les regions d'outre mer
-                var option = createList(region.name)
+            if (region.nom !== "Mayotte" && region.nom !== "Guadeloupe" && region.nom !== "Martinique" && region.nom !== "Guyane" && region.nom!== "La Réunion"){ //Enlever les regions d'outre mer
+                var option = createList(region.nom)
 
                 regionSelect.children[1].append(option);
             }
