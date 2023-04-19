@@ -106,11 +106,11 @@ async function createPin(){
     for(let j=0; j<~~(list.length/record)+1;j++ ){   //create a list of markerclusters
         listMarkerCluster.push(new L.markerClusterGroup( { animate: true,animateAddingMarkers: true}) )
     }
-    console.log("length listmarkerus" +listMarkerCluster.length)
+    
 
     
-    var markers=[]
-    for (var i = 0; i < list.length; i++) {
+    let markers=[]
+    for (let i = 0; i < 100000; i++) {
           
         try {
             a = list[i].fields.coordonnees[0];

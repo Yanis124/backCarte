@@ -64,9 +64,12 @@ function addEventVille(){  //simuler le comportement de la checklist dans le fil
 
         resetBtn.addEventListener("click", () => {   //reset filter ville
             
-            villeSelect=null
-            villeText.style.position="relative"
-            textChoix.innerHTML=""
+            if(init){
+                villeSelect.children[1].innerHTML="";
+                villeText.style.position="relative"
+                textChoix.innerHTML=""
+            }
+            
         });
     }); 
 }
@@ -104,12 +107,17 @@ function addEventDepartement(){  //simuler le comportement de la checklist dans 
         });
 
         resetBtn.addEventListener("click", () => {   //reset filter ville
-
-            departementSelect=null
-            departementText.style.position="relative"
-            textChoix.innerHTML=""
+            
+            if(init){
+                departementSelect.children[1].innerHTML="";
+                departementText.style.position="relative"
+                textChoix.innerHTML=""
+            }
+            
         });
     }); 
+
+
 }
 
 function addEventRegion(){
@@ -133,6 +141,7 @@ function addEventRegion(){
         regionText.style.top="0"
 
         getRegion()
+
         });
         item.addEventListener("mouseover", () => {
 
@@ -151,6 +160,7 @@ function addEventRegion(){
             textChoix.innerHTML=""
         });
     }); 
+
 
 }
 
@@ -175,3 +185,4 @@ function createList(valueList){  //creer les options de la checklist
     return list
 
 }
+

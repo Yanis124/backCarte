@@ -65,8 +65,9 @@ function getRegion() {      // Région sélectionnée
     resetDepartement()
 
     selectedDepartement=selectedVille=null //mettre à 0 departement et ville si on selectionne une autre region 
-
+    
         if(selectedRegion=="toutes les regions"){
+            
             nomDepartements()
 
             nomVilles()
