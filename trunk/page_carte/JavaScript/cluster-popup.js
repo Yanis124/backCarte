@@ -33,7 +33,8 @@ function style(note){   //Ajouter du style aux clusters
             var numberDiv=note[i].children[0]
             
             number.style.fontSize="17px"
-            number.style.color = 'white'   
+            number.style.color = 'white' 
+            number.style.zIndex="9999"  
 
             numberDiv.style.display="flex"
             numberDiv.style.justifyContent="center"
@@ -49,6 +50,7 @@ function style(note){   //Ajouter du style aux clusters
             Div.style.borderColor="white"
             Div.style.borderRadius="50px"
             Div.style.padding="10px"
+            Div.style.zIndex="9999"
         
         
         

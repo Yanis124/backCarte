@@ -424,6 +424,7 @@ async function initFiltre(){  //Ã©viter de cliquer plusieurs fois sur remettre Ã
     
         removePin()     //supprimer les marqueurs de la carte
         createPin()
+        setViewUser(locationBase,zoom)
     }
     
 
