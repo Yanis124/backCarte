@@ -1,5 +1,6 @@
 
 
+
 var carIcon = new L.Icon({ //modifier le marqueur
     iconUrl: '../images/marker.svg',
     shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
@@ -10,6 +11,7 @@ var carIcon = new L.Icon({ //modifier le marqueur
   });
 
 var map
+var locationBase=[48.862725, 2.287592]
 
 
 function initMap(){  //Initialisation de la carte
@@ -20,7 +22,7 @@ function initMap(){  //Initialisation de la carte
         wheelDebounceTime:0,
         wheelPxPerZoomLevel:50,
         minZoom:5,
-    }).setView([48.862725, 2.287592],5);
+    }).setView(locationBase,13);
     L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: '&copy;<a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
     }).addTo(map);
@@ -35,15 +37,36 @@ function initMap(){  //Initialisation de la carte
         position:"bottomleft"
     }).addTo(map)
 
+    map.on('zoom', ()=> {
+        zoom=map.getZoom()
+    })
+
+    
+}
+
+var zoom=10
+
+
+
+
+
+
+var listMarkerCluster=[]
+
+
+function removePin(){  //supprimer tous les marqueurs
+
+    listMarkerCluster.forEach(element => {
+        element.clearLayers()
+    });
+    listMarkerCluster=[]
+
+
+    
     
 }
 
 
-function removePin(){  //supprimer tous les marqueurs
-    markerCluster.clearLayers()
-}
-
-markerCluster = new L.markerClusterGroup( { animate: true,animateAddingMarkers: true});  //créer un marqueurcluster pour regrouper les marqueurs
 
 
  
@@ -53,12 +76,10 @@ markerCluster = new L.markerClusterGroup( { animate: true,animateAddingMarkers: 
 
 async function createPin(){
 
-
-
     loadCarte()
     loadFiltre()
 
-    markerCluster = new L.markerClusterGroup( { animate: true,animateAddingMarkers: true});  //créer un markercluster pour regrouper les marqueurs
+    
     if(!filtre){ //on afficher tous les pin si on ne filtre pas
         var list=listAccident
         if(list.length<=0){
@@ -70,43 +91,91 @@ async function createPin(){
         var list=listAccidentFiltre
     }
 
-    var deb=Date.now()
+
     
 
 
-    
+    const record=100000
+    const waitingTime=2000
     let a
     let b
     let marker
     let pop
 
-    for (let i = 0; i < list.length; i++) {
-        if(i%100000==0){
-            await new Promise(r => setTimeout(r, 2000)); //sleep(2) pour executer loadCarte() et loadFiltre() //a refaire 
-        }
+
+    for(let j=0; j<~~(list.length/record)+1;j++ ){   //create a list of markerclusters
+        listMarkerCluster.push(new L.markerClusterGroup( { animate: true,animateAddingMarkers: true}) )
+    }
+    console.log("length listmarkerus" +listMarkerCluster.length)
+
+    
+    var markers=[]
+    for (var i = 0; i < list.length; i++) {
+          
         try {
             a = list[i].fields.coordonnees[0];
             b = list[i].fields.coordonnees[1];
             marker = L.marker([a, b], { icon: carIcon });
             pop = popUp(list, i);
             marker.bindPopup(pop);
-            markerCluster.addLayers(marker);
+            markers.push(marker)
+            listMarkerCluster[~~(i/record)].addLayers(marker);
+            if(i%record==0){  //add only 100000 markers at once 
+                
+                
+                
+                map.addLayer(listMarkerCluster[~~(i/record)-1]);
+                loadCarte()
+                await new Promise(r => setTimeout(r, waitingTime)); //sleep(2) 
+                workCarte() 
+                
+            }
+            
+            
+            else if(i==(list.length -2) && (i%record!=0)){ //add the rest of the markers
+                
+                
+                map.addLayer(listMarkerCluster[~~(i/record)]);
+                loadCarte
+                await new Promise(r => setTimeout(r, waitingTime)); 
+                workCarte()
+                workFiltre()
+               
+            }
+            
+
         } 
         catch (error) {
             console.log("Couldn't find coordinates");
         }
     }
 
+    try{
+
+        if(selectedRegion || selectedDepartement || selectedVille){ //center the map to a specific location if a region | dep | ville is selected
+
+            setViewUser(list[0].fields.coordonnees)
+        }
+    }
+    catch{
+        console.log("couldn't find coordinates")
+    }
+
     
-    map.addLayer(markerCluster);
+    
 
-      
+    
 
-    workCarte()   //enlever l'annimation de chargement
-    workFiltre()  //réactiver les filtres
-    var fin=Date.now()
+    
+}
 
-    console.log(`draw pin time : ${ fin-deb} ms`)
+function setViewUser(listCoordonnees){   //center the map to a specific location
+    console.log(listCoordonnees)
+    map.setView(listCoordonnees,zoom, {  //make the animation smooth 
+        "animate": true,
+        "pan": {
+          "duration": 1
+        }})
 }
 
 

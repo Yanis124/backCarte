@@ -209,7 +209,7 @@
  var listAccident=[]
 
  async function getAccident(){
-    var res=await fetch('../express/static/Accidents.txt')
+    var res=await fetch('../Accidents.txt')
     var data=await res.text()
 
     const lines=data.split("\n")

@@ -13,13 +13,13 @@ function loadFiltre(){
         element.style.pointerEvents="none",
         element.style.cursor="not-allowed",
         
-        element.style.opacity="0.6"})
+        element.style.opacity="0.5"})
 
         selectBtn.forEach(element=>{
             element.style.pointerEvents="none",
         element.style.cursor="not-allowed",
         
-        element.style.opacity="0.6"
+        element.style.opacity="0.5"
         }) 
 }
 
