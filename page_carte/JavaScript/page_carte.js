@@ -110,7 +110,7 @@ async function createPin(){
 
     
     let markers=[]
-    for (let i = 0; i < 100000; i++) {
+    for (let i = 0; i < list.length; i++) {
           
         try {
             a = list[i].fields.coordonnees[0];
