@@ -160,6 +160,9 @@ function nomRegions() {
 }
 
 function nomDepartements(){
+    
+    console.log(departementSelect)
+    console.log("called all dep")
     // URL de l'API récupérant les noms des départements
     var apiUrl2 = "https://public.opendatasoft.com/api/records/1.0/search/?dataset=accidents-corporels-de-la-circulation-millesime&q=&rows=0&facet=dep_name";
     // Récupération des départements de l'API
@@ -186,6 +189,7 @@ function nomDepartements(){
 }
 
 function nomVilles(){
+    
     // URL de l'API rÃ©cupÃ©rant les noms des villes
 	var apiUrl3 = "https://public.opendatasoft.com/api/records/1.0/search/?dataset=accidents-corporels-de-la-circulation-millesime&q=&rows=0&facet=nom_com";
 	// RÃ©cupÃ©ration des communes de l'API
@@ -205,6 +209,8 @@ function nomVilles(){
             addEventVille()
 	    })
         .catch(console.log("erreur de fetch")) //gerer les erreurs
+
+        
 }
 
 
