@@ -1,4 +1,4 @@
-
+var zoom=10
 
 
 var carIcon = new L.Icon({ //modifier le marqueur
@@ -44,7 +44,7 @@ function initMap(){  //Initialisation de la carte
     
 }
 
-var zoom=10
+
 
 
 
@@ -95,7 +95,7 @@ async function createPin(){
     
 
 
-    const record=100000
+    const record=50000
     const waitingTime=2000
     let a
     let b
