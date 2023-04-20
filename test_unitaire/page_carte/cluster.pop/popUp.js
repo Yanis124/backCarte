@@ -36,10 +36,10 @@ function popUp(list,i){  //Créer les popups
     return pop
 }
 
- function popUpData(data){   //si la donnée n'est pas disponible dans l'api 
+function popUpData(data){   //si la donnée n'est pas disponible dans l'api 
     var message="Indisponible"
-    if(data=="undefined" || data===null){
-        return message
+    if(typeof data==="undefined" || data===null){
+        return "Indisponible"
     }
     else{
         return data
