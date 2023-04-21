@@ -1,4 +1,4 @@
-// rendre l'affichage de la page dynamique
+//Make the page display dynamic
 
 
 const graphContainer=document.getElementById("graph-container")
@@ -19,7 +19,8 @@ const filtreAnnee = document.querySelector(".filtre-annee-container");
 
 
 
-function  disapearTableau(){  //faire disparaitre le tableau si l'utilisateur clique sur Graphe et le reapparait si on clique sur tableau
+function  disapearTableau(){  //Make the chart disappears if the user clicks on "Graphe" and reappears if the user clicks on "Tableau"
+                                
     if(tableau.style.display=="none"){
         tableau.style.display="flex"
         button.innerText="Graphe"
@@ -33,7 +34,7 @@ function  disapearTableau(){  //faire disparaitre le tableau si l'utilisateur cl
     }
 }
 
-function tableOpacity(){   //diminuer l'opacity du tableau ou du graphe si on survole le bouton graphe
+function tableOpacity(){   //Decrease the chart opacity or graph opacity if we hover the graph button
 
     
     if(button.innerText=="Graphe"){
@@ -45,7 +46,7 @@ function tableOpacity(){   //diminuer l'opacity du tableau ou du graphe si on su
     
 }
 
-function tableRemoveOpacity(){  //enlever l'effet d'opacity 
+function tableRemoveOpacity(){  //Remove the opacity effect
 
     
     if(button.innerText=="Graphe"){
@@ -66,12 +67,12 @@ function afficherFiltres() {
     filtreLieu.style.display = "flex"
     filtreAnnee.style.display = "flex"
 
-    // Afficher le filtre correspondant
-    if (axeX.value === "reg_name" || axeX.value === "dep_name") { //masquer le filtre lieu (secondaire)  si on choisi region ou dep
+    // Display the corresponding filter
+    if (axeX.value === "reg_name" || axeX.value === "dep_name") { //Hide the secondary filter "lieu" if we chose region or dep as the X-axis
         filtreLieu.style.display = "none"
 
     }
-    else if (axeX.value === "datetime") { //masquer annee (secondaire) si on choisi annee (principal)
+    else if (axeX.value === "datetime") { //Hide secondary filter "année" if we chose année as the X-axis
         filtreAnnee.style.display = "none"
     }
 

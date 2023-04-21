@@ -1,4 +1,4 @@
-// recuperer les donées a mettre dans le graphe,recuperer la valeur des differents filtres
+// Retrieve datas to put in the graph, and also the filters values
 
 
 const colonneSelect=document.getElementById("graph-select")
@@ -7,9 +7,9 @@ const lieuSelect=document.getElementById("lieu-select")
 const anneeGraphSelect=document.getElementById("annee-graph-select")
 
 
-var label=[] //la legende des graphes
-var datas=[] //chaque liste represente un type de donnée datetime,atm ,sex,an-nais, grav,lum
-var chart  //des variables globales qui contiennent le graphe l'annee le lieu l'axe-x
+var label=[] //Graphs legends
+var datas=[] // Each list represent a type of data : datetime, atm, sex, an-nais, grav, lum
+var chart  //Globals variables that contain the graph, the year, the place, the X-axis
 var inputAnneeGraph
 var inputLieu
 var typeChart
@@ -17,7 +17,7 @@ var inputValueX="datetime"
 var listAnneeLieu=[]
 
 
-var apiGraphLieu="https://data.opendatasoft.com/api/records/1.0/search/?dataset=accidents-corporels-de-la-circulation-millesime%40public&q=&rows=0&facet=reg_name" //toutes les régions
+var apiGraphLieu="https://data.opendatasoft.com/api/records/1.0/search/?dataset=accidents-corporels-de-la-circulation-millesime%40public&q=&rows=0&facet=reg_name" //All regions
 
 var apiGraphAnnee="https://data.opendatasoft.com/api/records/1.0/search/?dataset=accidents-corporels-de-la-circulation-millesime%40public&q=&rows=0&facet=datetime&refine.reg_name=" 
 
@@ -25,7 +25,7 @@ var apiGraphToutesAnnee="https://data.opendatasoft.com/api/records/1.0/search/?d
 
 
 
-async function DrawFiltreLieu(){  //recuperer toutes les régions
+async function DrawFiltreLieu(){  //Retrieve all regions
     try{
         var res=await fetch(apiGraphLieu)  
         var data=await res.json()
@@ -41,15 +41,15 @@ async function DrawFiltreLieu(){  //recuperer toutes les régions
 
 }
 
-async function DrawFiltreAnnee(){  // mettre a jour le filtre année (secondaire) pour qu'il affiche que les années correspendant à un lieu
-                                      //par exemple l'api n'a pas les données de l'Aquitaine pour l'année 2013 donc on ne propose pas 2013 dans le filtre année
+async function DrawFiltreAnnee(){ //Update the secondary filter "année" to display just years where there's atleast one accident in the place chosen.
+                                
 
     if(anneeGraphSelect.childElementCount>0){
         anneeGraphSelect.innerHTML="<select  name='annee' onchange='getAnnee()' id='annee-graph-select'></select>"
         anneeGraphSelect.innerHTML+="<option value='toutes-les-annees'>"+"toutes les années"+"</option>"
     }
     
-    if(inputLieu && inputLieu !="tous-les-lieux"){ //on recupère les années de la region selectionée
+    if(inputLieu && inputLieu !="tous-les-lieux"){ //Retrieve the years of the selected region
         try{                                              
             var res=await fetch(apiGraphAnnee+inputLieu+exculdeYear)
             var data=await res.json()
@@ -58,7 +58,6 @@ async function DrawFiltreAnnee(){  // mettre a jour le filtre année (secondaire
             console.log("erreur")
         }
         listAnneeLieu=data.facet_groups[0].facets
-        //console.log(listAnnee)
 
 
         for(var i=0;i<listAnneeLieu.length;i++){
@@ -93,19 +92,19 @@ async function DrawFiltreAnnee(){  // mettre a jour le filtre année (secondaire
 
 
 
-function getValueColonne(){  //récuperer le type de graphe choisi
+function getValueColonne(){  //Retrieve the graph type chosen
     
     typeChart = colonneSelect.value
-    selectColonne()   //changer le type de graphe
+    selectColonne()   //Change the graph type
 }
 
-function getValueX(){    //recuperer la donnée à afficher
+function getValueX(){    //Retrieve the data to display
 
     inputValueX=xSelect.value
 
     
                                           
-    if(inputAnneeGraph || inputLieu){  //initialiser les filtres secondaires
+    if(inputAnneeGraph || inputLieu){  //Initialize secondary filters
         if(inputLieu){
             inputLieu=null
             initLieuSelect()
@@ -117,29 +116,29 @@ function getValueX(){    //recuperer la donnée à afficher
         
     }
 
-    getData()  //recuperer les données
+    getData()  //Retrieve datas
 
 }
 
 function getAnnee(){
     inputAnneeGraph=anneeGraphSelect.value
     
-    getData() //mettre a jour les données
+    getData() //Update datas
 }
 
 function getLieu(){
     inputLieu=lieuSelect.value
-    inputAnneeGraph="toutes-les-annees" //mettre a 0 le filtre annee (secondaire) si on change de lieu
+    inputAnneeGraph="toutes-les-annees" //Reset the filter "année" if we change the filter "lieu"
 
-    DrawFiltreAnnee()  //afficher seulement les années durant lesquelles on a des données pour un lieu
+    DrawFiltreAnnee()  //Display only years when they were accidents in one place.
     
 
 
-    getData() //mettre à jour les données
+    getData() //Update datas
 }
 
 
-//recuperer les données et afficher le graphe
+//Retrieve datas and display graph
 
 getData()  
 DrawFiltreLieu()

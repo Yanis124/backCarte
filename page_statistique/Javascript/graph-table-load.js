@@ -1,4 +1,4 @@
-//afficher les animations et le message d'erreur dans le graph et le tableau 
+//Diplay animations and the error message in the graph and in the chart
 
 
 const spinnerGraph=document.getElementById("spinner-graph")   
@@ -13,18 +13,18 @@ const tableRegionData=document.getElementById("table-region-data")
 
 function loadGraph(){
     canvas.style.display="none"  
-    spinnerGraph.style.display="block"         //afficher l'animation si les données ne sont pas encore chargées
+    spinnerGraph.style.display="block"         //Display the animation if datas are not yet loaded
     graphContainer.style.backgroundColor="white"
     erreursGraph.style.display="none"
 }
 
-function erreurGraph(){                              //afficher un message d'erreur 
+function erreurGraph(){                              //Error message
     console.log("erreur de fetch")
     canvas.style.display="none"
     erreursGraph.style.display="block"
 }
   
-function workGraph() {                              //supprimer l'animation si les données ont été recuperé
+function workGraph() {                              //Delete the animation if datas have been retrieved
     spinnerGraph.style.display="none"
     
     if(erreursGraph.style.display!="block"){

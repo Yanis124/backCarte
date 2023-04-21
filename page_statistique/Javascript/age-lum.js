@@ -1,4 +1,4 @@
-function regroupeAge(ageList){ //regrouper les tranche d'âge et mettre les données dans la liste datas  0-18 18-60 +60 
+function regroupeAge(ageList){ //Regroup age groups and put datas in the list : 0-17 18-30 31-59 +60
     var countsSmall=0
     var countsMedS=0
     var countsMedH=0
@@ -37,7 +37,7 @@ function regroupeAge(ageList){ //regrouper les tranche d'âge et mettre les donn
 
 }
 
-function regroupeLum(lumList){  //regrouper les donnees jour/nuit et les mettre dans la liste datas
+function regroupeLum(lumList){  //Regroup datas day/night and put them in the list
     var countsJour=0
     var countsNuit=0
     for(var i=0;i<lumList.length;i++){

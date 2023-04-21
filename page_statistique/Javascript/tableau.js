@@ -9,14 +9,14 @@ tableRecords.id="table-region"
 
 var apiTable="https://data.opendatasoft.com/api/records/1.0/search/?dataset=accidents-corporels-de-la-circulation-millesime%40public&q=&rows=0&facet=reg_name"
 
-var dataTableList=[] //contient les données du tableau
+var dataTableList=[] //Contain the chart datas
 
-var inputAnneeTable  //contient l'année
+var inputAnneeTable  //Contain the year
 
 async function getDataTable(){
-    await loadTable() //afficher l'animation
+    await loadTable() //Diplay the animation
 
-    if(inputAnneeTable && inputAnneeTable !="toutes-les-annees"){ //si inputAnneeTable n'est pas definie et diferent de tout
+    if(inputAnneeTable && inputAnneeTable !="toutes-les-annees"){ //if inputAnneeTable is already define and different than "toutes-les-annees"
         try{
         
             var res=await fetch(apiTable+"&refine.datetime="+inputAnneeTable)
@@ -24,7 +24,7 @@ async function getDataTable(){
             dataTableList=data.facet_groups[0].facets
         }
         catch{
-            erreurTable() //afficher une erreur
+            erreurTable() //Error message
 
         }
     }
@@ -35,7 +35,7 @@ async function getDataTable(){
             dataTableList=data.facet_groups[0].facets
         }
         catch{
-            erreurTable()       //afficher une erreur
+            erreurTable()       //Error message
 
         }
     }
@@ -47,16 +47,16 @@ async function DrawTable(){
 
     //createFirstTbody(10)
     
-    await getDataTable() //recuperer les données
+    await getDataTable() //Retrieve datas
 
-        if(tableRecords){  //remettre a 0 le tableau
+        if(tableRecords){  //Reset the chart
             tableRecords.innerHTML=" "
         }
         
 
         
     
-        for(var i=0;i<dataTableList.length;i++){  //creer le tableau
+        for(var i=0;i<dataTableList.length;i++){  //Create the chart
             var ligneTable=document.createElement("tr")
             ligneTable.innerHTML="<td>" +(i+1)+"</td>"+"<td>"+ dataTableList[i].name+"</td>"+"<td>"+ dataTableList[i].count+"</td>"
             tableRecords.appendChild(ligneTable)
@@ -65,15 +65,15 @@ async function DrawTable(){
             table.removeChild(table.children[1])
         }
         table.appendChild(tableRecords)
-        workTable()  //afficher le tableau
-        appearText()  //afficher les texte
+        workTable()  //Diplay the chart
+        appearText()  //Display texts
         
         
 
 
 }
 
-function resetTable(){  //réinitialiser le tableau 
+function resetTable(){  //Reset the chart
 
 
 
@@ -106,11 +106,11 @@ function createFirstTbody(){
 
 
 
-function getAnneeTable(){   //recuperer l'années
+function getAnneeTable(){   //Retrieve the year
     inputAnneeTable=anneeRegionTable.value
 
     
-    resetTable() //réinitialiser le tableau
+    resetTable() //Reset the chart
 
-    DrawTable() //creer le tableau
+    DrawTable() //Create the chart
 }
