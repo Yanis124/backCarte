@@ -1,4 +1,4 @@
-//mettre à 0 les filtres secondaires
+//Reset secondary filters
 
 function initAnneeSelect(){   
     anneeGraphSelect.selectedIndex = 0;

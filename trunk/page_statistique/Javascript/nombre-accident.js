@@ -1,4 +1,4 @@
-//recuperer le nombre d'accident total et le mettre dans le footer
+//Retrieve the total numbers of accidents
 
 const nombreAccident=document.getElementById("nombre-accident")
 
