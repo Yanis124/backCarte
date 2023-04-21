@@ -1,4 +1,4 @@
-//Retrieve the total numbers of accidents
+//Retrieve the total number of accidents
 
 const nombreAccident=document.getElementById("nombre-accident")
 

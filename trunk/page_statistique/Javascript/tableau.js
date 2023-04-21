@@ -14,7 +14,7 @@ var dataTableList=[] //Contain the chart datas
 var inputAnneeTable  //Contain the year
 
 async function getDataTable(){
-    await loadTable() //Diplay the animation
+    await loadTable() //Display the animation
 
     if(inputAnneeTable && inputAnneeTable !="toutes-les-annees"){ //if inputAnneeTable is already define and different than "toutes-les-annees"
         try{
