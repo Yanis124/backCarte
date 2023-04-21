@@ -5,72 +5,72 @@ var exculdeYear="&exclude.datetime=2011"
 
 
 
-async function getData(){  //recuperer les données datetime, atm ,atm ,an-nais ,sexe, grav et creer le graph
+async function getData(){  // Retrieve differents datas: datetime, atm, an-nais, sexe, grav and create the graph
 
-    loadGraph() //afficher l'annimation
+    loadGraph() //Display the animation
 
-    if(inputLieu && inputAnneeGraph && inputAnneeGraph!="toutes-les-annees" && inputLieu!="tous-les-lieux"){ //si l'utilisateur rentre annee
+    if(inputLieu && inputAnneeGraph && inputAnneeGraph!="toutes-les-annees" && inputLieu!="tous-les-lieux"){ //if the user enter a "année"
         try{
-            var res=await fetch(apiGraphX+inputValueX+"&refine.datetime="+inputAnneeGraph+"&refine.reg_name="+inputLieu) //ajouter le filtre année a l'api
+            var res=await fetch(apiGraphX+inputValueX+"&refine.datetime="+inputAnneeGraph+"&refine.reg_name="+inputLieu) //Add the filter "année" to the API
         
             var data=await res.json()
         }
         catch(error){
-            erreurGraph() //afficher une erreur
+            erreurGraph() //Display an error
 
         }
     }
 
-    else if(inputLieu && (!inputAnneeGraph || inputAnneeGraph=="toutes-les-annees") && inputLieu!="tous-les-lieux"){ //si l'utilisateur rentre annee
+    else if(inputLieu && (!inputAnneeGraph || inputAnneeGraph=="toutes-les-annees") && inputLieu!="tous-les-lieux"){ //if the user enter a "année"
         try{
-            var res=await fetch(apiGraphX+inputValueX+"&refine.reg_name="+inputLieu+exculdeYear) //ajouter le filtre lieu a l'api
+            var res=await fetch(apiGraphX+inputValueX+"&refine.reg_name="+inputLieu+exculdeYear) //Add the filter "lieu" to the API
         
             var data=await res.json()
             
         }
         catch(error){
-            erreurGraph() //afficher une erreur
+            erreurGraph() //Display an error
 
         }
     }
     
-    else if(inputAnneeGraph &&(!inputLieu || inputLieu=="tous-les-lieux") && inputAnneeGraph!="toutes-les-annees"){ //si l'utilisateur rentre une annee
+    else if(inputAnneeGraph &&(!inputLieu || inputLieu=="tous-les-lieux") && inputAnneeGraph!="toutes-les-annees"){ //fi the user enter a "année"
         try{
-            var res=await fetch(apiGraphX+inputValueX+"&refine.datetime="+inputAnneeGraph) //ajouter le filtre année a l'api
+            var res=await fetch(apiGraphX+inputValueX+"&refine.datetime="+inputAnneeGraph) //Add the filter "année" to the API
         
             var data=await res.json()
         }
         catch(error){
-            erreurGraph() //afficher une erreur
+            erreurGraph() //Display an error
 
         } 
     }
 
-    else{ //si l'utilisateur ne choisit pas d'année ni de lieu ou "toutes les années et tous les lieus"
+    else{ // If the user didn't choose nor a "année" neither a "lieu" or "toutes les années et tous les lieux"
         try{
             var res=await fetch(apiGraphX+inputValueX+exculdeYear)
         
             var data=await res.json()
         }
         catch(error){
-            erreurGraph() //afficher une erreur
+            erreurGraph() //Display an error
         }
     }
 
     console.log(data)
 
     
-    workGraph() //les données ont bien été récuperé
+    workGraph() // Datas have been retrieved
 
 
-        datas=[] //réinitialiser la liste datas et label 
+        datas=[] // Reset the lists datas and label
         label=[]
 
         if(data.facet_groups[0].name=="an_nais"){
-            regroupeAge(data.facet_groups[0].facets) //regrouper les tranches d'age
+            regroupeAge(data.facet_groups[0].facets) //Regroup age groups
         }
         else if(data.facet_groups[0].name=="lum"){
-            regroupeLum(data.facet_groups[0].facets) //regrouper en jour/nuit
+            regroupeLum(data.facet_groups[0].facets) 
         }
         else{
             for(var i=0;i<data.facet_groups[0].facets.length;i++){
@@ -80,27 +80,25 @@ async function getData(){  //recuperer les données datetime, atm ,atm ,an-nais 
         }
     console.log(datas)
 
-    updateTitles() //mettre à jour les titres des graphes 
+    updateTitles() //Update graphs titles
 
 
     if(!chart){
-        chart=courbe() //créer le graphe s'il n'existe pas
+        chart=courbe() //if there's no graph, create one
     }
-    //console.log(datas)
     
-    //selectX() //creer le graphe en choisissant son type et ses données
+    //selectX() // Create the graph choosing his type and his datas
 
-    selectData()  //mettre les données dans le graphe
+    selectData()  //Put the datas in the graph
 
-    selectX()    //selectionner le type de graphe par defaut
+    selectX()    //Select the default type of graph 
         
 }
 
 
-function selectX(){  //selectionner le type de graphe (par defaut date=>courbe sexe=>camembert ....) et les données 
-    //console.log(inputValueX)
+function selectX(){  //Select the graph type (by default date=>courbe sexe=>camembert ...) and datas
     if(inputValueX==facets[0]){
-        if(!typeChart){ //si l'utilisateur n'a pas choisi de type de graphe on affiche le type par defaut
+        if(!typeChart){ //If the user didn't choose any graph type, we use the default type
             selectColonne("courbe")
 
         } 

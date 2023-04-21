@@ -1,4 +1,4 @@
-//la creation du graphe , modifier son style,type... ,modifier ses données
+//the creation of the graph , modify his style, his type... ,modify his datas
 hover_effect="0.7"
 
 bg_color=["rgb(255,255,255)"]
@@ -20,7 +20,7 @@ var facets=["datetime","reg_name","dep_name","atm","sexe","an_nais","grav","lum"
 
 
 
-var titlesExemple=["Nombre d'Accidents par Année ","Nombre d'Accidents par Région ","Nombre d'Accidents par Département ","Nombre d'Accidents d'après la Condition Météorologique ","Nombre de Personnes Accidentées par Sexe ","Nombre de Personnes Accidentées par Tranche d'Âge ","Nombre de Personnes Accidentées d'après la Gravité de l'Accident ","Nombre d'Accidents de Jour/Nuit "] //titre des graphes (exemple par defaut)
+var titlesExemple=["Nombre d'Accidents par Année ","Nombre d'Accidents par Région ","Nombre d'Accidents par Département ","Nombre d'Accidents d'après la Condition Météorologique ","Nombre de Personnes Accidentées par Sexe ","Nombre de Personnes Accidentées par Tranche d'Âge ","Nombre de Personnes Accidentées d'après la Gravité de l'Accident ","Nombre d'Accidents de Jour/Nuit "] //graphs titles
 
 var titles=[]
 
@@ -36,7 +36,7 @@ const plugin = {
     }
   };
 
-var configLine={   //une configuration par defaut pour representer le nombre d'accidents par année
+var configLine={   //a default configuration to represent the number of accidents by year
     type: 'bar',
     data: {
         labels:[],
@@ -119,7 +119,7 @@ Chart.register(plugin,ChartDataLabels);
 
 
 
-function updateTitles(){  //mettre à jour le titre du graphe 
+function updateTitles(){  //Uptate the graphs titles
     titles=[]
     for(var i=0;i<facets.length;i++){
         if(inputValueX==facets[i]){
@@ -146,7 +146,7 @@ function updateTitles(){  //mettre à jour le titre du graphe
 
 
 
-function selectData(){  //mettre a jour les données du graphe
+function selectData(){  //Update the graphs datas
 
     chart.data.labels=label
     chart.data.datasets[0].data=datas
@@ -156,13 +156,13 @@ function selectData(){  //mettre a jour les données du graphe
 
 }
 
-function selectColonne(inputChart){ //changer  le type de graphe
+function selectColonne(inputChart){ //Change the type of graphs
     
-    if(inputChart=="colonne" || typeChart=="colonne"){ //type de graphe par defaut ou changer le type des graphes par le filtre colonne
+    if(inputChart=="colonne" || typeChart=="colonne"){ //Type of graphs by default or choose the type "colonne"
         
         configColonne() 
 
-        if(!typeChart){  // on change l'afichage du filtre colonne si l'utilisateur n'a pas utiliser le filtre colonne 
+        if(!typeChart){  // We change the filter "colonne" display if the user didn't choose it
             colonneSelect[0].innerHTML="Colonne"
             colonneSelect[1].innerHTML="Courbe"
             colonneSelect[2].innerHTML="Camembert"
@@ -204,7 +204,7 @@ function selectColonne(inputChart){ //changer  le type de graphe
     
 }
 
-function configCamembert(){   // la config de chaque type de graphe
+function configCamembert(){   // The configuration of each graph type
     chart.config.type="pie"
     chart.options.scales.x.display=false
     chart.options.scales.y.display=false
@@ -221,7 +221,7 @@ function configCamembert(){   // la config de chaque type de graphe
 function configColonne(){
    
 
-    chart.config.type="bar"  //mettre à jour le type de graphe
+    chart.config.type="bar"  //Update graph type
     chart.options.scales.x.display=true
     chart.options.scales.y.display=true
     chart.data.datasets[0].backgroundColor=color_bar
@@ -246,7 +246,7 @@ function configCourbe(){
     chart.update()
 }
 
-function courbe(){  //générer la courbe avec les données de années
+function courbe(){  //Generate the courb with years datas
     var chart =new Chart(canvas, configLine);
     chart.data.labels=label[0]
     chart.data.datasets[0].data=datas[0]
