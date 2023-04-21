@@ -57,7 +57,6 @@ async function getData(){  // Retrieve differents datas: datetime, atm, an-nais,
         }
     }
 
-    console.log(data)
 
     
     workGraph() // Datas have been retrieved
@@ -78,7 +77,6 @@ async function getData(){  // Retrieve differents datas: datetime, atm, an-nais,
                 label.push(data.facet_groups[0].facets[i].name)
             }
         }
-    console.log(datas)
 
     updateTitles() //Update graphs titles
 

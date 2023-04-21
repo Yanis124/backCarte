@@ -1,4 +1,4 @@
-//Diplay animations and the error message in the graph and in the chart
+//Display animations and the error message in the graph and in the chart
 
 
 const spinnerGraph=document.getElementById("spinner-graph")   
