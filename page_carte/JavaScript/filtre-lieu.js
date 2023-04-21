@@ -30,6 +30,11 @@ function addEventVille(){  //simuler le comportement de la checklist dans le fil
     var villeText=document.querySelector(".ville-text")
     var items = document.querySelectorAll(".ville-container .item")
     var resetBtn = document.querySelector('input[type="reset"]');
+    var listItem=document.querySelector(".ville-container .select-btn")
+
+    listItem.addEventListener("click",()=>{
+        closeListsOpened(listItem)
+    })
 
     items.forEach(item => {
     item.addEventListener("click", () => {
@@ -80,6 +85,11 @@ function addEventDepartement(){  //simuler le comportement de la checklist dans 
     var departementText=document.querySelector(".departement-text")
     var items = document.querySelectorAll(".departement-container .item")
     var resetBtn = document.querySelector('input[type="reset"]');
+    var listItem=document.querySelector(".departement-container .select-btn")
+
+    listItem.addEventListener("click",()=>{
+        closeListsOpened(listItem)
+    })
 
     items.forEach(item => {
     item.addEventListener("click", () => {
@@ -126,6 +136,11 @@ function addEventRegion(){
     var regionText=document.querySelector(".region-text")
     var items = document.querySelectorAll(".region-container .item")
     var resetBtn = document.querySelector('input[type="reset"]');
+    var listItem=document.querySelector(".region-container .select-btn")
+
+    listItem.addEventListener("click",()=>{
+        closeListsOpened(listItem)
+    })
 
     items.forEach(item => {
     item.addEventListener("click", () => {
@@ -164,12 +179,7 @@ function addEventRegion(){
 
 }
 
-function closeList(){   //fermer la liste une fois qu'on a choisi la ville dep region
 
-    const selectBtns = document.querySelectorAll(".select-btn")
-
-    selectBtns.forEach(selectBtn => {selectBtn.classList.value="select-btn"} )
-}
 
 function createList(valueList){  //creer les options de la checklist
 

@@ -1,14 +1,11 @@
-function regrouper(){ //Appliquer le style à tous les clusters
+const noteSmall = document.getElementsByClassName("leaflet-marker-icon marker-cluster marker-cluster-small leaflet-zoom-animated leaflet-interactive ");
+const noteMedium=document.getElementsByClassName("leaflet-marker-icon marker-cluster marker-cluster-medium leaflet-zoom-animated leaflet-interactive")
+const noteLarge=document.getElementsByClassName("leaflet-marker-icon marker-cluster marker-cluster-large leaflet-zoom-animated leaflet-interactive")
+//Selectionner les objets à chaque fois qu'on zoom ou on dezoom des numeros apparaissent pour indiquer le nombre de marqueurs regroupés
 
-    
-    const noteSmall = document.getElementsByClassName("leaflet-marker-icon marker-cluster marker-cluster-small leaflet-zoom-animated leaflet-interactive ");
-    const noteMedium=document.getElementsByClassName("leaflet-marker-icon marker-cluster marker-cluster-medium leaflet-zoom-animated leaflet-interactive")
-    const noteLarge=document.getElementsByClassName("leaflet-marker-icon marker-cluster marker-cluster-large leaflet-zoom-animated leaflet-interactive")
-    //Selectionner les objets à chaque fois qu'on zoom ou on dezoom des numeros apparaissent pour indiquer le nombre de marqueurs regroupés
-    
-   
-    
-        
+
+function regrouper(){ //Appliquer le style à tous les clusters
+  
     if(noteSmall.length>0){  
         
         style(noteSmall)
@@ -49,8 +46,26 @@ function style(note){   //Ajouter du style aux clusters
             Div.style.borderStyle="solid"
             Div.style.borderColor="white"
             Div.style.borderRadius="50px"
-            Div.style.padding="10px"
+            //Div.style.padding="10px"
             Div.style.zIndex="9999"
+            if(number.innerText.length>=5){
+                Div.style.padding="12px"
+            }
+
+            else if(number.innerText.length>=4){
+                Div.style.padding="10px"
+            }
+
+            else if(number.innerText.length>=3){
+                Div.style.padding="8px"
+            }
+            else if(number.innerText.length>=2){
+                Div.style.padding="6px"
+            }
+            else{
+                Div.style.padding="4px"
+            }
+            
         
         
         
@@ -106,30 +121,33 @@ function popUpData(data){   //si la donnée n'est pas disponible dans l'api
 
 function displaydata(data){
     var arr = data.split(','); // split the string by comma delimiter
-    if(arr.length>3){
-        var fourth = arr.slice(0, 3);
-        var leftArr=arr.slice(3,arr.length)
-        var result=""
-        fourth.forEach(element => {
-            result+=element+","
-        });
-        result+=" "
-        leftArr.forEach(element=>{
-            result+=element+","            
-        })
-
-        return result
+        var n=arr.length
         
-    }
+        if(n>3){
+            var result=""
+            var count=0
+            while(count<n){
+                var fourth = arr.slice(count,count+3);
+                count=count+3
 
-    else{
+                
+                fourth.forEach(element => {
+                    if(element !=""){
+                        result+=element+","
+                    }
+                });
+                result=result+" "
+            }
+            data=result
+        }
+
         return data
-    }
+    
 
     
 
     
 }
 
-setInterval(regrouper, 500)  //on appelle la fonction regrouper() tous les 500ms
+setInterval(regrouper, 500)  //on appelle la fonction regrouper() tous les 300ms
 

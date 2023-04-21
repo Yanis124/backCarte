@@ -127,17 +127,17 @@
                         </div>
                         <!-- Si sélectionne du filtre Date alors affichage d'un élément choix de date spécifique-->
                         <div class="date-container" id="date-specifique-container" style="display: none;">
-                            <input onkeydown="return false" onchange="getDate()" id="date" type="date" id="date-specifique" name="date-specifique">
+                            <input onkeydown="return false" onclick="closeList()"  onchange="getDate()" id="date" type="date" id="date-specifique" name="date-specifique">
                             <span>Date</span>
                         </div>
                         <!-- Si sélectionne du filtre Intervalle de Date alors affichage d'un élément choix de date Début et d'un élément choix de date de Fin-->
                         <div class="date-container" id="date-interval-container" style="display: none;">
                             <div class="interval-container">
-                                <input onkeydown="return false" onchange="getIntervalleDateStart(); getIntervalleDate()" type="date" id="date-debut" name="date-debut">
+                                <input onkeydown="return false" onclick="closeList()" onchange="getIntervalleDateStart(); getIntervalleDate()" type="date" id="date-debut" name="date-debut">
                                 <span>Debut</span>
                             </div>
                             <div class="interval-container">
-                                <input onkeydown="return false" onchange="getIntervalleDateEnd(); getIntervalleDate()" type="date" id="date-fin" name="date-fin">
+                                <input onkeydown="return false" onclick="closeList()" onchange="getIntervalleDateEnd(); getIntervalleDate()" type="date" id="date-fin" name="date-fin">
                                 <span>Fin</span>
                             </div>
                         </div>
