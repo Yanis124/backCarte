@@ -1,4 +1,4 @@
-//telécharger le graph
+//Download the graph
 
 function download(){
     const imageLink=document.createElement("a")
