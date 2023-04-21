@@ -10,13 +10,16 @@ var carIcon = new L.Icon({ //modifier le marqueur
     shadowSize: [41, 41]
   });
 
+var southWest = L.latLng(35.712, -15.227)
+var northEast = L.latLng(65.774, 15.125)
+var bounds = L.latLngBounds(southWest, northEast);
 var map
 var locationBase=[48.862725, 2.287592]
-
 
 function initMap(){  //Initialisation de la carte
     map=L.map("map",{
         fullscreenControl: true,
+        maxBounds: bounds,   
         fullscreenControlOptions: {
         position: 'topright'},
         wheelDebounceTime:0,
@@ -40,30 +43,14 @@ function initMap(){  //Initialisation de la carte
     map.on('zoom', ()=> {
         zoom=map.getZoom()
     })
-
-    
 }
 
-
-
-
-
-
-
-
-var listMarkerCluster=[]
+var markerCluster=new L.markerClusterGroup( { animate: true,animateAddingMarkers: true})
 
 
 function removePin(){  //supprimer tous les marqueurs
+        markerCluster.clearLayers() 
 
-    listMarkerCluster.forEach(element => {
-        element.clearLayers()
-    });
-    listMarkerCluster=[]
-
-
-    
-    
 }
 
 
@@ -102,10 +89,9 @@ async function createPin(){
     let marker
     let pop
 
-
-    for(let j=0; j<~~(list.length/record)+1;j++ ){   //create a list of markerclusters
-        listMarkerCluster.push(new L.markerClusterGroup( { animate: true,animateAddingMarkers: true}) )
-    }
+        markerCluster=new L.markerClusterGroup( { animate: true,animateAddingMarkers: true}) 
+    
+    
     
 
     
@@ -119,27 +105,30 @@ async function createPin(){
             pop = popUp(list, i);
             marker.bindPopup(pop);
             markers.push(marker)
-            listMarkerCluster[~~(i/record)].addLayers(marker);
-            if(i%record==0){  //add only 100000 markers at once 
+            
+            if(i%record==0 && i>0){  //add only 100000 markers at once 
                 
+                markerCluster.addLayers(markers);
+                markers=[]
                 
-                
-                map.addLayer(listMarkerCluster[~~(i/record)-1]);
+                map.addLayer(markerCluster);
                 loadCarte()
                 await new Promise(r => setTimeout(r, waitingTime)); //sleep(2) 
                 workCarte() 
+                console.log(i)
                 
             }
             
             
             else if(i==(list.length -2) && (i%record!=0)){ //add the rest of the markers
+
+                markerCluster.addLayers(markers);
                 
-                
-                map.addLayer(listMarkerCluster[~~(i/record)]);
-                loadCarte
+                map.addLayer(markerCluster);
+                loadCarte()
                 await new Promise(r => setTimeout(r, waitingTime)); 
 
-               
+                console.log(i)
             }
             
 
@@ -163,21 +152,13 @@ async function createPin(){
         console.log("couldn't find coordinates")
     }
 
-    
-    
-
-    
-
-    
 }
 
 function setViewUser(listCoordonnees){   //center the map to a specific location
-    console.log(listCoordonnees)
     map.setView(listCoordonnees,zoom, {  //make the animation smooth 
         "animate": true,
         "pan": {
           "duration": 1
         }})
 }
-
 

@@ -16,6 +16,8 @@ var textLum=document.querySelectorAll('.lum-container p')
 var listClass=[".ville-container",".weather-container",".age-container",".gravite-container",".departement-container",".region-container"]
 
 function getIntervalleDateStart(){
+
+    closeList()
     var textDate=document.querySelectorAll('#date-interval-container span')
     textDate[0].style.color="gray"
     selectedDateStart=dateStart.value
@@ -25,6 +27,8 @@ function getIntervalleDateStart(){
 }
 
 function getIntervalleDateEnd(){
+
+    closeList()
     var textDate=document.querySelectorAll('#date-interval-container span')
     textDate[1].style.color="gray"
     selectedDateEnd=dateEnd.value
@@ -34,6 +38,7 @@ function getIntervalleDateEnd(){
 }
 
 function getIntervalleDate(){  //filtrer les données si on a la date début et de fin
+
     selectedDate=null  //mettre a 0 la valeur de date
 
     if(selectedDateEnd && selectedDateStart){
@@ -42,6 +47,7 @@ function getIntervalleDate(){  //filtrer les données si on a la date début et 
 }
 
 function getDate(){  //recuperer la date 
+    closeList()
     selectedDateEnd=selectedDateStart=null //mettre a 0 l'intervalle de date
     var textDate=document.querySelector('#date-specifique-container span')
     textDate.style.color="gray"
@@ -200,10 +206,16 @@ function getAtm(){  //recuperer les valeurs du filtre meteo
     var textChoix=document.querySelector("#weather-choice")
     var weatherText=document.querySelector(".weather-text")
     var items = document.querySelectorAll(".weather-container .item")
+    var listItem=document.querySelector(".weather-container .select-btn")
+
+    listItem.addEventListener("click",()=>{
+        closeListsOpened(listItem)
+    })
 
     items.forEach(item => {
     item.addEventListener("click", () => {
         item.classList.toggle("checked");
+        closeList()
 
         const selectedItems = document.querySelectorAll("#weather .checked"); // Récupérer tous les éléments avec la classe "checked"
 
@@ -242,10 +254,16 @@ function getAge(){
     var textChoix=document.querySelector("#age-choice")
     var ageText=document.querySelector(".age-text")
     var items = document.querySelectorAll(".age-container .item")
+    var listItem=document.querySelector(".age-container .select-btn")
+
+    listItem.addEventListener("click",()=>{
+        closeListsOpened(listItem)
+    })
 
     items.forEach(item => {
     item.addEventListener("click", () => {
         item.classList.toggle("checked");
+        closeList()
 
         const selectedItems = document.querySelectorAll(".age-container .checked"); // Récupérer tous les éléments avec la classe "checked"
 
@@ -286,11 +304,18 @@ function getGravite(){
 
     var textChoix=document.querySelector("#gravite-choice")
     var graviteText=document.querySelector(".gravite-text")
-    items = document.querySelectorAll(".gravite-container .item"),
+    var items = document.querySelectorAll(".gravite-container .item")
+    var listItem=document.querySelector(".gravite-container .select-btn")
+    
+
+    listItem.addEventListener("click",()=>{
+            closeListsOpened(listItem)
+    })
 
     items.forEach(item => {
     item.addEventListener("click", () => {
         item.classList.toggle("checked");
+        closeList()
 
         const selectedItems = document.querySelectorAll(".gravite-container .checked"); // Récupérer tous les éléments avec la classe "checked"
 
@@ -341,4 +366,23 @@ function openFiltreList(){   //ouvrire les listes des filtres
             }); 
         });
     }
+}
+
+function closeList(){   //fermer la liste une fois qu'on a choisi la ville dep region
+
+    const selectBtns = document.querySelectorAll(".select-btn")
+    
+
+    selectBtns.forEach(selectBtn => {selectBtn.classList.value="select-btn"} )
+}
+
+function closeListsOpened(list){
+    const selectBtns = document.querySelectorAll(".select-btn")
+    
+    selectBtns.forEach(selectBtn => {
+        if(selectBtn !=list){
+            selectBtn.classList.value="select-btn"
+            }
+        } )
+    
 }
