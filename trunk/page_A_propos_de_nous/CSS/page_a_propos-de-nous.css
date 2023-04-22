@@ -47,6 +47,9 @@ p, #part2{
     margin-right: 35px;
 }
 
+.avatar {
+    border-radius: 50%;
+}
 
 
 section1 p{
