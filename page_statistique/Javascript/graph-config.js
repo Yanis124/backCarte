@@ -114,12 +114,7 @@ Chart.register(plugin,ChartDataLabels);
 
 
 
-
-
-
-
-
-function updateTitles(){  //Uptate the graphs titles
+function updateTitles(){  //Update the graphs titles
     titles=[]
     for(var i=0;i<facets.length;i++){
         if(inputValueX==facets[i]){

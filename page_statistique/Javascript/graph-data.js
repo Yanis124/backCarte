@@ -4,7 +4,6 @@ var apiGraphX="https://data.opendatasoft.com/api/records/1.0/search/?dataset=acc
 var excludeYear="&exclude.datetime=2011"
 
 
-
 async function getData(){  // Retrieve differents datas: datetime, atm, an-nais, sexe, grav and create the graph
 
     loadGraph() //Display the animation
@@ -84,8 +83,6 @@ async function getData(){  // Retrieve differents datas: datetime, atm, an-nais,
     if(!chart){
         chart=courbe() //if there's no graph, create one
     }
-    
-    //selectX() // Create the graph choosing his type and his datas
 
     selectData()  //Put the datas in the graph
 
