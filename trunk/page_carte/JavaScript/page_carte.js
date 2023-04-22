@@ -63,7 +63,7 @@ function removePin(){  //supprimer tous les marqueurs
 
 async function createPin(){
 
-    loadCarte()
+    await loadCarte()
     loadFiltre()
 
     
@@ -110,6 +110,7 @@ async function createPin(){
                 
                 markerCluster.addLayers(markers);
                 markers=[]
+                await loadCarte()
                 
                 map.addLayer(markerCluster);
                 
@@ -121,7 +122,7 @@ async function createPin(){
                 markerCluster.addLayers(markers);
                 
                 map.addLayer(markerCluster);
-                loadCarte()
+                
                 
 
                 

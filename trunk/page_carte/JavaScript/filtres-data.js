@@ -28,7 +28,7 @@ async function getDataFiltre(){
     deb = Date.now()
 
     
-    loadCarte()  //ajouter une animation de chargement 
+    await loadCarte()  //ajouter une animation de chargement 
     loadFiltre()
 
     await new Promise(r => setTimeout(r, 100)); //sleep(2) pour executer loadCarte() et loadFiltre() //a refaire 
@@ -155,7 +155,7 @@ async function getDataFiltre(){
    
 }
 async  function filterList() {   //selectedValueAtm contient les valeurs selectionnées dans le filtre atm
-    loadCarte()  //ajouter une animation de chargement 
+    await loadCarte()  //ajouter une animation de chargement 
     loadFiltre()
 
     init=true
@@ -414,7 +414,7 @@ function selectDataFiltre(){
 async function initFiltre(){  //éviter de cliquer plusieurs fois sur remettre à 0 de suite
     if(init){
         selectedVille=selectedDepartement=selectedDate=selectedLum=selectedRegion=selectedValuesAtm=selectedValuesAge=selectedValuesGravite=selectedDateEnd=selectedDateStart= null //remettre a 0 les filtres 
-        loadCarte()  //ajouter une animation de chargement 
+        await loadCarte()  //ajouter une animation de chargement 
         loadFiltre()
 
         
