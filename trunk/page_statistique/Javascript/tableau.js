@@ -45,7 +45,6 @@ async function getDataTable(){
 
 async function DrawTable(){
 
-    //createFirstTbody(10)
     
     await getDataTable() //Retrieve datas
 
@@ -65,7 +64,7 @@ async function DrawTable(){
             table.removeChild(table.children[1])
         }
         table.appendChild(tableRecords)
-        workTable()  //Diplay the chart
+        workTable()  //Display the chart
         appearText()  //Display texts
         
         

@@ -1,11 +1,8 @@
 //Display animations and the error message in the graph and in the chart
 
-
 const spinnerGraph=document.getElementById("spinner-graph") //Contain the spinner animation 
 const erreursGraph=document.getElementById("erreurs-graph")//Contain the error message
-
 const erreursTable=document.getElementById("erreurs-table")
-
 
 function loadGraph(){
     canvas.style.display="none"  
@@ -31,22 +28,20 @@ function workGraph() {                              //Delete the animation if da
     }
 }
 
-
-
-async function loadTable(){
+async function loadTable(){ //Display an animation for the chart
     
     table.className="table-loading"
     erreursTable.style.display="none"
     await new Promise(r => setTimeout(r, 500)); 
 }
 
-function erreurTable(){
+function erreurTable(){ 
     console.log("erreur de fetch")
     tableRecords.style.display="none"
     erreursTable.style.display="block"
 }
 
-function workTable() {
+function workTable() { //Display the chart
     table.className=""
     
     if(erreursTable.style.display!="block"){
