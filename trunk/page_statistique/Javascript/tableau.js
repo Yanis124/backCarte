@@ -1,7 +1,7 @@
 
 const anneeRegionTable=document.getElementById("annee-table-select")
 var records=document.getElementsByTagName("td")
-const table=document.getElementById("table-region-data")
+const table=document.getElementById("table-region-data")//Contain the chart
 
 var tableRecords=document.createElement("tbody")
 tableRecords.id="table-region"
@@ -51,8 +51,6 @@ async function DrawTable(){
         if(tableRecords){  //Reset the chart
             tableRecords.innerHTML=" "
         }
-        
-
         
     
         for(var i=0;i<dataTableList.length;i++){  //Create the chart
