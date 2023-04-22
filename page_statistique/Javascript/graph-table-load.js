@@ -1,11 +1,14 @@
 //Display animations and the error message in the graph and in the chart
 
 
-const spinnerGraph=document.getElementById("spinner-graph") //Contain the spinner animation 
-const erreursGraph=document.getElementById("erreurs-graph")//Contain the error message
+const spinnerGraph=document.getElementById("spinner-graph")   
+const erreursGraph=document.getElementById("erreurs-graph")
 
 
 const erreursTable=document.getElementById("erreurs-table")
+
+const tableRegionData=document.getElementById("table-region-data")
+
 
 
 function loadGraph(){
@@ -36,7 +39,7 @@ function workGraph() {                              //Delete the animation if da
 
 async function loadTable(){
     
-    table.className="table-loading"
+    tableRegionData.className="table-loading"
     erreursTable.style.display="none"
     await new Promise(r => setTimeout(r, 500)); 
 }
@@ -48,9 +51,9 @@ function erreurTable(){
 }
 
 function workTable() {
-    table.className=""
+    tableRegionData.className=""
     
     if(erreursTable.style.display!="block"){
-        table.style.display="table"
+        tableRegionData.style.display="table"
     }
 }

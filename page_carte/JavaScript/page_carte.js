@@ -112,10 +112,6 @@ async function createPin(){
                 markers=[]
                 
                 map.addLayer(markerCluster);
-                loadCarte()
-                await new Promise(r => setTimeout(r, waitingTime)); //sleep(2) 
-                workCarte() 
-                console.log(i)
                 
             }
             
@@ -126,9 +122,9 @@ async function createPin(){
                 
                 map.addLayer(markerCluster);
                 loadCarte()
-                await new Promise(r => setTimeout(r, waitingTime)); 
+                
 
-                console.log(i)
+                
             }
             
 

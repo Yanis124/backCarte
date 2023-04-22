@@ -46,6 +46,8 @@ function getIntervalleDate(){  //filtrer les données si on a la date début et 
     }
 }
 
+module.exports=getIntervalleDateStart
+
 function getDate(){  //recuperer la date 
     closeList()
     selectedDateEnd=selectedDateStart=null //mettre a 0 l'intervalle de date
