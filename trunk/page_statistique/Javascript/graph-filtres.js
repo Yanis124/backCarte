@@ -51,7 +51,7 @@ async function DrawFiltreAnnee(){ //Update the secondary filter "année" to disp
     
     if(inputLieu && inputLieu !="tous-les-lieux"){ //Retrieve the years of the selected region
         try{                                              
-            var res=await fetch(apiGraphAnnee+inputLieu+excludeYear)
+            var res=await fetch(apiGraphAnnee+inputLieu+exculdeYear)
             var data=await res.json()
         }
         catch{
@@ -70,7 +70,7 @@ async function DrawFiltreAnnee(){ //Update the secondary filter "année" to disp
     }
     else{
         try{                                              
-            var res=await fetch(apiGraphToutesAnnee+excludeYear)
+            var res=await fetch(apiGraphToutesAnnee+exculdeYear)
             var data=await res.json()
         }
         catch{

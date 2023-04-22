@@ -1,7 +1,7 @@
 
 
 var apiGraphX="https://data.opendatasoft.com/api/records/1.0/search/?dataset=accidents-corporels-de-la-circulation-millesime%40public&q=&rows=0&facet="
-var excludeYear="&exclude.datetime=2011"
+var exculdeYear="&exclude.datetime=2011"
 
 
 
@@ -23,7 +23,7 @@ async function getData(){  // Retrieve differents datas: datetime, atm, an-nais,
 
     else if(inputLieu && (!inputAnneeGraph || inputAnneeGraph=="toutes-les-annees") && inputLieu!="tous-les-lieux"){ //if the user enter a "année"
         try{
-            var res=await fetch(apiGraphX+inputValueX+"&refine.reg_name="+inputLieu+excludeYear) //Add the filter "lieu" to the API
+            var res=await fetch(apiGraphX+inputValueX+"&refine.reg_name="+inputLieu+exculdeYear) //Add the filter "lieu" to the API
         
             var data=await res.json()
             
@@ -48,7 +48,7 @@ async function getData(){  // Retrieve differents datas: datetime, atm, an-nais,
 
     else{ // If the user didn't choose nor a "année" neither a "lieu" or "toutes les années et tous les lieux"
         try{
-            var res=await fetch(apiGraphX+inputValueX+excludeYear)
+            var res=await fetch(apiGraphX+inputValueX+exculdeYear)
         
             var data=await res.json()
         }

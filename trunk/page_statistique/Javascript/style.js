@@ -1,8 +1,10 @@
-const graphContainer=document.getElementById("graph-container")//Contain the graph, the spinner animation and the error message
-const canvas=document.getElementById("canvas")//The graph
+
+
+const graphContainer=document.getElementById("graph-container")
+const canvas=document.getElementById("canvas")
 const graph=document.getElementById("graph-filtres-container")
 
-const axeX = document.getElementById("axe-x");//Contain the filter X axis.
+const axeX = document.getElementById("axe-x");
 const filtreLieu = document.querySelector(".filtre-lieu-container");
 const filtreAnnee = document.querySelector(".filtre-annee-container");
 
@@ -17,7 +19,7 @@ function afficherFiltres() {
         filtreLieu.style.display = "none"
 
     }
-    else if (axeX.value === "datetime") { //Hide secondary filter "année" if we chose "année" as the X-axis
+    else if (axeX.value === "datetime") { //Hide secondary filter "année" if we chose année as the X-axis
         filtreAnnee.style.display = "none"
     }
 

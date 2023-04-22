@@ -417,7 +417,7 @@ async function initFiltre(){  //Ã©viter de cliquer plusieurs fois sur remettre Ã
         loadCarte()  //ajouter une animation de chargement 
         loadFiltre()
 
-        await new Promise(r => setTimeout(r, 100)); //sleep(2) pour executer loadCarte() et loadFiltre() //a refaire 
+        
       
         filtre=false
         
