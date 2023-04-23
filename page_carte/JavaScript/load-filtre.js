@@ -1,5 +1,4 @@
-//bloquer les filtres lors du chargement des accidents
-var filter=document.getElementById("filtre-container") 
+//Block filters during the load of accidents
 
 //Récupère les éléments "date" et "luminosité"
 var switchTab=document.querySelectorAll("#switch-container")
