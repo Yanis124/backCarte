@@ -33,7 +33,7 @@ function initMap(){  //Initialization of the map
     
 
     
-    L.control.scale({   //ajouter les dimensions de la carte 
+    L.control.scale({   //Map dimensions
         metric:true,
         imperial:true,
         maxwidth:100,
@@ -62,14 +62,14 @@ async function createPin(){
     loadFiltre()
 
     
-    if(!filtre){ //on afficher tous les pin si on ne filtre pas
+    if(!filtre){ //display all pins if we don't filter
         var list=listAccident
         if(list.length<=0){
             await getAccident()
         }
         
     }
-    else{   //sinon ceux qui sont filtres
+    else{   
         var list=listAccidentFiltre
     }
 
