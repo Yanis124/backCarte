@@ -7,9 +7,7 @@ var dateEnd=document.getElementById("date-fin")
 var regionSelect = document.getElementById("region")
 var departementSelect = document.getElementById("departement")
 var villeSelect = document.getElementById("ville")
-var graviteSelect=document.getElementById("gravite-container")
-var meteoSelect=document.getElementById("weather-container")
-var ageSelect=document.getElementById("tranche-age")
+
 
 var jourSelect=document.getElementById("jour")
 var nuitSelect=document.getElementById("nuit")
