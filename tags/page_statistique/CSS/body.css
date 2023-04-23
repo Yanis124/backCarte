@@ -14,7 +14,7 @@
 
     --section-bg:#f5f5f5; /*variables de la section*/
     --section-border:#DEE5EF;
-    --section-filtre-bg:#a1b0b8;
+    --section-filtre-bg:rgba(139, 0, 139, 0.657);
 
     --graph-text-bg-hover:#b4dbd6;
     --graph-border-color:rgba(0,0,0,.15);
