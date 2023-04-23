@@ -1,5 +1,3 @@
-
-
 const nextBtn = document.querySelector('.right-button');
 const prevBtn = document.querySelector('.left-button');
 const images = document.querySelectorAll('article img');
@@ -29,7 +27,6 @@ function slideOut() {
 }
 
 function slideOutPrev(){
-    console.log(currentIndex)
     images[currentIndex].classList.add('slide-out-prev')
     
     
