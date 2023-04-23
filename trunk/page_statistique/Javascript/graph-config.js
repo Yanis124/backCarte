@@ -112,8 +112,6 @@ var configLine={   //a default configuration to represent the number of accident
 Chart.register(plugin,ChartDataLabels);
 
 
-
-
 function updateTitles(){  //Update the graphs titles
     titles=[]
     for(var i=0;i<facets.length;i++){
@@ -183,7 +181,7 @@ function selectColonne(inputChart){ //Change the type of graphs
     }
 
     else if(inputChart=="courbe" || typeChart=="courbe"){ 
-        //chart=courbe()
+
         configCourbe()
         if(!typeChart){
             colonneSelect[0].innerHTML="Courbe"

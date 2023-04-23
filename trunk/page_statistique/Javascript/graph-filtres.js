@@ -1,15 +1,13 @@
 // Retrieve datas to put in the graph, and also the filters values
 
-
 const colonneSelect=document.getElementById("graph-select")
-const xSelect =document.getElementById("axe-x")
 const lieuSelect=document.getElementById("lieu-select")
 const anneeGraphSelect=document.getElementById("annee-graph-select")
 
 
 var label=[] //Graphs legends
-var datas=[] // Each list represent a type of data : datetime, atm, sex, an-nais, grav, lum
-var chart  //Globals variables that contain the graph, the year, the place, the X-axis
+var datas=[] // Each list represent a type of data : datetime, atm, sex, an-nais, grav, lum 
+var chart  //Globals variables that contain the graph, the year, the place, the X-axis  
 var inputAnneeGraph
 var inputLieu
 var typeChart
@@ -30,7 +28,6 @@ async function DrawFiltreLieu(){  //Retrieve all regions
         var res=await fetch(apiGraphLieu)  
         var data=await res.json()
         var listRegion=data.facet_groups[0].facets
-        console.log(listRegion)
     }
     catch{
          console.log("erreur")
@@ -100,8 +97,7 @@ function getValueColonne(){  //Retrieve the graph type chosen
 
 function getValueX(){    //Retrieve the data to display
 
-    inputValueX=xSelect.value
-
+    inputValueX=axeX.value
     
                                           
     if(inputAnneeGraph || inputLieu){  //Initialize secondary filters
