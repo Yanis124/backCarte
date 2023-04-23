@@ -79,7 +79,7 @@ function addEventVille(){  //Checklist for the filter "ville"
     }); 
 }
 
-function addEventDepartement(){  //Checklist for the filter "ville"
+function addEventDepartement(){  //Checklist for the filter "departement"
 
     var textChoix=document.querySelector("#departement-choice")
     var departementText=document.querySelector(".departement-text")
@@ -94,7 +94,7 @@ function addEventDepartement(){  //Checklist for the filter "ville"
     items.forEach(item => {
     item.addEventListener("click", () => {
 
-        selectedDepartement=item.innerText     //recuperer la valeur
+        selectedDepartement=item.innerText     //retrieve the value
         item.classList.toggle("checked");
 
         closeList()
@@ -116,7 +116,7 @@ function addEventDepartement(){  //Checklist for the filter "ville"
             item.style.backgroundColor="#f5f5f5"
         });
 
-        resetBtn.addEventListener("click", () => {   //reset filter ville
+        resetBtn.addEventListener("click", () => {   //reset filter "ville"
             
             if(init){
                 departementSelect.children[1].innerHTML="";
@@ -145,8 +145,7 @@ function addEventRegion(){
     items.forEach(item => {
     item.addEventListener("click", () => {
 
-        selectedRegion=item.innerText     //recuperer la valeur
-        console.log(selectedRegion)
+        selectedRegion=item.innerText     //Retrieve the value
         item.classList.toggle("checked");
 
         closeList()
@@ -181,7 +180,7 @@ function addEventRegion(){
 
 
 
-function createList(valueList){  //creer les options de la checklist
+function createList(valueList){  //create checklist options
 
     var list=document.createElement("li")
     var span2=document.createElement("span")
