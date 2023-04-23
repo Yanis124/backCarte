@@ -1,7 +1,7 @@
 var zoom=10
 
 
-var carIcon = new L.Icon({ //modifier le marqueur
+var carIcon = new L.Icon({ //Modify the marker
     iconUrl: '../images/marker.svg',
     shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
     iconSize: [40, 60],
@@ -16,7 +16,7 @@ var bounds = L.latLngBounds(southWest, northEast);
 var map
 var locationBase=[48.862725, 2.287592]
 
-function initMap(){  //Initialisation de la carte
+function initMap(){  //Initialization of the map
     map=L.map("map",{
         fullscreenControl: true,
         maxBounds: bounds,   
@@ -48,18 +48,13 @@ function initMap(){  //Initialisation de la carte
 var markerCluster=new L.markerClusterGroup( { animate: true,animateAddingMarkers: true})
 
 
-function removePin(){  //supprimer tous les marqueurs
+function removePin(){  //Delete all markers
         markerCluster.clearLayers() 
 
 }
 
-
-
-
  
-//Fonction pour créer un marqueur ainsi que le contenu de son popup.
-//On peut rajouter plein d'options aux marqueurs et aux popups. A voir dans la documentation.
-
+//Function to create a marker and the content of his popup.
 
 async function createPin(){
 

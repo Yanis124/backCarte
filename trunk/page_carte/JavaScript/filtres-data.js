@@ -1,4 +1,4 @@
-var listAccidentFiltre=[]   //definir une liste d'accident par filtre
+    var listAccidentFiltre=[]   //definir une liste d'accident par filtre
 
 var listAccidentDate=[]
 var listAccidentIntervallDate=[]
