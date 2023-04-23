@@ -1,4 +1,4 @@
-function resetVille(){    //remettre a 0 le filtre ville
+function resetVille(){    //Reset the filter "ville"
 
     var textChoix=document.querySelector("#ville-choice")
     var villeText=document.querySelector(".ville-text")
@@ -7,7 +7,7 @@ function resetVille(){    //remettre a 0 le filtre ville
     villeText.style.position="relative"
 }
 
-function resetDepartement(){    //remettre a 0 le filtre departement
+function resetDepartement(){    //Reset the filter "departement"
 
     var textChoix=document.querySelector("#departement-choice")
     var departementText=document.querySelector(".departement-text")
@@ -24,7 +24,7 @@ function resetRegion(){
     regionText.style.position="relative"
 }
 
-function addEventVille(){  //simuler le comportement de la checklist dans le filtre ville
+function addEventVille(){  //Checklist for the filter "ville"
 
     var textChoix=document.querySelector("#ville-choice")
     var villeText=document.querySelector(".ville-text")
@@ -39,11 +39,11 @@ function addEventVille(){  //simuler le comportement de la checklist dans le fil
     items.forEach(item => {
     item.addEventListener("click", () => {
 
-        selectedVille=item.innerText     //recuperer la valeur
+        selectedVille=item.innerText     //Retrieve the value
         item.classList.toggle("checked");
         closeList()
 
-        if(selectedVille=="toutes les villes"){  //ne pas afficher la valeur de ville si on selectionne tous les villes
+        if(selectedVille=="toutes les villes"){  // Don't display the value of "ville" if the user choose "toutes les villes"
             resetVille()
         }
 
@@ -67,7 +67,7 @@ function addEventVille(){  //simuler le comportement de la checklist dans le fil
             item.style.backgroundColor="#f5f5f5"
         });
 
-        resetBtn.addEventListener("click", () => {   //reset filter ville
+        resetBtn.addEventListener("click", () => {   //reset filter "ville"
             
             if(init){
                 villeSelect.children[1].innerHTML="";
@@ -79,7 +79,7 @@ function addEventVille(){  //simuler le comportement de la checklist dans le fil
     }); 
 }
 
-function addEventDepartement(){  //simuler le comportement de la checklist dans le filtre ville
+function addEventDepartement(){  //Checklist for the filter "ville"
 
     var textChoix=document.querySelector("#departement-choice")
     var departementText=document.querySelector(".departement-text")
