@@ -1,8 +1,6 @@
-//definir les filtres comme variables globales pour avoir un accès à leurs valeurs depuis tous les fichiers 
-
+//Define filters as globals variables to have a complete access from every file
 
 var date=document.getElementById("date")
-var startDate=document.getElementById("date-debut")
 var endDate=document.getElementById("date-fin")
 
 var dateStart=document.getElementById("date-debut")
@@ -57,7 +55,7 @@ function displayDate(inputChoice){
             textDateIntervalValue[0].innerText="Debut"
             textDateIntervalValue[1].innerText="Fin"
             textDateIntervalValue[0].style.color=textDateIntervalValue[1].style.color="#333"
-            startDate.value=endDate.value=null
+            dateStart.value=endDate.value=null
             selectedDateEnd=selectedDateStart=null
 
             if(selectedDate){
@@ -85,7 +83,7 @@ function displayDateInterval(inputChoice){
         textDateIntervalValue[0].innerText="debut"
         textDateIntervalValue[1].innerText="Fin"
         textDateIntervalValue[0].style.color=textDateIntervalValue[1].style.color="#333"
-        startDate.value=endDate.value=null // reset  input date
+        dateStart.value=endDate.value=null // reset  input date
 
         
 
