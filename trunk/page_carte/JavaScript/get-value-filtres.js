@@ -1,6 +1,7 @@
-//definir les valeurs des filtres comme variables globales pour avoir un accès direct depuis tous les fichiers 
+//define filter values as global values so we can access them from all files
 
-var selectedDate   //definir une variable par filtre pour contenir les valeurs selectionnées
+//define one value per filter to contain all selected values
+var selectedDate
 var selectedDateStart  
 var selectedDateEnd
 var selectedRegion
@@ -37,9 +38,10 @@ function getIntervalleDateEnd(){
     setDateLimit()
 }
 
-function getIntervalleDate(){  //filtrer les données si on a la date début et de fin
+//filter values if we have start and end dates
+function getIntervalleDate(){
 
-    selectedDate=null  //mettre a 0 la valeur de date
+    selectedDate=null
 
     if(selectedDateEnd && selectedDateStart){
         getDataFiltre()
@@ -48,9 +50,10 @@ function getIntervalleDate(){  //filtrer les données si on a la date début et 
 
 module.exports=getIntervalleDateStart
 
+//get date if it's unique and not an interval
 function getDate(){  //recuperer la date 
     closeList()
-    selectedDateEnd=selectedDateStart=null //mettre a 0 l'intervalle de date
+    selectedDateEnd=selectedDateStart=null //nullify the date interval
     var textDate=document.querySelector('#date-specifique-container span')
     textDate.style.color="gray"
     
@@ -66,13 +69,14 @@ function setDateLimit(){  //selectedDateStart <= selectedDateEnd
 
 }
 
-function getRegion() {      // Région sélectionnée
+//Selected region
+function getRegion() { 
 
     resetVille()
 
     resetDepartement()
 
-    selectedDepartement=selectedVille=null //mettre à 0 departement et ville si on selectionne une autre region 
+    selectedDepartement=selectedVille=null //nullify departements and cities if we select a new region
     
         if(selectedRegion=="toutes les regions"){
             
@@ -83,80 +87,80 @@ function getRegion() {      // Région sélectionnée
             resetRegion()
         }
         else{
-            // URL de l'API pour les départements de la région sélectionn
+            // API's URL for departements of the selected region
             var apiUrl = "https://public.opendatasoft.com/api/records/1.0/search/?dataset=accidents-corporels-de-la-circulation-millesime&q=&rows=0&facet=dep_name&refine.reg_name=" + selectedRegion; // permet encoder un nouvel URL avec la region selectionné
 
             fetch(apiUrl)
-                .then(response => response.json()) // Convertit en objet JSON les données récupérées
+                .then(response => response.json()) // turn selected data into json object
                 .then(data => {
-                    var departement = data.facet_groups[0].facets; //variable departement contenant les données récupérées
+                    var departement = data.facet_groups[0].facets; //variable departement carrying the data we just got
 
-                    departement.sort((a, b) => a.name.localeCompare(b.name)); // Tri par ordre alphabétique
-                    // Mise à jour de la liste déroulante des département
-                    var departementSelect = document.getElementById("departement"); //Variable avec pour id = departement
+                    departement.sort((a, b) => a.name.localeCompare(b.name)); // alphabetical sort
+                    //updating the departement list
+                    var departementSelect = document.getElementById("departement"); //Variable with id = departement
 
-                    departementSelect.children[1].innerHTML=""; // Suppression des options précédentes
+                    departementSelect.children[1].innerHTML=""; //Deleting previous options
                     departementSelect.children[1].append(createList("tous les departements"))
                     departement.forEach(departement => {
                     var option = createList(departement.name)
 
                     departementSelect.children[1].append(option); 
                     });
-                    addEventDepartement()  //ajouter les differents evenements aux departements
+                    addEventDepartement()  //adding events to departements
                 })
-            // URL de l'API pour les villes de la région sélectionnée
+            // API's URL for cities of the selected region
             var apiUrl1 = "https://public.opendatasoft.com/api/records/1.0/search/?dataset=accidents-corporels-de-la-circulation-millesime&q=&rows=0&facet=nom_com&refine.reg_name=" +selectedRegion; // permet encoder un nouvel URL avec la region selectionné
 
             fetch(apiUrl1)
-            .then(response => response.json()) // Convertit en objet JSON les données récupérées
+            .then(response => response.json()) // turn selected data into json object
             .then(data => {
-                var ville = data.facet_groups[0].facets; //variable villes contenant les données récupérées
+                var ville = data.facet_groups[0].facets; //variable villes carrying the data we just got
 
-                ville.sort((a, b) => a.name.localeCompare(b.name)); // Tri par ordre alphabétique
-                // Mise à jour de la liste déroulante des villes
-                villeSelect.children[1].innerHTML=""; // Suppression des options précédentes
+                ville.sort((a, b) => a.name.localeCompare(b.name)); // alphabetical sort
+                // Updating list of cities
+                villeSelect.children[1].innerHTML=""; // Deleting previous options
                 villeSelect.children[1].append(createList("toutes les villes"))
                 ville.forEach(ville => {
                     var option = createList(ville.name)
 
-                    villeSelect.children[1].append(option); //ajouter les villes du departement dans me filtre ville
+                    villeSelect.children[1].append(option); //adding cities from departement in the "city" filter
                 });
 
-                addEventVille()  //ajouter les differents evenements aux villes
+                addEventVille()  //adding various events to cities
             })
         }
-        getDataFiltre()  //filtrer
+        getDataFiltre()  //filter
 }
 
 function getDepartement(){
 
     resetVille()
 
-    selectedVille=null //mettre a 0 ville si il selectionne un autre departement
+    selectedVille=null //nullify city if another departement is selected
 
-    if(selectedDepartement=="tous les departements"){  //si on selectionne tous les departements on affiche toutes les villes de la regions selectionné
+    if(selectedDepartement=="tous les departements"){  //if all departements are selected then we show all cities from selected region
         getRegion()
     }
 
     else{
-        // URL de l'API pour les villes du département sélectionnée
+        //API's URL for cities of the selected departement
         var apiUrl2 = "https://public.opendatasoft.com/api/records/1.0/search/?dataset=accidents-corporels-de-la-circulation-millesime&q=&rows=0&facet=nom_com&refine.dep_name=" +selectedDepartement; // permet encoder un nouvel URL avec la region selectionné
-        // Récupération des départements de l'API pour la région sélectionnée
+        //Getting API's departement for selected region
         fetch(apiUrl2)
         .then(response => response.json())
         .then(data => {
             var ville = data.facet_groups[0].facets;
 
-            ville.sort((a, b) => a.name.localeCompare(b.name)); // Tri par ordre alphabétique
-            // Mise à jour de la liste déroulante des villes
-            var villeSelect = document.getElementById("ville"); //Variable avec pour id = ville
+            ville.sort((a, b) => a.name.localeCompare(b.name)); //alphabetical sort
+            //updating the cities list
+            var villeSelect = document.getElementById("ville"); //Variable with id = ville
 
-            villeSelect.children[1].innerHTML=""; // Suppression des options précédentes
+            villeSelect.children[1].innerHTML=""; //deleting previous options
             villeSelect.children[1].append(createList("toutes les villes"))
             ville.forEach(ville => {
                 var option = createList(ville.name)
 
-                villeSelect.children[1].append(option); //ajouter les villes du departement dans le filtre ville
+                villeSelect.children[1].append(option); //adding cities from the departement
             });
             addEventVille()
         })
@@ -164,7 +168,7 @@ function getDepartement(){
     }
 }
 
-function getJour(inputJour){  //recuperer la valeur du filtre jour
+function getJour(inputJour){  //get value of filter "jour"
 
     if(!inputJour.checked){
         selectedLum=null
@@ -176,7 +180,7 @@ function getJour(inputJour){  //recuperer la valeur du filtre jour
         textLum[0].style.color="#000"
         textLum[1].style.color="#333"
         selectedLum=jourSelect.value
-        var inputNuit=document.getElementById("nuit")  //remettre a 0 le button nuit
+        var inputNuit=document.getElementById("nuit")  //nullify the "nuit" button
         if(inputNuit.checked){
             inputNuit.checked = false;
         }
@@ -184,7 +188,7 @@ function getJour(inputJour){  //recuperer la valeur du filtre jour
     getDataFiltre()
 }
 
-function getNuit(inputNuit){ //recuperer la valeur du filtre nuit
+function getNuit(inputNuit){ //get "nuit" filter value
 
     if(!inputNuit.checked){
         selectedLum=null
@@ -195,7 +199,7 @@ function getNuit(inputNuit){ //recuperer la valeur du filtre nuit
         textLum[1].style.color="#000"
         textLum[0].style.color="#333"
         selectedLum=nuitSelect.value
-        var inputJour=document.getElementById("jour") //remettre a 0 le button jour
+        var inputJour=document.getElementById("jour") //nullify "jour" button
         if(inputJour.checked){
             inputJour.checked = false;
         }
@@ -203,7 +207,7 @@ function getNuit(inputNuit){ //recuperer la valeur du filtre nuit
     getDataFiltre()
 }
 
-function getAtm(){  //recuperer les valeurs du filtre meteo
+function getAtm(){  //get values from meteo filter
 
     var textChoix=document.querySelector("#weather-choice")
     var weatherText=document.querySelector(".weather-text")
@@ -219,9 +223,9 @@ function getAtm(){  //recuperer les valeurs du filtre meteo
         item.classList.toggle("checked");
         closeList()
 
-        const selectedItems = document.querySelectorAll("#weather .checked"); // Récupérer tous les éléments avec la classe "checked"
+        const selectedItems = document.querySelectorAll("#weather .checked"); // get all class "checked" elements
 
-        selectedValuesAtm = Array.from(selectedItems).map(item => item.getAttribute("value")); // Récupérer les valeurs de l'attribut "value" des éléments sélectionnés
+        selectedValuesAtm = Array.from(selectedItems).map(item => item.getAttribute("value")); //Get values of the attribute "value" from selected elements
 
         textChoix.innerHTML=""
         for(var i=0;i<selectedValuesAtm.length;i++){
@@ -267,9 +271,9 @@ function getAge(){
         item.classList.toggle("checked");
         closeList()
 
-        const selectedItems = document.querySelectorAll(".age-container .checked"); // Récupérer tous les éléments avec la classe "checked"
+        const selectedItems = document.querySelectorAll(".age-container .checked"); //get all class "checked" elements
 
-        selectedValuesAge = Array.from(selectedItems).map(item => item.getAttribute("value")); // Récupérer les valeurs de l'attribut "value" des éléments sélectionnés
+        selectedValuesAge = Array.from(selectedItems).map(item => item.getAttribute("value")); //Get values of the attribute "value" from selected elements
 
         filterList(); 
 
@@ -319,9 +323,9 @@ function getGravite(){
         item.classList.toggle("checked");
         closeList()
 
-        const selectedItems = document.querySelectorAll(".gravite-container .checked"); // Récupérer tous les éléments avec la classe "checked"
+        const selectedItems = document.querySelectorAll(".gravite-container .checked"); //get all class "checked" elements
 
-        selectedValuesGravite = Array.from(selectedItems).map(item => item.getAttribute("value")); // Récupérer les valeurs de l'attribut "value" des éléments sélectionnés
+        selectedValuesGravite = Array.from(selectedItems).map(item => item.getAttribute("value")); //Get values of the attribute "value" from selected elements
 
         filterList(); 
 
@@ -352,7 +356,7 @@ function getGravite(){
     }); 
 }
 
-function openFiltreList(){   //ouvrire les listes des filtres
+function openFiltreList(){   //Open filter lists
 
     for(var i=0;i<listClass.length;i++){
 
@@ -370,7 +374,7 @@ function openFiltreList(){   //ouvrire les listes des filtres
     }
 }
 
-function closeList(){   //fermer la liste une fois qu'on a choisi la ville dep region
+function closeList(){   //Close list once city, departement & region is chosen
 
     const selectBtns = document.querySelectorAll(".select-btn")
     
