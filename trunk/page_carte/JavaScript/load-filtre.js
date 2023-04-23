@@ -1,12 +1,12 @@
 //Block filters during the load of accidents
 
-//Récupère les éléments "date" et "luminosité"
+//Retrieve elements "date" and "luminosité"
 var switchTab=document.querySelectorAll("#switch-container")
 
-//récupère tous les autres filtres
+//Retrieve all others filters
 var selectBtn=document.querySelectorAll(".select-btn")
 
-//Quand un accident est sélectionné, les filtres sont inaccessibles
+//When an filter is selected, filters become unavailables
 function loadFiltre(){
         switchTab.forEach(element=>{
         element.style.pointerEvents="none",
@@ -23,7 +23,7 @@ function loadFiltre(){
 }
 
 
-//Une fois les marqueurs chargés, l'utilisateur peut réutiliser les filtres
+//When markers are loaded, the user can use filters again
  function workFiltre(){
     switchTab.forEach(element=>{
         element.style.pointerEvents="auto",

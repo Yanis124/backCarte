@@ -12,14 +12,14 @@
         <link rel="stylesheet" href="../CSS/filtres.css">
 
         
-        <link href="../CSS/style.css" rel="stylesheet" type="text/css"><!--Page css propre à la page-->
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"> <!-- CSS pour avoir les symboles du menu deroulant avec checkbox -->
+        <link href="../CSS/style.css" rel="stylesheet" type="text/css"><!-- CSS -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"> <!-- checkbox CSS -->
         <title>Carte des accidents de la route</title>
 
-        <!--Intégration de la bibliothèque Leaflet-->
+        <!-- Leaflet -->
         <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI=" crossorigin=""/>
     
-        <link href="https://fonts.googleapis.com/css?family=Catamaran:400,700&display=swap" rel="stylesheet"> <!-- style de header -->
+        <link href="https://fonts.googleapis.com/css?family=Catamaran:400,700&display=swap" rel="stylesheet"> <!-- header style -->
 
         <link rel="stylesheet" href="../../Commun/CSS/commun.css" type="text/css">
 
@@ -27,10 +27,10 @@
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
         <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js" integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM=" crossorigin=""></script>
-        <link rel="stylesheet" href="../plugin/FullScreen/Control.FullScreen.css"> <!--plugin pour ajouter le boutton full screen-->
+        <link rel="stylesheet" href="../plugin/FullScreen/Control.FullScreen.css"> <!--plugin to add the full screen button-->
         <script src="../plugin/FullScreen/Control.FullScreen.js"></script>
     
-        <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.0.3/dist/MarkerCluster.css"> <!-- integrer les clusters dans la carte -->
+        <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.0.3/dist/MarkerCluster.css"> <!-- map clusters  -->
         <script src='https://unpkg.com/leaflet.markercluster@1.3.0/dist/leaflet.markercluster-src.js'></script>
 
         <link rel="icon" href="../../Commun/images/A.svg">
@@ -105,7 +105,7 @@
                 <form id="filtres">
                     <div id="filtre-container" class="filtre-container">
 
-                        <div class="date-container">  <!--Filtre date ou intervalle de date-->
+                        <div class="date-container">  <!--filter "date" or "intervalle de date"-->
                         
                            
                             <div class="date-specifique-container" id="switch-container">
@@ -125,12 +125,12 @@
 
                             </div>
                         </div>
-                        <!-- Si sélectionne du filtre Date alors affichage d'un élément choix de date spécifique-->
+                        <!--If we choose "date" then display of an element "choix de date spécifique"--> 
                         <div class="date-container" id="date-specifique-container" style="display: none;">
                             <input onkeydown="return false" onclick="closeList()"  onchange="getDate()" id="date" type="date" id="date-specifique" name="date-specifique">
                             <span>Date</span>
                         </div>
-                        <!-- Si sélectionne du filtre Intervalle de Date alors affichage d'un élément choix de date Début et d'un élément choix de date de Fin-->
+                        <!--If we choose the filter "Intervalle de date" then display of the element "choix de date début" and "choix de date fin"--> 
                         <div class="date-container" id="date-interval-container" style="display: none;">
                             <div class="interval-container">
                                 <input onkeydown="return false" onclick="closeList()" onchange="getIntervalleDateStart(); getIntervalleDate()" type="date" id="date-debut" name="date-debut">
@@ -142,7 +142,7 @@
                             </div>
                         </div>
                     
-                        <!-- Filtre regions sans les regions outre mer-->  
+                        <!--Filter "region" -->  
                         <div class="region-container" id="region">
                             <div class="select-btn">
                                 <div class="btn-text"> <span class="region-text"> Region </span> 
@@ -160,7 +160,7 @@
                              
                         </div>
 
-                        <!-- Filtre departement sans les departements outre mer--> 
+                        <!-- Filter "departement"--> 
                         <div class="departement-container" id="departement">
                             <div class="select-btn">
                                 <div class="btn-text"> <span class="departement-text"> Departement </span> 
@@ -175,7 +175,7 @@
                             </ul>
                         </div>
                         
-                        <!-- Filtre ville sans les villes outre mer-->
+                        <!-- Filtre "ville"-->
                         <div class="ville-container" id="ville">
                             <div class="select-btn">
                                 <div class="btn-text"> <span class="ville-text"> Ville </span> 
@@ -190,7 +190,7 @@
                             </ul>
                         </div>
                         
-                        <!-- Filtre condition météorologique : normale, pluie légère, pluie forte, temps couverts, temps éblouissant, neige/grèle, borouillard/fumée, vent fort/tempête-->  
+                        <!-- Filter "condition météorologique" -->  
                         <div id="weather" class="weather-container">
                             <div class="select-btn">
                                 <div class="btn-text"> <span class="weather-text"> Condition Météorologique </span>
@@ -252,7 +252,7 @@
                             </ul>   
                         </div>
     
-                        <!-- Filtre tranches d'âge : 0-18 ans, 18-30 ans, 30-50 ans, 50 ans et plus--> 
+                        <!-- Filter "tranches d'âge"-->
                         <div class="age-container">
                             <div class="select-btn">
                                 <div class="btn-text"> <span class="age-text"> Tranches d'âges </span> 
@@ -289,7 +289,7 @@
                                 </li>
                             </ul>
                         </div>
-                        <!-- Filtre Gravité accident : indemne, blessé léger, blessé hospitalisé, tué-->  
+                        <!-- Filter "gravité"-->
                         <div class="gravite-container">
                             <div class="select-btn">
                                 <div class="btn-text">  <span class="gravite-text"> Gravité de l'accident </span> 
@@ -320,7 +320,7 @@
                                 </li>
                             </ul>
                         </div>
-                        <!-- Filtre Luminosité : Jour, Nuit--> 
+                        <!-- Filter "luminosité"--> 
                         <div class="lum-container">
 
                             <div class="jour-container" id="switch-container">
