@@ -7,8 +7,6 @@ var dateEnd=document.getElementById("date-fin")
 var regionSelect = document.getElementById("region")
 var departementSelect = document.getElementById("departement")
 var villeSelect = document.getElementById("ville")
-
-
 var jourSelect=document.getElementById("jour")
 var nuitSelect=document.getElementById("nuit")
 
@@ -21,7 +19,7 @@ function displayDate(inputChoice){
     var textDateIntervalValue=document.querySelectorAll("#date-interval-container span")
     
 
-    if(!inputChoice.checked){  // cacher date
+    if(!inputChoice.checked){  //hide date
         dateSpecifiqueContainer.style.display="none"
         textDate.style.color="#333"
         
@@ -36,7 +34,7 @@ function displayDate(inputChoice){
         
     }
 
-    else{     //afficher date
+    else{     //display date
         var inputDateInterval=document.getElementById("interval-date")
 
         dateSpecifiqueContainer.style.display="flex"
@@ -46,7 +44,7 @@ function displayDate(inputChoice){
     
         
 
-        if(inputDateInterval.checked){ //cacher intervalle de date
+        if(inputDateInterval.checked){ //hide "intervalle de date"
             inputDateInterval.checked=false
             textDate.style.color='#333'
             textDateIntervalValue[0].innerText="Debut"
@@ -72,7 +70,7 @@ function displayDateInterval(inputChoice){
     var textDateValue=document.querySelector("#date-specifique-container span")
     
 
-    if(!inputChoice.checked){    //cacher intervalle de date
+    if(!inputChoice.checked){    //hide "intervalle de date"
         dateIntervalContainer.style.display="none"
         textIntervalDate.style.color="#333"
         
@@ -92,7 +90,7 @@ function displayDateInterval(inputChoice){
         
 
     }
-    else{ // afficher date 
+    else{ // display date
 
         var inputDateSpecifique=document.getElementById("specifique-date")
 
@@ -116,34 +114,32 @@ function displayDateInterval(inputChoice){
     }
 }
 
-function dateLimit(){  //definir une limite de date 
+function dateLimit(){  //define a date limit 
 
-    date.setAttribute("min","2012-01-01") //limiter le choix de la date 
+    date.setAttribute("min","2012-01-01") 
     date.setAttribute("max","2020-01-01")
-    dateStart.setAttribute("min","2012-01-01") //limiter le choix de la date 
+    dateStart.setAttribute("min","2012-01-01") 
     dateStart.setAttribute("max","2020-01-01")
-    dateEnd.setAttribute("min","2012-01-01") //limiter le choix de la date 
+    dateEnd.setAttribute("min","2012-01-01") 
     dateEnd.setAttribute("max","2020-01-01")
 }
 
 function nomRegions() {
-    // URL de l'API récupérant les noms des régions
+    //API URL to retrieve the regions names
     var apiUrl1 = "https://geo.api.gouv.fr/regions?&fields=nom,code,codesPostaux,departement,region&format=json";
 
-    // Récupération des regions de l'API
     fetch(apiUrl1)
-      .then(response => response.json()) // Convertit en objet JSON les données récupérées
+      .then(response => response.json()) //Convert retrieved datas into JSON objects
       .then(data => {
 
-        var region = data; //variable region contenant les données récupérées
-        console.log(region)
+        var region = data; //contain retrieved datas
 
-        region.sort((a, b) => a.nom.localeCompare(b.nom)); // Tri par ordre alphabétique
+        region.sort((a, b) => a.nom.localeCompare(b.nom)); // sort by alphabetical order
         regionSelect.children[1].innerHTML="";
         regionSelect.children[1].append(createList("toutes les regions"))
         region.forEach(region => {
 
-            if (region.nom !== "Mayotte" && region.nom !== "Guadeloupe" && region.nom !== "Martinique" && region.nom !== "Guyane" && region.nom!== "La Réunion"){ //Enlever les regions d'outre mer
+            if (region.nom !== "Mayotte" && region.nom !== "Guadeloupe" && region.nom !== "Martinique" && region.nom !== "Guyane" && region.nom!== "La Réunion"){
                 var option = createList(region.nom)
 
                 regionSelect.children[1].append(option);
@@ -151,24 +147,22 @@ function nomRegions() {
         });
         addEventRegion()
       })
-      .catch(console.log("erreur de fetch")) //gerer les erreurs
+      .catch(console.log("erreur de fetch")) //Manage errors
 }
 
 function nomDepartements(){
     
-    console.log(departementSelect)
-    console.log("called all dep")
-    // URL de l'API récupérant les noms des départements
+
+    //API URL to retrieve departments names
     var apiUrl2 = "https://public.opendatasoft.com/api/records/1.0/search/?dataset=accidents-corporels-de-la-circulation-millesime&q=&rows=0&facet=dep_name";
-    // Récupération des départements de l'API
         fetch(apiUrl2)
-          .then(response => response.json()) // Convertit en objet JSON les données récupérées
+          .then(response => response.json()) //Convert retrieved datas into JSON objects
           .then(data => {
 
-            var departement = data.facet_groups[0].facets; //variable departement contenant les données récupérées
+            var departement = data.facet_groups[0].facets; 
             departement.sort((a, b) => a.name.localeCompare(b.name));
-            // Ajout des communes à la liste déroulante
-            departementSelect.children[1].innerHTML=""; // suppression des options précédentes
+
+            departementSelect.children[1].innerHTML="";
             departementSelect.children[1].append(createList("tous les departements"))
             departement.forEach(departement => {
                 if (departement.name !== "Mayotte" && departement.name !== "Guadeloupe" && departement.name !== "Martinique" && departement.name !== "Guyane" && departement.name !== "La Réunion"){ //Enlever les departements d'outre mer
@@ -180,21 +174,21 @@ function nomDepartements(){
             });
             addEventDepartement()
           })
-          .catch(console.log("erreur de fetch")) //gerer les erreurs
+          .catch(console.log("erreur de fetch")) //Manage errors
 }
 
 function nomVilles(){
     
-    // URL de l'API rÃ©cupÃ©rant les noms des villes
+    //API URL to retrieve cities names
 	var apiUrl3 = "https://public.opendatasoft.com/api/records/1.0/search/?dataset=accidents-corporels-de-la-circulation-millesime&q=&rows=0&facet=nom_com";
-	// RÃ©cupÃ©ration des communes de l'API
+
 	fetch(apiUrl3)
-		.then(response => response.json()) // Convertit en objet JSON les donnÃ©es rÃ©cupÃ©rÃ©es
+		.then(response => response.json()) //Convert retrieved datas into JSON objects
 		.then(data => {
-			var ville = data.facet_groups[0].facets; //variable ville contenant les donnÃ©es rÃ©cupÃ©rÃ©es
-			ville.sort((a, b) => a.name.localeCompare(b.name)); // Tri par ordre alphabÃ©tique
-			// Ajout des communes Ã  la liste dÃ©roulante
-            villeSelect.children[1].innerHTML=""  // Suppression des options prÃ©cÃ©dentes
+			var ville = data.facet_groups[0].facets; 
+			ville.sort((a, b) => a.name.localeCompare(b.name)); //sorted by alphabetical order
+
+            villeSelect.children[1].innerHTML=""
             villeSelect.children[1].append(createList("toutes les villes"))
 			ville.forEach(ville => {
 				var option = createList(ville.name)
@@ -203,13 +197,13 @@ function nomVilles(){
 			})
             addEventVille()
 	    })
-        .catch(console.log("erreur de fetch")) //gerer les erreurs
+        .catch(console.log("erreur de fetch")) //Manage errors
 
         
 }
 
 
-//reset date/intervalle date
+//reset "date/intervalle date"
 
 function resetDate(){
     var resetBtn = document.querySelector('input[type="reset"]');
