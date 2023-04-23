@@ -1,10 +1,9 @@
 const noteSmall = document.getElementsByClassName("leaflet-marker-icon marker-cluster marker-cluster-small leaflet-zoom-animated leaflet-interactive ");
 const noteMedium=document.getElementsByClassName("leaflet-marker-icon marker-cluster marker-cluster-medium leaflet-zoom-animated leaflet-interactive")
 const noteLarge=document.getElementsByClassName("leaflet-marker-icon marker-cluster marker-cluster-large leaflet-zoom-animated leaflet-interactive")
-//Selectionner les objets à chaque fois qu'on zoom ou on dezoom des numeros apparaissent pour indiquer le nombre de marqueurs regroupés
 
 
-function regrouper(){ //Appliquer le style à tous les clusters
+function regrouper(){ //clusters style
   
     if(noteSmall.length>0){  
         
@@ -23,8 +22,8 @@ function regrouper(){ //Appliquer le style à tous les clusters
     }
 }
 
-function style(note){   //Ajouter du style aux clusters    
-    for(var i=0;i<note.length;i++){  //Iterer le tableau pour styler les elements
+function style(note){   //Add style to clusters 
+    for(var i=0;i<note.length;i++){  //Iterate the chart to style the elements
             var Div=note[i]
             var number=note[i].children[0].children[0]
             var numberDiv=note[i].children[0]
@@ -46,7 +45,6 @@ function style(note){   //Ajouter du style aux clusters
             Div.style.borderStyle="solid"
             Div.style.borderColor="white"
             Div.style.borderRadius="50px"
-            //Div.style.padding="10px"
             Div.style.zIndex="9999"
             if(number.innerText.length>=5){
                 Div.style.padding="12px"
@@ -74,8 +72,8 @@ function style(note){   //Ajouter du style aux clusters
 }  
 
 
-function popUp(list,i){  //Créer les popups
-    //les informations de l'accident
+function popUp(list,i){  //Create popups
+    //informations of the accident
     var idAccident=popUpData(list[i].fields.num_acc)
     var day=popUpData(list[i].fields.jour)
     var month=popUpData(list[i].fields.mois)
@@ -89,14 +87,14 @@ function popUp(list,i){  //Créer les popups
 
 
 
-    //le style des popup
+    //popups style
     var colorText="#1b6698"
     var fontSize="15px"
     var fontSizeTitle="17px"
     var fontWeigth="700"
     
-    var pop=L.popup({content:"<h1 style='font-size:"+fontSizeTitle+";'>"+"numero d'accident: "+idAccident+"</h1>"//numero d'accident
-    +"<p style='font-size:"+fontSize +";color:"+colorText+"'>"+"<span style='font-size:"+fontSize +";font-weight:"+fontWeigth+";'>"+day+"/"+month+"/"+year+", " //date et l'heure
+    var pop=L.popup({content:"<h1 style='font-size:"+fontSizeTitle+";'>"+"numero d'accident: "+idAccident+"</h1>"//accident number
+    +"<p style='font-size:"+fontSize +";color:"+colorText+"'>"+"<span style='font-size:"+fontSize +";font-weight:"+fontWeigth+";'>"+day+"/"+month+"/"+year+", " //date
     +time+"</span>"+"</p>"
     +"<ul style='display:flex;flex-direction:column; padding:0;align-items:start;'>"
     +"<li style='font-size:"+fontSize+";color:"+colorText+";'>"+"Adresse: "+"<span style='font-size:"+fontSize+";font-weight:"+fontWeigth+";'>"+adress+"</span>"+"</li>"
@@ -105,11 +103,11 @@ function popUp(list,i){  //Créer les popups
     +"<li style='font-size:"+fontSize+";color:"+colorText+";'>"+"Gravité: "+"<span style='font-size:"+fontSize+";font-weight:"+fontWeigth+";'>"+displaydata(grav)+"</span> </li>"
     +"</ul>"
     }) 
-    //console.log(pop)
+
     return pop
 }
 
-function popUpData(data){   //si la donnée n'est pas disponible dans l'api 
+function popUpData(data){   //if the data is not available in the API
     var message="Indisponible"
     if(data=="undefined"){
         return message
@@ -145,9 +143,7 @@ function displaydata(data){
     
 
     
-
-    
 }
 
-setInterval(regrouper, 500)  //on appelle la fonction regrouper() tous les 300ms
+setInterval(regrouper, 500)  //we call the function regrouper() every 300ms.
 
