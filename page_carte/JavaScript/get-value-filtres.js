@@ -88,49 +88,68 @@ function getRegion() {
         }
         else{
             // API's URL for departements of the selected region
-            var apiUrl = "https://public.opendatasoft.com/api/records/1.0/search/?dataset=accidents-corporels-de-la-circulation-millesime&q=&rows=0&facet=dep_name&refine.reg_name=" + selectedRegion; // permet encoder un nouvel URL avec la region selectionné
 
-            fetch(apiUrl)
+            if(selectedRegion!="Corse"){
+                var apiUrl = "https://public.opendatasoft.com/api/records/1.0/search/?dataset=accidents-corporels-de-la-circulation-millesime&q=&rows=0&facet=dep_name&refine.reg_name=" + selectedRegion; // permet encoder un nouvel URL avec la region selectionné
+            
+
+            
+                fetch(apiUrl)
+                    .then(response => response.json()) // turn selected data into json object
+                    .then(data => {
+                        var departement = data.facet_groups[0].facets; //variable departement carrying the data we just got
+
+                        departement.sort((a, b) => a.name.localeCompare(b.name)); // alphabetical sort
+                        //updating the departement list
+                        var departementSelect = document.getElementById("departement"); //Variable with id = departement
+
+                        departementSelect.children[1].innerHTML=""; //Deleting previous options
+                        departementSelect.children[1].append(createList("tous les departements"))
+                        departement.forEach(departement => {
+                        var option = createList(departement.name)
+
+                        departementSelect.children[1].append(option); 
+                        });
+                        addEventDepartement()  //adding events to departements
+                    })
+                // API's URL for cities of the selected region
+                
+                var apiUrl1 = "https://public.opendatasoft.com/api/records/1.0/search/?dataset=accidents-corporels-de-la-circulation-millesime&q=&rows=0&facet=nom_com&refine.reg_name=" +selectedRegion; // permet encoder un nouvel URL avec la region selectionné
+                
+                fetch(apiUrl1)
                 .then(response => response.json()) // turn selected data into json object
                 .then(data => {
-                    var departement = data.facet_groups[0].facets; //variable departement carrying the data we just got
+                    var ville = data.facet_groups[0].facets; //variable villes carrying the data we just got
 
-                    departement.sort((a, b) => a.name.localeCompare(b.name)); // alphabetical sort
-                    //updating the departement list
-                    var departementSelect = document.getElementById("departement"); //Variable with id = departement
+                    ville.sort((a, b) => a.name.localeCompare(b.name)); // alphabetical sort
+                    // Updating list of cities
+                    villeSelect.children[1].innerHTML=""; // Deleting previous options
+                    villeSelect.children[1].append(createList("toutes les villes"))
+                    ville.forEach(ville => {
+                        var option = createList(ville.name)
 
-                    departementSelect.children[1].innerHTML=""; //Deleting previous options
-                    departementSelect.children[1].append(createList("tous les departements"))
-                    departement.forEach(departement => {
-                    var option = createList(departement.name)
-
-                    departementSelect.children[1].append(option); 
+                        villeSelect.children[1].append(option); //adding cities from departement in the "city" filter
                     });
-                    addEventDepartement()  //adding events to departements
+
+                    addEventVille()  //adding various events to cities
                 })
-            // API's URL for cities of the selected region
-            var apiUrl1 = "https://public.opendatasoft.com/api/records/1.0/search/?dataset=accidents-corporels-de-la-circulation-millesime&q=&rows=0&facet=nom_com&refine.reg_name=" +selectedRegion; // permet encoder un nouvel URL avec la region selectionné
-
-            fetch(apiUrl1)
-            .then(response => response.json()) // turn selected data into json object
-            .then(data => {
-                var ville = data.facet_groups[0].facets; //variable villes carrying the data we just got
-
-                ville.sort((a, b) => a.name.localeCompare(b.name)); // alphabetical sort
-                // Updating list of cities
-                villeSelect.children[1].innerHTML=""; // Deleting previous options
-                villeSelect.children[1].append(createList("toutes les villes"))
-                ville.forEach(ville => {
-                    var option = createList(ville.name)
-
-                    villeSelect.children[1].append(option); //adding cities from departement in the "city" filter
-                });
-
-                addEventVille()  //adding various events to cities
-            })
+            
+               
+            }
+            else{
+                departementSelect.children[1].innerHTML=""; //Deleting previous options
+                villeSelect.children[1].innerHTML=""
+                resetVille()
+                resetDepartement()
+                
+            }
+            getDataFiltre()  //filter
         }
-        getDataFiltre()  //filter
-}
+
+        
+            
+    }
+
 
 function getDepartement(){
 
