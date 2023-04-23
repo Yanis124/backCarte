@@ -6,7 +6,7 @@ var spinner=document.getElementById("spinner-carte")
 async function loadCarte(){
     spinner.style.display="block"
     carte.style.opacity="0.3"
-    await new Promise(r => setTimeout(r, 100));   
+    await new Promise(r => setTimeout(r, 400));   
 }
 
 //stop the loading animation
