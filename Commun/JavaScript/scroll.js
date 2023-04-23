@@ -1,4 +1,4 @@
-/* AFFICHAGE DU NOUVEAU HEADER QUAND ON SCROLL LA PAGE */
+//Display of the new header when we scroll the page
 $(document).ready(function() {
     function sticky_header() {
         $(window).scroll(function() {
