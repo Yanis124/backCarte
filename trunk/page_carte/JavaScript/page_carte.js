@@ -11,7 +11,7 @@ var carIcon = new L.Icon({ //modifier le marqueur
   });
 
 var southWest = L.latLng(35.712, -15.227)
-var northEast = L.latLng(65.774, 15.125)
+var northEast = L.latLng(60.774, 15.125)
 var bounds = L.latLngBounds(southWest, northEast);
 var map
 var locationBase=[48.862725, 2.287592]
@@ -63,7 +63,7 @@ function removePin(){  //supprimer tous les marqueurs
 
 async function createPin(){
 
-    loadCarte()
+    await loadCarte()  //loadCarte is an sync function because we display 50000 markers each 100ms
     loadFiltre()
 
     
@@ -110,6 +110,7 @@ async function createPin(){
                 
                 markerCluster.addLayers(markers);
                 markers=[]
+                await loadCarte()
                 
                 map.addLayer(markerCluster);
                 
@@ -121,7 +122,7 @@ async function createPin(){
                 markerCluster.addLayers(markers);
                 
                 map.addLayer(markerCluster);
-                loadCarte()
+                await loadCarte()
                 
 
                 
